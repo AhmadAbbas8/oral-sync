@@ -1,13 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:oralsync/core/utils/colors_palette.dart';
+import 'package:oralsync/features/Auth/presentation/pages/login_page.dart';
 
 class OralSyncApp extends StatelessWidget {
   const OralSyncApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home:Text('data'),
+      theme: ThemeData(
+        scaffoldBackgroundColor: ColorsPalette.scaffoldColor,
+
+      ),
+      home: LoginPage(),
     );
   }
 }
