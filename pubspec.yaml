@@ -48,6 +48,7 @@ dependencies:
   shared_preferences: ^2.2.2
   flutter_login: ^4.2.1
   flutter_svg: ^2.0.9
+  internet_connection_checker: ^1.0.0+1
 
 dev_dependencies:
   flutter_test:
