@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:oralsync/core/utils/assets_manager.dart';
-import 'package:oralsync/core/utils/colors_palette.dart';
 import 'package:oralsync/core/utils/size_helper.dart';
 import 'package:oralsync/core/utils/styles.dart';
+import 'package:oralsync/features/Auth/presentation/pages/sign_up_options_page.dart';
+import 'package:oralsync/features/Auth/presentation/widgets/custom_hint_button_widget.dart';
+import 'package:oralsync/features/Auth/presentation/widgets/custom_login_button_widget.dart';
 import 'package:oralsync/features/Auth/presentation/widgets/custom_text_form_field_login.dart';
 import 'package:oralsync/features/Auth/presentation/widgets/forget_password_button_widget.dart';
 
@@ -45,37 +46,20 @@ class LoginPage extends StatelessWidget {
                   ),
                   const ForgetPasswordButtonWidget(),
                   SizeHelper.defSizedBoxField,
-                  MaterialButton(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20),
-                      side: BorderSide.none,
-                    ),
-                    clipBehavior: Clip.hardEdge,
-                    color: const Color(0xFFAA2F2F),
+                  CustomLoginButtonWidget(
+                    title: 'Sign in',
                     minWidth: size.width * .8,
-                    height: 50,
-                    textColor: Colors.white,
-                    child: const Text('Sign in'),
                     onPressed: () {},
                   ),
                   const Spacer(),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        'Don’t Have Any Account,',
-                        style: AppStyles.styleSize14
-                            .copyWith(fontWeight: FontWeight.w500),
-                      ),
-                      TextButton(
-                          onPressed: () {},
-                          child: Text(
-                            'Sign Up',
-                            style: AppStyles.styleSize14.copyWith(
-                                fontWeight: FontWeight.w500,
-                                color: const Color(0xFFAA2F2F)),
-                          ))
-                    ],
+                  CustomHintButtonWidget(
+                    title: 'Don’t Have Any Account,',
+                    buttonTitle: 'Sign Up',
+                    onPressed: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const SignUpOptionsPage(),
+                        )),
                   ),
                   const SizedBox(height: 10),
                 ],

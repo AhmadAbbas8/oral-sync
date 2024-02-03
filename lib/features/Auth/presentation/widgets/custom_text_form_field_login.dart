@@ -7,19 +7,22 @@ class CustomTextFormFieldLogin extends StatelessWidget {
     super.key,
     required this.width,
     required this.hintText,
-    required this.prefixIcon,
+    this.prefixIcon,
     this.suffixIcon,
     this.obscureText,
     this.textInputType,
     this.validator,
+    this.readOnly,
+    this.onTap,
   });
 
   final double width;
   final bool? obscureText;
+  final bool? readOnly;
 
   final String hintText;
-
-  final Widget prefixIcon;
+  final void Function()? onTap;
+  final Widget? prefixIcon;
   final Widget? suffixIcon;
   final TextInputType? textInputType;
   final String? Function(String?)? validator;
@@ -31,6 +34,8 @@ class CustomTextFormFieldLogin extends StatelessWidget {
       child: TextFormField(
         keyboardType: textInputType,
         validator: validator,
+        onTap: onTap,
+        readOnly: readOnly ?? false,
         obscureText: obscureText ?? false,
         decoration: InputDecoration(
           // disabledBorder: OutlineInputBorder(),

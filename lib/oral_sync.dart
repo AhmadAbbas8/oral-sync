@@ -11,9 +11,8 @@ class OralSyncApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         scaffoldBackgroundColor: ColorsPalette.scaffoldColor,
-
       ),
-      home: LoginPage(),
+      home: const LoginPage(),
     );
   }
 }

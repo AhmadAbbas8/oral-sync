@@ -3,7 +3,6 @@ import 'package:get_it/get_it.dart';
 import 'package:oralsync/core/cache_helper/cache_storage.dart';
 import 'package:oralsync/core/cache_helper/shared_prefs_cache.dart';
 import 'package:oralsync/core/network/network_info.dart';
-import 'package:oralsync/core/utils/assets_manager.dart';
 import 'package:oralsync/core/utils/end_points.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 

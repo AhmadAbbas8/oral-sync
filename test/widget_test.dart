@@ -8,7 +8,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:oralsync/main.dart';
 import 'package:oralsync/oral_sync.dart';
 
 void main() {
