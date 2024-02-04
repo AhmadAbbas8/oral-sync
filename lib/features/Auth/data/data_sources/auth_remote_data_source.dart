@@ -1,14 +1,10 @@
 import 'package:dartz/dartz.dart';
-import 'package:oralsync/core/error/failure.dart';
-
-abstract class AuthRepository {
-
-  Future<Either<Failure, Unit>> login({
+abstract class AuthRemoteDataSource {
+  Future<Unit> login({
     required String email,
     required String password,
   });
-
-  Future<Either<Failure, Unit>> register({
+  Future< Unit> register({
     required String fName,
     required String sName,
     required String email,
@@ -21,7 +17,7 @@ abstract class AuthRepository {
     required bool isPatient,
   });
 
-  Future<Either<Failure, Unit>> signUpPatient({
+  Future<Unit> signUpPatient({
     required String fName,
     required String sName,
     required String email,
@@ -32,7 +28,7 @@ abstract class AuthRepository {
     required String city,
   });
 
-  Future<Either<Failure, Unit>> signUpStudent({
+  Future<Unit> signUpStudent({
     required String fName,
     required String sName,
     required String email,
@@ -49,7 +45,7 @@ abstract class AuthRepository {
     required String password,
   });
 
-  Future<Either<Failure, Unit>> signUpDoctor({
+  Future<Unit> signUpDoctor({
     required String fName,
     required String sName,
     required String email,

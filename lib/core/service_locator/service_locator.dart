@@ -22,6 +22,10 @@ class ServiceLocator {
         BaseOptions(
           validateStatus: (status) => status == 200,
           baseUrl: EndPoints.BASE_URL,
+          headers: const {
+            'accept': '*/*',
+            'Content-Type': 'application/json',
+          },
         ),
       ),
     );
