@@ -8,7 +8,7 @@ import 'package:oralsync/features/Auth/presentation/widgets/custom_tow_form_fiel
 
 class SignUpPatientPage extends StatelessWidget {
   const SignUpPatientPage({super.key});
-
+  static const routeName = '/signUpPatientPage';
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.sizeOf(context);

@@ -9,7 +9,7 @@ import 'package:oralsync/features/Auth/presentation/widgets/custom_login_button_
 
 class SignUpOptionsPage extends StatelessWidget {
   const SignUpOptionsPage({super.key});
-
+  static const routeName = '/SignUpOptionsPage';
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.sizeOf(context);
@@ -45,21 +45,13 @@ class SignUpOptionsPage extends StatelessWidget {
                   CustomLoginButtonWidget(
                     title: 'Patient',
                     minWidth: size.width * .8,
-                    onPressed: () => Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const SignUpPatientPage(),
-                        )),
+                    onPressed: () =>Navigator.pushNamed(context, SignUpPatientPage.routeName),
                   ),
                   SizeHelper.defSizedBoxField,
                   CustomLoginButtonWidget(
                     title: 'Doctor or Medical Student',
                     minWidth: size.width * .8,
-                    onPressed: () => Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const SignUpDoctorStudentPage(),
-                        )),
+                    onPressed: () =>Navigator.pushNamed(context, SignUpDoctorStudentPage.routeName),
                   ),
                   const Spacer(),
                   CustomHintButtonWidget(

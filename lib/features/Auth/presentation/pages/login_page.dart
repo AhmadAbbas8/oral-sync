@@ -11,6 +11,8 @@ import 'package:oralsync/features/Auth/presentation/widgets/forget_password_butt
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
 
+  static const routeName = '/loginPage';
+
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.sizeOf(context);
@@ -55,11 +57,8 @@ class LoginPage extends StatelessWidget {
                   CustomHintButtonWidget(
                     title: 'Don’t Have Any Account,',
                     buttonTitle: 'Sign Up',
-                    onPressed: () => Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const SignUpOptionsPage(),
-                        )),
+                    onPressed: () => Navigator.pushNamed(
+                        context, SignUpOptionsPage.routeName),
                   ),
                   const SizedBox(height: 10),
                 ],

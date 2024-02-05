@@ -9,7 +9,7 @@ import 'package:oralsync/features/Auth/presentation/widgets/custom_tow_form_fiel
 
 class SignUpDoctorStudentPage extends StatefulWidget {
   const SignUpDoctorStudentPage({super.key});
-
+  static const routeName = '/signUpDoctorStudentPage';
   @override
   State<SignUpDoctorStudentPage> createState() =>
       _SignUpDoctorStudentPageState();
