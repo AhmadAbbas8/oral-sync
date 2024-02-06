@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:oralsync/core/network/api/api_consumer.dart';
 import 'package:oralsync/core/network/api/api_interceptors.dart';
 import 'package:oralsync/core/utils/end_points.dart';
+import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 class DioConsumer extends ApiConsumer {
   final Dio dio;
@@ -14,7 +15,7 @@ class DioConsumer extends ApiConsumer {
     };
     dio.interceptors.addAll([
       ApiInterceptor(),
-      LogInterceptor(
+      PrettyDioLogger(
         request: true,
         requestHeader: true,
         requestBody: true,
