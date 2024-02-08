@@ -15,24 +15,22 @@ import 'package:oralsync/features/Auth/presentation/widgets/custom_login_button_
 import 'package:oralsync/features/Auth/presentation/widgets/custom_text_form_field_login.dart';
 import 'package:oralsync/features/Auth/presentation/widgets/custom_tow_form_field_widget.dart';
 
-class SignUpDoctorStudentPage extends StatefulWidget {
-  const SignUpDoctorStudentPage({super.key});
+class SignUpDoctorPage extends StatefulWidget {
+  const SignUpDoctorPage({super.key});
 
-  static const routeName = '/signUpDoctorStudentPage';
+  static const routeName = '/signUpDoctorPage';
 
   @override
-  State<SignUpDoctorStudentPage> createState() =>
+  State<SignUpDoctorPage> createState() =>
       _SignUpDoctorStudentPageState();
 }
 
-class _SignUpDoctorStudentPageState extends State<SignUpDoctorStudentPage> {
-  bool? isDoctor;
+class _SignUpDoctorStudentPageState extends State<SignUpDoctorPage> {
 
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.sizeOf(context);
     const List type = ['Male', 'Female'];
-    const List type2 = ['Doctor', 'Student'];
     return BlocProvider(
       create: (context) => DoctorSignUpCubit(
          registerUseCase: ServiceLocator.instance<RegisterUseCase>(),

@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:oralsync/core/utils/assets_manager.dart';
 import 'package:oralsync/core/utils/size_helper.dart';
 import 'package:oralsync/core/utils/styles.dart';
-import 'package:oralsync/features/Auth/presentation/pages/sign_up_doctor_Student_page.dart';
+import 'package:oralsync/features/Auth/presentation/pages/sign_up_doctor_page.dart';
 import 'package:oralsync/features/Auth/presentation/pages/sign_up_patient_page.dart';
+import 'package:oralsync/features/Auth/presentation/pages/sign_up_student_page.dart';
 import 'package:oralsync/features/Auth/presentation/widgets/custom_hint_button_widget.dart';
 import 'package:oralsync/features/Auth/presentation/widgets/custom_login_button_widget.dart';
 
@@ -51,13 +52,13 @@ class SignUpOptionsPage extends StatelessWidget {
                   CustomLoginButtonWidget(
                     title: 'Doctor',
                     minWidth: size.width * .8,
-                    onPressed: () =>Navigator.pushNamed(context, SignUpDoctorStudentPage.routeName),
+                    onPressed: () =>Navigator.pushNamed(context, SignUpDoctorPage.routeName),
                   ),
                   SizeHelper.defSizedBoxField,
                   CustomLoginButtonWidget(
                     title: 'Medical Student',
                     minWidth: size.width * .8,
-                    onPressed: () =>Navigator.pushNamed(context, SignUpDoctorStudentPage.routeName),
+                    onPressed: () =>Navigator.pushNamed(context, SignUpStudentPage.routeName),
                   ),
                   const Spacer(),
                   CustomHintButtonWidget(

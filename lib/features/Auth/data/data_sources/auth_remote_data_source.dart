@@ -32,18 +32,19 @@ abstract class AuthRemoteDataSource {
     required String city,
   });
 
-  Future<Unit> signUpStudent({
+  Future<AddedBody> signUpStudent({
     required String fName,
     required String sName,
     required String email,
     required String phone,
     required String dob,
-    required bool gender,
+    required bool isMale,
     required bool isDoctor,
     required String academicYear,
     required String GPA,
     required String universityGovernment,
     required String universityCity,
+    required String universityName,
     required String universityStreet,
     required String other,
     required String password,

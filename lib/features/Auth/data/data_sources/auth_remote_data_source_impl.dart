@@ -67,46 +67,44 @@ class AuthRemoteDataSourceImp implements AuthRemoteDataSource {
   }
 
   @override
-  Future<AddedBody> signUpDoctor(
-      {required String fName,
-      required String sName,
-      required String email,
-      required String phone,
-      required String dob,
-      required bool isMale,
-      required bool isDoctor,
-      required String academicYear,
-      required String GPA,
-      required String clinicGovernment,
-      required String clinicCity,
-      required String clinicStreet,
-      required String clinicFloor,
-      required String other,
-      required String password,
-        required String universityName,
-        required String gradDate,
-      }) async {
+  Future<AddedBody> signUpDoctor({
+    required String fName,
+    required String sName,
+    required String email,
+    required String phone,
+    required String dob,
+    required bool isMale,
+    required bool isDoctor,
+    required String academicYear,
+    required String GPA,
+    required String clinicGovernment,
+    required String clinicCity,
+    required String clinicStreet,
+    required String clinicFloor,
+    required String other,
+    required String password,
+    required String universityName,
+    required String gradDate,
+  }) async {
     Response response = await apiConsumer.post(
       EndPoints.addDoctorEndPoint,
-      queryParameters: {'IsDoctor':true},
-      data:{
+      queryParameters: {'IsDoctor': true},
+      data: {
         "firstName": fName,
         "lastName": sName,
         "email": email,
         "isMale": isMale,
         "phoneNumber": phone,
         "universityName": universityName,
-        "clinicAddress": '$clinicGovernment - $clinicCity - $clinicStreet - $clinicFloor',
+        "clinicAddress":
+            '$clinicGovernment - $clinicCity - $clinicStreet - $clinicFloor',
         "clinicNumber": null,
+
         ///TODO : here
-        "insuranceCompanies": [
-          "test" , "Doctor" , "Doctor"
-        ],
-        "certificates": [
-          "string" , "Doctor" , "Doctor"
-        ],
+        "insuranceCompanies": ["test", "Doctor", "Doctor"],
+        "certificates": ["string", "Doctor", "Doctor"],
         "gpa": GPA,
-        "birthDate":dob,
+        "birthDate": dob,
         "graduationDate": gradDate,
       },
     );
@@ -157,27 +155,40 @@ class AuthRemoteDataSourceImp implements AuthRemoteDataSource {
   }
 
   @override
-  Future<Unit> signUpStudent(
+  Future<AddedBody> signUpStudent(
       {required String fName,
       required String sName,
       required String email,
       required String phone,
       required String dob,
-      required bool gender,
+      required bool isMale,
       required bool isDoctor,
       required String academicYear,
       required String GPA,
       required String universityGovernment,
       required String universityCity,
       required String universityStreet,
+      required String universityName,
       required String other,
       required String password}) async {
     Response response = await apiConsumer.post(
       EndPoints.addStudentEndPoint,
-      data: {},
+      queryParameters: {'IsStudent': true},
+      data: {
+        "FirstName": fName,
+        "LastName": sName,
+        "email": email,
+        "isMale": isMale,
+        "phoneNumber": phone,
+        "universityName": universityName,
+        "gpa": GPA,
+        "birthDate": dob,
+        "academicYear": academicYear,
+      },
     );
     if (response.statusCode == 200) {
-      return Future.value(unit);
+      var model = AddedBodyModel.fromJson(response.data);
+      return model;
     } else {
       throw ServerException();
     }

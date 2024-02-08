@@ -32,16 +32,17 @@ abstract class AuthRepository {
     required String city,
   });
 
-  Future<Either<Failure, Unit>> signUpStudent({
+  Future<Either<Failure, AddedBody>> signUpStudent({
     required String fName,
     required String sName,
     required String email,
     required String phone,
     required String dob,
-    required bool gender,
+    required bool isMale,
     required bool isDoctor,
     required String academicYear,
     required String GPA,
+    required String universityName,
     required String universityGovernment,
     required String universityCity,
     required String universityStreet,

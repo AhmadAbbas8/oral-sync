@@ -146,16 +146,17 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<Either<Failure, Unit>> signUpStudent(
+  Future<Either<Failure, AddedBody>> signUpStudent(
       {required String fName,
       required String sName,
       required String email,
       required String phone,
       required String dob,
-      required bool gender,
+      required bool isMale,
       required bool isDoctor,
       required String academicYear,
       required String GPA,
+      required String universityName,
       required String universityGovernment,
       required String universityCity,
       required String universityStreet,
@@ -163,13 +164,13 @@ class AuthRepositoryImpl implements AuthRepository {
       required String password}) async {
     if (await networkInfo.isConnected) {
       try {
-        await authRemoteDataSource.signUpStudent(
+    var model =    await authRemoteDataSource.signUpStudent(
             fName: fName,
             sName: sName,
             email: email,
             phone: phone,
             dob: dob,
-            gender: gender,
+            isMale: isMale,
             isDoctor: isDoctor,
             academicYear: academicYear,
             GPA: GPA,
@@ -177,8 +178,9 @@ class AuthRepositoryImpl implements AuthRepository {
             universityCity: universityCity,
             universityStreet: universityStreet,
             other: other,
+            universityName: universityName,
             password: password);
-        return const Right(unit);
+        return  Right(model);
       } on ServerException {
         return Left(ServerFailure());
       }
