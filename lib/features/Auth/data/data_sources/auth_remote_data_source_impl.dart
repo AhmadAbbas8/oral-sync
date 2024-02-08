@@ -67,13 +67,13 @@ class AuthRemoteDataSourceImp implements AuthRemoteDataSource {
   }
 
   @override
-  Future<Unit> signUpDoctor(
+  Future<AddedBody> signUpDoctor(
       {required String fName,
       required String sName,
       required String email,
       required String phone,
       required String dob,
-      required bool gender,
+      required bool isMale,
       required bool isDoctor,
       required String academicYear,
       required String GPA,
@@ -82,13 +82,37 @@ class AuthRemoteDataSourceImp implements AuthRemoteDataSource {
       required String clinicStreet,
       required String clinicFloor,
       required String other,
-      required String password}) async {
+      required String password,
+        required String universityName,
+        required String gradDate,
+      }) async {
     Response response = await apiConsumer.post(
       EndPoints.addDoctorEndPoint,
-      data: {},
+      queryParameters: {'IsDoctor':true},
+      data:{
+        "firstName": fName,
+        "lastName": sName,
+        "email": email,
+        "isMale": isMale,
+        "phoneNumber": phone,
+        "universityName": universityName,
+        "clinicAddress": '$clinicGovernment - $clinicCity - $clinicStreet - $clinicFloor',
+        "clinicNumber": null,
+        ///TODO : here
+        "insuranceCompanies": [
+          "test" , "Doctor" , "Doctor"
+        ],
+        "certificates": [
+          "string" , "Doctor" , "Doctor"
+        ],
+        "gpa": GPA,
+        "birthDate":dob,
+        "graduationDate": gradDate,
+      },
     );
     if (response.statusCode == 200) {
-      return Future.value(unit);
+      AddedBodyModel model = AddedBodyModel.fromJson(response.data);
+      return model;
     } else {
       throw ServerException();
     }
@@ -106,17 +130,20 @@ class AuthRemoteDataSourceImp implements AuthRemoteDataSource {
       required String city}) async {
     Response response = await apiConsumer.post(
       EndPoints.addPatientEndPoint,
+      queryParameters: {'IsPatient': true},
       data: {
         "FirstName": fName,
         "LastName": sName,
         "email": email,
         "isMale": isMale,
         "phoneNumber": phone,
+
         ///TODO : HERE this code for address
         "address": null,
         "government": government,
         "city": city,
         "insuranceCompany": null,
+
         ///TODO : here this code for  insurance company
         "birthDate": dob,
       },

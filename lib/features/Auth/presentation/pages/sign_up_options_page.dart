@@ -49,7 +49,13 @@ class SignUpOptionsPage extends StatelessWidget {
                   ),
                   SizeHelper.defSizedBoxField,
                   CustomLoginButtonWidget(
-                    title: 'Doctor or Medical Student',
+                    title: 'Doctor',
+                    minWidth: size.width * .8,
+                    onPressed: () =>Navigator.pushNamed(context, SignUpDoctorStudentPage.routeName),
+                  ),
+                  SizeHelper.defSizedBoxField,
+                  CustomLoginButtonWidget(
+                    title: 'Medical Student',
                     minWidth: size.width * .8,
                     onPressed: () =>Navigator.pushNamed(context, SignUpDoctorStudentPage.routeName),
                   ),

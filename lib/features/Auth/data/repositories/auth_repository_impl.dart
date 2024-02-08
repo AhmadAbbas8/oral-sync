@@ -67,13 +67,13 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<Either<Failure, Unit>> signUpDoctor(
+  Future<Either<Failure, AddedBody>> signUpDoctor(
       {required String fName,
       required String sName,
       required String email,
       required String phone,
       required String dob,
-      required bool gender,
+      required bool isMale,
       required bool isDoctor,
       required String academicYear,
       required String GPA,
@@ -82,26 +82,31 @@ class AuthRepositoryImpl implements AuthRepository {
       required String clinicStreet,
       required String clinicFloor,
       required String other,
+      required String universityName,
+      required String gradDate,
       required String password}) async {
     if (await networkInfo.isConnected) {
       try {
-        await authRemoteDataSource.signUpDoctor(
-            fName: fName,
-            sName: sName,
-            email: email,
-            phone: phone,
-            dob: dob,
-            gender: gender,
-            isDoctor: isDoctor,
-            academicYear: academicYear,
-            GPA: GPA,
-            clinicGovernment: clinicGovernment,
-            clinicCity: clinicCity,
-            clinicStreet: clinicStreet,
-            clinicFloor: clinicFloor,
-            other: other,
-            password: password);
-        return const Right(unit);
+      var model =   await authRemoteDataSource.signUpDoctor(
+          fName: fName,
+          sName: sName,
+          email: email,
+          phone: phone,
+          dob: dob,
+          isMale: isMale,
+          isDoctor: isDoctor,
+          academicYear: academicYear,
+          GPA: GPA,
+          clinicGovernment: clinicGovernment,
+          clinicCity: clinicCity,
+          clinicStreet: clinicStreet,
+          clinicFloor: clinicFloor,
+          other: other,
+          password: password,
+          gradDate: gradDate,
+          universityName: universityName,
+        );
+        return  Right(model);
       } on ServerException {
         return Left(ServerFailure());
       }

@@ -49,13 +49,13 @@ abstract class AuthRemoteDataSource {
     required String password,
   });
 
-  Future<Unit> signUpDoctor({
+  Future<AddedBody> signUpDoctor({
     required String fName,
     required String sName,
     required String email,
     required String phone,
     required String dob,
-    required bool gender,
+    required bool isMale,
     required bool isDoctor,
     required String academicYear,
     required String GPA,
@@ -65,5 +65,7 @@ abstract class AuthRemoteDataSource {
     required String clinicFloor,
     required String other,
     required String password,
+    required String universityName,
+    required String gradDate,
   });
 }
