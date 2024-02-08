@@ -14,6 +14,7 @@ class CustomTextFormFieldLogin extends StatelessWidget {
     this.validator,
     this.readOnly,
     this.onTap,
+    this.textEditingController,
   });
 
   final double width;
@@ -26,6 +27,7 @@ class CustomTextFormFieldLogin extends StatelessWidget {
   final Widget? suffixIcon;
   final TextInputType? textInputType;
   final String? Function(String?)? validator;
+  final TextEditingController? textEditingController;
 
   @override
   Widget build(BuildContext context) {
@@ -33,27 +35,36 @@ class CustomTextFormFieldLogin extends StatelessWidget {
       width: width,
       child: TextFormField(
         keyboardType: textInputType,
+        autovalidateMode: AutovalidateMode.onUserInteraction,
         validator: validator,
         onTap: onTap,
         readOnly: readOnly ?? false,
         obscureText: obscureText ?? false,
         decoration: InputDecoration(
-          // disabledBorder: OutlineInputBorder(),
-          enabledBorder: OutlineInputBorder(
-            borderSide: BorderSide.none,
-            borderRadius: BorderRadius.circular(25),
-          ),
-          hintText: hintText,
-          hintStyle: AppStyles.styleSize14,
-          fillColor: ColorsPalette.textFormFieldFillColor,
-          prefixIcon: prefixIcon,
-          suffixIcon: suffixIcon,
-          filled: true,
-          focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide.none,
-            borderRadius: BorderRadius.circular(25),
-          ),
-        ),
+            errorMaxLines: 3,
+            hintText: hintText,
+            hintStyle: AppStyles.styleSize14,
+            fillColor: ColorsPalette.textFormFieldFillColor,
+            prefixIcon: prefixIcon,
+            suffixIcon: suffixIcon,
+            filled: true,
+            focusedBorder: OutlineInputBorder(
+              borderSide: BorderSide.none,
+              borderRadius: BorderRadius.circular(25),
+            ),
+            enabledBorder: OutlineInputBorder(
+              borderSide: BorderSide.none,
+              borderRadius: BorderRadius.circular(25),
+            ),
+            focusedErrorBorder: OutlineInputBorder(
+              borderSide: BorderSide.none,
+              borderRadius: BorderRadius.circular(25),
+            ),
+            errorBorder: OutlineInputBorder(
+              borderSide: BorderSide.none,
+              borderRadius: BorderRadius.circular(25),
+            )),
+        controller: textEditingController,
       ),
     );
   }

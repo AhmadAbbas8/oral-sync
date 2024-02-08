@@ -4,14 +4,19 @@ import 'package:oralsync/core/error/exception.dart';
 import 'package:oralsync/core/network/api/api_consumer.dart';
 import 'package:oralsync/core/utils/end_points.dart';
 import 'package:oralsync/features/Auth/data/data_sources/auth_remote_data_source.dart';
+import 'package:oralsync/features/Auth/data/models/added_body_model.dart';
+import 'package:oralsync/features/Auth/data/models/register_body_model.dart';
+import 'package:oralsync/features/Auth/data/models/user_model.dart';
+import 'package:oralsync/features/Auth/domain/entities/added.dart';
+import 'package:oralsync/features/Auth/domain/entities/user.dart';
 
 class AuthRemoteDataSourceImp implements AuthRemoteDataSource {
- final ApiConsumer apiConsumer;
+  final ApiConsumer apiConsumer;
 
   const AuthRemoteDataSourceImp({required this.apiConsumer});
 
   @override
-  Future<Unit> login({required String email, required String password}) async {
+  Future<User> login({required String email, required String password}) async {
     Response response = await apiConsumer.post(
       EndPoints.loginEndPoint,
       data: {
@@ -20,41 +25,42 @@ class AuthRemoteDataSourceImp implements AuthRemoteDataSource {
       },
     );
     if (response.statusCode == 200) {
-      return Future.value(unit);
+      User user = UserModel.fromJson(response.data);
+      return user;
     } else {
       throw ServerException();
     }
   }
 
   @override
-  Future<Unit> register(
-      {required String fName,
-      required String sName,
-      required String email,
-      required String password,
-      required String confirmPassword,
-      required String phoneNumber,
-      required bool isMale,
-      required bool isDoctor,
-      required bool isStudent,
-      required bool isPatient}) async {
+  Future<RegisterBodyModel> register({
+    required String name,
+    required String email,
+    required String password,
+    required String confirmPassword,
+    required String phoneNumber,
+    required bool isMale,
+    required bool isDoctor,
+    required bool isStudent,
+    required bool isPatient,
+  }) async {
     Response response = await apiConsumer.post(
       EndPoints.registerEndPoint,
       data: {
-        "id": "string",
-        "name": fName,
+        "name": name,
         "email": email,
         "password": password,
         "confirmPassword": confirmPassword,
+        "PhoneNumber": phoneNumber,
         "isMale": isMale,
-        "phoneNumber": phoneNumber,
         "isDoctor": isDoctor,
         "isStudent": isStudent,
         "isPatient": isPatient,
       },
     );
     if (response.statusCode == 200) {
-      return Future.value(unit);
+      RegisterBodyModel model = RegisterBodyModel.fromJson(response.data);
+      return model;
     } else {
       throw ServerException();
     }
@@ -89,21 +95,35 @@ class AuthRemoteDataSourceImp implements AuthRemoteDataSource {
   }
 
   @override
-  Future<Unit> signUpPatient(
+  Future<AddedBody> signUpPatient(
       {required String fName,
       required String sName,
       required String email,
       required String phone,
       required String dob,
-      required bool gender,
+      required bool isMale,
       required String government,
       required String city}) async {
     Response response = await apiConsumer.post(
       EndPoints.addPatientEndPoint,
-      data: {},
+      data: {
+        "FirstName": fName,
+        "LastName": sName,
+        "email": email,
+        "isMale": isMale,
+        "phoneNumber": phone,
+        ///TODO : HERE this code for address
+        "address": null,
+        "government": government,
+        "city": city,
+        "insuranceCompany": null,
+        ///TODO : here this code for  insurance company
+        "birthDate": dob,
+      },
     );
     if (response.statusCode == 200) {
-      return Future.value(unit);
+      AddedBody addedBody = AddedBodyModel.fromJson(response.data);
+      return addedBody;
     } else {
       throw ServerException();
     }

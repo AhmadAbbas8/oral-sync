@@ -1,18 +1,12 @@
 import 'package:dio/dio.dart';
 import 'package:oralsync/core/network/api/api_consumer.dart';
 import 'package:oralsync/core/network/api/api_interceptors.dart';
-import 'package:oralsync/core/utils/end_points.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 class DioConsumer extends ApiConsumer {
   final Dio dio;
 
   DioConsumer({required this.dio}) {
-    dio.options.baseUrl = EndPoints.BASE_URL;
-    dio.options.headers = const {
-      'accept': '*/*',
-      'Content-Type': 'application/json',
-    };
     dio.interceptors.addAll([
       ApiInterceptor(),
       PrettyDioLogger(
@@ -40,7 +34,7 @@ class DioConsumer extends ApiConsumer {
         queryParameters: queryParameters,
       );
       return response.data;
-    } on DioException catch (e) {
+    } on DioException {
       rethrow;
     }
   }
@@ -54,8 +48,8 @@ class DioConsumer extends ApiConsumer {
         data: data,
         queryParameters: queryParameters,
       );
-      return response.data;
-    } on DioException catch (e) {
+      return response;
+    } on DioException {
       rethrow;
     }
   }
@@ -74,7 +68,7 @@ class DioConsumer extends ApiConsumer {
         queryParameters: queryParameters,
       );
       return response.data;
-    } on DioException catch (e) {
+    } on DioException {
       rethrow;
     }
   }
@@ -92,8 +86,8 @@ class DioConsumer extends ApiConsumer {
         data: isFromData ? FormData.fromMap(data) : data,
         queryParameters: queryParameters,
       );
-      return response.data;
-    } on DioException catch (e) {
+      return response;
+    } on DioException {
       rethrow;
     }
   }

@@ -1,16 +1,16 @@
 import 'package:dartz/dartz.dart';
 import 'package:oralsync/core/error/failure.dart';
+import 'package:oralsync/features/Auth/domain/entities/added.dart';
+import 'package:oralsync/features/Auth/domain/entities/register.dart';
+import 'package:oralsync/features/Auth/domain/entities/user.dart';
 
 abstract class AuthRepository {
-
-  Future<Either<Failure, Unit>> login({
+  Future<Either<Failure, User>> login({
     required String email,
     required String password,
   });
-
-  Future<Either<Failure, Unit>> register({
-    required String fName,
-    required String sName,
+  Future<Either<Failure, RegisterBody>> register({
+    required String name,
     required String email,
     required String password,
     required String confirmPassword,
@@ -21,13 +21,13 @@ abstract class AuthRepository {
     required bool isPatient,
   });
 
-  Future<Either<Failure, Unit>> signUpPatient({
+  Future<Either<Failure, AddedBody>> signUpPatient({
     required String fName,
     required String sName,
     required String email,
     required String phone,
     required String dob,
-    required bool gender,
+    required bool isMale,
     required String government,
     required String city,
   });

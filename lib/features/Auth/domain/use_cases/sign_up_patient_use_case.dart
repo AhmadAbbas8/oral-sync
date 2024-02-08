@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:oralsync/core/error/failure.dart';
+import 'package:oralsync/features/Auth/domain/entities/added.dart';
 import 'package:oralsync/features/Auth/domain/repositories/auth_repository.dart';
 
 class SignUpPatientUseCase {
@@ -7,13 +8,13 @@ class SignUpPatientUseCase {
 
   SignUpPatientUseCase({required this.authRepository});
 
-  Future<Either<Failure, Unit>> signUpPatient({
+  Future<Either<Failure, AddedBody>> signUpPatient({
     required String fName,
     required String sName,
     required String email,
     required String phone,
     required String dob,
-    required bool gender,
+    required bool isMale,
     required String government,
     required String city,
   }) async =>
@@ -23,7 +24,7 @@ class SignUpPatientUseCase {
         email: email,
         phone: phone,
         dob: dob,
-        gender: gender,
+        isMale: isMale,
         government: government,
         city: city,
       );

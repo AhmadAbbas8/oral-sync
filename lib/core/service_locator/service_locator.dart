@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
+import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:oralsync/core/cache_helper/cache_storage.dart';
 import 'package:oralsync/core/cache_helper/shared_prefs_cache.dart';
 import 'package:oralsync/core/network/api/api_consumer.dart';
@@ -27,9 +28,16 @@ class ServiceLocator {
     // * Core
     final prefs = await SharedPreferences.getInstance();
     instance.registerLazySingleton<CacheStorage>(() => SharedPrefsCache(prefs));
-    instance
-        .registerLazySingleton<NetworkInfo>(() => NetWorkInfoImpl(instance()));
-    instance.registerLazySingleton<ApiConsumer>(() => DioConsumer(dio: Dio()));
+
+    instance.registerLazySingleton<NetworkInfo>(
+        () => NetWorkInfoImpl(InternetConnectionChecker.createInstance()));
+    instance.registerFactory<ApiConsumer>(() => DioConsumer(
+            dio: Dio(BaseOptions(
+                baseUrl: EndPoints.BASE_URL,
+                validateStatus: (status) => true,
+                headers: {
+              'Content-Type': 'application/json',
+            },))));
     // instance.registerLazySingleton(
     //   () => Dio(
     //     BaseOptions(

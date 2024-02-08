@@ -3,6 +3,9 @@ import 'package:oralsync/core/error/exception.dart';
 import 'package:oralsync/core/error/failure.dart';
 import 'package:oralsync/core/network/network_info.dart';
 import 'package:oralsync/features/Auth/data/data_sources/auth_remote_data_source.dart';
+import 'package:oralsync/features/Auth/data/models/register_body_model.dart';
+import 'package:oralsync/features/Auth/domain/entities/added.dart';
+import 'package:oralsync/features/Auth/domain/entities/user.dart';
 import 'package:oralsync/features/Auth/domain/repositories/auth_repository.dart';
 
 class AuthRepositoryImpl implements AuthRepository {
@@ -14,12 +17,13 @@ class AuthRepositoryImpl implements AuthRepository {
       {required this.authRemoteDataSource, required this.networkInfo});
 
   @override
-  Future<Either<Failure, Unit>> login(
+  Future<Either<Failure, User>> login(
       {required String email, required String password}) async {
     if (await networkInfo.isConnected) {
       try {
-        await authRemoteDataSource.login(email: email, password: password);
-        return const Right(unit);
+        var user =
+            await authRemoteDataSource.login(email: email, password: password);
+        return Right(user);
       } on ServerException {
         return Left(ServerFailure());
       }
@@ -29,31 +33,31 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<Either<Failure, Unit>> register(
-      {required String fName,
-      required String sName,
-      required String email,
-      required String password,
-      required String confirmPassword,
-      required String phoneNumber,
-      required bool isMale,
-      required bool isDoctor,
-      required bool isStudent,
-      required bool isPatient}) async {
+  Future<Either<Failure, RegisterBodyModel>> register({
+    required String name,
+    required String email,
+    required String password,
+    required String confirmPassword,
+    required String phoneNumber,
+    required bool isMale,
+    required bool isDoctor,
+    required bool isStudent,
+    required bool isPatient,
+  }) async {
     if (await networkInfo.isConnected) {
       try {
-        await authRemoteDataSource.register(
-            fName: fName,
-            sName: sName,
-            email: email,
-            password: password,
-            confirmPassword: confirmPassword,
-            phoneNumber: phoneNumber,
-            isMale: isMale,
-            isDoctor: isDoctor,
-            isStudent: isStudent,
-            isPatient: isPatient);
-        return const Right(unit);
+        var model = await authRemoteDataSource.register(
+          name: name,
+          email: email,
+          password: password,
+          confirmPassword: confirmPassword,
+          phoneNumber: phoneNumber,
+          isMale: isMale,
+          isDoctor: isDoctor,
+          isStudent: isStudent,
+          isPatient: isPatient,
+        );
+        return Right(model);
       } on ServerException {
         return Left(ServerFailure());
       }
@@ -107,27 +111,27 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<Either<Failure, Unit>> signUpPatient(
+  Future<Either<Failure, AddedBody>> signUpPatient(
       {required String fName,
       required String sName,
       required String email,
       required String phone,
       required String dob,
-      required bool gender,
+      required bool isMale,
       required String government,
       required String city}) async {
     if (await networkInfo.isConnected) {
       try {
-        await authRemoteDataSource.signUpPatient(
+        var model = await authRemoteDataSource.signUpPatient(
             fName: fName,
             sName: sName,
             email: email,
             phone: phone,
             dob: dob,
-            gender: gender,
+            isMale: isMale,
             government: government,
             city: city);
-        return const Right(unit);
+        return Right(model);
       } on ServerException {
         return Left(ServerFailure());
       }

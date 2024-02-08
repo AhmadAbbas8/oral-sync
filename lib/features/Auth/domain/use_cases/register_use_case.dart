@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:oralsync/core/error/failure.dart';
+import 'package:oralsync/features/Auth/domain/entities/register.dart';
 import 'package:oralsync/features/Auth/domain/repositories/auth_repository.dart';
 
 class RegisterUseCase {
@@ -7,9 +8,8 @@ class RegisterUseCase {
 
   RegisterUseCase({required this.authRepository});
 
-  Future<Either<Failure, Unit>> register({
-    required String fName,
-    required String sName,
+  Future<Either<Failure, RegisterBody>> register({
+    required String name,
     required String email,
     required String password,
     required String confirmPassword,
@@ -19,14 +19,16 @@ class RegisterUseCase {
     required bool isStudent,
     required bool isPatient,
   }) async =>
-      await authRepository.register(fName: fName,
-          sName: sName,
+      await authRepository
+        .register(
+          name: name,
           email: email,
           password: password,
           confirmPassword: confirmPassword,
-          phoneNumber: phoneNumber,
+        phoneNumber: phoneNumber,
           isMale: isMale,
           isDoctor: isDoctor,
           isStudent: isStudent,
-          isPatient: isPatient);
+          isPatient: isPatient,
+        );
 }

@@ -1,29 +1,33 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'package:dartz/dartz.dart';
+import 'package:oralsync/features/Auth/data/models/register_body_model.dart';
+import 'package:oralsync/features/Auth/domain/entities/added.dart';
+import 'package:oralsync/features/Auth/domain/entities/user.dart';
 abstract class AuthRemoteDataSource {
-  Future<Unit> login({
+  Future<User> login({
     required String email,
     required String password,
   });
-  Future< Unit> register({
-    required String fName,
-    required String sName,
+  Future< RegisterBodyModel> register({
+    required String name,
     required String email,
     required String password,
-    required String confirmPassword,
     required String phoneNumber,
+    required String confirmPassword,
     required bool isMale,
     required bool isDoctor,
     required bool isStudent,
     required bool isPatient,
   });
 
-  Future<Unit> signUpPatient({
+  Future<AddedBody> signUpPatient({
     required String fName,
     required String sName,
     required String email,
     required String phone,
     required String dob,
-    required bool gender,
+    required bool isMale,
     required String government,
     required String city,
   });
