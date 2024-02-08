@@ -21,19 +21,17 @@ class SignUpDoctorPage extends StatefulWidget {
   static const routeName = '/signUpDoctorPage';
 
   @override
-  State<SignUpDoctorPage> createState() =>
-      _SignUpDoctorStudentPageState();
+  State<SignUpDoctorPage> createState() => _SignUpDoctorStudentPageState();
 }
 
 class _SignUpDoctorStudentPageState extends State<SignUpDoctorPage> {
-
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.sizeOf(context);
     const List type = ['Male', 'Female'];
     return BlocProvider(
       create: (context) => DoctorSignUpCubit(
-         registerUseCase: ServiceLocator.instance<RegisterUseCase>(),
+        registerUseCase: ServiceLocator.instance<RegisterUseCase>(),
         signUpDoctorUseCase: ServiceLocator.instance<SignUpDoctorUseCase>(),
       ),
       child: Scaffold(
@@ -115,7 +113,8 @@ class _SignUpDoctorStudentPageState extends State<SignUpDoctorPage> {
                             textInputType: TextInputType.text,
                             hintText: 'University Name',
                             validator: generalValidator,
-                            textEditingController: cubit.universityNameController,
+                            textEditingController:
+                                cubit.universityNameController,
                           ),
                           SizeHelper.defSizedBoxField,
                           CustomTextFormFieldLogin(
@@ -157,7 +156,10 @@ class _SignUpDoctorStudentPageState extends State<SignUpDoctorPage> {
                                             borderRadius:
                                                 BorderRadius.circular(20)),
                                         groupValue: cubit.isMale,
-                                        title: Text(type[0]),
+                                        title: Text(
+                                          type[0],
+                                          style: TextStyle(fontSize: 14),
+                                        ),
                                         onChanged: (value) =>
                                             cubit.onChangedGender(value),
                                       ),
@@ -170,7 +172,8 @@ class _SignUpDoctorStudentPageState extends State<SignUpDoctorPage> {
                                             borderRadius:
                                                 BorderRadius.circular(20)),
                                         groupValue: cubit.isMale,
-                                        title: Text(type[1]),
+
+                                        title: Text(type[1] ,  style: TextStyle(fontSize: 14),),
                                         onChanged: (value) =>
                                             cubit.onChangedGender(value),
                                       ),
@@ -217,7 +220,7 @@ class _SignUpDoctorStudentPageState extends State<SignUpDoctorPage> {
                             validator2: generalValidator,
                           ),
                           SizeHelper.defSizedBoxField,
-                           CustomTwoFormFieldWidget(
+                          CustomTwoFormFieldWidget(
                             fTitle: 'Floor',
                             sTitle: 'Other',
                             textEditingController2: cubit.floorController,
@@ -241,19 +244,21 @@ class _SignUpDoctorStudentPageState extends State<SignUpDoctorPage> {
                             textEditingController: cubit.passwordController,
                           ),
                           SizeHelper.defSizedBoxField,
-                          CustomLoginButtonWidget(
-                            title: 'Create Account',
-                            minWidth: size.width * .8,
-                            onPressed: () {
-                              if (cubit.isMale != null) {
-                                if (cubit.formKey.currentState!.validate()) {
-                                  cubit.registerUser();
+                          Expanded(
+                            child: CustomLoginButtonWidget(
+                              title: 'Create Account',
+                              minWidth: size.width * .8,
+                              onPressed: () {
+                                if (cubit.isMale != null) {
+                                  if (cubit.formKey.currentState!.validate()) {
+                                    cubit.registerUser();
+                                  }
+                                } else {
+                                  showCustomSnackBar(context,
+                                      msg: 'Please Select your Gender');
                                 }
-                              } else {
-                                showCustomSnackBar(context,
-                                    msg: 'Please Select your Gender');
-                              }
-                            },
+                              },
+                            ),
                           ),
                           const SizedBox(height: 10),
                         ],

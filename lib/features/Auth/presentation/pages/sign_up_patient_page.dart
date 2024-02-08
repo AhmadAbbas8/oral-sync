@@ -134,7 +134,7 @@ class SignUpPatientPage extends StatelessWidget {
                                             borderRadius:
                                                 BorderRadius.circular(20)),
                                         groupValue: cubit.isMale,
-                                        title: Text(type[0]),
+                                        title: Text(type[0],  style: TextStyle(fontSize: 14),),
                                         onChanged: (value) =>
                                             cubit.onChangedGender(value),
                                       ),
@@ -147,7 +147,7 @@ class SignUpPatientPage extends StatelessWidget {
                                             borderRadius:
                                                 BorderRadius.circular(20)),
                                         groupValue: cubit.isMale,
-                                        title: Text(type[1]),
+                                        title: Text(type[1],  style: TextStyle(fontSize: 14),),
                                         onChanged: (value) =>
                                             cubit.onChangedGender(value),
                                       ),
@@ -180,19 +180,21 @@ class SignUpPatientPage extends StatelessWidget {
                             textEditingController: cubit.passwordController,
                           ),
                           SizeHelper.defSizedBoxField,
-                          CustomLoginButtonWidget(
-                            title: 'Create Account',
-                            minWidth: size.width * .8,
-                            onPressed: () {
-                              if (cubit.isMale != null) {
-                                if (cubit.formKey.currentState!.validate()) {
-                                  cubit.registerUser();
+                          Expanded(
+                            child: CustomLoginButtonWidget(
+                              title: 'Create Account',
+                              minWidth: size.width * .8,
+                              onPressed: () {
+                                if (cubit.isMale != null) {
+                                  if (cubit.formKey.currentState!.validate()) {
+                                    cubit.registerUser();
+                                  }
+                                } else {
+                                  showCustomSnackBar(context,
+                                      msg: 'Please Select your Gender');
                                 }
-                              } else {
-                                showCustomSnackBar(context,
-                                    msg: 'Please Select your Gender');
-                              }
-                            },
+                              },
+                            ),
                           ),
                           const SizedBox(height: 10),
                         ],
