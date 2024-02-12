@@ -31,13 +31,14 @@ class ServiceLocator {
 
     instance.registerLazySingleton<NetworkInfo>(
         () => NetWorkInfoImpl(InternetConnectionChecker.createInstance()));
-    instance.registerFactory<ApiConsumer>(() => DioConsumer(
+    instance.registerLazySingleton<ApiConsumer>(() => DioConsumer(
             dio: Dio(BaseOptions(
-                baseUrl: EndPoints.BASE_URL,
-                validateStatus: (status) => true,
-                headers: {
-              'Content-Type': 'application/json',
-            },))));
+          baseUrl: EndPoints.BASE_URL,
+          validateStatus: (status) => true,
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        ))));
     // instance.registerLazySingleton(
     //   () => Dio(
     //     BaseOptions(
