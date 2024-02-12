@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:oralsync/core/helpers/custom_progress_indicator.dart';
 import 'package:oralsync/core/helpers/extensions/navigation_extensions.dart';
 import 'package:oralsync/core/helpers/snackbars.dart';
@@ -196,7 +197,7 @@ class SignUpPatientPage extends StatelessWidget {
                               },
                             ),
                           ),
-                          const SizedBox(height: 10),
+                           SizedBox(height: 10.h),
                         ],
                       ),
                     );
