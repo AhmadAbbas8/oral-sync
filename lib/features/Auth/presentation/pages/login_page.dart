@@ -1,7 +1,8 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:oralsync/core/helpers/custom_progress_indicator.dart';
-import 'package:oralsync/core/helpers/extensions.dart';
+import 'package:oralsync/core/helpers/extensions/navigation_extensions.dart';
 import 'package:oralsync/core/helpers/snackbars.dart';
 import 'package:oralsync/core/service_locator/service_locator.dart';
 import 'package:oralsync/core/utils/assets_manager.dart';
@@ -16,6 +17,7 @@ import 'package:oralsync/features/Auth/presentation/widgets/custom_hint_button_w
 import 'package:oralsync/features/Auth/presentation/widgets/custom_login_button_widget.dart';
 import 'package:oralsync/features/Auth/presentation/widgets/custom_text_form_field_login.dart';
 import 'package:oralsync/features/Auth/presentation/widgets/forget_password_button_widget.dart';
+import 'package:oralsync/translations/locale_keys.g.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
@@ -65,9 +67,9 @@ class LoginPage extends StatelessWidget {
                             width: size.width,
                           ),
                           const Text(
-                            'Sign in',
+                            LocaleKeys.hello,
                             style: AppStyles.styleSize28,
-                          ),
+                          ).tr(),
                           const SizedBox(height: 20),
                           CustomTextFormFieldLogin(
                             width: size.width * .8,

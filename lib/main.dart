@@ -4,11 +4,24 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:oralsync/bloc_observer.dart';
 import 'package:oralsync/core/service_locator/service_locator.dart';
 import 'package:oralsync/oral_sync.dart';
+import 'package:easy_localization/easy_localization.dart';
+import 'package:oralsync/translations/codegen_loader.g.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await EasyLocalization.ensureInitialized();
   await ServiceLocator.setup();
   Bloc.observer = MyBlocObserver();
   await ScreenUtil.ensureScreenSize();
-  runApp(const OralSyncApp());
+  runApp(EasyLocalization(
+    supportedLocales: const [Locale('en'), Locale('ar')],
+    path: 'assets/translations',
+    saveLocale: true,
+    fallbackLocale: const Locale('en'),
+    assetLoader: const CodegenLoader(),
+    errorWidget: (message) => Center(
+      child: Text(message?.message ?? 'Error in App localization '),
+    ),
+    child: const OralSyncApp(),
+  ));
 }
