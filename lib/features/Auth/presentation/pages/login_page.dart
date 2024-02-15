@@ -12,7 +12,7 @@ import 'package:oralsync/core/utils/styles.dart';
 import 'package:oralsync/features/Auth/domain/use_cases/login_use_case.dart';
 import 'package:oralsync/features/Auth/presentation/manager/login_cubit/login_cubit.dart';
 import 'package:oralsync/features/Auth/presentation/manager/methods.dart';
-import 'package:oralsync/features/home_student_fearure/presentation/pages/home_page.dart';
+import 'package:oralsync/features/home_fearure/presentation/pages/home_page.dart';
 import 'package:oralsync/features/Auth/presentation/pages/sign_up_options_page.dart';
 import 'package:oralsync/features/Auth/presentation/widgets/custom_hint_button_widget.dart';
 import 'package:oralsync/features/Auth/presentation/widgets/custom_login_button_widget.dart';
@@ -29,8 +29,8 @@ class LoginPage extends StatelessWidget {
   Widget build(BuildContext context) {
     var size = MediaQuery.sizeOf(context);
     return BlocProvider(
-      create: (context) => LoginCubit(
-          loginUseCase: ServiceLocator.instance<LoginUseCase>()),
+      create: (context) =>
+          LoginCubit(loginUseCase: ServiceLocator.instance<LoginUseCase>()),
       child: Scaffold(
         body: SafeArea(
           child: SingleChildScrollView(

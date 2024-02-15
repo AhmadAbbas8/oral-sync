@@ -6,9 +6,9 @@ import 'package:oralsync/features/Auth/presentation/widgets/custom_tow_form_fiel
 List<Widget> getFormFieldDoctorStudent(
     {required BuildContext context, bool? isDoc}) {
   var size = MediaQuery.sizeOf(context);
-  if (isDoc == null)
+  if (isDoc == null) {
     return const [];
-  else if (!isDoc)
+  } else if (!isDoc)
     return [
       SizeHelper.defSizedBoxField,
       const CustomTwoFormFieldWidget(fTitle: 'Academic Year', sTitle: 'GPA'),

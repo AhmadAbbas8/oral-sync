@@ -11,7 +11,7 @@ import 'package:oralsync/features/Auth/domain/use_cases/new_register_use_case.da
 
 import 'package:oralsync/features/Auth/presentation/manager/methods.dart';
 import 'package:oralsync/features/Auth/presentation/manager/student_sign_up_cubit/student_sign_up_cubit.dart';
-import 'package:oralsync/features/home_student_fearure/presentation/pages/home_page.dart';
+import 'package:oralsync/features/home_fearure/presentation/pages/home_page.dart';
 import 'package:oralsync/features/Auth/presentation/widgets/custom_login_button_widget.dart';
 import 'package:oralsync/features/Auth/presentation/widgets/custom_text_form_field_login.dart';
 import 'package:oralsync/features/Auth/presentation/widgets/custom_tow_form_field_widget.dart';
@@ -45,11 +45,11 @@ class SignUpStudentPage extends StatelessWidget {
                     } else if (state is RegisterStudentError) {
                       context.pop();
                       showCustomSnackBar(context,
-                          msg: state.errorModel?.messageEn??'', backgroundColor: Colors.red);
+                          msg: state.errorModel?.messageEn ?? '',
+                          backgroundColor: Colors.red);
                     } else if (state is RegisterStudentSuccess) {
                       showCustomSnackBar(context,
-                          msg:
-                              'User Created Successfully',
+                          msg: 'User Created Successfully',
                           backgroundColor: Colors.green);
                       context.pop();
                       context.pushNamed(HomePage.routeName);
@@ -157,7 +157,7 @@ class SignUpStudentPage extends StatelessWidget {
                                         groupValue: cubit.isMale,
                                         title: Text(
                                           type[0],
-                                          style: TextStyle(fontSize: 14),
+                                          style: const TextStyle(fontSize: 14),
                                         ),
                                         onChanged: (value) =>
                                             cubit.onChangedGender(value),
@@ -173,7 +173,7 @@ class SignUpStudentPage extends StatelessWidget {
                                         groupValue: cubit.isMale,
                                         title: Text(
                                           type[1],
-                                          style: TextStyle(fontSize: 14),
+                                          style: const TextStyle(fontSize: 14),
                                         ),
                                         onChanged: (value) =>
                                             cubit.onChangedGender(value),

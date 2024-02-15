@@ -12,7 +12,7 @@ class DateChangedState extends StudentSignUpState {}
 class ChangePasswordVisibility extends StudentSignUpState {
   final bool obscurePassword;
 
-  ChangePasswordVisibility({required this.obscurePassword});
+  const ChangePasswordVisibility({required this.obscurePassword});
 
   @override
   // TODO: implement props

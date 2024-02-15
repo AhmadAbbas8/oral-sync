@@ -11,7 +11,7 @@ import 'package:oralsync/features/Auth/domain/use_cases/login_use_case.dart';
 
 import 'package:oralsync/features/Auth/presentation/manager/doctor_sign_up_cubit/doctor_sign_up_cubit.dart';
 import 'package:oralsync/features/Auth/presentation/manager/methods.dart';
-import 'package:oralsync/features/home_student_fearure/presentation/pages/home_page.dart';
+import 'package:oralsync/features/home_fearure/presentation/pages/home_page.dart';
 import 'package:oralsync/features/Auth/presentation/widgets/custom_login_button_widget.dart';
 import 'package:oralsync/features/Auth/presentation/widgets/custom_text_form_field_login.dart';
 import 'package:oralsync/features/Auth/presentation/widgets/custom_tow_form_field_widget.dart';
@@ -162,7 +162,7 @@ class _SignUpDoctorStudentPageState extends State<SignUpDoctorPage> {
                                         groupValue: cubit.isMale,
                                         title: Text(
                                           type[0],
-                                          style: TextStyle(fontSize: 14),
+                                          style: const TextStyle(fontSize: 14),
                                         ),
                                         onChanged: (value) =>
                                             cubit.onChangedGender(value),
@@ -178,7 +178,7 @@ class _SignUpDoctorStudentPageState extends State<SignUpDoctorPage> {
                                         groupValue: cubit.isMale,
                                         title: Text(
                                           type[1],
-                                          style: TextStyle(fontSize: 14),
+                                          style: const TextStyle(fontSize: 14),
                                         ),
                                         onChanged: (value) =>
                                             cubit.onChangedGender(value),
@@ -190,10 +190,12 @@ class _SignUpDoctorStudentPageState extends State<SignUpDoctorPage> {
                             ),
                           ),
                           SizeHelper.defSizedBoxField,
-                           CustomTwoFormFieldWidget(
-                              fTitle: 'Academic Year', sTitle: 'GPA',
-                          textEditingController1:cubit.academicYearController ,
-                             textEditingController2: cubit.GPAController,
+                          CustomTwoFormFieldWidget(
+                            fTitle: 'Academic Year',
+                            sTitle: 'GPA',
+                            textEditingController1:
+                                cubit.academicYearController,
+                            textEditingController2: cubit.GPAController,
                           ),
                           SizeHelper.defSizedBoxField,
                           Padding(

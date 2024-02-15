@@ -32,7 +32,7 @@ class RegisterDoctorError extends DoctorSignUpState {
 class ChangePasswordVisibility extends DoctorSignUpState {
   final bool obscurePassword;
 
-  ChangePasswordVisibility({required this.obscurePassword});
+  const ChangePasswordVisibility({required this.obscurePassword});
 
   @override
   // TODO: implement props

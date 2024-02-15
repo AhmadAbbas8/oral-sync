@@ -1,7 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:oralsync/core/app_router.dart';
+import 'package:oralsync/core/routing/app_router.dart';
 import 'package:oralsync/core/utils/colors_palette.dart';
 import 'package:oralsync/features/Auth/presentation/pages/login_page.dart';
 
