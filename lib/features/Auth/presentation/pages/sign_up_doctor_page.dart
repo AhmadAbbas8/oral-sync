@@ -7,13 +7,16 @@ import 'package:oralsync/core/service_locator/service_locator.dart';
 import 'package:oralsync/core/utils/assets_manager.dart';
 import 'package:oralsync/core/utils/size_helper.dart';
 import 'package:oralsync/core/utils/styles.dart';
-import 'package:oralsync/features/Auth/domain/use_cases/register_use_case.dart';
-import 'package:oralsync/features/Auth/domain/use_cases/sign_up_doctor_use_case.dart';
+import 'package:oralsync/features/Auth/domain/use_cases/login_use_case.dart';
+
 import 'package:oralsync/features/Auth/presentation/manager/doctor_sign_up_cubit/doctor_sign_up_cubit.dart';
 import 'package:oralsync/features/Auth/presentation/manager/methods.dart';
+import 'package:oralsync/features/home_student_fearure/presentation/pages/home_page.dart';
 import 'package:oralsync/features/Auth/presentation/widgets/custom_login_button_widget.dart';
 import 'package:oralsync/features/Auth/presentation/widgets/custom_text_form_field_login.dart';
 import 'package:oralsync/features/Auth/presentation/widgets/custom_tow_form_field_widget.dart';
+
+import '../../domain/use_cases/new_register_use_case.dart';
 
 class SignUpDoctorPage extends StatefulWidget {
   const SignUpDoctorPage({super.key});
@@ -31,8 +34,8 @@ class _SignUpDoctorStudentPageState extends State<SignUpDoctorPage> {
     const List type = ['Male', 'Female'];
     return BlocProvider(
       create: (context) => DoctorSignUpCubit(
-        registerUseCase: ServiceLocator.instance<RegisterUseCase>(),
-        signUpDoctorUseCase: ServiceLocator.instance<SignUpDoctorUseCase>(),
+        loginUseCase: ServiceLocator.instance<LoginUseCase>(),
+        newRegisterUseCase: ServiceLocator.instance<NewRegisterUseCase>(),
       ),
       child: Scaffold(
         body: SafeArea(
@@ -47,13 +50,14 @@ class _SignUpDoctorStudentPageState extends State<SignUpDoctorPage> {
                     } else if (state is RegisterDoctorError) {
                       context.pop();
                       showCustomSnackBar(context,
-                          msg: state.errMessage, backgroundColor: Colors.red);
+                          msg: state.errorModel?.messageEn ?? '',
+                          backgroundColor: Colors.red);
                     } else if (state is RegisterDoctorSuccess) {
                       showCustomSnackBar(context,
-                          msg: state.model.message ??
-                              'User Created Successfully',
+                          msg: 'User Created Successfully',
                           backgroundColor: Colors.green);
                       context.pop();
+                      context.pushNamed(HomePage.routeName);
                     }
                   },
                   builder: (context, state) {
@@ -172,8 +176,10 @@ class _SignUpDoctorStudentPageState extends State<SignUpDoctorPage> {
                                             borderRadius:
                                                 BorderRadius.circular(20)),
                                         groupValue: cubit.isMale,
-
-                                        title: Text(type[1] ,  style: TextStyle(fontSize: 14),),
+                                        title: Text(
+                                          type[1],
+                                          style: TextStyle(fontSize: 14),
+                                        ),
                                         onChanged: (value) =>
                                             cubit.onChangedGender(value),
                                       ),
@@ -184,8 +190,11 @@ class _SignUpDoctorStudentPageState extends State<SignUpDoctorPage> {
                             ),
                           ),
                           SizeHelper.defSizedBoxField,
-                          const CustomTwoFormFieldWidget(
-                              fTitle: 'Academic Year', sTitle: 'GPA'),
+                           CustomTwoFormFieldWidget(
+                              fTitle: 'Academic Year', sTitle: 'GPA',
+                          textEditingController1:cubit.academicYearController ,
+                             textEditingController2: cubit.GPAController,
+                          ),
                           SizeHelper.defSizedBoxField,
                           Padding(
                             padding: EdgeInsets.only(
@@ -231,6 +240,14 @@ class _SignUpDoctorStudentPageState extends State<SignUpDoctorPage> {
                           SizeHelper.defSizedBoxField,
                           CustomTextFormFieldLogin(
                             width: size.width * .8,
+                            textInputType: TextInputType.phone,
+                            textEditingController: cubit.clinicPhoneController,
+                            hintText: 'Clinic Phone',
+                            validator: generalValidator,
+                          ),
+                          SizeHelper.defSizedBoxField,
+                          CustomTextFormFieldLogin(
+                            width: size.width * .8,
                             obscureText: cubit.obscurePassword,
                             validator: validatePassword,
                             suffixIcon: IconButton(
@@ -251,7 +268,7 @@ class _SignUpDoctorStudentPageState extends State<SignUpDoctorPage> {
                               onPressed: () {
                                 if (cubit.isMale != null) {
                                   if (cubit.formKey.currentState!.validate()) {
-                                    cubit.registerUser();
+                                    cubit.register();
                                   }
                                 } else {
                                   showCustomSnackBar(context,

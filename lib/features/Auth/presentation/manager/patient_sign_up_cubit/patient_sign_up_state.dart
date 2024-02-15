@@ -10,19 +10,21 @@ abstract class PatientSignUpState extends Equatable {
 class PatientSignUpInitial extends PatientSignUpState {}
 
 class RegisterPatientLoading extends PatientSignUpState {}
+
 class DateChangedState extends PatientSignUpState {}
 
 class RegisterPatientError extends PatientSignUpState {
-  final String errMessage;
+  final ErrorModel? errorModel;
 
-  const RegisterPatientError({required this.errMessage});
+  const RegisterPatientError({this.errorModel});
 
   @override
-  List<Object> get props => [errMessage];
+// TODO: implement props
+  List<Object> get props => super.props..add([errorModel]);
 }
 
 class RegisterPatientSuccess extends PatientSignUpState {
-  final RegisterBody model;
+  final UserModel model;
 
   const RegisterPatientSuccess({required this.model});
 
