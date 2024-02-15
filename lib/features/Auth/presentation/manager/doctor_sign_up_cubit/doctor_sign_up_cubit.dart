@@ -4,20 +4,23 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:intl/intl.dart';
+import 'package:oralsync/core/error/Error_model.dart';
+import 'package:oralsync/core/error/failure.dart';
 import 'package:oralsync/core/helpers/custom_date_pickers.dart';
-import 'package:oralsync/features/Auth/domain/entities/register.dart';
-import 'package:oralsync/features/Auth/domain/use_cases/register_use_case.dart';
-import 'package:oralsync/features/Auth/domain/use_cases/sign_up_doctor_use_case.dart';
-import 'package:oralsync/features/Auth/domain/use_cases/sign_up_patient_use_case.dart';
+import 'package:oralsync/features/Auth/data/models/user_model.dart';
+
+import 'package:oralsync/features/Auth/domain/use_cases/login_use_case.dart';
+import 'package:oralsync/features/Auth/domain/use_cases/new_register_use_case.dart';
 
 part 'doctor_sign_up_state.dart';
 
 class DoctorSignUpCubit extends Cubit<DoctorSignUpState> {
-  DoctorSignUpCubit( {required this.registerUseCase,required this.signUpDoctorUseCase})
+  DoctorSignUpCubit(
+      {required this.loginUseCase, required this.newRegisterUseCase})
       : super(DoctorSignUpInitial());
-  final RegisterUseCase registerUseCase;
-  final SignUpDoctorUseCase signUpDoctorUseCase;
 
+  final LoginUseCase loginUseCase;
+  final NewRegisterUseCase newRegisterUseCase;
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
   bool? isMale;
   bool obscurePassword = true;
@@ -27,60 +30,82 @@ class DoctorSignUpCubit extends Cubit<DoctorSignUpState> {
     emit(ChangePasswordVisibility(obscurePassword: obscurePassword));
   }
 
-  onChangedGender(bool? value) {
-    isMale = value;
-    emit(GenderChangedState(isMale: isMale!));
-  }
-  Future<void> addDoctor() async {
-    emit(AddDoctorLoading());
-    var res = await signUpDoctorUseCase.signUpDoctor(
-      fName: fNameController.text,
-      sName: sNameController.text,
-      email: emailController.text,
-      phone: phoneController.text,
-      dob: dateOfBirthController.text,
-      isMale: isMale ?? true,
-      clinicGovernment: governorateClinicController.text,
-      clinicCity: cityController.text,
-      universityName: universityNameController.text,
-      gradDate: gradDateController.text,
-      academicYear: academicYearController.text,
-      clinicFloor: floorController.text,
-      clinicStreet: streetController.text,
-      GPA: GPAController.text,
-      isDoctor: true,
-      other: otherController.text,
-      password: passwordController.text,
-    );
-    res.fold(
-            (failure) =>
-            emit(const AddDoctorError(errMessage: 'Error While Loading')),
-            (model) => emit(AddDoctorSuccess(message: model.message)));
-  }
-  void registerUser() async {
+  void register() async {
+    var address = [
+      governorateClinicController.text,
+      cityController.text,
+      streetController.text,
+      buildingController.text,
+      floorController.text,
+      otherController.text
+    ];
     emit(RegisterDoctorLoading());
-    var res = await registerUseCase.register(
-      name: '${fNameController.text} ${sNameController.text}',
+    var res = await newRegisterUseCase.call(
       email: emailController.text,
       password: passwordController.text,
       confirmPassword: passwordController.text,
-      phoneNumber: phoneController.text,
       isMale: isMale ?? true,
+      phoneNumber: phoneController.text,
       isDoctor: true,
       isStudent: false,
       isPatient: false,
+      fName: fNameController.text,
+      lName: sNameController.text,
+      universityName: universityNameController.text,
+      graduationDate: gradDateController.text,
+      clinicAddress: address,
+      /// TODO : SOON
+      insuranceCompanies: null,
+      certificates: null,
+      clinicNumber: clinicPhoneController.text,
+      gpa: double.tryParse(GPAController.text) ?? 0,
+      birthDate: dateOfBirthController.text,
+      academicYear: int.tryParse(academicYearController.text),
     );
-    res.fold(
-        (failure) =>
-            emit(const RegisterDoctorError(errMessage: 'Error While Loading')),
-        (model) async {
+    print(academicYearController.text);
+    res.fold((failure) {
+      if (failure is OfflineFailure) {
+        emit(RegisterDoctorError(
+            errorModel: ErrorModel(
+                messageEn: 'Please Check your internet Connection',
+                messageAr: 'من فضلك افحص اتصال الانترنت لديك')));
+      }
+      emit(RegisterDoctorError(
+          errorModel: ErrorModel(
+              messageEn: 'User registered already',
+              messageAr: 'هذا المستخدم مسجل بالفعل')));
+    }, (model) async {
       if (model.flag ?? false) {
-        await addDoctor();
-        emit(RegisterDoctorSuccess(model: model));
+        await loginDoc();
       } else {
-        emit(RegisterDoctorError(errMessage: model.message ?? ''));
+        emit(RegisterDoctorError(
+            errorModel: ErrorModel(
+                messageEn: 'User registered already',
+                messageAr: 'هذا المستخدم مسجل بالفعل')));
       }
     });
+  }
+
+  Future<void> loginDoc() async {
+    var user = await loginUseCase.call(
+        email: emailController.text, password: passwordController.text);
+    user.fold((failure) {
+      if (failure is ServerFailure) {
+        emit(RegisterDoctorError(errorModel: failure.errorModel));
+      } else {
+        emit(RegisterDoctorError(
+            errorModel: ErrorModel(
+                messageEn: 'Please Check your internet Connection',
+                messageAr: 'من فضلك افحص اتصال الانترنت لديك')));
+      }
+    }, (user) {
+      emit(RegisterDoctorSuccess(user: user));
+    });
+  }
+
+  onChangedGender(bool? value) {
+    isMale = value;
+    emit(GenderChangedState(isMale: isMale!));
   }
 
   final TextEditingController fNameController = TextEditingController();
@@ -99,7 +124,9 @@ class DoctorSignUpCubit extends Cubit<DoctorSignUpState> {
   final TextEditingController floorController = TextEditingController();
   final TextEditingController otherController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-  final TextEditingController universityNameController = TextEditingController();
+  final TextEditingController clinicPhoneController = TextEditingController();
+  final TextEditingController universityNameController =
+      TextEditingController();
   var dateFormat = DateFormat('yyyy/MM/dd');
 
   onTapBirthDate(BuildContext context) async {
@@ -113,7 +140,9 @@ class DoctorSignUpCubit extends Cubit<DoctorSignUpState> {
     } catch (e) {
       log(e.toString());
     }
-  } onTapGradDate(BuildContext context) async {
+  }
+
+  onTapGradDate(BuildContext context) async {
     try {
       var selectedDate = await showCustomDatePicker(context,
           initialDate: gradDateController.text.isEmpty
@@ -130,6 +159,7 @@ class DoctorSignUpCubit extends Cubit<DoctorSignUpState> {
   Future<void> close() {
     fNameController.dispose();
     sNameController.dispose();
+    clinicPhoneController.dispose();
     emailController.dispose();
     phoneController.dispose();
     dateOfBirthController.dispose();

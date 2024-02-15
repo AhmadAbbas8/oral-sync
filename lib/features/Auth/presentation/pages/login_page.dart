@@ -12,7 +12,7 @@ import 'package:oralsync/core/utils/styles.dart';
 import 'package:oralsync/features/Auth/domain/use_cases/login_use_case.dart';
 import 'package:oralsync/features/Auth/presentation/manager/login_cubit/login_cubit.dart';
 import 'package:oralsync/features/Auth/presentation/manager/methods.dart';
-import 'package:oralsync/features/Auth/presentation/pages/home_page.dart';
+import 'package:oralsync/features/home_student_fearure/presentation/pages/home_page.dart';
 import 'package:oralsync/features/Auth/presentation/pages/sign_up_options_page.dart';
 import 'package:oralsync/features/Auth/presentation/widgets/custom_hint_button_widget.dart';
 import 'package:oralsync/features/Auth/presentation/widgets/custom_login_button_widget.dart';
@@ -29,8 +29,8 @@ class LoginPage extends StatelessWidget {
   Widget build(BuildContext context) {
     var size = MediaQuery.sizeOf(context);
     return BlocProvider(
-      create: (context) =>
-          LoginCubit(loginUseCase: ServiceLocator.instance<LoginUseCase>()),
+      create: (context) => LoginCubit(
+          loginUseCase: ServiceLocator.instance<LoginUseCase>()),
       child: Scaffold(
         body: SafeArea(
           child: SingleChildScrollView(
@@ -48,12 +48,13 @@ class LoginPage extends StatelessWidget {
                         predicate: (route) => false,
                       );
                       showCustomSnackBar(context,
-                          msg: state.user.message!,
+                          msg: 'Logging Successfully',
                           backgroundColor: Colors.green);
                     } else if (state is LoginError) {
                       context.pop();
                       showCustomSnackBar(context,
-                          msg: state.messageEn, backgroundColor: Colors.red);
+                          msg: state.errorModel?.messageEn ?? '',
+                          backgroundColor: Colors.red);
                     }
                   },
                   builder: (context, state) {
@@ -118,7 +119,7 @@ class LoginPage extends StatelessWidget {
                             onPressed: () => Navigator.pushNamed(
                                 context, SignUpOptionsPage.routeName),
                           ),
-                           SizedBox(height: 10.h),
+                          SizedBox(height: 10.h),
                         ],
                       ),
                     );

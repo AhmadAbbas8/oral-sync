@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:oralsync/core/error/Error_model.dart';
 
 abstract class Failure extends Equatable {}
 
@@ -8,9 +9,12 @@ class OfflineFailure extends Failure {
 }
 
 class ServerFailure extends Failure {
+  final ErrorModel? errorModel;
+
+  ServerFailure({ this.errorModel});
   @override
   // TODO: implement props
-  List<Object?> get props => [];
+  List<Object?> get props => [errorModel];
 }
 
 class EmptyCacheFailure extends Failure {

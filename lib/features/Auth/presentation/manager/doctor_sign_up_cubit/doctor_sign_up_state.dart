@@ -12,20 +12,21 @@ class DoctorSignUpInitial extends DoctorSignUpState {}
 class DateChangedState extends DoctorSignUpState {}
 class RegisterDoctorLoading extends DoctorSignUpState {}
 class RegisterDoctorSuccess extends DoctorSignUpState {
-  final RegisterBody model;
+  final UserModel user;
 
-  const RegisterDoctorSuccess({required this.model});
+  const RegisterDoctorSuccess({required this.user});
 
   @override
-  List<Object> get props => [model];
+  List<Object> get props => [user];
 }
 class RegisterDoctorError extends DoctorSignUpState {
-  final String errMessage;
+  final ErrorModel? errorModel;
 
-  const RegisterDoctorError({required this.errMessage});
+  const RegisterDoctorError({ this.errorModel});
 
-  @override
-  List<Object> get props => [errMessage];
+@override
+  // TODO: implement props
+  List<Object> get props => super.props..add([errorModel]);
 }
 
 class ChangePasswordVisibility extends DoctorSignUpState {

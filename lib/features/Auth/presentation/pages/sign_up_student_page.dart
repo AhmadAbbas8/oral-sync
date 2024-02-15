@@ -6,10 +6,12 @@ import 'package:oralsync/core/helpers/snackbars.dart';
 import 'package:oralsync/core/service_locator/service_locator.dart';
 import 'package:oralsync/core/utils/size_helper.dart';
 import 'package:oralsync/core/utils/styles.dart';
-import 'package:oralsync/features/Auth/domain/use_cases/register_use_case.dart';
-import 'package:oralsync/features/Auth/domain/use_cases/sign_up_student_use_case.dart';
+import 'package:oralsync/features/Auth/domain/use_cases/login_use_case.dart';
+import 'package:oralsync/features/Auth/domain/use_cases/new_register_use_case.dart';
+
 import 'package:oralsync/features/Auth/presentation/manager/methods.dart';
 import 'package:oralsync/features/Auth/presentation/manager/student_sign_up_cubit/student_sign_up_cubit.dart';
+import 'package:oralsync/features/home_student_fearure/presentation/pages/home_page.dart';
 import 'package:oralsync/features/Auth/presentation/widgets/custom_login_button_widget.dart';
 import 'package:oralsync/features/Auth/presentation/widgets/custom_text_form_field_login.dart';
 import 'package:oralsync/features/Auth/presentation/widgets/custom_tow_form_field_widget.dart';
@@ -27,8 +29,8 @@ class SignUpStudentPage extends StatelessWidget {
     const List type = ['Male', 'Female'];
     return BlocProvider(
       create: (context) => StudentSignUpCubit(
-        registerUseCase: ServiceLocator.instance<RegisterUseCase>(),
-        signUpStudentUseCase: ServiceLocator.instance<SignUpStudentUseCase>(),
+        loginUseCase: ServiceLocator.instance<LoginUseCase>(),
+        newRegisterUseCase: ServiceLocator.instance<NewRegisterUseCase>(),
       ),
       child: Scaffold(
         body: SafeArea(
@@ -40,17 +42,17 @@ class SignUpStudentPage extends StatelessWidget {
                   listener: (context, state) {
                     if (state is RegisterStudentLoading) {
                       showCustomProgressIndicator(context);
-                    }
-                    else if (state is RegisterStudentError) {
+                    } else if (state is RegisterStudentError) {
                       context.pop();
                       showCustomSnackBar(context,
-                          msg: state.errMessage, backgroundColor: Colors.red);
+                          msg: state.errorModel?.messageEn??'', backgroundColor: Colors.red);
                     } else if (state is RegisterStudentSuccess) {
                       showCustomSnackBar(context,
-                          msg: state.model.message ??
+                          msg:
                               'User Created Successfully',
                           backgroundColor: Colors.green);
                       context.pop();
+                      context.pushNamed(HomePage.routeName);
                     }
                   },
                   builder: (context, state) {
@@ -153,7 +155,10 @@ class SignUpStudentPage extends StatelessWidget {
                                             borderRadius:
                                                 BorderRadius.circular(20)),
                                         groupValue: cubit.isMale,
-                                        title: Text(type[0],  style: TextStyle(fontSize: 14),),
+                                        title: Text(
+                                          type[0],
+                                          style: TextStyle(fontSize: 14),
+                                        ),
                                         onChanged: (value) =>
                                             cubit.onChangedGender(value),
                                       ),
@@ -166,7 +171,10 @@ class SignUpStudentPage extends StatelessWidget {
                                             borderRadius:
                                                 BorderRadius.circular(20)),
                                         groupValue: cubit.isMale,
-                                        title: Text(type[1],  style: TextStyle(fontSize: 14),),
+                                        title: Text(
+                                          type[1],
+                                          style: TextStyle(fontSize: 14),
+                                        ),
                                         onChanged: (value) =>
                                             cubit.onChangedGender(value),
                                       ),
@@ -238,11 +246,10 @@ class SignUpStudentPage extends StatelessWidget {
                             child: CustomLoginButtonWidget(
                               title: 'Create Account',
                               minWidth: size.width * .8,
-                            
                               onPressed: () {
                                 if (cubit.isMale != null) {
                                   if (cubit.formKey.currentState!.validate()) {
-                                    cubit.registerUser();
+                                    cubit.register();
                                   }
                                 } else {
                                   showCustomSnackBar(context,

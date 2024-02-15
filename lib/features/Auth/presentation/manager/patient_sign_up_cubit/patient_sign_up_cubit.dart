@@ -3,22 +3,26 @@ import 'dart:developer';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
+import 'package:oralsync/core/error/Error_model.dart';
 import 'package:oralsync/core/helpers/custom_date_pickers.dart';
-import 'package:oralsync/features/Auth/domain/entities/register.dart';
-import 'package:oralsync/features/Auth/domain/use_cases/register_use_case.dart';
-import 'package:oralsync/features/Auth/domain/use_cases/sign_up_patient_use_case.dart';
+import 'package:oralsync/features/Auth/data/models/user_model.dart';
+import 'package:oralsync/features/Auth/domain/use_cases/login_use_case.dart';
+import 'package:oralsync/features/Auth/domain/use_cases/new_register_use_case.dart';
+
 import 'package:intl/intl.dart';
+
+import '../../../../../core/error/failure.dart';
 
 part 'patient_sign_up_state.dart';
 
 class PatientSignUpCubit extends Cubit<PatientSignUpState> {
   PatientSignUpCubit({
-    required this.registerUseCase,
-    required this.signUpPatientUseCase,
+    required this.newRegisterUseCase,
+    required this.loginUseCase,
   }) : super(PatientSignUpInitial());
-  final RegisterUseCase registerUseCase;
+  final NewRegisterUseCase newRegisterUseCase;
 
-  final SignUpPatientUseCase signUpPatientUseCase;
+  final LoginUseCase loginUseCase;
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
   bool? isMale;
   bool obscurePassword = true;
@@ -48,48 +52,67 @@ class PatientSignUpCubit extends Cubit<PatientSignUpState> {
     }
   }
 
-  void registerUser() async {
+  void register() async {
     emit(RegisterPatientLoading());
-    var res = await registerUseCase.register(
-      name: '${fNameController.text} ${lNameController.text}',
+    var res = await newRegisterUseCase.call(
       email: emailController.text,
       password: passwordController.text,
       confirmPassword: passwordController.text,
-      phoneNumber: phoneController.text,
       isMale: isMale ?? true,
+      phoneNumber: phoneController.text,
       isDoctor: false,
       isStudent: false,
       isPatient: true,
+      fName: fNameController.text,
+      lName: lNameController.text,
+
+      /// TODO : SOON
+      address: [
+        governorateController.text,
+        cityController.text,
+      ],
+      insuranceCompany: null,
+      birthDate: dateOfBirthController.text,
     );
-    res.fold(
-        (failure) =>
-            emit(const RegisterPatientError(errMessage: 'Error While Loading')),
-        (model) async {
+
+    res.fold((failure) {
+      if (failure is OfflineFailure) {
+        emit(RegisterPatientError(
+            errorModel: ErrorModel(
+                messageEn: 'Please Check your internet Connection',
+                messageAr: 'من فضلك افحص اتصال الانترنت لديك')));
+      }
+      emit(RegisterPatientError(
+          errorModel: ErrorModel(
+              messageEn: 'User registered already',
+              messageAr: 'هذا المستخدم مسجل بالفعل')));
+    }, (model) async {
       if (model.flag ?? false) {
-        await addPatient();
-        emit(RegisterPatientSuccess(model: model));
+        await loginDoc();
       } else {
-        emit(RegisterPatientError(errMessage: model.message ?? ''));
+        emit(RegisterPatientError(
+            errorModel: ErrorModel(
+                messageEn: 'User registered already',
+                messageAr: 'هذا المستخدم مسجل بالفعل')));
       }
     });
   }
 
-  Future<void> addPatient() async {
-    emit(AddedPatientLoading());
-    var res = await signUpPatientUseCase.signUpPatient(
-      fName: fNameController.text,
-      sName: lNameController.text,
-      email: emailController.text,
-      phone: phoneController.text,
-      dob: dateOfBirthController.text,
-      isMale: isMale ?? true,
-      government: governorateController.text,
-      city: cityController.text,
-    );
-    res.fold(
-        (failure) =>
-            emit(const AddedPatientError(errMessage: 'Error While Loading')),
-        (model) => emit(AddedPatientSuccess(message: model.message)));
+  Future<void> loginDoc() async {
+    var user = await loginUseCase.call(
+        email: emailController.text, password: passwordController.text);
+    user.fold((failure) {
+      if (failure is ServerFailure) {
+        emit(RegisterPatientError(errorModel: failure.errorModel));
+      } else {
+        emit(RegisterPatientError(
+            errorModel: ErrorModel(
+                messageEn: 'Please Check your internet Connection',
+                messageAr: 'من فضلك افحص اتصال الانترنت لديك')));
+      }
+    }, (user) {
+      emit(RegisterPatientSuccess(model: user));
+    });
   }
 
   TextEditingController fNameController = TextEditingController();

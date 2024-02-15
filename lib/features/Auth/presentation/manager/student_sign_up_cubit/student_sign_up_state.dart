@@ -32,7 +32,7 @@ class GenderChangedState extends StudentSignUpState {
 
 class RegisterStudentLoading extends StudentSignUpState {}
 class RegisterStudentSuccess extends StudentSignUpState {
-  final RegisterBody model;
+  final UserModel model;
 
   const RegisterStudentSuccess({required this.model});
 
@@ -40,12 +40,12 @@ class RegisterStudentSuccess extends StudentSignUpState {
   List<Object> get props => [model];
 }
 class RegisterStudentError extends StudentSignUpState {
-  final String errMessage;
+  final ErrorModel? errorModel;
 
-  const RegisterStudentError({required this.errMessage});
+  const RegisterStudentError({ this.errorModel});
 
   @override
-  List<Object> get props => [errMessage];
+  List<Object> get props => super.props..add([errorModel]);
 }
 
 

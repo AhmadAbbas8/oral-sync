@@ -24,18 +24,17 @@ class ChangePasswordVisibility extends LoginState {
 class LoginLoading extends LoginState {}
 
 class LoginError extends LoginState {
-  final String messageAr;
-  final String messageEn;
+final ErrorModel? errorModel ;
 
-  const LoginError({required this.messageAr, required this.messageEn});
+  const LoginError({ this.errorModel});
 
   @override
   // TODO: implement props
-  List<Object?> get props => super.props..addAll([messageAr, messageEn]);
+  List<Object?> get props => super.props..addAll([errorModel]);
 }
 
 class LoginSuccess extends LoginState {
-  final User user;
+  final UserModel user;
 
   const LoginSuccess({required this.user});
 

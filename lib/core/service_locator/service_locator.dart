@@ -7,16 +7,15 @@ import 'package:oralsync/core/network/api/api_consumer.dart';
 import 'package:oralsync/core/network/api/dio_consumer.dart';
 import 'package:oralsync/core/network/network_info.dart';
 import 'package:oralsync/core/utils/end_points.dart';
+import 'package:oralsync/features/Auth/data/data_sources/auth_local_data_source.dart';
+import 'package:oralsync/features/Auth/data/data_sources/auth_local_data_source_impl.dart';
 import 'package:oralsync/features/Auth/data/data_sources/auth_remote_data_source.dart';
 import 'package:oralsync/features/Auth/data/data_sources/auth_remote_data_source_impl.dart';
 import 'package:oralsync/features/Auth/data/repositories/auth_repository_impl.dart';
 import 'package:oralsync/features/Auth/domain/repositories/auth_repository.dart';
 import 'package:oralsync/features/Auth/domain/use_cases/login_use_case.dart';
-import 'package:oralsync/features/Auth/domain/use_cases/register_use_case.dart';
-import 'package:oralsync/features/Auth/domain/use_cases/sign_up_doctor_use_case.dart';
-import 'package:oralsync/features/Auth/domain/use_cases/sign_up_patient_use_case.dart';
-import 'package:oralsync/features/Auth/domain/use_cases/sign_up_student_use_case.dart';
-import 'package:oralsync/features/Auth/presentation/pages/sign_up_patient_page.dart';
+import 'package:oralsync/features/Auth/domain/use_cases/new_register_use_case.dart';
+
 import 'package:shared_preferences/shared_preferences.dart';
 
 class ServiceLocator {
@@ -39,36 +38,22 @@ class ServiceLocator {
             'Content-Type': 'application/json',
           },
         ))));
-    // instance.registerLazySingleton(
-    //   () => Dio(
-    //     BaseOptions(
-    //       validateStatus: (status) => status == 200,
-    //       baseUrl: EndPoints.BASE_URL,
-    //       headers: const {
-    //         'accept': '*/*',
-    //         'Content-Type': 'application/json',
-    //       },
-    //     ),
-    //   ),
-    // );
+
     // * Datasources
     instance.registerLazySingleton<AuthRemoteDataSource>(
         () => AuthRemoteDataSourceImp(apiConsumer: instance()));
+    instance.registerLazySingleton<AuthLocalDataSource>(
+        () => AuthLocalDataSourceImpl(cacheStorage: instance()));
 
     // * Repository
     instance.registerLazySingleton<AuthRepository>(() => AuthRepositoryImpl(
-        authRemoteDataSource: instance(), networkInfo: instance()));
+        authRemoteDataSource: instance(), networkInfo: instance(),authLocalDataSource: instance()));
 
     // * UseCases
+
     instance.registerLazySingleton<LoginUseCase>(
         () => LoginUseCase(authRepository: instance()));
-    instance.registerLazySingleton<RegisterUseCase>(
-        () => RegisterUseCase(authRepository: instance()));
-    instance.registerLazySingleton<SignUpDoctorUseCase>(
-        () => SignUpDoctorUseCase(authRepository: instance()));
-    instance.registerLazySingleton<SignUpPatientUseCase>(
-        () => SignUpPatientUseCase(authRepository: instance()));
-    instance.registerLazySingleton<SignUpStudentUseCase>(
-        () => SignUpStudentUseCase(authRepository: instance()));
+    instance.registerLazySingleton<NewRegisterUseCase>(
+        () => NewRegisterUseCase(authRepository: instance()));
   }
 }

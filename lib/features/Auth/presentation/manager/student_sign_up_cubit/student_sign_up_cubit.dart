@@ -1,23 +1,28 @@
 import 'dart:developer';
 
-import 'package:bloc/bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
+import 'package:oralsync/core/error/Error_model.dart';
 import 'package:oralsync/core/helpers/custom_date_pickers.dart';
-import 'package:oralsync/features/Auth/domain/entities/register.dart';
-import 'package:oralsync/features/Auth/domain/use_cases/register_use_case.dart';
-import 'package:oralsync/features/Auth/domain/use_cases/sign_up_student_use_case.dart';
+import 'package:oralsync/features/Auth/data/models/user_model.dart';
+import 'package:oralsync/features/Auth/domain/use_cases/login_use_case.dart';
+import 'package:oralsync/features/Auth/domain/use_cases/new_register_use_case.dart';
+
+import 'package:intl/intl.dart';
+
+import '../../../../../core/error/failure.dart';
 
 part 'student_sign_up_state.dart';
 
 class StudentSignUpCubit extends Cubit<StudentSignUpState> {
-  StudentSignUpCubit(
-      {required this.registerUseCase, required this.signUpStudentUseCase})
-      : super(StudentSignUpInitial());
-  final RegisterUseCase registerUseCase;
-  final SignUpStudentUseCase signUpStudentUseCase;
+  StudentSignUpCubit({
+    required this.newRegisterUseCase,
+    required this.loginUseCase,
+  }) : super(StudentSignUpInitial());
+  final NewRegisterUseCase newRegisterUseCase;
 
+  final LoginUseCase loginUseCase;
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
   bool? isMale;
   bool obscurePassword = true;
@@ -31,55 +36,64 @@ class StudentSignUpCubit extends Cubit<StudentSignUpState> {
     isMale = value;
     emit(GenderChangedState(isMale: isMale!));
   }
-
-  Future<void> addDoctor() async {
-    emit(AddStudentLoading());
-    var res = await signUpStudentUseCase.signUpStudent(
-      fName: fNameController.text,
-      sName: sNameController.text,
-      email: emailController.text,
-      phone: phoneController.text,
-      dob: dateOfBirthController.text,
-      isMale: isMale ?? true,
-      universityCity: cityController.text,
-      universityName: universityNameController.text,
-      academicYear: academicYearController.text,
-      universityStreet: streetController.text,
-      GPA: GPAController.text,
-      isDoctor: true,
-      other: otherController.text,
-      universityGovernment: governorateController.text,
-      password: passwordController.text,
-    );
-    res.fold(
-        (failure) =>
-            emit(const AddStudentError(errMessage: 'Error While Loading')),
-        (model) => emit(AddStudentSuccess(message: model.message)));
-  }
-
-  void registerUser() async {
+  void register() async {
     emit(RegisterStudentLoading());
-    var res = await registerUseCase.register(
-      name: '${fNameController.text} ${sNameController.text}',
+    var res = await newRegisterUseCase.call(
       email: emailController.text,
       password: passwordController.text,
       confirmPassword: passwordController.text,
-      phoneNumber: phoneController.text,
       isMale: isMale ?? true,
+      phoneNumber: phoneController.text,
       isDoctor: false,
       isStudent: true,
       isPatient: false,
+      fName: fNameController.text,
+      lName: sNameController.text,
+universityName: universityNameController.text,
+      gpa:double.tryParse( GPAController.text),
+      academicYear:int.tryParse( academicYearController.text),
+      graduationDate: gradDateController.text,
+
+      birthDate: dateOfBirthController.text,
     );
-    res.fold(
-        (failure) =>
-            emit(const RegisterStudentError(errMessage: 'Error While Loading')),
-        (model) async {
-      if (model.flag ?? false) {
-        await addDoctor();
-        emit(RegisterStudentSuccess(model: model));
-      } else {
-        emit(RegisterStudentError(errMessage: model.message ?? ''));
+
+    res.fold((failure) {
+      if (failure is OfflineFailure) {
+        emit(RegisterStudentError(
+            errorModel: ErrorModel(
+                messageEn: 'Please Check your internet Connection',
+                messageAr: 'من فضلك افحص اتصال الانترنت لديك')));
       }
+      emit(RegisterStudentError(
+          errorModel: ErrorModel(
+              messageEn: 'User registered already',
+              messageAr: 'هذا المستخدم مسجل بالفعل')));
+    }, (model) async {
+      if (model.flag ?? false) {
+        await loginDoc();
+      } else {
+        emit(RegisterStudentError(
+            errorModel: ErrorModel(
+                messageEn: 'User registered already',
+                messageAr: 'هذا المستخدم مسجل بالفعل')));
+      }
+    });
+  }
+
+  Future<void> loginDoc() async {
+    var user = await loginUseCase.call(
+        email: emailController.text, password: passwordController.text);
+    user.fold((failure) {
+      if (failure is ServerFailure) {
+        emit(RegisterStudentError(errorModel: failure.errorModel));
+      } else {
+        emit(RegisterStudentError(
+            errorModel: ErrorModel(
+                messageEn: 'Please Check your internet Connection',
+                messageAr: 'من فضلك افحص اتصال الانترنت لديك')));
+      }
+    }, (user) {
+      emit(RegisterStudentSuccess(model: user));
     });
   }
 
@@ -98,7 +112,7 @@ class StudentSignUpCubit extends Cubit<StudentSignUpState> {
   final TextEditingController otherController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController universityNameController =
-      TextEditingController();
+  TextEditingController();
   var dateFormat = DateFormat('yyyy/MM/dd');
 
   onTapBirthDate(BuildContext context) async {
