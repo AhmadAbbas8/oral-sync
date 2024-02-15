@@ -4,11 +4,8 @@ import 'package:oralsync/core/error/exception.dart';
 import 'package:oralsync/core/network/api/api_consumer.dart';
 import 'package:oralsync/core/utils/end_points.dart';
 import 'package:oralsync/features/Auth/data/data_sources/auth_remote_data_source.dart';
-import 'package:oralsync/features/Auth/data/models/added_body_model.dart';
+
 import 'package:oralsync/features/Auth/data/models/register_body_model.dart';
-import 'package:oralsync/features/Auth/data/models/user_model1.dart';
-import 'package:oralsync/features/Auth/domain/entities/added.dart';
-import 'package:oralsync/features/Auth/domain/entities/user.dart';
 
 import '../models/user_model.dart';
 

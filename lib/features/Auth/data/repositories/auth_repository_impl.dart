@@ -6,8 +6,7 @@ import 'package:oralsync/features/Auth/data/data_sources/auth_local_data_source.
 import 'package:oralsync/features/Auth/data/data_sources/auth_remote_data_source.dart';
 import 'package:oralsync/features/Auth/data/models/register_body_model.dart';
 import 'package:oralsync/features/Auth/data/models/user_model.dart';
-import 'package:oralsync/features/Auth/domain/entities/added.dart';
-import 'package:oralsync/features/Auth/domain/entities/user.dart';
+
 import 'package:oralsync/features/Auth/domain/repositories/auth_repository.dart';
 
 class AuthRepositoryImpl implements AuthRepository {
