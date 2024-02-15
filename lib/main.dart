@@ -19,6 +19,7 @@ void main() async {
     saveLocale: true,
     fallbackLocale: const Locale('en'),
     assetLoader: const CodegenLoader(),
+    ///Error Widget if any error occur in package
     errorWidget: (message) => Center(
       child: Text(message?.message ?? 'Error in App localization '),
     ),
