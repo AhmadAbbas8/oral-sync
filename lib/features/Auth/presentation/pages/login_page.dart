@@ -17,7 +17,7 @@ import 'package:oralsync/features/Auth/presentation/widgets/custom_hint_button_w
 import 'package:oralsync/features/Auth/presentation/widgets/custom_login_button_widget.dart';
 import 'package:oralsync/features/Auth/presentation/widgets/custom_text_form_field_login.dart';
 import 'package:oralsync/features/Auth/presentation/widgets/forget_password_button_widget.dart';
-import 'package:oralsync/features/student/presentation/pages/student_home_screen.dart';
+import 'package:oralsync/features/student/presentation/pages/student_layout_screen.dart';
 import 'package:oralsync/translations/locale_keys.g.dart';
 
 class LoginPage extends StatelessWidget {
@@ -44,7 +44,7 @@ class LoginPage extends StatelessWidget {
                     } else if (state is LoginSuccess) {
                       context.pop();
                       context.pushNamedAndRemoveUntil(
-                        StudentHomeScreen.routeName,
+                        StudentLayoutScreen.routeName,
                         predicate: (route) => false,
                       );
                       showCustomSnackBar(context,

@@ -6,3 +6,9 @@ abstract class StudentEvent extends Equatable {
   @override
   List<Object> get props => [];
 }
+
+class ChangeBottomNavigationBarIndexEvent extends StudentEvent {
+  final int index;
+
+  const ChangeBottomNavigationBarIndexEvent(this.index);
+}
