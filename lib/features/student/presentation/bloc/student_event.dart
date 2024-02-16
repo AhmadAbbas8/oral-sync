@@ -1,10 +1,7 @@
 part of 'student_bloc.dart';
 
-abstract class StudentEvent extends Equatable {
+abstract class StudentEvent {
   const StudentEvent();
-
-  @override
-  List<Object> get props => [];
 }
 
 class ChangeBottomNavigationBarIndexEvent extends StudentEvent {
