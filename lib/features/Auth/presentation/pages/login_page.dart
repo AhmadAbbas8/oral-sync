@@ -12,12 +12,12 @@ import 'package:oralsync/core/utils/styles.dart';
 import 'package:oralsync/features/Auth/domain/use_cases/login_use_case.dart';
 import 'package:oralsync/features/Auth/presentation/manager/login_cubit/login_cubit.dart';
 import 'package:oralsync/features/Auth/presentation/manager/methods.dart';
-import 'package:oralsync/features/home_fearure/presentation/pages/home_page.dart';
 import 'package:oralsync/features/Auth/presentation/pages/sign_up_options_page.dart';
 import 'package:oralsync/features/Auth/presentation/widgets/custom_hint_button_widget.dart';
 import 'package:oralsync/features/Auth/presentation/widgets/custom_login_button_widget.dart';
 import 'package:oralsync/features/Auth/presentation/widgets/custom_text_form_field_login.dart';
 import 'package:oralsync/features/Auth/presentation/widgets/forget_password_button_widget.dart';
+import 'package:oralsync/features/student/presentation/pages/student_home_screen.dart';
 import 'package:oralsync/translations/locale_keys.g.dart';
 
 class LoginPage extends StatelessWidget {
@@ -44,7 +44,7 @@ class LoginPage extends StatelessWidget {
                     } else if (state is LoginSuccess) {
                       context.pop();
                       context.pushNamedAndRemoveUntil(
-                        HomePage.routeName,
+                        StudentHomeScreen.routeName,
                         predicate: (route) => false,
                       );
                       showCustomSnackBar(context,

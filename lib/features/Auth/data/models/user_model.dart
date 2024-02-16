@@ -3,7 +3,8 @@ class UserModel {
   final String? userRole;
   final UserDetails? userDetails;
 
-  UserModel({required this.token, required this.userRole, required this.userDetails});
+  UserModel(
+      {required this.token, required this.userRole, required this.userDetails});
 
   factory UserModel.fromJson(Map<String, dynamic> json) {
     String userRole = json['userRole'];
@@ -31,10 +32,10 @@ class UserModel {
   }
 
   Map<String, dynamic> toJson() => {
-    'token': token,
-    'userRole': userRole,
-    'userDetails': userDetails?.toJson(),
-  };
+        'token': token,
+        'userRole': userRole,
+        'userDetails': userDetails?.toJson(),
+      };
 }
 
 class UserDetails {
@@ -55,13 +56,13 @@ class UserDetails {
   });
 
   Map<String, dynamic> toJson() => {
-    'firstName': firstName,
-    'lastName': lastName,
-    'isMale': isMale,
-    'phoneNumber': phoneNumber,
-    'email': email,
-    'birthDate': birthDate,
-  };
+        'firstName': firstName,
+        'lastName': lastName,
+        'isMale': isMale,
+        'phoneNumber': phoneNumber,
+        'email': email,
+        'birthDate': birthDate,
+      };
 }
 
 class PatientDetails extends UserDetails {
@@ -78,13 +79,13 @@ class PatientDetails extends UserDetails {
     required this.address,
     required this.insuranceCompany,
   }) : super(
-    firstName: firstName,
-    lastName: lastName,
-    isMale: isMale,
-    phoneNumber: phoneNumber,
-    email: email,
-    birthDate: birthDate,
-  );
+          firstName: firstName,
+          lastName: lastName,
+          isMale: isMale,
+          phoneNumber: phoneNumber,
+          email: email,
+          birthDate: birthDate,
+        );
 
   @override
   Map<String, dynamic> toJson() {
@@ -102,7 +103,7 @@ class PatientDetails extends UserDetails {
       phoneNumber: json['phoneNumber'],
       email: json['email'],
       birthDate: json['birthDate'],
-      address: List<String>.from(json['address']??[]),
+      address: List<String>.from(json['address'] ?? []),
       insuranceCompany: json['insuranceCompany'],
     );
   }
@@ -130,13 +131,13 @@ class DoctorDetails extends UserDetails {
     required this.certificates,
     required this.graduationDate,
   }) : super(
-    firstName: firstName,
-    lastName: lastName,
-    isMale: isMale,
-    phoneNumber: phoneNumber,
-    email: email,
-    birthDate: birthDate,
-  );
+          firstName: firstName,
+          lastName: lastName,
+          isMale: isMale,
+          phoneNumber: phoneNumber,
+          email: email,
+          birthDate: birthDate,
+        );
 
   @override
   Map<String, dynamic> toJson() {
@@ -160,9 +161,9 @@ class DoctorDetails extends UserDetails {
       birthDate: json['birthDate'],
       universityName: json['universityName'],
       clinicNumber: json['clinicNumber'],
-      clinicAddress: List<String>.from(json['clinicAddress']??[]),
-      insuranceCompanies: List<String>.from(json['insuranceCompanies']??[]),
-      certificates: List<String>.from(json['certificates']??[]),
+      clinicAddress: List<String>.from(json['clinicAddress'] ?? []),
+      insuranceCompanies: List<String>.from(json['insuranceCompanies'] ?? []),
+      certificates: List<String>.from(json['certificates'] ?? []),
       graduationDate: json['graduationDate'],
     );
   }
@@ -171,7 +172,7 @@ class DoctorDetails extends UserDetails {
 class StudentDetails extends UserDetails {
   final String? universityName;
   final List<String?>? universitAddress;
-  final int? gpa;
+  final num? gpa;
   final int? academicYear;
 
   StudentDetails({
@@ -186,13 +187,13 @@ class StudentDetails extends UserDetails {
     required this.gpa,
     required this.academicYear,
   }) : super(
-    firstName: firstName,
-    lastName: lastName,
-    isMale: isMale,
-    phoneNumber: phoneNumber,
-    email: email,
-    birthDate: birthDate,
-  );
+          firstName: firstName,
+          lastName: lastName,
+          isMale: isMale,
+          phoneNumber: phoneNumber,
+          email: email,
+          birthDate: birthDate,
+        );
 
   @override
   Map<String, dynamic> toJson() {
@@ -213,7 +214,7 @@ class StudentDetails extends UserDetails {
       email: json['email'],
       birthDate: json['birthDate'],
       universityName: json['universityName'],
-      universitAddress: List<String>.from(json['universitAddress']??[]),
+      universitAddress: List<String>.from(json['universitAddress'] ?? []),
       gpa: json['gpa'],
       academicYear: json['academicYear'],
     );
