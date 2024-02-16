@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:oralsync/core/routing/app_router.dart';
 import 'package:oralsync/core/widgets/the_main_drawer.dart';
-import 'package:oralsync/features/student/presentation/widgets/no_task_widget.dart';
+import 'package:oralsync/features/student/presentation/widgets/created_post.dart';
 
 import '../bloc/student_bloc.dart';
 
@@ -31,7 +31,7 @@ class StudentHomeScreen extends StatelessWidget {
             ),
             drawer: const TheMainDrawer(),
             body: const Center(
-              child: NoTaskWidget(),
+              child: CreatedPostWidget(),
             ),
           );
         },
