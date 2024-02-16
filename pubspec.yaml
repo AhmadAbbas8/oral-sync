@@ -49,6 +49,7 @@ flutter:
   assets:
     - assets/auth/images/
     - assets/translations/
+    - assets/student/images/
     #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
