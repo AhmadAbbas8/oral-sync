@@ -1,4 +1,6 @@
 {
   "hello": "Hello",
-  "home": "Home"
+  "home": "Home",
+  "createPost":"Create Post",
+  "post":"Post"
 }

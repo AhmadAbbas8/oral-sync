@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:oralsync/core/widgets/circle_avatar.dart';
 import 'package:oralsync/features/student/presentation/bloc/student_bloc.dart';
 
 class StudentProfileScreen extends StatelessWidget {
@@ -29,11 +30,7 @@ class StudentProfileScreen extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  CircleAvatar(
-                    backgroundImage: AssetImage(
-                        'assets/student/images/IMG-20180709-WA0006.jpg'),
-                    maxRadius: 50,
-                  ),
+                  CircleAvatarWidget(),
                   Text(
                     "Mostafa Hassan",
                     style: TextStyle(

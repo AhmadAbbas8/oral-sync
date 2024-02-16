@@ -6,6 +6,7 @@ import 'package:oralsync/features/Auth/presentation/pages/sign_up_options_page.d
 import 'package:oralsync/features/Auth/presentation/pages/sign_up_patient_page.dart';
 import 'package:oralsync/features/Auth/presentation/pages/sign_up_student_page.dart';
 import 'package:oralsync/features/student/presentation/bloc/student_bloc.dart';
+import 'package:oralsync/features/student/presentation/pages/create_post_screen.dart';
 import 'package:oralsync/features/student/presentation/pages/student_archived_screen.dart';
 import 'package:oralsync/features/student/presentation/pages/student_home_screen.dart';
 import 'package:oralsync/features/student/presentation/pages/student_layout_screen.dart';
@@ -33,5 +34,6 @@ class AppRouter {
     StudentMessageScreen.routeName: (context) => const StudentMessageScreen(),
     StudentArchivedScreen.routeName: (context) => const StudentArchivedScreen(),
     StudentProfileScreen.routeName: (context) => const StudentArchivedScreen(),
+    CreatePostScreen.routeName: (context) => const CreatePostScreen(),
   };
 }
