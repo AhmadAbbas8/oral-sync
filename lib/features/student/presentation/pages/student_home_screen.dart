@@ -12,9 +12,22 @@ class StudentHomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider.value(
       value: AppRouter.studentBloc,
-      child:  BlocBuilder<StudentBloc, StudentState>(
+      child: BlocBuilder<StudentBloc, StudentState>(
         builder: (context, state) {
-          return const Scaffold();
+          return Scaffold(
+            appBar: AppBar(actions: [
+              Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 16),
+                  child: IconButton(
+                      onPressed: () {},
+                      icon: const Icon(
+                        Icons.add_alert_outlined,
+                      ))),
+            ]),
+            drawer: const Drawer(
+              backgroundColor: Color(0xFFE6EEFA),
+            ),
+          );
         },
       ),
     );
