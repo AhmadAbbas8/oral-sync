@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:oralsync/core/helpers/custom_progress_indicator.dart';
@@ -17,6 +18,7 @@ import 'package:oralsync/features/Auth/presentation/widgets/custom_text_form_fie
 import 'package:oralsync/features/Auth/presentation/widgets/custom_tow_form_field_widget.dart';
 
 import '../../../../core/utils/assets_manager.dart';
+import '../../../../translations/locale_keys.g.dart';
 
 class SignUpStudentPage extends StatelessWidget {
   const SignUpStudentPage({super.key});
@@ -26,7 +28,7 @@ class SignUpStudentPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.sizeOf(context);
-    const List type = ['Male', 'Female'];
+    const List type = ['male', 'female'];
     return BlocProvider(
       create: (context) => StudentSignUpCubit(
         loginUseCase: ServiceLocator.instance<LoginUseCase>(),
@@ -78,13 +80,13 @@ class SignUpStudentPage extends StatelessWidget {
                             ],
                           ),
                           const Text(
-                            'Sign Up Student',
+                            LocaleKeys.sign_up_student,
                             style: AppStyles.styleSize28,
-                          ),
+                          ).tr(),
                           const SizedBox(height: 20),
                           CustomTwoFormFieldWidget(
-                            fTitle: 'First Name',
-                            sTitle: 'Last Name',
+                            fTitle: LocaleKeys.first_name,
+                            sTitle: LocaleKeys.last_name,
                             validator1: generalValidator,
                             validator2: generalValidator,
                             textEditingController1: cubit.fNameController,
@@ -94,7 +96,7 @@ class SignUpStudentPage extends StatelessWidget {
                           CustomTextFormFieldLogin(
                             width: size.width * .8,
                             textInputType: TextInputType.emailAddress,
-                            hintText: 'Email',
+                            hintText: LocaleKeys.email,
                             validator: validateEmail,
                             textEditingController: cubit.emailController,
                           ),
@@ -102,7 +104,7 @@ class SignUpStudentPage extends StatelessWidget {
                           CustomTextFormFieldLogin(
                             width: size.width * .8,
                             textInputType: TextInputType.phone,
-                            hintText: 'Phone Number',
+                            hintText: LocaleKeys.phone_number,
                             validator: generalValidator,
                             textEditingController: cubit.phoneController,
                           ),
@@ -110,7 +112,7 @@ class SignUpStudentPage extends StatelessWidget {
                           CustomTextFormFieldLogin(
                             width: size.width * .8,
                             textInputType: TextInputType.text,
-                            hintText: 'University Name',
+                            hintText: LocaleKeys.university_name,
                             validator: generalValidator,
                             textEditingController:
                                 cubit.universityNameController,
@@ -122,7 +124,7 @@ class SignUpStudentPage extends StatelessWidget {
                             readOnly: true,
                             textEditingController: cubit.dateOfBirthController,
                             onTap: () => cubit.onTapBirthDate(context),
-                            hintText: 'Date Of Birth',
+                            hintText: LocaleKeys.date_of_birth,
                             validator: generalValidator,
                           ),
                           SizeHelper.defSizedBoxField,
@@ -132,7 +134,7 @@ class SignUpStudentPage extends StatelessWidget {
                             readOnly: true,
                             textEditingController: cubit.gradDateController,
                             onTap: () => cubit.onTapGradDate(context),
-                            hintText: 'Graduation Date',
+                            hintText: LocaleKeys.graduation_date,
                             validator: generalValidator,
                           ),
                           SizeHelper.defSizedBoxField,
@@ -142,9 +144,9 @@ class SignUpStudentPage extends StatelessWidget {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text('Gender',
+                                Text(LocaleKeys.gender,
                                     style: AppStyles.styleSize14
-                                        .copyWith(fontWeight: FontWeight.w500)),
+                                        .copyWith(fontWeight: FontWeight.w500)).tr(),
                                 Row(
                                   children: [
                                     SizedBox(
@@ -158,7 +160,7 @@ class SignUpStudentPage extends StatelessWidget {
                                         title: Text(
                                           type[0],
                                           style: const TextStyle(fontSize: 14),
-                                        ),
+                                        ).tr(),
                                         onChanged: (value) =>
                                             cubit.onChangedGender(value),
                                       ),
@@ -174,7 +176,7 @@ class SignUpStudentPage extends StatelessWidget {
                                         title: Text(
                                           type[1],
                                           style: const TextStyle(fontSize: 14),
-                                        ),
+                                        ).tr(),
                                         onChanged: (value) =>
                                             cubit.onChangedGender(value),
                                       ),
@@ -186,8 +188,8 @@ class SignUpStudentPage extends StatelessWidget {
                           ),
                           SizeHelper.defSizedBoxField,
                           CustomTwoFormFieldWidget(
-                            fTitle: 'Academic Year',
-                            sTitle: 'GPA',
+                            fTitle:LocaleKeys.academic_year,
+                            sTitle: LocaleKeys.gpa,
                             textEditingController1:
                                 cubit.academicYearController,
                             textEditingController2: cubit.GPAController,
@@ -203,15 +205,15 @@ class SignUpStudentPage extends StatelessWidget {
                             child: Align(
                               alignment: Alignment.centerLeft,
                               child: Text(
-                                'University Address',
+                                LocaleKeys.university_address,
                                 style: AppStyles.styleSize14
                                     .copyWith(fontWeight: FontWeight.w500),
                               ),
                             ),
                           ),
                           CustomTwoFormFieldWidget(
-                            fTitle: 'governorate',
-                            sTitle: 'City',
+                            fTitle: LocaleKeys.governorate,
+                            sTitle: LocaleKeys.city,
                             validator1: generalValidator,
                             validator2: generalValidator,
                             textEditingController2: cubit.cityController,
@@ -219,7 +221,7 @@ class SignUpStudentPage extends StatelessWidget {
                           ),
                           SizeHelper.defSizedBoxField,
                           CustomTwoFormFieldWidget(
-                            fTitle: 'Street',
+                            fTitle: LocaleKeys.street,
                             sTitle: 'other',
                             validator1: generalValidator,
                             validator2: generalValidator,
@@ -238,13 +240,13 @@ class SignUpStudentPage extends StatelessWidget {
                               onPressed: () => cubit.toggleVisibilityPassword(),
                             ),
                             textInputType: TextInputType.text,
-                            hintText: 'Password',
+                            hintText: LocaleKeys.password,
                             textEditingController: cubit.passwordController,
                           ),
                           SizeHelper.defSizedBoxField,
                           Expanded(
                             child: CustomLoginButtonWidget(
-                              title: 'Create Account',
+                              title: LocaleKeys.create_account,
                               minWidth: size.width * .8,
                               onPressed: () {
                                 if (cubit.isMale != null) {
@@ -253,7 +255,7 @@ class SignUpStudentPage extends StatelessWidget {
                                   }
                                 } else {
                                   showCustomSnackBar(context,
-                                      msg: 'Please Select your Gender');
+                                      msg: LocaleKeys.please_select_your_gender.tr());
                                 }
                               },
                             ),

@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:oralsync/core/utils/colors_palette.dart';
 import 'package:oralsync/core/utils/styles.dart';
@@ -42,7 +43,7 @@ class CustomTextFormFieldLogin extends StatelessWidget {
         obscureText: obscureText ?? false,
         decoration: InputDecoration(
             errorMaxLines: 3,
-            hintText: hintText,
+            hintText: hintText.tr(),
             hintStyle: AppStyles.styleSize14,
             fillColor: ColorsPalette.textFormFieldFillColor,
             prefixIcon: prefixIcon,

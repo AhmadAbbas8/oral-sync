@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -16,6 +17,7 @@ import 'package:oralsync/features/home_fearure/presentation/pages/home_page.dart
 import 'package:oralsync/features/Auth/presentation/widgets/custom_login_button_widget.dart';
 import 'package:oralsync/features/Auth/presentation/widgets/custom_text_form_field_login.dart';
 import 'package:oralsync/features/Auth/presentation/widgets/custom_tow_form_field_widget.dart';
+import 'package:oralsync/translations/locale_keys.g.dart';
 
 class SignUpPatientPage extends StatelessWidget {
   const SignUpPatientPage({super.key});
@@ -25,7 +27,7 @@ class SignUpPatientPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.sizeOf(context);
-    const List type = ['Male', 'Female'];
+    const List type = ['male', 'female'];
     return BlocProvider(
       create: (context) => PatientSignUpCubit(
           loginUseCase: ServiceLocator.instance<LoginUseCase>(),
@@ -76,13 +78,13 @@ class SignUpPatientPage extends StatelessWidget {
                             ],
                           ),
                           const Text(
-                            'Sign Up Patient',
+                            LocaleKeys.sign_up_patient,
                             style: AppStyles.styleSize28,
-                          ),
+                          ).tr(),
                           const SizedBox(height: 20),
                           CustomTwoFormFieldWidget(
-                            fTitle: 'First Name',
-                            sTitle: 'Last Name',
+                            fTitle: LocaleKeys.first_name,
+                            sTitle: LocaleKeys.last_name,
                             validator1: generalValidator,
                             validator2: generalValidator,
                             textEditingController1: cubit.fNameController,
@@ -92,7 +94,7 @@ class SignUpPatientPage extends StatelessWidget {
                           CustomTextFormFieldLogin(
                             width: size.width * .8,
                             textInputType: TextInputType.emailAddress,
-                            hintText: 'Email',
+                            hintText: LocaleKeys.email,
                             validator: validateEmail,
                             textEditingController: cubit.emailController,
                           ),
@@ -100,7 +102,7 @@ class SignUpPatientPage extends StatelessWidget {
                           CustomTextFormFieldLogin(
                             width: size.width * .8,
                             textInputType: TextInputType.phone,
-                            hintText: 'Phone Number',
+                            hintText:LocaleKeys.phone_number,
                             validator: generalValidator,
                             textEditingController: cubit.phoneController,
                           ),
@@ -111,7 +113,7 @@ class SignUpPatientPage extends StatelessWidget {
                             readOnly: true,
                             textEditingController: cubit.dateOfBirthController,
                             onTap: () => cubit.onTapBirthDate(context),
-                            hintText: 'Date Of Birth',
+                            hintText: LocaleKeys.date_of_birth,
                           ),
                           SizeHelper.defSizedBoxField,
                           Padding(
@@ -121,11 +123,11 @@ class SignUpPatientPage extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  'Gender',
+                                  LocaleKeys.gender,
                                   style: AppStyles.styleSize14.copyWith(
                                     fontWeight: FontWeight.w500,
                                   ),
-                                ),
+                                ).tr(),
                                 Row(
                                   children: [
                                     SizedBox(
@@ -139,7 +141,7 @@ class SignUpPatientPage extends StatelessWidget {
                                         title: Text(
                                           type[0],
                                           style: const TextStyle(fontSize: 14),
-                                        ),
+                                        ).tr(),
                                         onChanged: (value) =>
                                             cubit.onChangedGender(value),
                                       ),
@@ -155,7 +157,7 @@ class SignUpPatientPage extends StatelessWidget {
                                         title: Text(
                                           type[1],
                                           style: const TextStyle(fontSize: 14),
-                                        ),
+                                        ).tr(),
                                         onChanged: (value) =>
                                             cubit.onChangedGender(value),
                                       ),
@@ -167,8 +169,8 @@ class SignUpPatientPage extends StatelessWidget {
                           ),
                           SizeHelper.defSizedBoxField,
                           CustomTwoFormFieldWidget(
-                            fTitle: 'Governorate',
-                            sTitle: 'City',
+                            fTitle: LocaleKeys.governorate,
+                            sTitle: LocaleKeys.city,
                             textEditingController2: cubit.cityController,
                             textEditingController1: cubit.governorateController,
                           ),
@@ -184,13 +186,13 @@ class SignUpPatientPage extends StatelessWidget {
                               onPressed: () => cubit.toggleVisibilityPassword(),
                             ),
                             textInputType: TextInputType.text,
-                            hintText: 'Password',
+                            hintText:LocaleKeys.password,
                             textEditingController: cubit.passwordController,
                           ),
                           SizeHelper.defSizedBoxField,
                           Expanded(
                             child: CustomLoginButtonWidget(
-                              title: 'Create Account',
+                              title: LocaleKeys.create_account,
                               minWidth: size.width * .8,
                               onPressed: () {
                                 if (cubit.isMale != null) {
@@ -199,7 +201,7 @@ class SignUpPatientPage extends StatelessWidget {
                                   }
                                 } else {
                                   showCustomSnackBar(context,
-                                      msg: 'Please Select your Gender');
+                                      msg: LocaleKeys.please_select_your_gender.tr());
                                 }
                               },
                             ),

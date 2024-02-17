@@ -18,6 +18,7 @@ void main() async {
     path: 'assets/translations',
     saveLocale: true,
     fallbackLocale: const Locale('en'),
+    // startLocale: const Locale('ar'),
     assetLoader: const CodegenLoader(),
     ///Error Widget if any error occur in package
     errorWidget: (message) => Center(

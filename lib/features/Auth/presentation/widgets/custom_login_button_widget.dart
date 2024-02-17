@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:oralsync/core/utils/colors_palette.dart';
 
@@ -23,7 +24,7 @@ class CustomLoginButtonWidget extends StatelessWidget {
       height: 50,
       textColor: Colors.white,
       onPressed: onPressed,
-      child:  Text(title),
+      child:  Text(title).tr(),
     );
   }
 }
