@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:oralsync/core/utils/styles.dart';
 
@@ -21,14 +22,14 @@ class CustomHintButtonWidget extends StatelessWidget {
         Text(
           title,
           style: AppStyles.styleSize14.copyWith(fontWeight: FontWeight.w500),
-        ),
+        ).tr(),
         TextButton(
             onPressed: onPressed,
             child: Text(
               buttonTitle,
               style: AppStyles.styleSize14.copyWith(
                   fontWeight: FontWeight.w500, color: const Color(0xFFAA2F2F)),
-            ))
+            ).tr())
       ],
     );
   }

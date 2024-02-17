@@ -41,3 +41,12 @@ class LoginSuccess extends LoginState {
   @override
   List<Object?> get props => super.props..add(user);
 }
+
+class ChangeKeepMeLoggedInState extends LoginState {
+  final bool state;
+
+  const ChangeKeepMeLoggedInState({required this.state});
+  @override
+  // TODO: implement props
+  List<Object?> get props => [state];
+}

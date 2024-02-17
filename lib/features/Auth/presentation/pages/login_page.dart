@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -17,6 +19,7 @@ import 'package:oralsync/features/Auth/presentation/widgets/custom_hint_button_w
 import 'package:oralsync/features/Auth/presentation/widgets/custom_login_button_widget.dart';
 import 'package:oralsync/features/Auth/presentation/widgets/custom_text_form_field_login.dart';
 import 'package:oralsync/features/Auth/presentation/widgets/forget_password_button_widget.dart';
+import 'package:oralsync/features/Auth/presentation/widgets/keep_me_logged_in_widget.dart';
 import 'package:oralsync/features/student/presentation/pages/student_layout_screen.dart';
 import 'package:oralsync/translations/locale_keys.g.dart';
 
@@ -69,13 +72,13 @@ class LoginPage extends StatelessWidget {
                             width: size.width,
                           ),
                           const Text(
-                            LocaleKeys.hello,
+                            LocaleKeys.sign_in,
                             style: AppStyles.styleSize28,
                           ).tr(),
                           const SizedBox(height: 20),
                           CustomTextFormFieldLogin(
                             width: size.width * .8,
-                            hintText: 'Email or Phone number',
+                            hintText: LocaleKeys.email,
                             textEditingController:
                                 cubit.emailTextEditingController,
                             prefixIcon: const Icon(Icons.person),
@@ -84,7 +87,7 @@ class LoginPage extends StatelessWidget {
                           SizeHelper.defSizedBoxField,
                           CustomTextFormFieldLogin(
                             width: size.width * .8,
-                            hintText: 'Password',
+                            hintText: LocaleKeys.password,
                             obscureText: cubit.obscurePassword,
                             prefixIcon: const Icon(Icons.lock),
                             suffixIcon: IconButton(
@@ -97,10 +100,18 @@ class LoginPage extends StatelessWidget {
                                 cubit.passwordTextEditingController,
                             validator: validatePassword,
                           ),
+                          SizedBox(
+                            width: size.width * 0.8,
+                            child:  KeepMeLoggedInWidget(
+                              value: cubit.keepMeLoggedIn,
+                              title: LocaleKeys.keep_me_logged_in,
+                              onChanged: (value) => cubit.onTapKeepMeLoggedIn(),
+                            ),
+                          ),
                           const ForgetPasswordButtonWidget(),
                           SizeHelper.defSizedBoxField,
                           CustomLoginButtonWidget(
-                            title: 'Sign in',
+                            title: LocaleKeys.sign_in,
                             minWidth: size.width * .8,
                             onPressed: () {
                               if (cubit.formKey.currentState!.validate()) {
@@ -114,8 +125,8 @@ class LoginPage extends StatelessWidget {
                           ),
                           const Spacer(),
                           CustomHintButtonWidget(
-                            title: 'Don’t Have Any Account,',
-                            buttonTitle: 'Sign Up',
+                            title:LocaleKeys.do_not_have_any_account,
+                            buttonTitle: LocaleKeys.sign_up,
                             onPressed: () => Navigator.pushNamed(
                                 context, SignUpOptionsPage.routeName),
                           ),
