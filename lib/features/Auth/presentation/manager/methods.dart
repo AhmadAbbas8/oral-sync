@@ -1,7 +1,9 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:oralsync/core/utils/size_helper.dart';
 import 'package:oralsync/core/utils/styles.dart';
 import 'package:oralsync/features/Auth/presentation/widgets/custom_tow_form_field_widget.dart';
+import 'package:oralsync/translations/locale_keys.g.dart';
 
 List<Widget> getFormFieldDoctorStudent(
     {required BuildContext context, bool? isDoc}) {
@@ -92,27 +94,25 @@ bool isEmail(String email) {
 
 String? validateEmail(value) {
   if (value == null || value.isEmpty) {
-    return 'Email is required';
+    return LocaleKeys.email_is_required.tr();
   } else if (!isEmail(value)) {
-    return 'Please enter a valid email address';
+    return LocaleKeys.please_enter_a_valid_email_address.tr();
   }
   return null;
 }
 
 String? validatePassword(value) {
   if (value == null || value.isEmpty) {
-    return 'Password is required';
+    return LocaleKeys.password_is_required.tr();
   } else if (!isStrongPassword(value)) {
-    return 'Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, one digit, and one special character';
+    return LocaleKeys.strength_password_message.tr();
   }
   return null;
 }
 
-
-
 String? generalValidator(value) {
   if (value!.isEmpty) {
-    return 'required';
+    return LocaleKeys.required.tr();
   }
   return null;
 }

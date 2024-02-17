@@ -1,5 +1,7 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:oralsync/core/utils/styles.dart';
+import 'package:oralsync/translations/locale_keys.g.dart';
 
 class ForgetPasswordButtonWidget extends StatelessWidget {
   const ForgetPasswordButtonWidget({super.key});
@@ -13,9 +15,9 @@ class ForgetPasswordButtonWidget extends StatelessWidget {
         child: TextButton(
           onPressed: () {},
           child: const Text(
-            'Forget Your Password ?',
+            LocaleKeys.forget_your_password,
             style: AppStyles.styleSize14,
-          ),
+          ).tr(),
         ),
       ),
     );

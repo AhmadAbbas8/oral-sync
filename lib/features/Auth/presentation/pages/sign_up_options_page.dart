@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:oralsync/core/utils/assets_manager.dart';
 import 'package:oralsync/core/utils/size_helper.dart';
@@ -7,6 +8,8 @@ import 'package:oralsync/features/Auth/presentation/pages/sign_up_patient_page.d
 import 'package:oralsync/features/Auth/presentation/pages/sign_up_student_page.dart';
 import 'package:oralsync/features/Auth/presentation/widgets/custom_hint_button_widget.dart';
 import 'package:oralsync/features/Auth/presentation/widgets/custom_login_button_widget.dart';
+
+import '../../../../translations/locale_keys.g.dart';
 
 class SignUpOptionsPage extends StatelessWidget {
   const SignUpOptionsPage({super.key});
@@ -39,31 +42,31 @@ class SignUpOptionsPage extends StatelessWidget {
                     ],
                   ),
                   const Text(
-                    'Sign Up as a',
+                    LocaleKeys.sign_up_as,
                     style: AppStyles.styleSize28,
-                  ),
+                  ).tr(),
                   const SizedBox(height: 20),
                   CustomLoginButtonWidget(
-                    title: 'Patient',
+                    title: LocaleKeys.patient,
                     minWidth: size.width * .8,
                     onPressed: () =>Navigator.pushNamed(context, SignUpPatientPage.routeName),
                   ),
                   SizeHelper.defSizedBoxField,
                   CustomLoginButtonWidget(
-                    title: 'Doctor',
+                    title:  LocaleKeys.doctor,
                     minWidth: size.width * .8,
                     onPressed: () =>Navigator.pushNamed(context, SignUpDoctorPage.routeName),
                   ),
                   SizeHelper.defSizedBoxField,
                   CustomLoginButtonWidget(
-                    title: 'Medical Student',
+                    title:  LocaleKeys.medical_student,
                     minWidth: size.width * .8,
                     onPressed: () =>Navigator.pushNamed(context, SignUpStudentPage.routeName),
                   ),
                   const Spacer(),
                   CustomHintButtonWidget(
-                    title: 'If You Have Account,',
-                    buttonTitle: 'Sign in',
+                    title:  LocaleKeys.if_you_have_account,
+                    buttonTitle:  LocaleKeys.sign_in,
                     onPressed: () => Navigator.pop(context),
                   ),
                   const SizedBox(height: 10),
