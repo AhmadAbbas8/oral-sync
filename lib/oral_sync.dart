@@ -8,7 +8,6 @@ import 'package:oralsync/core/service_locator/service_locator.dart';
 import 'package:oralsync/core/utils/colors_palette.dart';
 import 'package:oralsync/core/utils/styles.dart';
 import 'package:oralsync/features/Auth/presentation/pages/login_page.dart';
-import 'package:oralsync/features/home_student_feature/presentation/pages/student_home_screen.dart';
 
 import 'features/home_student_feature/presentation/pages/student_home_layout_page.dart';
 
@@ -50,13 +49,12 @@ class _OralSyncAppState extends State<OralSyncApp> {
               color: Colors.black,
             ),
           ),
-
           floatingActionButtonTheme: FloatingActionButtonThemeData(
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(50),
             ),
           ),
-          bottomNavigationBarTheme:  BottomNavigationBarThemeData(
+          bottomNavigationBarTheme: const BottomNavigationBarThemeData(
             elevation: 20,
             selectedItemColor: ColorsPalette.buttonLoginColor,
             unselectedItemColor: Colors.black,
@@ -75,6 +73,16 @@ class _OralSyncAppState extends State<OralSyncApp> {
             ),
             showSelectedLabels: true,
             showUnselectedLabels: true,
+          ),
+
+          drawerTheme: DrawerThemeData(
+            elevation: 0,
+            shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.only(
+                topRight: Radius.circular(50),
+              ),
+            ),
+            width: MediaQuery.sizeOf(context).width * .6,
           ),
         ),
         initialRoute: initialRoute,

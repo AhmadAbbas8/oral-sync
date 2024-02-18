@@ -64,7 +64,11 @@ class CodegenLoader extends AssetLoader{
   "user_created_successfully": "تم انشاء مستخدم بنجاح",
   "messages": "الرسائل",
   "archived": "الأرشيف",
-  "profile": "الشخصية"
+  "profile": "الشخصية",
+  "settings": "الاعدادت",
+  "privacy_policy": "سياسة الخصوصية",
+  "contact_us": "تواصل معنا",
+  "log_out": "تسجيل خروج"
 };
 static const Map<String,dynamic> en = {
   "hello": "Hello",
@@ -116,7 +120,11 @@ static const Map<String,dynamic> en = {
   "user_created_successfully": "User created Successfully",
   "messages": "Messages",
   "archived": "Archived",
-  "profile": "Profile"
+  "profile": "Profile",
+  "settings": "Settings",
+  "privacy_policy": "Privacy policy",
+  "contact_us": "Contact us",
+  "log_out": "Log out"
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"ar": ar, "en": en};
 }

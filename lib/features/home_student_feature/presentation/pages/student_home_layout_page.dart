@@ -1,7 +1,12 @@
+import 'dart:developer';
+import 'package:flutter_lazy_indexed_stack/flutter_lazy_indexed_stack.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:oralsync/core/utils/icon_broken.dart';
-import 'package:oralsync/core/utils/styles.dart';
+import 'package:oralsync/features/home_student_feature/presentation/manager/student_home_cubit/student_home_cubit.dart';
+import 'package:oralsync/features/home_student_feature/presentation/widgets/custom_drawer_student.dart';
+import 'package:oralsync/features/home_student_feature/presentation/widgets/notch_bottm_nav_bar.dart';
 import 'package:oralsync/translations/locale_keys.g.dart';
 
 class StudentHomeLayoutPage extends StatelessWidget {
@@ -11,57 +16,45 @@ class StudentHomeLayoutPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      extendBody: true,
-      appBar: AppBar(
-        title: Text(
-          LocaleKeys.home.tr(),
-        ),
-        actions: [
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(
-              IconBroken.Notification,
+    return BlocProvider(
+      create: (context) => StudentHomeCubit(),
+      child: BlocBuilder<StudentHomeCubit, StudentHomeState>(
+        builder: (context, state) {
+          var cubit = context.read<StudentHomeCubit>();
+          return Scaffold(
+            extendBody: true,
+            appBar: AppBar(
+              title: Text(
+                LocaleKeys.home.tr(),
+              ),
+              actions: [
+                IconButton(
+                  onPressed: () {},
+                  icon: const Icon(
+                    IconBroken.Notification,
+                  ),
+                ),
+              ],
             ),
-          ),
-        ],
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        child: const Icon(Icons.add),
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      bottomNavigationBar: BottomAppBar(
-        clipBehavior: Clip.antiAlias,
-        padding: EdgeInsets.zero,
-        notchMargin: 8,
-        shape: const CircularNotchedRectangle(),
-        child: BottomNavigationBar(
-          currentIndex: 1,
-          type: BottomNavigationBarType.fixed,
-          items: [
-            BottomNavigationBarItem(
-              icon: const Icon(IconBroken.Home),
-              label: LocaleKeys.home.tr(),
-              tooltip: LocaleKeys.home.tr(),
+            drawer: const CustomDrawerStudent(),
+            body: LazyIndexedStack(
+              index: cubit.currentNavIndex,
+              children: cubit.homePages,
             ),
-            BottomNavigationBarItem(
-              icon: const Icon(IconBroken.Message),
-              label: LocaleKeys.messages.tr(),
-              tooltip: LocaleKeys.messages.tr(),
+            floatingActionButton: FloatingActionButton(
+              onPressed: () {},
+              child: const Icon(Icons.add),
             ),
-            BottomNavigationBarItem(
-              icon: const Icon(Icons.archive_outlined),
-              label: LocaleKeys.archived.tr(),
-              tooltip: LocaleKeys.archived.tr(),
+            floatingActionButtonLocation:
+                FloatingActionButtonLocation.centerDocked,
+            bottomNavigationBar: NotchBottomNavBar(
+              icons: cubit.bottomNavIcons,
+              titles: cubit.bottomNavTitle,
+              currentIndex: cubit.currentNavIndex,
+              onTap: (index) => cubit.navBarOnTap(index, context),
             ),
-            BottomNavigationBarItem(
-              icon: const Icon(IconBroken.Profile),
-              label: LocaleKeys.profile.tr(),
-              tooltip: LocaleKeys.profile.tr(),
-            ),
-          ],
-        ),
+          );
+        },
       ),
     );
   }

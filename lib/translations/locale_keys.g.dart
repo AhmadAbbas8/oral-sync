@@ -48,5 +48,9 @@ abstract class  LocaleKeys {
   static const messages = 'messages';
   static const archived = 'archived';
   static const profile = 'profile';
+  static const settings = 'settings';
+  static const privacy_policy = 'privacy_policy';
+  static const contact_us = 'contact_us';
+  static const log_out = 'log_out';
 
 }

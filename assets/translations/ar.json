@@ -48,5 +48,9 @@
   "user_created_successfully": "تم انشاء مستخدم بنجاح",
   "messages": "الرسائل",
   "archived": "الأرشيف",
-  "profile": "الشخصية"
+  "profile": "الشخصية",
+  "settings": "الاعدادت",
+  "privacy_policy": "سياسة الخصوصية",
+  "contact_us": "تواصل معنا",
+  "log_out": "تسجيل خروج"
 }

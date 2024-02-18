@@ -13,11 +13,9 @@ import 'package:oralsync/features/Auth/domain/use_cases/new_register_use_case.da
 
 import 'package:oralsync/features/Auth/presentation/manager/methods.dart';
 import 'package:oralsync/features/Auth/presentation/manager/student_sign_up_cubit/student_sign_up_cubit.dart';
-import 'package:oralsync/features/home_fearure/presentation/pages/home_page.dart';
 import 'package:oralsync/features/Auth/presentation/widgets/custom_login_button_widget.dart';
 import 'package:oralsync/features/Auth/presentation/widgets/custom_text_form_field_login.dart';
 import 'package:oralsync/features/Auth/presentation/widgets/custom_tow_form_field_widget.dart';
-import 'package:oralsync/features/home_student_feature/presentation/pages/student_home_screen.dart';
 import 'package:oralsync/features/home_student_feature/presentation/pages/student_home_layout_page.dart';
 
 import '../../../../core/utils/assets_manager.dart';

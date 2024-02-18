@@ -48,5 +48,9 @@
   "user_created_successfully": "User created Successfully",
   "messages": "Messages",
   "archived": "Archived",
-  "profile": "Profile"
+  "profile": "Profile",
+  "settings": "Settings",
+  "privacy_policy": "Privacy policy",
+  "contact_us": "Contact us",
+  "log_out": "Log out"
 }
