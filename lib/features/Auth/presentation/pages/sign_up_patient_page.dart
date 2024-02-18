@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:oralsync/core/helpers/check_language.dart';
 import 'package:oralsync/core/helpers/custom_progress_indicator.dart';
 import 'package:oralsync/core/helpers/extensions/navigation_extensions.dart';
 import 'package:oralsync/core/helpers/snackbars.dart';
@@ -45,11 +46,13 @@ class SignUpPatientPage extends StatelessWidget {
                     } else if (state is RegisterPatientError) {
                       context.pop();
                       showCustomSnackBar(context,
-                          msg: state.errorModel?.messageEn ?? '',
+                          msg: isArabic(context)
+                              ? state.errorModel?.messageAr ?? ''
+                              : state.errorModel?.messageEn ?? '',
                           backgroundColor: Colors.red);
                     } else if (state is RegisterPatientSuccess) {
                       showCustomSnackBar(context,
-                          msg: 'User Created Successfully',
+                          msg: LocaleKeys.user_created_successfully.tr(),
                           backgroundColor: Colors.green);
                       context.pop();
                       context.pushNamed(HomePage.routeName);
@@ -102,7 +105,7 @@ class SignUpPatientPage extends StatelessWidget {
                           CustomTextFormFieldLogin(
                             width: size.width * .8,
                             textInputType: TextInputType.phone,
-                            hintText:LocaleKeys.phone_number,
+                            hintText: LocaleKeys.phone_number,
                             validator: generalValidator,
                             textEditingController: cubit.phoneController,
                           ),
@@ -186,7 +189,7 @@ class SignUpPatientPage extends StatelessWidget {
                               onPressed: () => cubit.toggleVisibilityPassword(),
                             ),
                             textInputType: TextInputType.text,
-                            hintText:LocaleKeys.password,
+                            hintText: LocaleKeys.password,
                             textEditingController: cubit.passwordController,
                           ),
                           SizeHelper.defSizedBoxField,
@@ -201,7 +204,8 @@ class SignUpPatientPage extends StatelessWidget {
                                   }
                                 } else {
                                   showCustomSnackBar(context,
-                                      msg: LocaleKeys.please_select_your_gender.tr());
+                                      msg: LocaleKeys.please_select_your_gender
+                                          .tr());
                                 }
                               },
                             ),
