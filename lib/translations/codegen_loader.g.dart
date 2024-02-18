@@ -58,7 +58,13 @@ class CodegenLoader extends AssetLoader{
   "street": "شارع",
   "other": "اخري",
   "clinic_phone": "تليفون العيادة",
-  "university_name": "اسم الجامعة"
+  "university_name": "اسم الجامعة",
+  "sign_up_student": "تسجيل كطالب",
+  "university_address": "غنوان الجامعة",
+  "user_created_successfully": "تم انشاء مستخدم بنجاح",
+  "messages": "الرسائل",
+  "archived": "الأرشيف",
+  "profile": "الشخصية"
 };
 static const Map<String,dynamic> en = {
   "hello": "Hello",
@@ -104,7 +110,13 @@ static const Map<String,dynamic> en = {
   "street": "Street ",
   "other": "Other",
   "clinic_phone": "Clinic Phone",
-  "university_name": "University name"
+  "university_name": "University name",
+  "sign_up_student": "Sign up student",
+  "university_address": "University address ",
+  "user_created_successfully": "User created Successfully",
+  "messages": "Messages",
+  "archived": "Archived",
+  "profile": "Profile"
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"ar": ar, "en": en};
 }

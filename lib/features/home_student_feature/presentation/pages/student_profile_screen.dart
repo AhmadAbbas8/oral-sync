@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:oralsync/core/widgets/circle_avatar.dart';
-import 'package:oralsync/features/student/presentation/bloc/student_bloc.dart';
+import 'package:oralsync/features/home_student_feature/presentation/manager/student_bloc.dart';
+
 
 class StudentProfileScreen extends StatelessWidget {
   static const String routeName = '/StudentProfileScreen';
