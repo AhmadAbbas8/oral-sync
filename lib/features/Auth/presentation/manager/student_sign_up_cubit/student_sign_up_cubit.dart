@@ -3,7 +3,7 @@ import 'dart:developer';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
-import 'package:oralsync/core/error/Error_model.dart';
+import 'package:oralsync/core/error/error_model.dart';
 import 'package:oralsync/core/helpers/custom_date_pickers.dart';
 import 'package:oralsync/features/Auth/data/models/user_model.dart';
 import 'package:oralsync/features/Auth/domain/use_cases/login_use_case.dart';
@@ -104,6 +104,7 @@ universityName: universityNameController.text,
   final TextEditingController dateOfBirthController = TextEditingController();
   final TextEditingController gradDateController = TextEditingController();
   final TextEditingController academicYearController = TextEditingController();
+  // ignore: non_constant_identifier_names
   final TextEditingController GPAController = TextEditingController();
   final TextEditingController governorateController = TextEditingController();
   final TextEditingController cityController = TextEditingController();

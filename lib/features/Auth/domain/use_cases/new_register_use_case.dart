@@ -32,7 +32,6 @@ class NewRegisterUseCase {
     List<String>? universitAddress,
     int? academicYear,
   }) async {
-    print('-------------------------------- $clinicAddress');
     return await authRepository.newRegister(
       email: email,
       password: password,

@@ -4,7 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:intl/intl.dart';
-import 'package:oralsync/core/error/Error_model.dart';
+import 'package:oralsync/core/error/error_model.dart';
 import 'package:oralsync/core/error/failure.dart';
 import 'package:oralsync/core/helpers/custom_date_pickers.dart';
 import 'package:oralsync/features/Auth/data/models/user_model.dart';
@@ -62,7 +62,6 @@ class DoctorSignUpCubit extends Cubit<DoctorSignUpState> {
       birthDate: dateOfBirthController.text,
       academicYear: int.tryParse(academicYearController.text),
     );
-    print(academicYearController.text);
     res.fold((failure) {
       if (failure is OfflineFailure) {
         emit(RegisterDoctorError(
@@ -115,6 +114,7 @@ class DoctorSignUpCubit extends Cubit<DoctorSignUpState> {
   final TextEditingController dateOfBirthController = TextEditingController();
   final TextEditingController gradDateController = TextEditingController();
   final TextEditingController academicYearController = TextEditingController();
+  // ignore: non_constant_identifier_names
   final TextEditingController GPAController = TextEditingController();
   final TextEditingController governorateClinicController =
       TextEditingController();

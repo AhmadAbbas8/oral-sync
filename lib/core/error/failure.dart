@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:oralsync/core/error/Error_model.dart';
+import 'package:oralsync/core/error/error_model.dart';
 
 abstract class Failure extends Equatable {}
 

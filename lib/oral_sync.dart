@@ -1,7 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:oralsync/core/cache_helper/SharedPrefsKeys.dart';
+import 'package:oralsync/core/cache_helper/shared_prefs_keys.dart';
 import 'package:oralsync/core/cache_helper/cache_storage.dart';
 import 'package:oralsync/core/routing/app_router.dart';
 import 'package:oralsync/core/service_locator/service_locator.dart';

@@ -1,4 +1,4 @@
-import 'package:oralsync/core/error/Error_model.dart';
+import 'package:oralsync/core/error/error_model.dart';
 
 class ServerException implements Exception {
   final ErrorModel? errorModel;

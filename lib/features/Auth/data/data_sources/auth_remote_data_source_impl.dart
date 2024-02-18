@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:oralsync/core/error/Error_model.dart';
+import 'package:oralsync/core/error/error_model.dart';
 import 'package:oralsync/core/error/exception.dart';
 import 'package:oralsync/core/network/api/api_consumer.dart';
 import 'package:oralsync/core/utils/end_points.dart';
@@ -63,8 +63,6 @@ class AuthRemoteDataSourceImp implements AuthRemoteDataSource {
     List<String?>? universitAddress,
     int? academicYear,
   }) async {
-    print('------------------');
-    print(clinicAddress);
     try {
       Response response = await apiConsumer.post(
         EndPoints.newRegisterEndPoint,
