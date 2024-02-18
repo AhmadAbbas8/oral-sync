@@ -31,6 +31,7 @@ dependencies:
   http: ^1.2.0
   flutter_holo_date_picker: ^1.1.3
   intl: ^0.18.1
+  flutter_lazy_indexed_stack: ^0.0.6
 
 dev_dependencies:
   flutter_test:
@@ -63,7 +64,11 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-  # fonts:
+  fonts:
+    - family: IconBroken
+      fonts:
+        - asset: assets/fonts/icons.ttf
+
   #   - family: Schyler
   #     fonts:
   #       - asset: fonts/Schyler-Regular.ttf

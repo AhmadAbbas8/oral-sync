@@ -45,5 +45,12 @@
   "university_name": "اسم الجامعة",
   "sign_up_student": "تسجيل كطالب",
   "university_address": "غنوان الجامعة",
-  "user_created_successfully": "تم انشاء مستخدم بنجاح"
+  "user_created_successfully": "تم انشاء مستخدم بنجاح",
+  "messages": "الرسائل",
+  "archived": "الأرشيف",
+  "profile": "الشخصية",
+  "settings": "الاعدادت",
+  "privacy_policy": "سياسة الخصوصية",
+  "contact_us": "تواصل معنا",
+  "log_out": "تسجيل خروج"
 }
