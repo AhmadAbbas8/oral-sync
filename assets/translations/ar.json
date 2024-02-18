@@ -44,5 +44,6 @@
   "clinic_phone": "تليفون العيادة",
   "university_name": "اسم الجامعة",
   "sign_up_student": "تسجيل كطالب",
-  "university_address": "غنوان الجامعة"
+  "university_address": "غنوان الجامعة",
+  "user_created_successfully": "تم انشاء مستخدم بنجاح"
 }

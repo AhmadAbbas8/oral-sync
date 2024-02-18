@@ -44,5 +44,6 @@
   "clinic_phone": "Clinic Phone",
   "university_name": "University name",
   "sign_up_student": "Sign up student",
-  "university_address": "University address "
+  "university_address": "University address ",
+  "user_created_successfully": "User created Successfully"
 }

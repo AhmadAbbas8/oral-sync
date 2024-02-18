@@ -173,7 +173,7 @@ class StudentDetails extends UserDetails {
   final String? universityName;
   final List<String?>? universitAddress;
   final num? gpa;
-  final int? academicYear;
+  final num? academicYear;
 
   StudentDetails({
     required String firstName,

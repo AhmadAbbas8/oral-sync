@@ -1,9 +1,8 @@
-import 'dart:developer';
-
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:oralsync/core/helpers/check_language.dart';
 import 'package:oralsync/core/helpers/custom_progress_indicator.dart';
 import 'package:oralsync/core/helpers/extensions/navigation_extensions.dart';
 import 'package:oralsync/core/helpers/snackbars.dart';
@@ -51,12 +50,14 @@ class LoginPage extends StatelessWidget {
                         predicate: (route) => false,
                       );
                       showCustomSnackBar(context,
-                          msg: 'Logging Successfully',
+                          msg: LocaleKeys.user_created_successfully.tr(),
                           backgroundColor: Colors.green);
                     } else if (state is LoginError) {
                       context.pop();
                       showCustomSnackBar(context,
-                          msg: state.errorModel?.messageEn ?? '',
+                          msg: isArabic(context)
+                              ? state.errorModel?.messageAr ?? ''
+                              : state.errorModel?.messageEn ?? '',
                           backgroundColor: Colors.red);
                     }
                   },
@@ -102,7 +103,7 @@ class LoginPage extends StatelessWidget {
                           ),
                           SizedBox(
                             width: size.width * 0.8,
-                            child:  KeepMeLoggedInWidget(
+                            child: KeepMeLoggedInWidget(
                               value: cubit.keepMeLoggedIn,
                               title: LocaleKeys.keep_me_logged_in,
                               onChanged: (value) => cubit.onTapKeepMeLoggedIn(),
@@ -125,7 +126,7 @@ class LoginPage extends StatelessWidget {
                           ),
                           const Spacer(),
                           CustomHintButtonWidget(
-                            title:LocaleKeys.do_not_have_any_account,
+                            title: LocaleKeys.do_not_have_any_account,
                             buttonTitle: LocaleKeys.sign_up,
                             onPressed: () => Navigator.pushNamed(
                                 context, SignUpOptionsPage.routeName),

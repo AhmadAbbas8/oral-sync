@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:oralsync/core/helpers/check_language.dart';
 import 'package:oralsync/core/helpers/custom_progress_indicator.dart';
 import 'package:oralsync/core/helpers/extensions/navigation_extensions.dart';
 import 'package:oralsync/core/helpers/snackbars.dart';
@@ -52,11 +53,13 @@ class _SignUpDoctorStudentPageState extends State<SignUpDoctorPage> {
                     } else if (state is RegisterDoctorError) {
                       context.pop();
                       showCustomSnackBar(context,
-                          msg: state.errorModel?.messageEn ?? '',
+                          msg: isArabic(context)
+                              ? state.errorModel?.messageAr ?? ''
+                              : state.errorModel?.messageEn ?? '',
                           backgroundColor: Colors.red);
                     } else if (state is RegisterDoctorSuccess) {
                       showCustomSnackBar(context,
-                          msg: 'User Created Successfully',
+                          msg: LocaleKeys.user_created_successfully.tr(),
                           backgroundColor: Colors.green);
                       context.pop();
                       context.pushNamed(HomePage.routeName);

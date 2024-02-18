@@ -1,9 +1,9 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:oralsync/core/cache_helper/SharedPrefsKeys.dart';
+import 'package:oralsync/core/cache_helper/shared_prefs_keys.dart';
 import 'package:oralsync/core/cache_helper/cache_storage.dart';
-import 'package:oralsync/core/error/Error_model.dart';
+import 'package:oralsync/core/error/error_model.dart';
 import 'package:oralsync/core/error/failure.dart';
 import 'package:oralsync/core/service_locator/service_locator.dart';
 import 'package:oralsync/features/Auth/data/models/user_model.dart';
@@ -40,7 +40,6 @@ class LoginCubit extends Cubit<LoginState> {
     final user = await loginUseCase.call(email: email, password: password);
     user.fold((failure) {
       if (failure is ServerFailure) {
-        print(failure.errorModel?.messageEn ?? '');
         emit(LoginError(errorModel: failure.errorModel));
       } else {
         emit(LoginError(
