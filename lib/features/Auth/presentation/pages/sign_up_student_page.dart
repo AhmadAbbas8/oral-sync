@@ -13,10 +13,10 @@ import 'package:oralsync/features/Auth/domain/use_cases/new_register_use_case.da
 
 import 'package:oralsync/features/Auth/presentation/manager/methods.dart';
 import 'package:oralsync/features/Auth/presentation/manager/student_sign_up_cubit/student_sign_up_cubit.dart';
-import 'package:oralsync/features/home_fearure/presentation/pages/home_page.dart';
 import 'package:oralsync/features/Auth/presentation/widgets/custom_login_button_widget.dart';
 import 'package:oralsync/features/Auth/presentation/widgets/custom_text_form_field_login.dart';
 import 'package:oralsync/features/Auth/presentation/widgets/custom_tow_form_field_widget.dart';
+import 'package:oralsync/features/home_student_feature/presentation/pages/student_home_layout_page.dart';
 
 import '../../../../core/utils/assets_manager.dart';
 import '../../../../translations/locale_keys.g.dart';
@@ -48,7 +48,7 @@ class SignUpStudentPage extends StatelessWidget {
                     } else if (state is RegisterStudentError) {
                       context.pop();
                       showCustomSnackBar(context,
-                          msg:  isArabic(context)
+                          msg: isArabic(context)
                               ? state.errorModel?.messageAr ?? ''
                               : state.errorModel?.messageEn ?? '',
                           backgroundColor: Colors.red);
@@ -57,7 +57,9 @@ class SignUpStudentPage extends StatelessWidget {
                           msg: LocaleKeys.user_created_successfully.tr(),
                           backgroundColor: Colors.green);
                       context.pop();
-                      context.pushNamed(HomePage.routeName);
+                      context.pushNamedAndRemoveUntil(
+                          StudentHomeLayoutPage.routeName,
+                          predicate: (route) => false);
                     }
                   },
                   builder: (context, state) {
@@ -148,8 +150,9 @@ class SignUpStudentPage extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(LocaleKeys.gender,
-                                    style: AppStyles.styleSize14
-                                        .copyWith(fontWeight: FontWeight.w500)).tr(),
+                                        style: AppStyles.styleSize14.copyWith(
+                                            fontWeight: FontWeight.w500))
+                                    .tr(),
                                 Row(
                                   children: [
                                     SizedBox(
@@ -191,7 +194,7 @@ class SignUpStudentPage extends StatelessWidget {
                           ),
                           SizeHelper.defSizedBoxField,
                           CustomTwoFormFieldWidget(
-                            fTitle:LocaleKeys.academic_year,
+                            fTitle: LocaleKeys.academic_year,
                             sTitle: LocaleKeys.gpa,
                             textEditingController1:
                                 cubit.academicYearController,
@@ -258,7 +261,8 @@ class SignUpStudentPage extends StatelessWidget {
                                   }
                                 } else {
                                   showCustomSnackBar(context,
-                                      msg: LocaleKeys.please_select_your_gender.tr());
+                                      msg: LocaleKeys.please_select_your_gender
+                                          .tr());
                                 }
                               },
                             ),

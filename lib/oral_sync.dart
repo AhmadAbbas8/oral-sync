@@ -6,8 +6,10 @@ import 'package:oralsync/core/cache_helper/cache_storage.dart';
 import 'package:oralsync/core/routing/app_router.dart';
 import 'package:oralsync/core/service_locator/service_locator.dart';
 import 'package:oralsync/core/utils/colors_palette.dart';
+import 'package:oralsync/core/utils/styles.dart';
 import 'package:oralsync/features/Auth/presentation/pages/login_page.dart';
-import 'package:oralsync/features/student/presentation/pages/student_home_screen.dart';
+
+import 'features/home_student_feature/presentation/pages/student_home_layout_page.dart';
 
 class OralSyncApp extends StatefulWidget {
   const OralSyncApp({super.key});
@@ -39,6 +41,49 @@ class _OralSyncAppState extends State<OralSyncApp> {
         theme: ThemeData(
           useMaterial3: true,
           scaffoldBackgroundColor: ColorsPalette.scaffoldColor,
+          appBarTheme: AppBarTheme(
+            centerTitle: true,
+            elevation: 0,
+            titleTextStyle: AppStyles.styleSize28.copyWith(
+              fontSize: 25,
+              color: Colors.black,
+            ),
+          ),
+          floatingActionButtonTheme: FloatingActionButtonThemeData(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(50),
+            ),
+          ),
+          bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+            elevation: 20,
+            selectedItemColor: ColorsPalette.buttonLoginColor,
+            unselectedItemColor: Colors.black,
+            backgroundColor: Colors.grey,
+            selectedIconTheme: IconThemeData(
+              size: 30,
+            ),
+            unselectedIconTheme: IconThemeData(
+              color: Colors.black,
+            ),
+            selectedLabelStyle: TextStyle(
+              fontWeight: FontWeight.w500,
+            ),
+            unselectedLabelStyle: TextStyle(
+              color: Colors.black,
+            ),
+            showSelectedLabels: true,
+            showUnselectedLabels: true,
+          ),
+
+          drawerTheme: DrawerThemeData(
+            elevation: 0,
+            shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.only(
+                topRight: Radius.circular(50),
+              ),
+            ),
+            width: MediaQuery.sizeOf(context).width * .6,
+          ),
         ),
         initialRoute: initialRoute,
         navigatorKey: AppRouter.navigatorKey,
@@ -51,7 +96,7 @@ class _OralSyncAppState extends State<OralSyncApp> {
     var cached = ServiceLocator.instance<CacheStorage>();
     bool? keepMeLoggedIn = cached.getData(key: SharedPrefsKeys.keepMeLoggedIn);
     if (keepMeLoggedIn ?? false) {
-      initialRoute = StudentHomeScreen.routeName;
+      initialRoute = StudentHomeLayoutPage.routeName;
     }
   }
 }
