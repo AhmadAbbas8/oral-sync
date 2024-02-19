@@ -34,10 +34,11 @@ class StudentHomeCubit extends Cubit<StudentHomeState> {
   ];
 
   navBarOnTap(int index,BuildContext context) {
-    currentNavIndex = index;
     if(index == 3) {
       context.pushNamed(ProfileStudentPage.routeName);
+      return ;
     }
+    currentNavIndex = index;
     emit(ChangeNavBarIndex(index: index));
   }
 }

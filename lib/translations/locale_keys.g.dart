@@ -3,7 +3,6 @@
 abstract class  LocaleKeys {
   static const hello = 'hello';
   static const home = 'home';
-  static const createPost = 'createPost';
   static const post = 'post';
   static const keep_me_logged_in = 'keep_me_logged_in';
   static const email = 'email';
@@ -53,5 +52,9 @@ abstract class  LocaleKeys {
   static const contact_us = 'contact_us';
   static const log_out = 'log_out';
   static const no_tasks = 'no_tasks';
+  static const create_post = 'create_post';
+  static const patient_request = 'patient_request';
+  static const describe_your_request_in_details = 'describe_your_request_in_details';
+  static const photos = 'photos';
 
 }

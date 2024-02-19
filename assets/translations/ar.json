@@ -1,7 +1,6 @@
 {
   "hello": "مرحبا",
   "home": "الرئيسية",
-  "createPost": "إنشاء منشور",
   "post": "نشر",
   "keep_me_logged_in": "تذكرني",
   "email": "البريد الالكتروني",
@@ -53,5 +52,9 @@
   "privacy_policy": "سياسة الخصوصية",
   "contact_us": "تواصل معنا",
   "log_out": "تسجيل خروج",
-  "no_tasks": "لا توجد مهام"
+  "no_tasks": "لا توجد مهام",
+  "create_post": "طلب حالة",
+  "patient_request": "طلب مريض",
+  "describe_your_request_in_details": "قدم وصفا دقيقا لطلبك",
+  "photos": "الصور"
 }
