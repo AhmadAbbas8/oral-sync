@@ -68,7 +68,8 @@ class CodegenLoader extends AssetLoader{
   "settings": "الاعدادت",
   "privacy_policy": "سياسة الخصوصية",
   "contact_us": "تواصل معنا",
-  "log_out": "تسجيل خروج"
+  "log_out": "تسجيل خروج",
+  "no_tasks": "لا توجد مهام"
 };
 static const Map<String,dynamic> en = {
   "hello": "Hello",
@@ -124,7 +125,8 @@ static const Map<String,dynamic> en = {
   "settings": "Settings",
   "privacy_policy": "Privacy policy",
   "contact_us": "Contact us",
-  "log_out": "Log out"
+  "log_out": "Log out",
+  "no_tasks": "No Tasks"
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"ar": ar, "en": en};
 }
