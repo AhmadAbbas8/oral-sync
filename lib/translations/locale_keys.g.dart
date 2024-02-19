@@ -52,5 +52,6 @@ abstract class  LocaleKeys {
   static const privacy_policy = 'privacy_policy';
   static const contact_us = 'contact_us';
   static const log_out = 'log_out';
+  static const no_tasks = 'no_tasks';
 
 }
