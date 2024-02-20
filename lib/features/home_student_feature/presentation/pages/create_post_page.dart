@@ -4,13 +4,9 @@ import 'dart:io';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:oralsync/core/service_locator/service_locator.dart';
-import 'package:oralsync/core/utils/colors_palette.dart';
-import 'package:oralsync/core/utils/icon_broken.dart';
-import 'package:oralsync/core/utils/styles.dart';
+import 'package:oralsync/features/home_student_feature/presentation/widgets/custom_app_bar_action_button.dart';
 import 'package:oralsync/features/home_student_feature/presentation/widgets/custom_button_photo.dart';
 import 'package:oralsync/features/home_student_feature/presentation/widgets/custom_text_form_field_create_post.dart';
 import 'package:oralsync/translations/locale_keys.g.dart';
@@ -35,28 +31,20 @@ class _CreatePostPageState extends State<CreatePostPage> {
           LocaleKeys.patient_request,
         ).tr(),
         actions: [
-          MaterialButton(
-            color: ColorsPalette.buttonLoginColor,
-            height: 45,
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-            onPressed: () => log('message'),
-            child: Text(
-              LocaleKeys.post,
-              style: AppStyles.styleSize28
-                  .copyWith(fontSize: 20, color: Colors.white),
-            ).tr(),
+          CustomAppBarActionButton(
+            title: LocaleKeys.post,
+            onTap: () => log('lol'),
           ),
           SizedBox(width: 5.w),
         ],
       ),
       body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 20.0),
+        padding: const EdgeInsets.symmetric(horizontal: 20.0),
         child: Column(
           children: [
-            CustomTextFormFieldCreatePost(),
+            const CustomTextFormFieldCreatePost(),
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 4, vertical: 5),
+              padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 5),
               child: CustomButtonPhoto(
                 onTap: () async {
                   final ImagePicker picker =
@@ -73,7 +61,7 @@ class _CreatePostPageState extends State<CreatePostPage> {
               Expanded(
                 child: GridView.builder(
                   itemCount: images!.length,
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2),
                   itemBuilder: (context, index) => Image.file(
                     File(

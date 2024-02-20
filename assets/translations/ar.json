@@ -56,5 +56,7 @@
   "create_post": "طلب حالة",
   "patient_request": "طلب مريض",
   "describe_your_request_in_details": "قدم وصفا دقيقا لطلبك",
-  "photos": "الصور"
+  "photos": "الصور",
+  "edit": "تعديل",
+  "save": "حفظ"
 }

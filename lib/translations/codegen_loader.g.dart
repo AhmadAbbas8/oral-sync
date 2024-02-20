@@ -72,7 +72,9 @@ class CodegenLoader extends AssetLoader{
   "create_post": "طلب حالة",
   "patient_request": "طلب مريض",
   "describe_your_request_in_details": "قدم وصفا دقيقا لطلبك",
-  "photos": "الصور"
+  "photos": "الصور",
+  "edit": "تعديل",
+  "save": "حفظ"
 };
 static const Map<String,dynamic> en = {
   "hello": "Hello",
@@ -132,7 +134,9 @@ static const Map<String,dynamic> en = {
   "create_post": "Create post",
   "patient_request": "Patient request",
   "describe_your_request_in_details": "Describe your request in details",
-  "photos": "Photos"
+  "photos": "Photos",
+  "edit": "Edit",
+  "save": "Save"
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"ar": ar, "en": en};
 }
