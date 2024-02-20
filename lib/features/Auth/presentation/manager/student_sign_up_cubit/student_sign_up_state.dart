@@ -40,7 +40,7 @@ class RegisterStudentSuccess extends StudentSignUpState {
   List<Object> get props => [model];
 }
 class RegisterStudentError extends StudentSignUpState {
-  final ErrorModel? errorModel;
+  final ResponseModel? errorModel;
 
   const RegisterStudentError({ this.errorModel});
 

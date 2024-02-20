@@ -43,7 +43,7 @@ class LoginCubit extends Cubit<LoginState> {
         emit(LoginError(errorModel: failure.errorModel));
       } else {
         emit(LoginError(
-            errorModel: ErrorModel(
+            errorModel: ResponseModel(
                 messageEn: 'Please Check your internet Connection',
                 messageAr: 'من فضلك افحص اتصال الانترنت لديك')));
       }

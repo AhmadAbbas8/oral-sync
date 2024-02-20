@@ -36,6 +36,7 @@ dependencies:
   google_fonts: ^6.1.0
   easy_image_viewer: ^1.4.1
   image_picker: ^1.0.7
+  http_parser: ^4.0.2
 
 dev_dependencies:
   flutter_test:

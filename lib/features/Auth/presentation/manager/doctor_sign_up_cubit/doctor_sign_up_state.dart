@@ -20,7 +20,7 @@ class RegisterDoctorSuccess extends DoctorSignUpState {
   List<Object> get props => [user];
 }
 class RegisterDoctorError extends DoctorSignUpState {
-  final ErrorModel? errorModel;
+  final ResponseModel? errorModel;
 
   const RegisterDoctorError({ this.errorModel});
 

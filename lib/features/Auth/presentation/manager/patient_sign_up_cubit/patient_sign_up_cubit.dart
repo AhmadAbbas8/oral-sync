@@ -78,12 +78,12 @@ class PatientSignUpCubit extends Cubit<PatientSignUpState> {
     res.fold((failure) {
       if (failure is OfflineFailure) {
         emit(RegisterPatientError(
-            errorModel: ErrorModel(
+            errorModel: ResponseModel(
                 messageEn: 'Please Check your internet Connection',
                 messageAr: 'من فضلك افحص اتصال الانترنت لديك')));
       }
       emit(RegisterPatientError(
-          errorModel: ErrorModel(
+          errorModel: ResponseModel(
               messageEn: 'User registered already',
               messageAr: 'هذا المستخدم مسجل بالفعل')));
     }, (model) async {
@@ -91,7 +91,7 @@ class PatientSignUpCubit extends Cubit<PatientSignUpState> {
         await loginDoc();
       } else {
         emit(RegisterPatientError(
-            errorModel: ErrorModel(
+            errorModel: ResponseModel(
                 messageEn: 'User registered already',
                 messageAr: 'هذا المستخدم مسجل بالفعل')));
       }
@@ -106,7 +106,7 @@ class PatientSignUpCubit extends Cubit<PatientSignUpState> {
         emit(RegisterPatientError(errorModel: failure.errorModel));
       } else {
         emit(RegisterPatientError(
-            errorModel: ErrorModel(
+            errorModel: ResponseModel(
                 messageEn: 'Please Check your internet Connection',
                 messageAr: 'من فضلك افحص اتصال الانترنت لديك')));
       }

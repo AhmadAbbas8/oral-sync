@@ -60,12 +60,12 @@ universityName: universityNameController.text,
     res.fold((failure) {
       if (failure is OfflineFailure) {
         emit(RegisterStudentError(
-            errorModel: ErrorModel(
+            errorModel: ResponseModel(
                 messageEn: 'Please Check your internet Connection',
                 messageAr: 'من فضلك افحص اتصال الانترنت لديك')));
       }
       emit(RegisterStudentError(
-          errorModel: ErrorModel(
+          errorModel: ResponseModel(
               messageEn: 'User registered already',
               messageAr: 'هذا المستخدم مسجل بالفعل')));
     }, (model) async {
@@ -73,7 +73,7 @@ universityName: universityNameController.text,
         await loginDoc();
       } else {
         emit(RegisterStudentError(
-            errorModel: ErrorModel(
+            errorModel: ResponseModel(
                 messageEn: 'User registered already',
                 messageAr: 'هذا المستخدم مسجل بالفعل')));
       }
@@ -88,7 +88,7 @@ universityName: universityNameController.text,
         emit(RegisterStudentError(errorModel: failure.errorModel));
       } else {
         emit(RegisterStudentError(
-            errorModel: ErrorModel(
+            errorModel: ResponseModel(
                 messageEn: 'Please Check your internet Connection',
                 messageAr: 'من فضلك افحص اتصال الانترنت لديك')));
       }

@@ -1,11 +1,11 @@
-class ErrorModel {
-  ErrorModel({
+class ResponseModel {
+  ResponseModel({
     this.statusCode,
     this.messageEn,
     this.messageAr,
   });
 
-  ErrorModel.fromJson(dynamic json) {
+  ResponseModel.fromJson(dynamic json) {
     statusCode = json['statusCode'];
     messageEn = json['messageEn'];
     messageAr = json['messageAr'];
