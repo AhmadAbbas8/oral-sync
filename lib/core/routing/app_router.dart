@@ -6,6 +6,7 @@ import 'package:oralsync/features/Auth/presentation/pages/sign_up_options_page.d
 import 'package:oralsync/features/Auth/presentation/pages/sign_up_patient_page.dart';
 import 'package:oralsync/features/Auth/presentation/pages/sign_up_student_page.dart';
 import 'package:oralsync/features/home_student_feature/presentation/pages/create_post_page.dart';
+import 'package:oralsync/features/home_student_feature/presentation/pages/edit_profile_page.dart';
 import 'package:oralsync/features/home_student_feature/presentation/pages/home_student_page.dart';
 import 'package:oralsync/features/home_student_feature/presentation/pages/profile_student_page.dart';
 
@@ -31,6 +32,7 @@ class AppRouter {
     HomeStudentPage.routeName: (context) => const HomeStudentPage(),
     ProfileStudentPage.routeName: (context) => const ProfileStudentPage(),
     CreatePostPage.routeName: (context) => const CreatePostPage(),
+    EditProfilePage.routeName: (context) => const EditProfilePage(),
 
   };
 }

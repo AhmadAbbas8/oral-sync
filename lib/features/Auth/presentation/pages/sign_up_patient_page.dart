@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:oralsync/core/helpers/check_language.dart';
 import 'package:oralsync/core/helpers/custom_progress_indicator.dart';
 import 'package:oralsync/core/helpers/extensions/navigation_extensions.dart';
+import 'package:oralsync/core/helpers/general_validators.dart';
 import 'package:oralsync/core/helpers/snackbars.dart';
 import 'package:oralsync/core/service_locator/service_locator.dart';
 import 'package:oralsync/core/utils/assets_manager.dart';
@@ -12,7 +13,7 @@ import 'package:oralsync/core/utils/size_helper.dart';
 import 'package:oralsync/core/utils/styles.dart';
 import 'package:oralsync/features/Auth/domain/use_cases/login_use_case.dart';
 import 'package:oralsync/features/Auth/domain/use_cases/new_register_use_case.dart';
-import 'package:oralsync/features/Auth/presentation/manager/methods.dart';
+
 import 'package:oralsync/features/Auth/presentation/manager/patient_sign_up_cubit/patient_sign_up_cubit.dart';
 import 'package:oralsync/features/home_fearure/presentation/pages/home_page.dart';
 import 'package:oralsync/features/Auth/presentation/widgets/custom_login_button_widget.dart';

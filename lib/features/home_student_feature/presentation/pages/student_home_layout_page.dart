@@ -4,6 +4,8 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:oralsync/core/helpers/extensions/navigation_extensions.dart';
+import 'package:oralsync/core/network/api/api_consumer.dart';
+import 'package:oralsync/core/service_locator/service_locator.dart';
 import 'package:oralsync/core/utils/icon_broken.dart';
 import 'package:oralsync/features/home_student_feature/presentation/manager/student_home_cubit/student_home_cubit.dart';
 import 'package:oralsync/features/home_student_feature/presentation/pages/create_post_page.dart';
@@ -31,7 +33,13 @@ class StudentHomeLayoutPage extends StatelessWidget {
               ),
               actions: [
                 IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    //just test something
+                    ServiceLocator.instance<ApiConsumer>().post('CreatePost',data: {
+                      "title": "Test title",
+                      "content": "First context"
+                    });
+                  },
                   icon: const Icon(
                     IconBroken.Notification,
                   ),

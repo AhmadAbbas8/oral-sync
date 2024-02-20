@@ -56,5 +56,7 @@ abstract class  LocaleKeys {
   static const patient_request = 'patient_request';
   static const describe_your_request_in_details = 'describe_your_request_in_details';
   static const photos = 'photos';
+  static const edit = 'edit';
+  static const save = 'save';
 
 }
