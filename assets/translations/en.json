@@ -1,7 +1,6 @@
 {
   "hello": "Hello",
   "home": "Home",
-  "createPost": "Create Post",
   "post": "Post",
   "keep_me_logged_in": "Keep me logged in",
   "email": "Email",
@@ -52,5 +51,12 @@
   "settings": "Settings",
   "privacy_policy": "Privacy policy",
   "contact_us": "Contact us",
-  "log_out": "Log out"
+  "log_out": "Log out",
+  "no_tasks": "No Tasks",
+  "create_post": "Create post",
+  "patient_request": "Patient request",
+  "describe_your_request_in_details": "Describe your request in details",
+  "photos": "Photos",
+  "edit": "Edit",
+  "save": "Save"
 }

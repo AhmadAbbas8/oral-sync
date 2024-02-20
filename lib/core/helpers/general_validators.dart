@@ -33,7 +33,7 @@ bool isStrongPassword(String password) {
 bool isEmail(String email) {
   // Regular expression for validating email addresses
   final RegExp emailRegex =
-      RegExp(r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$');
+  RegExp(r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$');
   return emailRegex.hasMatch(email);
 }
 

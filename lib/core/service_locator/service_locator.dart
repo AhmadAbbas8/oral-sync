@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:oralsync/core/cache_helper/cache_storage.dart';
 import 'package:oralsync/core/cache_helper/shared_prefs_cache.dart';
@@ -27,6 +28,7 @@ class ServiceLocator {
     // * Core
     final prefs = await SharedPreferences.getInstance();
     instance.registerLazySingleton<CacheStorage>(() => SharedPrefsCache(prefs));
+    instance.registerLazySingleton<ImagePicker>(() => ImagePicker());
 
     instance.registerLazySingleton<NetworkInfo>(
         () => NetWorkInfoImpl(InternetConnectionChecker.createInstance()));

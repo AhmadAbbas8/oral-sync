@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:oralsync/core/helpers/check_language.dart';
 import 'package:oralsync/core/helpers/custom_progress_indicator.dart';
 import 'package:oralsync/core/helpers/extensions/navigation_extensions.dart';
@@ -11,13 +12,13 @@ import 'package:oralsync/core/utils/styles.dart';
 import 'package:oralsync/features/Auth/domain/use_cases/login_use_case.dart';
 import 'package:oralsync/features/Auth/domain/use_cases/new_register_use_case.dart';
 
-import 'package:oralsync/features/Auth/presentation/manager/methods.dart';
 import 'package:oralsync/features/Auth/presentation/manager/student_sign_up_cubit/student_sign_up_cubit.dart';
 import 'package:oralsync/features/Auth/presentation/widgets/custom_login_button_widget.dart';
 import 'package:oralsync/features/Auth/presentation/widgets/custom_text_form_field_login.dart';
 import 'package:oralsync/features/Auth/presentation/widgets/custom_tow_form_field_widget.dart';
 import 'package:oralsync/features/home_student_feature/presentation/pages/student_home_layout_page.dart';
 
+import '../../../../core/helpers/general_validators.dart';
 import '../../../../core/utils/assets_manager.dart';
 import '../../../../translations/locale_keys.g.dart';
 
@@ -214,7 +215,7 @@ class SignUpStudentPage extends StatelessWidget {
                                 LocaleKeys.university_address,
                                 style: AppStyles.styleSize14
                                     .copyWith(fontWeight: FontWeight.w500),
-                              ),
+                              ).tr(),
                             ),
                           ),
                           CustomTwoFormFieldWidget(
@@ -267,7 +268,7 @@ class SignUpStudentPage extends StatelessWidget {
                               },
                             ),
                           ),
-                          const SizedBox(height: 10),
+                           SizedBox(height: 10.h),
                         ],
                       ),
                     );

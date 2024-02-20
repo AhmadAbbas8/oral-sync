@@ -17,7 +17,6 @@ class CodegenLoader extends AssetLoader{
   static const Map<String,dynamic> ar = {
   "hello": "مرحبا",
   "home": "الرئيسية",
-  "createPost": "إنشاء منشور",
   "post": "نشر",
   "keep_me_logged_in": "تذكرني",
   "email": "البريد الالكتروني",
@@ -68,12 +67,18 @@ class CodegenLoader extends AssetLoader{
   "settings": "الاعدادت",
   "privacy_policy": "سياسة الخصوصية",
   "contact_us": "تواصل معنا",
-  "log_out": "تسجيل خروج"
+  "log_out": "تسجيل خروج",
+  "no_tasks": "لا توجد مهام",
+  "create_post": "طلب حالة",
+  "patient_request": "طلب مريض",
+  "describe_your_request_in_details": "قدم وصفا دقيقا لطلبك",
+  "photos": "الصور",
+  "edit": "تعديل",
+  "save": "حفظ"
 };
 static const Map<String,dynamic> en = {
   "hello": "Hello",
   "home": "Home",
-  "createPost": "Create Post",
   "post": "Post",
   "keep_me_logged_in": "Keep me logged in",
   "email": "Email",
@@ -124,7 +129,14 @@ static const Map<String,dynamic> en = {
   "settings": "Settings",
   "privacy_policy": "Privacy policy",
   "contact_us": "Contact us",
-  "log_out": "Log out"
+  "log_out": "Log out",
+  "no_tasks": "No Tasks",
+  "create_post": "Create post",
+  "patient_request": "Patient request",
+  "describe_your_request_in_details": "Describe your request in details",
+  "photos": "Photos",
+  "edit": "Edit",
+  "save": "Save"
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"ar": ar, "en": en};
 }

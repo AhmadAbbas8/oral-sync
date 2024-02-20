@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 abstract class SizeHelper {
-  static const defSizedBoxField =  SizedBox(height: 30);
-  static const defPadding = EdgeInsets.all(200);
+  static Widget defSizedBoxField =  SizedBox(height: 30.h);
 }
