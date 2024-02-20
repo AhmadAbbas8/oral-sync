@@ -24,7 +24,7 @@ class ChangePasswordVisibility extends LoginState {
 class LoginLoading extends LoginState {}
 
 class LoginError extends LoginState {
-final ErrorModel? errorModel ;
+final ResponseModel? errorModel ;
 
   const LoginError({ this.errorModel});
 

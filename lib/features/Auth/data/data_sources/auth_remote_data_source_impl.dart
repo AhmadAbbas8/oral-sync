@@ -31,10 +31,10 @@ class AuthRemoteDataSourceImp implements AuthRemoteDataSource {
         UserModel user = UserModel.fromJson(response.data);
         return user;
       } else {
-        throw ServerException(errorModel: ErrorModel.fromJson(response.data));
+        throw ServerException(errorModel: ResponseModel.fromJson(response.data));
       }
     } on DioException catch (e) {
-      throw ServerException(errorModel: ErrorModel.fromJson(e.response?.data));
+      throw ServerException(errorModel: ResponseModel.fromJson(e.response?.data));
     }
   }
 

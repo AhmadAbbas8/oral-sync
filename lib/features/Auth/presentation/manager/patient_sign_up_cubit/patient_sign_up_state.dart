@@ -14,7 +14,7 @@ class RegisterPatientLoading extends PatientSignUpState {}
 class DateChangedState extends PatientSignUpState {}
 
 class RegisterPatientError extends PatientSignUpState {
-  final ErrorModel? errorModel;
+  final ResponseModel? errorModel;
 
   const RegisterPatientError({this.errorModel});
 
