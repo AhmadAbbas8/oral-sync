@@ -1,35 +1,5 @@
 class StudentPostModel {
   StudentPostModel({
-    this.result,
-    this.postImage,
-  });
-
-  StudentPostModel.fromJson(dynamic json) {
-    if (json['result'] != null) {
-      result = [];
-      json['result'].forEach((v) {
-        result?.add(Result.fromJson(v));
-      });
-    }
-    postImage =
-        json['postImage'] != null ? json['postImage'].cast<String>() : [];
-  }
-
-  List<Result>? result;
-  List<String>? postImage;
-
-  Map<String, dynamic> toJson() {
-    final map = <String, dynamic>{};
-    if (result != null) {
-      map['result'] = result?.map((v) => v.toJson()).toList();
-    }
-    map['postImage'] = postImage;
-    return map;
-  }
-}
-
-class Result {
-  Result({
     this.postId,
     this.title,
     this.content,
@@ -40,9 +10,9 @@ class Result {
     this.userId,
     this.comments,
     this.likes,
-  });
+    this.image,});
 
-  Result.fromJson(dynamic json) {
+  StudentPostModel.fromJson(dynamic json) {
     postId = json['postId'];
     title = json['title'];
     content = json['content'];
@@ -53,8 +23,13 @@ class Result {
     userId = json['userId'];
     comments = json['comments'];
     likes = json['likes'];
+    if (json['image'] != null) {
+      image = [];
+      json['image'].forEach((v) {
+        image?.add(v);
+      });
+    }
   }
-
   num? postId;
   String? title;
   String? content;
@@ -65,6 +40,7 @@ class Result {
   String? userId;
   dynamic comments;
   dynamic likes;
+  List<String>? image;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
@@ -78,6 +54,10 @@ class Result {
     map['userId'] = userId;
     map['comments'] = comments;
     map['likes'] = likes;
+    if (image != null) {
+      map['image'] = image;
+    }
     return map;
   }
+
 }

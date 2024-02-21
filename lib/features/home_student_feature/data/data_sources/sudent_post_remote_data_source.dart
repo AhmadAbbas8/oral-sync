@@ -1,7 +1,5 @@
 import 'dart:developer';
 import 'dart:io';
-
-import 'package:http_parser/http_parser.dart';
 import 'package:dio/dio.dart';
 import 'package:oralsync/core/error/error_model.dart';
 import 'package:oralsync/core/error/exception.dart';
@@ -15,9 +13,7 @@ abstract class StudentPostRemoteDataSource {
     required List<File> images,
   });
 
-  Future<List<StudentPostModel>> getAllPosts({
-    required String content,
-  });
+  Future<List<StudentPostModel>> getAllPosts();
 
   Future<StudentPostModel> getPostByID({
     required int id,
@@ -61,9 +57,25 @@ class StudentPostRemoteDataSourceImpl implements StudentPostRemoteDataSource {
   }
 
   @override
-  Future<List<StudentPostModel>> getAllPosts({required String content}) {
-    // TODO: implement getAllPosts
-    throw UnimplementedError();
+  Future<List<StudentPostModel>> getAllPosts() async {
+    try {
+      Response response =
+          await apiConsumer.get(EndPoints.getAllPostsByUserEndPoint);
+      if (response.statusCode == 200) {
+        List<StudentPostModel> postsList = [];
+        for (var val in response.data) {
+          postsList.add(StudentPostModel.fromJson(val));
+        }
+        return postsList;
+      } else {
+        throw ServerException(
+            errorModel: ResponseModel(
+                messageEn: 'Server Error', messageAr: 'خطأ فى السيرفر'));
+      }
+    } on DioException catch (e) {
+      throw ServerException(
+          errorModel: ResponseModel.fromJson(e.response?.data));
+    }
   }
 
   @override

@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:oralsync/core/cache_helper/cache_storage.dart';
 import 'package:oralsync/core/helpers/extensions/navigation_extensions.dart';
@@ -13,8 +14,11 @@ import 'custom_drawer_list_tile.dart';
 
 class CustomDrawerStudent extends StatelessWidget {
   const CustomDrawerStudent({
-    super.key,
+    super.key, required this.name, required this.email, required this.profileImage,
   });
+  final String name;
+  final String email;
+  final String profileImage;
 
   @override
   Widget build(BuildContext context) {
@@ -23,19 +27,20 @@ class CustomDrawerStudent extends StatelessWidget {
         children: [
           UserAccountsDrawerHeader(
             accountEmail: Text(
-              'Ahmad@oralsync.com',
+             email,
               style: AppStyles.styleSize14.copyWith(
                 fontWeight: FontWeight.bold,
               ),
             ),
             accountName: Text(
-              'Ahmad Abbas',
+              name,
               style: AppStyles.styleSize14.copyWith(
                 fontWeight: FontWeight.bold,
               ),
             ),
-            currentAccountPicture: const CircleAvatar(
+            currentAccountPicture:  CircleAvatar(
               backgroundColor: Colors.black,
+              backgroundImage: CachedNetworkImageProvider(profileImage),
             ),
             decoration: const BoxDecoration(
               color: ColorsPalette.userDrawerHeaderBackground,
