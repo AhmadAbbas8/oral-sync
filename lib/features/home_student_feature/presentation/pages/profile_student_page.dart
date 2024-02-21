@@ -16,7 +16,7 @@ class ProfileStudentPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(LocaleKeys.profile).tr(),
+        title: const Text(LocaleKeys.profile).tr(),
         actions: [
           CustomAppBarActionButton(
             title: LocaleKeys.edit,
@@ -27,7 +27,7 @@ class ProfileStudentPage extends StatelessWidget {
           SizedBox(width: 5.w)
         ],
       ),
-      body: Center(
+      body: const Center(
         child: Text(
           'Profile',
         ),

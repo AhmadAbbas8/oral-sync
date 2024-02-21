@@ -38,6 +38,8 @@ dependencies:
   image_picker: ^1.0.7
   http_parser: ^4.0.2
   cached_network_image: ^3.3.1
+  shimmer: ^3.0.0
+  fancy_shimmer_image: ^2.0.3
 
 dev_dependencies:
   flutter_test:

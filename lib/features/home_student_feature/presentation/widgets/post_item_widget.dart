@@ -1,10 +1,9 @@
-import 'dart:developer';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:easy_image_viewer/easy_image_viewer.dart';
+import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:oralsync/core/utils/assets_manager.dart';
 import 'package:oralsync/core/utils/icon_broken.dart';
 import 'package:oralsync/core/utils/size_helper.dart';
 import 'package:oralsync/features/home_student_feature/presentation/widgets/like_comment_widget.dart';
@@ -45,11 +44,11 @@ class PostItemWidget extends StatelessWidget {
         children: [
           ListTile(
             contentPadding: EdgeInsets.zero,
-            leading:  CircleAvatar(
+            leading: CircleAvatar(
               backgroundImage: CachedNetworkImageProvider(
-                  profileURL,
+                profileURL,
               ),
-              ),
+            ),
             title: Text(
               userName,
               style: const TextStyle(fontWeight: FontWeight.w500),
@@ -77,16 +76,27 @@ class PostItemWidget extends StatelessWidget {
                 itemBuilder: (context, index) => InkWell(
                   onTap: () async {
                     await showImageViewer(
-                        context, Image.network(images[index]).image,
-                        swipeDismissible: true, doubleTapZoomable: true);
+                      context,
+                      CachedNetworkImageProvider(images[index]),
+                      swipeDismissible: true,
+                      doubleTapZoomable: true,
+                      useSafeArea: true,
+                    );
                   },
-                  child: CachedNetworkImage(
+                  // child: CachedNetworkImage(
+                  //   imageUrl: images[index],
+                  //   fit: BoxFit.contain,
+                  //   placeholder: (context, url) =>
+                  //       const Center(child: CircularProgressIndicator()),
+                  //   errorWidget: (context, url, error) =>
+                  //       const Icon(Icons.error),
+                  // ),
+                  child: FancyShimmerImage(
                     imageUrl: images[index],
-                    fit: BoxFit.contain,
-                    placeholder: (context, url) =>
-                        const Center(child: CircularProgressIndicator()),
-                    errorWidget: (context, url, error) =>
-                        const Icon(Icons.error),
+                    boxFit: BoxFit.cover,
+                    shimmerBaseColor: Colors.grey,
+                    shimmerHighlightColor: Colors.greenAccent,
+                    shimmerBackColor: Colors.lightGreen,
                   ),
                 ),
               ),

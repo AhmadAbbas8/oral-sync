@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:oralsync/core/helpers/check_language.dart';
@@ -19,6 +20,7 @@ import 'package:oralsync/features/Auth/presentation/widgets/custom_tow_form_fiel
 import 'package:oralsync/features/home_student_feature/presentation/pages/student_home_layout_page.dart';
 
 import '../../../../core/helpers/general_validators.dart';
+import '../../../../core/helpers/reg_ex.dart';
 import '../../../../core/utils/assets_manager.dart';
 import '../../../../translations/locale_keys.g.dart';
 
@@ -110,8 +112,9 @@ class SignUpStudentPage extends StatelessWidget {
                           CustomTextFormFieldLogin(
                             width: size.width * .8,
                             textInputType: TextInputType.phone,
+                            inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                             hintText: LocaleKeys.phone_number,
-                            validator: generalValidator,
+                            validator: validatePhoneNumber,
                             textEditingController: cubit.phoneController,
                           ),
                           SizeHelper.defSizedBoxField,
@@ -197,10 +200,19 @@ class SignUpStudentPage extends StatelessWidget {
                           CustomTwoFormFieldWidget(
                             fTitle: LocaleKeys.academic_year,
                             sTitle: LocaleKeys.gpa,
+                            textInputType1:const   TextInputType.numberWithOptions(decimal: true),
+                            inputFormatters1: [FilteringTextInputFormatter.digitsOnly],
+                            textInputType2:
+                                const TextInputType.numberWithOptions(decimal: true),
+                            inputFormatters2: [
+                              FilteringTextInputFormatter.allow(
+                                RegExp(CustomRegEx.onDoubleValue),
+                              )
+                            ],
                             textEditingController1:
                                 cubit.academicYearController,
                             textEditingController2: cubit.GPAController,
-                            validator2: generalValidator,
+                            validator2: gpaValidator,
                             validator1: generalValidator,
                           ),
                           SizeHelper.defSizedBoxField,
@@ -268,7 +280,7 @@ class SignUpStudentPage extends StatelessWidget {
                               },
                             ),
                           ),
-                           SizedBox(height: 10.h),
+                          SizedBox(height: 10.h),
                         ],
                       ),
                     );

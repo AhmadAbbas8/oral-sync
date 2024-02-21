@@ -1,10 +1,8 @@
-import 'dart:developer';
 import 'dart:io';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:oralsync/core/helpers/check_language.dart';
 import 'package:oralsync/core/helpers/custom_progress_indicator.dart';
 import 'package:oralsync/core/helpers/extensions/navigation_extensions.dart';

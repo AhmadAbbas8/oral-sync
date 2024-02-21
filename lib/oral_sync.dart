@@ -45,7 +45,7 @@ class _OralSyncAppState extends State<OralSyncApp> {
             centerTitle: true,
             elevation: 0,
             titleTextStyle: AppStyles.styleSize28.copyWith(
-              fontSize: 25,
+              fontSize: 22,
               color: Colors.black,
             ),
           ),

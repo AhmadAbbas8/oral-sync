@@ -50,7 +50,7 @@ class LoginPage extends StatelessWidget {
                     } else if (state is LoginSuccess) {
                       context.pop();
                       context.pushNamedAndRemoveUntil(
-                        manageRouteName(state.user?.userRole ?? ''),
+                        manageRouteName(state.user.userRole ?? ''),
                         predicate: (route) => false,
                       );
                       showCustomSnackBar(context,

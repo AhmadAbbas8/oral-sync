@@ -11,4 +11,8 @@ abstract class EndPoints {
   static const createPostEndPoint = 'CreatePost';
   static const getPostByIdEndPoint = 'GetPostById';
   static const getAllPostsByUserEndPoint = 'GetAllPostsByUser';
+  static const updateProfileStudentEndPoint = 'UpdateProfileStudent';
+  static const updateProfileDoctorEndPoint = 'UpdateProfileDoctor';
+  static const updateProfilePatientEndPoint = 'UpdateProfilePatient';
+  static const findUserEndPoint = 'FindUser';
 }

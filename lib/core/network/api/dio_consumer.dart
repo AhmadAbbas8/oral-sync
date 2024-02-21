@@ -38,6 +38,24 @@ class DioConsumer extends ApiConsumer {
       rethrow;
     }
   }
+  @override
+  Future put(
+      String path, {
+        dynamic data,
+        Map<String, dynamic>? queryParameters,
+        bool isFromData = false,
+      }) async {
+    try {
+      final response = await dio.put(
+        path,
+        data: isFromData ? FormData.fromMap(data) : data,
+        queryParameters: queryParameters,
+      );
+      return response;
+    } on DioException {
+      rethrow;
+    }
+  }
 
   @override
   Future get(String path,
@@ -67,7 +85,7 @@ class DioConsumer extends ApiConsumer {
         data: isFromData ? FormData.fromMap(data) : data,
         queryParameters: queryParameters,
       );
-      return response.data;
+      return response;
     } on DioException {
       rethrow;
     }

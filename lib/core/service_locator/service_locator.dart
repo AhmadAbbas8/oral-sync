@@ -7,6 +7,8 @@ import 'package:oralsync/core/cache_helper/shared_prefs_cache.dart';
 import 'package:oralsync/core/network/api/api_consumer.dart';
 import 'package:oralsync/core/network/api/dio_consumer.dart';
 import 'package:oralsync/core/network/network_info.dart';
+import 'package:oralsync/core/shared_data_layer/edit_profile_data_layer/edit_profile_remote_data_source.dart';
+import 'package:oralsync/core/shared_data_layer/edit_profile_data_layer/edit_repo.dart';
 import 'package:oralsync/core/utils/end_points.dart';
 import 'package:oralsync/features/Auth/data/data_sources/auth_local_data_source.dart';
 import 'package:oralsync/features/Auth/data/data_sources/auth_local_data_source_impl.dart';
@@ -56,6 +58,8 @@ class ServiceLocator {
         () => StudentPostRemoteDataSourceImpl(apiConsumer: instance()));
     instance.registerLazySingleton<StudentPostLocalDataSource>(
         () => StudentPostLocalDataSourceImpl(cacheStorage: instance()));
+    instance.registerLazySingleton<EditProfileRemoteDataSource>(
+        () => EditProfileRemoteDataSourceIml(apiConsumer: instance()));
 
     // * Repository
     instance.registerLazySingleton<AuthRepository>(() => AuthRepositoryImpl(
@@ -66,6 +70,10 @@ class ServiceLocator {
         networkInfo: instance(),
         studentPostRemoteDataSource: instance(),
         studentPostLocalDataSource: instance()));
+    instance.registerLazySingleton<EditProfileRepo>(() => EditProfileRepoImpl(
+        networkInfo: instance(),
+        authLocalDataSource: instance(),
+        editProfileRemoteDataSource: instance()));
 
     // * UseCases
 

@@ -70,7 +70,7 @@ universityName: universityNameController.text,
               messageAr: 'هذا المستخدم مسجل بالفعل')));
     }, (model) async {
       if (model.flag ?? false) {
-        await loginDoc();
+        await login();
       } else {
         emit(RegisterStudentError(
             errorModel: ResponseModel(
@@ -80,7 +80,7 @@ universityName: universityNameController.text,
     });
   }
 
-  Future<void> loginDoc() async {
+  Future<void> login() async {
     var user = await loginUseCase.call(
         email: emailController.text, password: passwordController.text);
     user.fold((failure) {
