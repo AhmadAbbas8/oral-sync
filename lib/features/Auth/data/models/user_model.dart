@@ -1,10 +1,11 @@
 class UserModel {
   final String? token;
+  final String? profileImage;
   final String? userRole;
   final UserDetails? userDetails;
 
   UserModel(
-      {required this.token, required this.userRole, required this.userDetails});
+      {required this.token,required this.profileImage, required this.userRole, required this.userDetails});
 
   factory UserModel.fromJson(Map<String, dynamic> json) {
     String userRole = json['userRole'];
@@ -26,6 +27,7 @@ class UserModel {
 
     return UserModel(
       token: json['token'],
+      profileImage: json['profileImage'],
       userRole: userRole,
       userDetails: userDetails,
     );
@@ -33,6 +35,7 @@ class UserModel {
 
   Map<String, dynamic> toJson() => {
         'token': token,
+        'profileImage': profileImage,
         'userRole': userRole,
         'userDetails': userDetails?.toJson(),
       };

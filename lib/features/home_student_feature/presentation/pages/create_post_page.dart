@@ -11,7 +11,6 @@ import 'package:oralsync/core/helpers/extensions/navigation_extensions.dart';
 import 'package:oralsync/core/helpers/snackbars.dart';
 import 'package:oralsync/core/service_locator/service_locator.dart';
 import 'package:oralsync/core/utils/colors_palette.dart';
-import 'package:oralsync/features/home_student_feature/presentation/pages/home_student_page.dart';
 import 'package:oralsync/features/home_student_feature/presentation/pages/student_home_layout_page.dart';
 import 'package:oralsync/features/home_student_feature/presentation/widgets/custom_app_bar_action_button.dart';
 import 'package:oralsync/features/home_student_feature/presentation/widgets/custom_button_photo.dart';

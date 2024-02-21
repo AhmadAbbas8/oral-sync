@@ -1,6 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:intl/intl.dart';
+import 'package:oralsync/core/helpers/custom_progress_indicator.dart';
+import 'package:oralsync/core/helpers/snackbars.dart';
+import 'package:oralsync/core/service_locator/service_locator.dart';
+import 'package:oralsync/features/home_student_feature/presentation/manager/home_student_cubit/home_student_cubit.dart';
 import 'package:oralsync/features/home_student_feature/presentation/widgets/no_task_widget.dart';
+import '../../../../core/helpers/check_language.dart';
+import '../../../../core/utils/colors_palette.dart';
 import '../widgets/post_item_widget.dart';
 
 class HomeStudentPage extends StatelessWidget {
@@ -10,30 +19,62 @@ class HomeStudentPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: true
-            ? ListView.separated(
-                separatorBuilder: (context, index) => Divider(
-                  endIndent: 20.w,
-                  indent: 20.w,
-                ),
-                itemCount: 5,
-                itemBuilder: (context, index) => const PostItemWidget(
-                  caption:
-                      'Hey There I am Ahmad Abbas , And i am good doctor in dental',
-                  commentsCount: 5,
-                  likesCount: 5,
-                  postDate: 'Feb 14,2024',
-                  images: [
-                    'https://th.bing.com/th/id/OIP.TGyiAEuPn8zz0Sp-PrA7qgHaE8?w=262&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7',
-                    'https://th.bing.com/th/id/OIP.6NzSWXrfsJdY2M1ep17V5AHaEK?w=272&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7',
-                    'https://th.bing.com/th/id/OIP.LM4pX1UDBxpo77kgicT9CwHaHa?w=202&h=202&c=7&r=0&o=5&dpr=1.3&pid=1.7'
-                  ],
-                  userName: 'Ahmad Abbas',
-                ),
-              )
-            : NoTaskWidget(),
+    return BlocProvider(
+      create: (context) =>
+          HomeStudentCubit(getAllPostsStudentUseCase: ServiceLocator.instance())
+            ..getAllPosts(),
+      child: Scaffold(
+        body: BlocConsumer<HomeStudentCubit, HomeStudentState>(
+          listener: (context, state) {
+            if (state is GetAllPostsError) {
+              showCustomSnackBar(
+                context,
+                msg: isArabic(context)
+                    ? state.responseModel?.messageAr ?? ''
+                    : state.responseModel?.messageEn ?? '',
+                backgroundColor: ColorsPalette.errorColor,
+              );
+            }
+          },
+          buildWhen: (previous, current) => current != previous,
+          listenWhen: (previous, current) => current != previous,
+          builder: (context, state) {
+            var cubit = context.read<HomeStudentCubit>();
+            return RefreshIndicator(
+              onRefresh: () async => cubit.getAllPosts(),
+              child: Center(
+                child: state is GetAllPostsLoading
+                    ? const SpinKitDoubleBounce(
+                        color: Colors.green,
+                        size: 200,
+                      )
+                    : cubit.posts.isNotEmpty
+                        ? ListView.separated(
+                            separatorBuilder: (context, index) => Divider(
+                              endIndent: 20.w,
+                              indent: 20.w,
+                            ),
+                            itemCount: cubit.posts.length,
+
+                            itemBuilder: (context, index) => PostItemWidget(
+                              profileURL: cubit.studentModel.profileImage??'',
+                              caption: cubit.posts[index].content ??'',
+                              commentsCount: 5,
+                              likesCount: 5,
+                              postDate: DateFormat("MMM dd, yyyy").format(
+                                  DateFormat("yyyy/MM/dd").parse(
+                                      cubit.posts[index].dateCreated ??
+                                          '2001/08/01')),
+                              images: cubit.posts[index].image ?? [],
+                              userName:
+                                  '${cubit.studentModel.userDetails?.firstName} ${cubit.studentModel.userDetails?.lastName}',
+                            ),
+                          )
+                        : const NoTaskWidget(),
+              ),
+            );
+          },
+        ),
       ),
     );
   }

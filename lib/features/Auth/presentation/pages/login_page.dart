@@ -54,7 +54,7 @@ class LoginPage extends StatelessWidget {
                         predicate: (route) => false,
                       );
                       showCustomSnackBar(context,
-                          msg: LocaleKeys.user_created_successfully.tr(),
+                          msg: LocaleKeys.welcome.tr(),
                           backgroundColor: Colors.green);
                     } else if (state is LoginError) {
                       context.pop();
