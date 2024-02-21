@@ -14,8 +14,12 @@ import 'custom_drawer_list_tile.dart';
 
 class CustomDrawerStudent extends StatelessWidget {
   const CustomDrawerStudent({
-    super.key, required this.name, required this.email, required this.profileImage,
+    super.key,
+    required this.name,
+    required this.email,
+    required this.profileImage,
   });
+
   final String name;
   final String email;
   final String profileImage;
@@ -27,7 +31,7 @@ class CustomDrawerStudent extends StatelessWidget {
         children: [
           UserAccountsDrawerHeader(
             accountEmail: Text(
-             email,
+              email,
               style: AppStyles.styleSize14.copyWith(
                 fontWeight: FontWeight.bold,
               ),
@@ -38,7 +42,7 @@ class CustomDrawerStudent extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            currentAccountPicture:  CircleAvatar(
+            currentAccountPicture: CircleAvatar(
               backgroundColor: Colors.black,
               backgroundImage: CachedNetworkImageProvider(profileImage),
             ),
@@ -65,7 +69,7 @@ class CustomDrawerStudent extends StatelessWidget {
             title: LocaleKeys.contact_us,
             icon: IconBroken.Calling,
           ),
-          Spacer(),
+          const Spacer(),
           CustomDrawerListTile(
             title: LocaleKeys.log_out,
             icon: IconBroken.Logout,

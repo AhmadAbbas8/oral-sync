@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'package:flutter_lazy_indexed_stack/flutter_lazy_indexed_stack.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
