@@ -75,7 +75,13 @@ class CodegenLoader extends AssetLoader{
   "photos": "الصور",
   "edit": "تعديل",
   "save": "حفظ",
-  "welcome": "مرحبا بك 😊"
+  "welcome": "مرحبا بك 😊",
+  "edit_data": "تعديل البيانات",
+  "updated_successfully": "تم التحديث بنجاح ✅",
+  "gpa_must_between_2_and_5": "التقدير التراكمي لابد ان يكون بين 2 و 5",
+  "invalid_range": "خطأ فى المدة",
+  "invalid_phone_number": "رقم هاتف غير صحيح",
+  "please_complete_required_data_firstly": "من فضلك ادخل البيانات المطلوبة اولا ⚠"
 };
 static const Map<String,dynamic> en = {
   "hello": "Hello",
@@ -138,7 +144,13 @@ static const Map<String,dynamic> en = {
   "photos": "Photos",
   "edit": "Edit",
   "save": "Save",
-  "welcome": "Welcome 😊"
+  "welcome": "Welcome 😊",
+  "edit_data": "Edit Data",
+  "updated_successfully": "Updated successfully ✅",
+  "gpa_must_between_2_and_5": "GPA Must between 2 and 5",
+  "invalid_range": "Invalid range",
+  "invalid_phone_number": "Invalid phone number",
+  "please_complete_required_data_firstly": "please complete required data firstly ⚠"
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"ar": ar, "en": en};
 }

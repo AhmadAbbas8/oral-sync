@@ -18,7 +18,7 @@ class ApiInterceptor extends Interceptor {
 
   @override
   void onError(DioException err, ErrorInterceptorHandler handler) {
-    print('--------------------onError--------------------------------');
+    log('--------------------onError--------------------------------');
     if (err.response?.statusCode == 401) {
       log('UnAuth', name: 'Interceptor');
       AppRouter.navigatorKey.currentState
@@ -30,7 +30,7 @@ class ApiInterceptor extends Interceptor {
   @override
   Future<void> onResponse(
       Response response, ResponseInterceptorHandler handler) async {
-    print('---------------------onResponse-------------------------------');
+    log('---------------------onResponse-------------------------------');
     if (response.statusCode == 401) {
       log('UnAuth', name: 'Interceptor');
       await ServiceLocator.instance<CacheStorage>().removeAllData();

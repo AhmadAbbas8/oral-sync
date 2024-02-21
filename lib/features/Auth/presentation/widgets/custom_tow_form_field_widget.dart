@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:oralsync/features/Auth/presentation/widgets/custom_text_form_field_login.dart';
 
 class CustomTwoFormFieldWidget extends StatelessWidget {
@@ -8,8 +9,12 @@ class CustomTwoFormFieldWidget extends StatelessWidget {
       required this.sTitle,
       this.validator1,
       this.validator2,
-       this.textEditingController1,
-      this.textEditingController2});
+      this.textEditingController1,
+      this.textEditingController2,
+      this.textInputType1,
+      this.textInputType2,
+      this.inputFormatters1,
+      this.inputFormatters2});
 
   final String fTitle;
   final String sTitle;
@@ -17,6 +22,10 @@ class CustomTwoFormFieldWidget extends StatelessWidget {
   final String? Function(String?)? validator2;
   final TextEditingController? textEditingController1;
   final TextEditingController? textEditingController2;
+  final TextInputType? textInputType1;
+  final TextInputType? textInputType2;
+  final List<TextInputFormatter>? inputFormatters1;
+  final List<TextInputFormatter>? inputFormatters2;
 
   @override
   Widget build(BuildContext context) {
@@ -29,14 +38,16 @@ class CustomTwoFormFieldWidget extends StatelessWidget {
           CustomTextFormFieldLogin(
             width: size.width * .37,
             hintText: fTitle,
-            textInputType: TextInputType.text,
+            textInputType: textInputType1 ?? TextInputType.text,
+            inputFormatters: inputFormatters1,
             validator: validator1,
             textEditingController: textEditingController1,
           ),
           CustomTextFormFieldLogin(
             width: size.width * .37,
+            inputFormatters: inputFormatters2,
             hintText: sTitle,
-            textInputType: TextInputType.text,
+            textInputType: textInputType2 ?? TextInputType.text,
             validator: validator2,
             textEditingController: textEditingController2,
           ),

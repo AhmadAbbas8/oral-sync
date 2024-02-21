@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:oralsync/core/utils/colors_palette.dart';
 import 'package:oralsync/core/utils/styles.dart';
 
@@ -16,6 +17,7 @@ class CustomTextFormFieldLogin extends StatelessWidget {
     this.readOnly,
     this.onTap,
     this.textEditingController,
+    this.inputFormatters,
   });
 
   final double width;
@@ -29,6 +31,7 @@ class CustomTextFormFieldLogin extends StatelessWidget {
   final TextInputType? textInputType;
   final String? Function(String?)? validator;
   final TextEditingController? textEditingController;
+  final List<TextInputFormatter>? inputFormatters;
 
   @override
   Widget build(BuildContext context) {
@@ -41,6 +44,7 @@ class CustomTextFormFieldLogin extends StatelessWidget {
         onTap: onTap,
         readOnly: readOnly ?? false,
         obscureText: obscureText ?? false,
+        inputFormatters: inputFormatters,
         decoration: InputDecoration(
             errorMaxLines: 3,
             hintText: hintText.tr(),

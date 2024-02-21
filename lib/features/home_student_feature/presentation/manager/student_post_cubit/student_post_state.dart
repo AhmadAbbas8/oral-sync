@@ -32,7 +32,4 @@ class CreatePostError extends StudentPostState {
 
   const CreatePostError({this.responseModel});
 
-  @override
-  // TODO: implement props
-  List<Object> get props => super.props;
 }
