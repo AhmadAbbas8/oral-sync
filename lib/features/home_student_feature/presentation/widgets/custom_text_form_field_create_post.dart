@@ -5,11 +5,15 @@ import 'package:oralsync/translations/locale_keys.g.dart';
 import '../../../../core/utils/styles.dart';
 
 class CustomTextFormFieldCreatePost extends StatelessWidget {
-  const CustomTextFormFieldCreatePost({super.key});
+  const CustomTextFormFieldCreatePost({super.key, this.textEditingController});
+
+  final TextEditingController? textEditingController;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      controller: textEditingController,
+      keyboardType: TextInputType.multiline,
       decoration: InputDecoration(
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10),

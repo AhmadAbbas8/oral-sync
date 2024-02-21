@@ -7,11 +7,16 @@ import 'package:oralsync/core/helpers/extensions/navigation_extensions.dart';
 import 'package:oralsync/core/network/api/api_consumer.dart';
 import 'package:oralsync/core/service_locator/service_locator.dart';
 import 'package:oralsync/core/utils/icon_broken.dart';
-import 'package:oralsync/features/home_student_feature/presentation/manager/student_home_cubit/student_home_cubit.dart';
 import 'package:oralsync/features/home_student_feature/presentation/pages/create_post_page.dart';
+import 'package:oralsync/features/home_student_feature/presentation/pages/profile_student_page.dart';
 import 'package:oralsync/features/home_student_feature/presentation/widgets/custom_drawer_student.dart';
 import 'package:oralsync/features/home_student_feature/presentation/widgets/notch_bottm_nav_bar.dart';
 import 'package:oralsync/translations/locale_keys.g.dart';
+
+import '../manager/student_cubit/student_cubit.dart';
+import 'archive_student_page.dart';
+import 'home_student_page.dart';
+import 'message_student_page.dart';
 
 class StudentHomeLayoutPage extends StatelessWidget {
   static const String routeName = '/studentHomeLayoutPage';
@@ -21,10 +26,10 @@ class StudentHomeLayoutPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => StudentHomeCubit(),
-      child: BlocBuilder<StudentHomeCubit, StudentHomeState>(
+      create: (context) => StudentCubit(),
+      child: BlocBuilder<StudentCubit, StudentState>(
         builder: (context, state) {
-          var cubit = context.read<StudentHomeCubit>();
+          var cubit = context.read<StudentCubit>();
           return Scaffold(
             extendBody: true,
             appBar: AppBar(
@@ -35,10 +40,11 @@ class StudentHomeLayoutPage extends StatelessWidget {
                 IconButton(
                   onPressed: () {
                     //just test something
-                    ServiceLocator.instance<ApiConsumer>().post('CreatePost',data: {
-                      "title": "Test title",
-                      "content": "First context"
-                    });
+                    ServiceLocator.instance<ApiConsumer>().post('CreatePost',
+                        data: {
+                          "title": "Test title",
+                          "content": "First context"
+                        });
                   },
                   icon: const Icon(
                     IconBroken.Notification,
@@ -46,10 +52,19 @@ class StudentHomeLayoutPage extends StatelessWidget {
                 ),
               ],
             ),
-            drawer: const CustomDrawerStudent(),
+            drawer:  CustomDrawerStudent(
+              email: cubit.studentModel.userDetails?.email??'',
+              name:'${cubit.studentModel.userDetails?.firstName} ${cubit.studentModel.userDetails?.lastName}',
+              profileImage: cubit.studentModel.profileImage??'',
+            ),
             body: LazyIndexedStack(
               index: cubit.currentNavIndex,
-              children: cubit.homePages,
+              children: const [
+                HomeStudentPage(),
+                MessageStudentPage(),
+                ArchiveStudentPage(),
+                ProfileStudentPage(),
+              ],
             ),
             floatingActionButton: FloatingActionButton(
               onPressed: () async =>

@@ -8,4 +8,7 @@ abstract class EndPoints {
   static const addDoctorEndPoint = 'AddDoctor';
   static const addStudentEndPoint = 'AddStudent';
   static const addPatientEndPoint = 'AddPatient';
+  static const createPostEndPoint = 'CreatePost';
+  static const getPostByIdEndPoint = 'GetPostById';
+  static const getAllPostsByUserEndPoint = 'GetAllPostsByUser';
 }

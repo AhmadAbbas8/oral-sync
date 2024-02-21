@@ -16,6 +16,12 @@ import 'package:oralsync/features/Auth/data/repositories/auth_repository_impl.da
 import 'package:oralsync/features/Auth/domain/repositories/auth_repository.dart';
 import 'package:oralsync/features/Auth/domain/use_cases/login_use_case.dart';
 import 'package:oralsync/features/Auth/domain/use_cases/new_register_use_case.dart';
+import 'package:oralsync/features/home_student_feature/data/data_sources/student_post_local_data_source.dart';
+import 'package:oralsync/features/home_student_feature/data/data_sources/sudent_post_remote_data_source.dart';
+import 'package:oralsync/features/home_student_feature/data/repositories/student_post_repo_impl.dart';
+import 'package:oralsync/features/home_student_feature/domain/repositories/student_post_repo.dart';
+import 'package:oralsync/features/home_student_feature/domain/use_cases/create_post_use_case.dart';
+import 'package:oralsync/features/home_student_feature/domain/use_cases/get_all_posts_use_case.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -46,10 +52,20 @@ class ServiceLocator {
         () => AuthRemoteDataSourceImp(apiConsumer: instance()));
     instance.registerLazySingleton<AuthLocalDataSource>(
         () => AuthLocalDataSourceImpl(cacheStorage: instance()));
+    instance.registerLazySingleton<StudentPostRemoteDataSource>(
+        () => StudentPostRemoteDataSourceImpl(apiConsumer: instance()));
+    instance.registerLazySingleton<StudentPostLocalDataSource>(
+        () => StudentPostLocalDataSourceImpl(cacheStorage: instance()));
 
     // * Repository
     instance.registerLazySingleton<AuthRepository>(() => AuthRepositoryImpl(
-        authRemoteDataSource: instance(), networkInfo: instance(),authLocalDataSource: instance()));
+        authRemoteDataSource: instance(),
+        networkInfo: instance(),
+        authLocalDataSource: instance()));
+    instance.registerLazySingleton<StudentPostRepo>(() => StudentPostRepoImpl(
+        networkInfo: instance(),
+        studentPostRemoteDataSource: instance(),
+        studentPostLocalDataSource: instance()));
 
     // * UseCases
 
@@ -57,5 +73,9 @@ class ServiceLocator {
         () => LoginUseCase(authRepository: instance()));
     instance.registerLazySingleton<NewRegisterUseCase>(
         () => NewRegisterUseCase(authRepository: instance()));
+    instance.registerLazySingleton<CreatePostUseCase>(
+        () => CreatePostUseCase(studentPostRepo: instance()));
+    instance.registerLazySingleton<GetAllPostsStudentUseCase>(
+        () => GetAllPostsStudentUseCase(studentPostRepo: instance()));
   }
 }

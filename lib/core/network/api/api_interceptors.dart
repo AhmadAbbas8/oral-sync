@@ -10,6 +10,7 @@ import 'package:oralsync/features/Auth/presentation/pages/login_page.dart';
 class ApiInterceptor extends Interceptor {
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
+    log('${ServiceLocator.instance<CacheStorage>().getData(key: SharedPrefsKeys.token)}',name: 'token');
     options.headers['Authorization'] =
         'Bearer ${ServiceLocator.instance<CacheStorage>().getData(key: SharedPrefsKeys.token)}';
     super.onRequest(options, handler);

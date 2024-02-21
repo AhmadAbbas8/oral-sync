@@ -85,6 +85,7 @@ class DioConsumer extends ApiConsumer {
         path,
         data: isFromData ? FormData.fromMap(data) : data,
         queryParameters: queryParameters,
+        options: Options(contentType: isFromData?Headers.multipartFormDataContentType:Headers.jsonContentType)
       );
       return response;
     } on DioException {

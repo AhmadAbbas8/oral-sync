@@ -58,5 +58,6 @@ abstract class  LocaleKeys {
   static const photos = 'photos';
   static const edit = 'edit';
   static const save = 'save';
+  static const welcome = 'welcome';
 
 }

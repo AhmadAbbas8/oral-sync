@@ -74,7 +74,8 @@ class CodegenLoader extends AssetLoader{
   "describe_your_request_in_details": "قدم وصفا دقيقا لطلبك",
   "photos": "الصور",
   "edit": "تعديل",
-  "save": "حفظ"
+  "save": "حفظ",
+  "welcome": "مرحبا بك 😊"
 };
 static const Map<String,dynamic> en = {
   "hello": "Hello",
@@ -136,7 +137,8 @@ static const Map<String,dynamic> en = {
   "describe_your_request_in_details": "Describe your request in details",
   "photos": "Photos",
   "edit": "Edit",
-  "save": "Save"
+  "save": "Save",
+  "welcome": "Welcome 😊"
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"ar": ar, "en": en};
 }
