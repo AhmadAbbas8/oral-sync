@@ -37,16 +37,36 @@ class EditProfileRepoImpl implements EditProfileRepo {
 
   @override
   Future<Either<Failure, Unit>> updateDoctorProfile(
-      {required Map<String, dynamic> data}) {
-    // TODO: implement updateDoctorProfile
-    throw UnimplementedError();
+      {required Map<String, dynamic> data}) async {
+    if (await _networkInfo.isConnected) {
+      try {
+        var model = await _editProfileRemoteDataSource.updateData(
+            data: data, endPoint: EndPoints.updateProfileDoctorEndPoint);
+        await _authLocalDataSource.cacheUser(userModel: model);
+        return const Right(unit);
+      } on ServerException catch (e) {
+        return Left(ServerFailure(errorModel: e.errorModel));
+      }
+    } else {
+      return Left(OfflineFailure());
+    }
   }
 
   @override
   Future<Either<Failure, Unit>> updatePatientProfile(
-      {required Map<String, dynamic> data}) {
-    // TODO: implement updatePatientProfile
-    throw UnimplementedError();
+      {required Map<String, dynamic> data})  async {
+    if (await _networkInfo.isConnected) {
+      try {
+        var model = await _editProfileRemoteDataSource.updateData(
+            data: data, endPoint: EndPoints.updateProfilePatientEndPoint);
+        await _authLocalDataSource.cacheUser(userModel: model);
+        return const Right(unit);
+      } on ServerException catch (e) {
+        return Left(ServerFailure(errorModel: e.errorModel));
+      }
+    } else {
+      return Left(OfflineFailure());
+    }
   }
 
   @override
