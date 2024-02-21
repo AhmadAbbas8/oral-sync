@@ -5,12 +5,15 @@ import 'package:oralsync/core/cache_helper/cache_storage.dart';
 import 'package:oralsync/core/cache_helper/shared_prefs_keys.dart';
 import 'package:oralsync/core/routing/app_router.dart';
 import 'package:oralsync/core/service_locator/service_locator.dart';
+import 'package:oralsync/features/Auth/data/data_sources/auth_local_data_source.dart';
+
 import 'package:oralsync/features/Auth/presentation/pages/login_page.dart';
 
 class ApiInterceptor extends Interceptor {
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
-    log('${ServiceLocator.instance<CacheStorage>().getData(key: SharedPrefsKeys.token)}',name: 'token');
+    log('${ServiceLocator.instance<CacheStorage>().getData(key: SharedPrefsKeys.token)}',
+        name: 'token');
     options.headers['Authorization'] =
         'Bearer ${ServiceLocator.instance<CacheStorage>().getData(key: SharedPrefsKeys.token)}';
     super.onRequest(options, handler);
@@ -33,7 +36,7 @@ class ApiInterceptor extends Interceptor {
     log('---------------------onResponse-------------------------------');
     if (response.statusCode == 401) {
       log('UnAuth', name: 'Interceptor');
-      await ServiceLocator.instance<CacheStorage>().removeAllData();
+      await ServiceLocator.instance<AuthLocalDataSource>().logout();
       AppRouter.navigatorKey.currentState
           ?.pushNamedAndRemoveUntil(LoginPage.routeName, (route) => false);
     }
