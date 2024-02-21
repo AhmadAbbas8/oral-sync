@@ -75,7 +75,7 @@ class StudentEditProfileCubit extends Cubit<StudentEditProfileState> {
       "isMale": isMale,
       "phoneNumber": phoneController.text,
       "universityName": universityController.text,
-      "universitAddress": [
+      "universityAddress": [
         universityGovernorateController.text,
         universityCityController.text
       ],
