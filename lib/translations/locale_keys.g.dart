@@ -66,5 +66,6 @@ abstract class  LocaleKeys {
   static const invalid_phone_number = 'invalid_phone_number';
   static const please_complete_required_data_firstly = 'please_complete_required_data_firstly';
   static const language = 'language';
+  static const image_profile_changed_successfully = 'image_profile_changed_successfully';
 
 }

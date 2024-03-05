@@ -66,5 +66,6 @@
   "invalid_range": "Invalid range",
   "invalid_phone_number": "Invalid phone number",
   "please_complete_required_data_firstly": "please complete required data firstly ⚠",
-  "language": "Language"
+  "language": "Language",
+  "image_profile_changed_successfully": "Images profile changed successfully ✅"
 }
