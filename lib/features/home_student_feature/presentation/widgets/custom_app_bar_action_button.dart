@@ -17,7 +17,7 @@ class CustomAppBarActionButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialButton(
       color: ColorsPalette.buttonLoginColor,
-      height: 45,
+      height: 43,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
       onPressed: onTap,
       child: Text(

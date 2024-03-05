@@ -65,5 +65,6 @@
   "gpa_must_between_2_and_5": "GPA Must between 2 and 5",
   "invalid_range": "Invalid range",
   "invalid_phone_number": "Invalid phone number",
-  "please_complete_required_data_firstly": "please complete required data firstly ⚠"
+  "please_complete_required_data_firstly": "please complete required data firstly ⚠",
+  "language": "Language"
 }
