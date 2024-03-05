@@ -112,17 +112,21 @@ class _ProfileStudentPageState extends State<ProfileStudentPage> {
                           : FontAwesomeIcons.female,
                     ),
                     InfoWidget(
-                      title:
-                          '${userData.universitAddress.toString().replaceAll(']', '').replaceAll('[', '')}',
+                      title: userData.universitAddress
+                          .toString()
+                          .replaceAll(']', '')
+                          .replaceAll('[', ''),
                       icon: IconBroken.Home,
                     ),
                     InfoWidget(
-                        title: userData.academicYear.toString(),
-                        icon: FontAwesomeIcons.buildingColumns),
+                      title: userData.academicYear.toString(),
+                      icon: FontAwesomeIcons.buildingColumns,
+                    ),
                     InfoWidget(
-                        title: userData.gpa.toString(),
-                        icon: FontAwesomeIcons.pen),
-                    RatingWidget()
+                      title: userData.gpa?.toStringAsFixed(2)??'',
+                      icon: FontAwesomeIcons.pen,
+                    ),
+                    const RatingWidget()
                   ],
                 );
               },

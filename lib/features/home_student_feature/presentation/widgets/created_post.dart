@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:oralsync/core/widgets/circle_avatar.dart';
 import 'package:oralsync/core/widgets/reaction_widget.dart';
 
 class CreatedPostWidget extends StatelessWidget {
@@ -10,9 +9,10 @@ class CreatedPostWidget extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 12),
       decoration: BoxDecoration(
-          border: Border.all(
-        color: Colors.grey,
-      )),
+        border: Border.all(
+          color: Colors.grey,
+        ),
+      ),
       child: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -29,14 +29,11 @@ class CreatedPostWidget extends StatelessWidget {
             const Text(
               'Hi, I\'m mostafa hassan, student at faculty of engineering',
             ),
-            //
             const SizedBox(height: 30),
-            //
             Image.asset(
               'assets/student/images/Frame 50.png',
             ),
             const SizedBox(height: 30),
-            //
             const Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
