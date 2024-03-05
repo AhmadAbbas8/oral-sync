@@ -16,6 +16,7 @@ import '../manager/student_cubit/student_cubit.dart';
 import 'archive_student_page.dart';
 import 'home_student_page.dart';
 import 'message_student_page.dart';
+import 'notification_page.dart';
 
 class StudentHomeLayoutPage extends StatelessWidget {
   static const String routeName = '/studentHomeLayoutPage';
@@ -37,24 +38,19 @@ class StudentHomeLayoutPage extends StatelessWidget {
               ),
               actions: [
                 IconButton(
-                  onPressed: () {
-                    //just test something
-                    ServiceLocator.instance<ApiConsumer>().post('CreatePost',
-                        data: {
-                          "title": "Test title",
-                          "content": "First context"
-                        });
-                  },
+                  onPressed: () =>
+                      context.pushNamed(NotificationPage.routeName),
                   icon: const Icon(
                     IconBroken.Notification,
                   ),
                 ),
               ],
             ),
-            drawer:  CustomDrawerStudent(
-              email: cubit.studentModel.userDetails?.email??'',
-              name:'${cubit.studentModel.userDetails?.firstName} ${cubit.studentModel.userDetails?.lastName}',
-              profileImage: cubit.studentModel.profileImage??'',
+            drawer: CustomDrawerStudent(
+              email: cubit.studentModel.userDetails?.email ?? '',
+              name:
+                  '${cubit.studentModel.userDetails?.firstName} ${cubit.studentModel.userDetails?.lastName}',
+              profileImage: cubit.studentModel.profileImage ?? '',
             ),
             body: LazyIndexedStack(
               index: cubit.currentNavIndex,

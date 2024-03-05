@@ -11,16 +11,14 @@ import 'package:oralsync/features/home_student_feature/presentation/pages/home_s
 import 'package:oralsync/features/home_student_feature/presentation/pages/profile_student_page.dart';
 import 'package:oralsync/features/home_student_feature/presentation/pages/settings_of_student_screen.dart';
 
+import '../../features/home_student_feature/presentation/pages/notification_page.dart';
 import '../../features/home_student_feature/presentation/pages/student_home_layout_page.dart';
 
 class AppRouter {
   AppRouter._();
 
-  // BLoCs
-
-  //
   static final navigatorKey = GlobalKey<NavigatorState>();
-  //
+
   static final routes = {
     LoginPage.routeName: (context) => const LoginPage(),
     SignUpOptionsPage.routeName: (context) => const SignUpOptionsPage(),
@@ -35,5 +33,6 @@ class AppRouter {
     EditProfilePage.routeName: (context) => const EditProfilePage(),
     SettingsOfStudentScreen.routeName: (context) =>
         const SettingsOfStudentScreen(),
+    NotificationPage.routeName: (context) => const NotificationPage(),
   };
 }
