@@ -82,7 +82,8 @@ class CodegenLoader extends AssetLoader{
   "invalid_range": "خطأ فى المدة",
   "invalid_phone_number": "رقم هاتف غير صحيح",
   "please_complete_required_data_firstly": "من فضلك ادخل البيانات المطلوبة اولا ⚠",
-  "language": "اللغة"
+  "language": "اللغة",
+  "image_profile_changed_successfully": "تم تغيير الصورة الشخصية بنجاح ✅"
 };
 static const Map<String,dynamic> en = {
   "hello": "Hello",
@@ -152,7 +153,8 @@ static const Map<String,dynamic> en = {
   "invalid_range": "Invalid range",
   "invalid_phone_number": "Invalid phone number",
   "please_complete_required_data_firstly": "please complete required data firstly ⚠",
-  "language": "Language"
+  "language": "Language",
+  "image_profile_changed_successfully": "Images profile changed successfully ✅"
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"ar": ar, "en": en};
 }

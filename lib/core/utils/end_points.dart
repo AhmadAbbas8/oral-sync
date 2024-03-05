@@ -15,4 +15,5 @@ abstract class EndPoints {
   static const updateProfileDoctorEndPoint = 'UpdateProfileDoctor';
   static const updateProfilePatientEndPoint = 'UpdateProfilePatient';
   static const findUserEndPoint = 'FindUser';
+  static const updateProfileImageEndPoint = 'updateProfileImage';
 }
