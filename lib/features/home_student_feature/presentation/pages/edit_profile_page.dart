@@ -30,13 +30,16 @@ class EditProfilePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final StudentEditProfileCubit passedCubit =
+        ModalRoute.of(context)!.settings.arguments as StudentEditProfileCubit;
     List<String> type = ['male', 'female'];
     var size = MediaQuery.sizeOf(context);
-    return BlocProvider(
-      create: (context) => StudentEditProfileCubit(
-          editProfileRepo: ServiceLocator.instance<EditProfileRepo>(),
-          cacheStorage: ServiceLocator.instance<CacheStorage>())
-        ..onOpenEditPage(),
+    return BlocProvider.value(
+      // create: (context) => StudentEditProfileCubit(
+      //     editProfileRepo: ServiceLocator.instance<EditProfileRepo>(),
+      //     cacheStorage: ServiceLocator.instance<CacheStorage>())
+      //   ..onOpenEditPage(),
+      value: passedCubit..onOpenEditPage(),
       child: BlocConsumer<StudentEditProfileCubit, StudentEditProfileState>(
         listener: (context, state) {
           if (state is UpdateStudentDataLoading) {

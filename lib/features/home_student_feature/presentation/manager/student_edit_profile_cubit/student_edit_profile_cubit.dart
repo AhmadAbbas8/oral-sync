@@ -37,17 +37,21 @@ class StudentEditProfileCubit extends Cubit<StudentEditProfileState> {
   final TextEditingController academicYearController = TextEditingController();
   final TextEditingController gpaController = TextEditingController();
   final TextEditingController universityGovernorateController =
-  TextEditingController();
+      TextEditingController();
   final TextEditingController universityCityController =
-  TextEditingController();
+      TextEditingController();
+
+  UserModel getStudentModel() {
+    return UserModel.fromJson(
+        jsonDecode(_cacheStorage.getData(key: SharedPrefsKeys.user)));
+  }
 
   onOpenEditPage() {
-    UserModel studentData = UserModel.fromJson(
-        jsonDecode(_cacheStorage.getData(key: SharedPrefsKeys.user)));
+    UserModel studentData = getStudentModel();
     log(studentData.toJson().toString());
     var studentDetails = studentData.userDetails as StudentDetails;
     fNameController.text = studentDetails.firstName ?? '';
-    isMale = studentDetails.isMale ;
+    isMale = studentDetails.isMale;
     lNameController.text = studentDetails.lastName ?? '';
     emailController.text = studentDetails.email ?? '';
     phoneController.text = studentDetails.phoneNumber ?? '';
@@ -57,12 +61,12 @@ class StudentEditProfileCubit extends Cubit<StudentEditProfileState> {
     academicYearController.text = studentDetails.academicYear?.toString() ?? '';
     gpaController.text = studentDetails.gpa?.toString() ?? '';
     try {
-    universityGovernorateController.text =
-    studentDetails.universitAddress![0] ?? '';
-    universityCityController.text = studentDetails.universitAddress![1] ?? '';
+      universityGovernorateController.text =
+          studentDetails.universitAddress![0] ?? '';
+      universityCityController.text = studentDetails.universitAddress![1] ?? '';
     } catch (e) {
-    universityGovernorateController.text = '';
-    universityCityController.text = '';
+      universityGovernorateController.text = '';
+      universityCityController.text = '';
     }
   }
 
@@ -98,6 +102,7 @@ class StudentEditProfileCubit extends Cubit<StudentEditProfileState> {
     isMale = value;
     emit(ChangeGender(isMale: isMale!));
   }
+
   var dateFormat = DateFormat('yyyy/MM/dd');
 
   onTapBirthDate(BuildContext context) async {
@@ -125,6 +130,7 @@ class StudentEditProfileCubit extends Cubit<StudentEditProfileState> {
       log(e.toString());
     }
   }
+
   @override
   Future<void> close() {
     fNameController.dispose();

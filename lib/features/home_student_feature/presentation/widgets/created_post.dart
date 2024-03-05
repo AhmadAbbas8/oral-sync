@@ -19,7 +19,7 @@ class CreatedPostWidget extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             ListTile(
-              leading: const CircleAvatarWidget(),
+              // leading: const CircleAvatarWidget(),
               title: const Text('Mostafa Hassan'),
               subtitle: Text(DateTime.now().year.toString()),
             ),
