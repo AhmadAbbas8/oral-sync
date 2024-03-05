@@ -19,7 +19,7 @@ import 'package:oralsync/features/Auth/presentation/widgets/custom_login_button_
 import 'package:oralsync/features/Auth/presentation/widgets/custom_text_form_field_login.dart';
 import 'package:oralsync/features/Auth/presentation/widgets/forget_password_button_widget.dart';
 import 'package:oralsync/features/Auth/presentation/widgets/keep_me_logged_in_widget.dart';
-import 'package:oralsync/features/home_fearure/presentation/pages/home_page.dart';
+import 'package:oralsync/features/home_feature/presentation/pages/home_page.dart';
 import 'package:oralsync/features/home_student_feature/presentation/pages/student_home_layout_page.dart';
 
 import 'package:oralsync/translations/locale_keys.g.dart';

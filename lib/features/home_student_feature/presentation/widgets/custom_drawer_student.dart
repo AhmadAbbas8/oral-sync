@@ -7,6 +7,7 @@ import 'package:oralsync/core/utils/icon_broken.dart';
 import 'package:oralsync/core/utils/styles.dart';
 import 'package:oralsync/features/Auth/presentation/pages/login_page.dart';
 import 'package:oralsync/features/home_student_feature/presentation/pages/profile_student_page.dart';
+import 'package:oralsync/features/home_student_feature/presentation/pages/settings_of_student_screen.dart';
 import 'package:oralsync/translations/locale_keys.g.dart';
 
 import '../../../Auth/data/data_sources/auth_local_data_source.dart';
@@ -57,9 +58,12 @@ class CustomDrawerStudent extends StatelessWidget {
               context.pushNamed(ProfileStudentPage.routeName);
             },
           ),
-          const CustomDrawerListTile(
+          CustomDrawerListTile(
             title: LocaleKeys.settings,
             icon: IconBroken.Setting,
+            onTap: () {
+              context.pushNamed(SettingsOfStudentScreen.routeName);
+            },
           ),
           const CustomDrawerListTile(
             title: LocaleKeys.privacy_policy,
