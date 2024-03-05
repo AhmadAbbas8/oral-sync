@@ -68,5 +68,6 @@
   "please_complete_required_data_firstly": "من فضلك ادخل البيانات المطلوبة اولا ⚠",
   "language": "اللغة",
   "image_profile_changed_successfully": "تم تغيير الصورة الشخصية بنجاح ✅",
-  "notifications": "الاشعارات"
+  "notifications": "الاشعارات",
+  "there_is_no_any_notifications": "لا توجد اى اشعارات !"
 }

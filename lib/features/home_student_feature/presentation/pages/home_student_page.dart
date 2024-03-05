@@ -9,6 +9,7 @@ import 'package:oralsync/features/home_student_feature/presentation/manager/home
 import 'package:oralsync/features/home_student_feature/presentation/widgets/no_task_widget.dart';
 import '../../../../core/helpers/check_language.dart';
 import '../../../../core/utils/colors_palette.dart';
+import '../../../../translations/locale_keys.g.dart';
 import '../widgets/post_item_widget.dart';
 
 class HomeStudentPage extends StatelessWidget {
@@ -54,10 +55,9 @@ class HomeStudentPage extends StatelessWidget {
                               indent: 20.w,
                             ),
                             itemCount: cubit.posts.length,
-
                             itemBuilder: (context, index) => PostItemWidget(
-                              profileURL: cubit.studentModel.profileImage??'',
-                              caption: cubit.posts[index].content ??'',
+                              profileURL: cubit.studentModel.profileImage ?? '',
+                              caption: cubit.posts[index].content ?? '',
                               commentsCount: 5,
                               likesCount: 5,
                               postDate: DateFormat("MMM dd, yyyy").format(
@@ -69,7 +69,7 @@ class HomeStudentPage extends StatelessWidget {
                                   '${cubit.studentModel.userDetails?.firstName} ${cubit.studentModel.userDetails?.lastName}',
                             ),
                           )
-                        : const NoTaskWidget(),
+                        : const NoTaskWidget(title: LocaleKeys.no_tasks),
               ),
             );
           },
