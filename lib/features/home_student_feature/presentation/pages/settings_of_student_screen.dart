@@ -13,7 +13,7 @@ class SettingsOfStudentScreen extends StatelessWidget {
         centerTitle: true,
       ),
       body: Container(
-        height: size.height * 50,
+        height: size.height * 0.7,
         margin: const EdgeInsets.symmetric(horizontal: 16),
         padding: const EdgeInsets.all(8),
         decoration: const BoxDecoration(
