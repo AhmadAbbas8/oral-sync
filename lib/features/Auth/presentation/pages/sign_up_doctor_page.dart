@@ -13,7 +13,7 @@ import 'package:oralsync/features/Auth/domain/use_cases/login_use_case.dart';
 
 import 'package:oralsync/features/Auth/presentation/manager/doctor_sign_up_cubit/doctor_sign_up_cubit.dart';
 
-import 'package:oralsync/features/home_fearure/presentation/pages/home_page.dart';
+import 'package:oralsync/features/home_feature/presentation/pages/home_page.dart';
 import 'package:oralsync/features/Auth/presentation/widgets/custom_login_button_widget.dart';
 import 'package:oralsync/features/Auth/presentation/widgets/custom_text_form_field_login.dart';
 import 'package:oralsync/features/Auth/presentation/widgets/custom_tow_form_field_widget.dart';
@@ -95,7 +95,7 @@ class _SignUpDoctorStudentPageState extends State<SignUpDoctorPage> {
                           const SizedBox(height: 20),
                           CustomTwoFormFieldWidget(
                             fTitle: LocaleKeys.first_name,
-                            sTitle:LocaleKeys.last_name,
+                            sTitle: LocaleKeys.last_name,
                             validator1: generalValidator,
                             validator2: generalValidator,
                             textEditingController1: cubit.fNameController,
@@ -143,7 +143,7 @@ class _SignUpDoctorStudentPageState extends State<SignUpDoctorPage> {
                             readOnly: true,
                             textEditingController: cubit.gradDateController,
                             onTap: () => cubit.onTapGradDate(context),
-                            hintText:LocaleKeys.graduation_date,
+                            hintText: LocaleKeys.graduation_date,
                             validator: generalValidator,
                           ),
                           SizeHelper.defSizedBoxField,
@@ -154,8 +154,9 @@ class _SignUpDoctorStudentPageState extends State<SignUpDoctorPage> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(LocaleKeys.gender,
-                                    style: AppStyles.styleSize14
-                                        .copyWith(fontWeight: FontWeight.w500)).tr(),
+                                        style: AppStyles.styleSize14.copyWith(
+                                            fontWeight: FontWeight.w500))
+                                    .tr(),
                                 Row(
                                   children: [
                                     SizedBox(
@@ -219,8 +220,8 @@ class _SignUpDoctorStudentPageState extends State<SignUpDoctorPage> {
                             ),
                           ),
                           CustomTwoFormFieldWidget(
-                            fTitle:LocaleKeys.governorate,
-                            sTitle:LocaleKeys.city,
+                            fTitle: LocaleKeys.governorate,
+                            sTitle: LocaleKeys.city,
                             textEditingController1:
                                 cubit.governorateClinicController,
                             textEditingController2: cubit.cityController,
@@ -230,7 +231,7 @@ class _SignUpDoctorStudentPageState extends State<SignUpDoctorPage> {
                           SizeHelper.defSizedBoxField,
                           CustomTwoFormFieldWidget(
                             fTitle: LocaleKeys.street,
-                            sTitle:LocaleKeys.building,
+                            sTitle: LocaleKeys.building,
                             textEditingController2: cubit.buildingController,
                             textEditingController1: cubit.streetController,
                             validator1: generalValidator,
@@ -238,8 +239,8 @@ class _SignUpDoctorStudentPageState extends State<SignUpDoctorPage> {
                           ),
                           SizeHelper.defSizedBoxField,
                           CustomTwoFormFieldWidget(
-                            fTitle:LocaleKeys.floor,
-                            sTitle:'other',
+                            fTitle: LocaleKeys.floor,
+                            sTitle: 'other',
                             textEditingController2: cubit.floorController,
                             textEditingController1: cubit.otherController,
                             validator1: generalValidator,
@@ -250,7 +251,7 @@ class _SignUpDoctorStudentPageState extends State<SignUpDoctorPage> {
                             width: size.width * .8,
                             textInputType: TextInputType.phone,
                             textEditingController: cubit.clinicPhoneController,
-                            hintText:LocaleKeys.clinic_phone,
+                            hintText: LocaleKeys.clinic_phone,
                             validator: generalValidator,
                           ),
                           SizeHelper.defSizedBoxField,
@@ -280,7 +281,8 @@ class _SignUpDoctorStudentPageState extends State<SignUpDoctorPage> {
                                   }
                                 } else {
                                   showCustomSnackBar(context,
-                                      msg: LocaleKeys.please_select_your_gender);
+                                      msg:
+                                          LocaleKeys.please_select_your_gender);
                                 }
                               },
                             ),
