@@ -7,4 +7,6 @@ abstract class AssetsManager {
   static const signUpHeader = '$_authImagePath/sign_up_header.png';
   static const noTasksSVG = '$_assetsBase$_student/images/no_tasks_svg.svg';
   static const test = '$_assetsBase$_student/images/test.png';
+  static const likeIconNotification = '$_assetsBase$_student/like_icon_notifications.svg';
+  static const commentIconNotification = '$_assetsBase$_student/comment_icon_notifications.svg';
 }

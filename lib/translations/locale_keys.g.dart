@@ -67,5 +67,7 @@ abstract class  LocaleKeys {
   static const please_complete_required_data_firstly = 'please_complete_required_data_firstly';
   static const language = 'language';
   static const image_profile_changed_successfully = 'image_profile_changed_successfully';
+  static const notifications = 'notifications';
+  static const there_is_no_any_notifications = 'there_is_no_any_notifications';
 
 }

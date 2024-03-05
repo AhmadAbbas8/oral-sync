@@ -67,5 +67,7 @@
   "invalid_phone_number": "Invalid phone number",
   "please_complete_required_data_firstly": "please complete required data firstly ⚠",
   "language": "Language",
-  "image_profile_changed_successfully": "Images profile changed successfully ✅"
+  "image_profile_changed_successfully": "Images profile changed successfully ✅",
+  "notifications": "Notifications",
+  "there_is_no_any_notifications": "There is no any Notifications !"
 }
