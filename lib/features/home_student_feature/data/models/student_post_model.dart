@@ -1,3 +1,5 @@
+import 'package:oralsync/features/home_student_feature/data/models/comment_model.dart';
+
 class StudentPostModel {
   StudentPostModel({
     this.postId,
@@ -9,8 +11,9 @@ class StudentPostModel {
     this.timeUpdated,
     this.userId,
     this.comments,
-    this.likes,
-    this.image,});
+    this.likeCount,
+    this.image,
+  });
 
   StudentPostModel.fromJson(dynamic json) {
     postId = json['postId'];
@@ -21,15 +24,21 @@ class StudentPostModel {
     timeCreated = json['timeCreated'];
     timeUpdated = json['timeUpdated'];
     userId = json['userId'];
-    comments = json['comments'];
-    likes = json['likes'];
+    likeCount = json['likeCount'];
     if (json['image'] != null) {
       image = [];
       json['image'].forEach((v) {
         image?.add(v);
       });
     }
+    if (json['comments'] != null) {
+      comments = [];
+      json['comments'].forEach((v) {
+        comments?.add(CommentModel.fromJson(v));
+      });
+    }
   }
+
   num? postId;
   String? title;
   String? content;
@@ -38,8 +47,8 @@ class StudentPostModel {
   String? timeCreated;
   String? timeUpdated;
   String? userId;
-  dynamic comments;
-  dynamic likes;
+  List<CommentModel>? comments;
+  num? likeCount;
   List<String>? image;
 
   Map<String, dynamic> toJson() {
@@ -52,12 +61,14 @@ class StudentPostModel {
     map['timeCreated'] = timeCreated;
     map['timeUpdated'] = timeUpdated;
     map['userId'] = userId;
-    map['comments'] = comments;
-    map['likes'] = likes;
+
+    map['likeCount'] = likeCount;
     if (image != null) {
       map['image'] = image;
     }
+    if (comments != null) {
+      map['comments'] = comments;
+    }
     return map;
   }
-
 }

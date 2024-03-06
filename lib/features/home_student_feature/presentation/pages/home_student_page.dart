@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:intl/intl.dart';
+import 'package:oralsync/core/helpers/extensions/navigation_extensions.dart';
 import 'package:oralsync/core/helpers/snackbars.dart';
 import 'package:oralsync/core/service_locator/service_locator.dart';
 import 'package:oralsync/features/home_student_feature/presentation/manager/home_student_cubit/home_student_cubit.dart';
@@ -11,6 +12,7 @@ import '../../../../core/helpers/check_language.dart';
 import '../../../../core/utils/colors_palette.dart';
 import '../../../../translations/locale_keys.g.dart';
 import '../widgets/post_item_widget.dart';
+import 'post_details_page.dart';
 
 class HomeStudentPage extends StatelessWidget {
   static const routeName = '/homeStudentPage';
@@ -20,9 +22,10 @@ class HomeStudentPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) =>
-          HomeStudentCubit(getAllPostsStudentUseCase: ServiceLocator.instance())
-            ..getAllPosts(),
+      create: (context) => HomeStudentCubit(
+          getAllPostsStudentUseCase: ServiceLocator.instance(),
+          doCommentUseCase: ServiceLocator.instance())
+        ..getAllPosts(),
       child: Scaffold(
         body: BlocConsumer<HomeStudentCubit, HomeStudentState>(
           listener: (context, state) {
@@ -58,8 +61,14 @@ class HomeStudentPage extends StatelessWidget {
                             itemBuilder: (context, index) => PostItemWidget(
                               profileURL: cubit.studentModel.profileImage ?? '',
                               caption: cubit.posts[index].content ?? '',
-                              commentsCount: 5,
-                              likesCount: 5,
+                              commentsCount:
+                                  cubit.posts[index].comments?.length ?? 0,
+                              likesCount:
+                                  cubit.posts[index].likeCount?.toInt() ?? 0,
+                              onTaComment: () => context.pushNamed(
+                                PostDetailsPage.routeName,
+                                arguments: [cubit, index],
+                              ),
                               postDate: DateFormat("MMM dd, yyyy").format(
                                   DateFormat("yyyy/MM/dd").parse(
                                       cubit.posts[index].dateCreated ??

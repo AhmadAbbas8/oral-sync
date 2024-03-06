@@ -1,7 +1,6 @@
 name: oralsync
 description: "A new Flutter project."
-publish_to: 'none' # Remove this line if you wish to publish to pub.dev
-
+publish_to: 'none'
 version: 1.0.0+1
 
 environment:
@@ -27,7 +26,7 @@ dependencies:
   intl: ^0.18.1
   flutter_lazy_indexed_stack: ^0.0.6
   font_awesome_flutter: ^10.7.0
-  google_fonts: ^6.1.0
+  google_fonts: ^4.0.0
   easy_image_viewer: ^1.4.1
   image_picker: ^1.0.7
   cached_network_image: ^3.3.1
@@ -41,22 +40,13 @@ dev_dependencies:
 
  
   flutter_lints: ^2.0.0
-
-
 flutter:
-
-
   uses-material-design: true
-
-  # To add assets to your application, add an assets section, like this:
   assets:
     - assets/auth/images/
     - assets/translations/
     - assets/student/images/
     - assets/student/
-    #   - images/a_dot_ham.jpeg
-
-  # An image asset can refer to one or more resolution-specific "variants", see
 
   fonts:
     - family: IconBroken

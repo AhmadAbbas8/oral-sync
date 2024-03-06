@@ -9,6 +9,15 @@ abstract class HomeStudentState extends Equatable {
 
 class HomeStudentInitial extends HomeStudentState {}
 
+class DoCommentLoading extends HomeStudentState {}
+class DoCommentError extends HomeStudentState {
+  final ResponseModel model;
+
+  const DoCommentError({required this.model});
+  @override
+  List<Object> get props => [model];
+}
+class DoCommentSuccess extends HomeStudentState {}
 class GetAllPostsLoading extends HomeStudentState {}
 
 class GetAllPostsError extends HomeStudentState {

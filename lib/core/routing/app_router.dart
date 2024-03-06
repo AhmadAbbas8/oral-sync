@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:oralsync/features/home_feature/presentation/pages/home_page.dart';
-import 'package:oralsync/features/Auth/presentation/pages/login_page.dart';
-import 'package:oralsync/features/Auth/presentation/pages/sign_up_doctor_page.dart';
-import 'package:oralsync/features/Auth/presentation/pages/sign_up_options_page.dart';
-import 'package:oralsync/features/Auth/presentation/pages/sign_up_patient_page.dart';
-import 'package:oralsync/features/Auth/presentation/pages/sign_up_student_page.dart';
-import 'package:oralsync/features/home_student_feature/presentation/pages/create_post_page.dart';
-import 'package:oralsync/features/home_student_feature/presentation/pages/edit_profile_page.dart';
-import 'package:oralsync/features/home_student_feature/presentation/pages/home_student_page.dart';
-import 'package:oralsync/features/home_student_feature/presentation/pages/profile_student_page.dart';
-import 'package:oralsync/features/home_student_feature/presentation/pages/settings_of_student_screen.dart';
 
+import '../../features/Auth/presentation/pages/login_page.dart';
+import '../../features/Auth/presentation/pages/sign_up_doctor_page.dart';
+import '../../features/Auth/presentation/pages/sign_up_options_page.dart';
+import '../../features/Auth/presentation/pages/sign_up_patient_page.dart';
+import '../../features/Auth/presentation/pages/sign_up_student_page.dart';
+import '../../features/home_feature/presentation/pages/home_page.dart';
+import '../../features/home_student_feature/presentation/pages/create_post_page.dart';
+import '../../features/home_student_feature/presentation/pages/edit_profile_page.dart';
+import '../../features/home_student_feature/presentation/pages/home_student_page.dart';
 import '../../features/home_student_feature/presentation/pages/notification_page.dart';
+import '../../features/home_student_feature/presentation/pages/post_details_page.dart';
+import '../../features/home_student_feature/presentation/pages/profile_student_page.dart';
+import '../../features/home_student_feature/presentation/pages/settings_of_student_screen.dart';
 import '../../features/home_student_feature/presentation/pages/student_home_layout_page.dart';
 
 class AppRouter {
@@ -34,5 +35,6 @@ class AppRouter {
     SettingsOfStudentScreen.routeName: (context) =>
         const SettingsOfStudentScreen(),
     NotificationPage.routeName: (context) => const NotificationPage(),
+    PostDetailsPage.routeName: (context) => const PostDetailsPage(),
   };
 }

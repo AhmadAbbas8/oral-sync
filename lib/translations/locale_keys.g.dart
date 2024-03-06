@@ -69,5 +69,8 @@ abstract class  LocaleKeys {
   static const image_profile_changed_successfully = 'image_profile_changed_successfully';
   static const notifications = 'notifications';
   static const there_is_no_any_notifications = 'there_is_no_any_notifications';
+  static const details = 'details';
+  static const write_comment = 'write_comment';
+  static const no_comments = 'no_comments';
 
 }
