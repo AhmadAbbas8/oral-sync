@@ -42,4 +42,5 @@ class HomeStudentCubit extends Cubit<HomeStudentState> {
       },
     );
   }
+
 }

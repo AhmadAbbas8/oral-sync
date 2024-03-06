@@ -58,8 +58,8 @@ class HomeStudentPage extends StatelessWidget {
                             itemBuilder: (context, index) => PostItemWidget(
                               profileURL: cubit.studentModel.profileImage ?? '',
                               caption: cubit.posts[index].content ?? '',
-                              commentsCount: 5,
-                              likesCount: 5,
+                              commentsCount:  cubit.posts[index].comments?.length??0,
+                              likesCount: cubit.posts[index].likeCount?.toInt()??0,
                               postDate: DateFormat("MMM dd, yyyy").format(
                                   DateFormat("yyyy/MM/dd").parse(
                                       cubit.posts[index].dateCreated ??
