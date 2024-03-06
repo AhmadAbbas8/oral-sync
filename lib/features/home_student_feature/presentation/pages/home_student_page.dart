@@ -66,9 +66,9 @@ class HomeStudentPage extends StatelessWidget {
                               likesCount:
                                   cubit.posts[index].likeCount?.toInt() ?? 0,
                               onTaComment: () => context.pushNamed(
-                                  PostDetailsPage.routeName,
-
-                                  arguments: cubit.posts[index],),
+                                PostDetailsPage.routeName,
+                                arguments: [cubit, index],
+                              ),
                               postDate: DateFormat("MMM dd, yyyy").format(
                                   DateFormat("yyyy/MM/dd").parse(
                                       cubit.posts[index].dateCreated ??

@@ -83,7 +83,11 @@ class CodegenLoader extends AssetLoader{
   "invalid_phone_number": "رقم هاتف غير صحيح",
   "please_complete_required_data_firstly": "من فضلك ادخل البيانات المطلوبة اولا ⚠",
   "language": "اللغة",
-  "image_profile_changed_successfully": "تم تغيير الصورة الشخصية بنجاح ✅"
+  "image_profile_changed_successfully": "تم تغيير الصورة الشخصية بنجاح ✅",
+  "notifications": "الاشعارات",
+  "there_is_no_any_notifications": "لا توجد اى اشعارات !",
+  "details": "تفاصيل",
+  "write_comment": "اكتب تعليقا . . ."
 };
 static const Map<String,dynamic> en = {
   "hello": "Hello",
@@ -154,7 +158,11 @@ static const Map<String,dynamic> en = {
   "invalid_phone_number": "Invalid phone number",
   "please_complete_required_data_firstly": "please complete required data firstly ⚠",
   "language": "Language",
-  "image_profile_changed_successfully": "Images profile changed successfully ✅"
+  "image_profile_changed_successfully": "Images profile changed successfully ✅",
+  "notifications": "Notifications",
+  "there_is_no_any_notifications": "There is no any Notifications !",
+  "details": "Details",
+  "write_comment": "Write comment  . . ."
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"ar": ar, "en": en};
 }

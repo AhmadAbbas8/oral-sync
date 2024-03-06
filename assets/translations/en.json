@@ -69,5 +69,8 @@
   "language": "Language",
   "image_profile_changed_successfully": "Images profile changed successfully ✅",
   "notifications": "Notifications",
-  "there_is_no_any_notifications": "There is no any Notifications !"
+  "there_is_no_any_notifications": "There is no any Notifications !",
+  "details": "Details",
+  "write_comment": "Write comment  . . .",
+  "no_comments": "No Comments "
 }
