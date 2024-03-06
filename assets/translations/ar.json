@@ -69,5 +69,8 @@
   "language": "اللغة",
   "image_profile_changed_successfully": "تم تغيير الصورة الشخصية بنجاح ✅",
   "notifications": "الاشعارات",
-  "there_is_no_any_notifications": "لا توجد اى اشعارات !"
+  "there_is_no_any_notifications": "لا توجد اى اشعارات !",
+  "details": "تفاصيل",
+  "write_comment": "اكتب تعليقا . . .",
+  "no_comments": "لا توجد تعليقات "
 }
