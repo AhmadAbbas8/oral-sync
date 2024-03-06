@@ -15,11 +15,12 @@ class AuthLocalDataSourceImpl extends AuthLocalDataSource {
       await cacheStorage.setData(key: SharedPrefsKeys.token, value: token);
 
   @override
-  Future<bool> cacheUser({required UserModel userModel}) async =>
-      await cacheStorage.setData(
-          key: SharedPrefsKeys.user, value: json.encode(userModel.toJson()));
+  Future<bool> cacheUser({required UserModel userModel}) async {
+    await cacheStorage.removeData(key: SharedPrefsKeys.user);
+   return await cacheStorage.setData(
+        key: SharedPrefsKeys.user, value: json.encode(userModel.toJson()));
+  }
 
   @override
-  Future<bool> logout() async =>
-      await cacheStorage.removeAllData();
+  Future<bool> logout() async => await cacheStorage.removeAllData();
 }

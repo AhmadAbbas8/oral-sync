@@ -11,6 +11,10 @@ abstract class EditProfileRemoteDataSource {
     required String endPoint,
   });
 
+  Future<UserModel> updateImageProfile({
+    required Map<String, dynamic> data,
+  });
+
   Future<UserModel> getUserData();
 }
 
@@ -53,6 +57,35 @@ class EditProfileRemoteDataSourceIml implements EditProfileRemoteDataSource {
       if (response.statusCode == 200) {
         UserModel model = UserModel.fromJson(response.data);
         return model;
+      } else {
+        throw ServerException(
+            errorModel: ResponseModel.fromJson(response.data));
+      }
+    } on DioException catch (ex) {
+      throw ServerException(
+          errorModel: ResponseModel.fromJson(ex.response?.data));
+    }
+  }
+
+  @override
+  Future<UserModel> updateImageProfile({
+    required Map<String, dynamic> data,
+  }) async {
+    try {
+      Response response = await _apiConsumer.put(
+        EndPoints.updateProfileImageEndPoint,
+        data: data,
+        isFromData: true,
+      );
+      if (response.statusCode == 200) {
+        try {
+          var userData = await getUserData();
+          return userData;
+        } catch (e) {
+          throw ServerException(
+              errorModel: ResponseModel(
+                  messageEn: 'Server Error', messageAr: 'مشكلة فى السيرفر'));
+        }
       } else {
         throw ServerException(
             errorModel: ResponseModel.fromJson(response.data));

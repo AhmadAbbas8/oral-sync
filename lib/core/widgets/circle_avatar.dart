@@ -1,14 +1,38 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:oralsync/core/utils/colors_palette.dart';
+import 'package:oralsync/core/utils/icon_broken.dart';
 
-class CircleAvatarWidget extends StatelessWidget {
-  const CircleAvatarWidget({super.key});
+class ImageProfileWidget extends StatelessWidget {
+  const ImageProfileWidget({
+    super.key,
+    required this.imageProfile,
+    this.onPressed,
+  });
+
+  final String imageProfile;
+  final void Function()? onPressed;
 
   @override
   Widget build(BuildContext context) {
-    return const CircleAvatar(
-      backgroundImage:
-          AssetImage('assets/student/images/IMG-20180709-WA0006.jpg'),
-      maxRadius: 50,
+    return Stack(
+      children: [
+        CircleAvatar(
+          backgroundImage: CachedNetworkImageProvider(imageProfile),
+          maxRadius: 50,
+        ),
+        Positioned(
+          top: 65,
+          left: 60,
+          child: IconButton(
+            onPressed: onPressed,
+            icon: Icon(
+              IconBroken.Camera,
+              color: ColorsPalette.buttonLoginColor,
+            ),
+          ),
+        ),
+      ],
     );
   }
 }

@@ -3,12 +3,12 @@ import "package:flutter/material.dart";
 import "package:flutter_svg/flutter_svg.dart";
 import "package:google_fonts/google_fonts.dart";
 import "package:oralsync/core/utils/assets_manager.dart";
-import "package:oralsync/translations/locale_keys.g.dart";
 
 class NoTaskWidget extends StatelessWidget {
   const NoTaskWidget({
-    super.key,
+    super.key, required this.title,
   });
+  final String  title ;
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +20,7 @@ class NoTaskWidget extends StatelessWidget {
           fit: BoxFit.scaleDown,
         ),
         Text(
-          LocaleKeys.no_tasks,
+         title,
           style: GoogleFonts.acme(),
         ).tr(),
       ],

@@ -8,8 +8,6 @@ import 'package:oralsync/core/helpers/custom_progress_indicator.dart';
 import 'package:oralsync/core/helpers/extensions/navigation_extensions.dart';
 import 'package:oralsync/core/helpers/general_validators.dart';
 import 'package:oralsync/core/helpers/snackbars.dart';
-import 'package:oralsync/core/service_locator/service_locator.dart';
-import 'package:oralsync/core/shared_data_layer/edit_profile_data_layer/edit_repo.dart';
 import 'package:oralsync/core/utils/colors_palette.dart';
 
 import 'package:oralsync/core/utils/size_helper.dart';
@@ -20,7 +18,6 @@ import 'package:oralsync/features/Auth/presentation/widgets/custom_tow_form_fiel
 import 'package:oralsync/features/home_student_feature/presentation/manager/student_edit_profile_cubit/student_edit_profile_cubit.dart';
 import 'package:oralsync/translations/locale_keys.g.dart';
 
-import '../../../../core/cache_helper/cache_storage.dart';
 import '../../../../core/helpers/reg_ex.dart';
 
 class EditProfilePage extends StatelessWidget {
@@ -30,13 +27,16 @@ class EditProfilePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final StudentEditProfileCubit passedCubit =
+        ModalRoute.of(context)!.settings.arguments as StudentEditProfileCubit;
     List<String> type = ['male', 'female'];
     var size = MediaQuery.sizeOf(context);
-    return BlocProvider(
-      create: (context) => StudentEditProfileCubit(
-          editProfileRepo: ServiceLocator.instance<EditProfileRepo>(),
-          cacheStorage: ServiceLocator.instance<CacheStorage>())
-        ..onOpenEditPage(),
+    return BlocProvider.value(
+      // create: (context) => StudentEditProfileCubit(
+      //     editProfileRepo: ServiceLocator.instance<EditProfileRepo>(),
+      //     cacheStorage: ServiceLocator.instance<CacheStorage>())
+      //   ..onOpenEditPage(),
+      value: passedCubit..onOpenEditPage(),
       child: BlocConsumer<StudentEditProfileCubit, StudentEditProfileState>(
         listener: (context, state) {
           if (state is UpdateStudentDataLoading) {
