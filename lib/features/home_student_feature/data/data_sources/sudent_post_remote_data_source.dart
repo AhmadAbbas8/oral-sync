@@ -17,6 +17,8 @@ abstract class StudentPostRemoteDataSource {
   Future<StudentPostModel> getPostByID({
     required int id,
   });
+
+  Future<ResponseModel> doComment(int postId, Map<String, dynamic> data);
 }
 
 class StudentPostRemoteDataSourceImpl implements StudentPostRemoteDataSource {
@@ -81,5 +83,23 @@ class StudentPostRemoteDataSourceImpl implements StudentPostRemoteDataSource {
   Future<StudentPostModel> getPostByID({required int id}) {
     // TODO: implement getPostByID
     throw UnimplementedError();
+  }
+
+  @override
+  Future<ResponseModel> doComment(int postId, Map<String, dynamic> data) async {
+    try {
+      Response response =
+          await apiConsumer.post(EndPoints.addCommentEndPoint, data: data);
+      if (response.statusCode == 200) {
+        return ResponseModel.fromJson(response.data);
+      } else {
+        throw ServerException(
+            errorModel: ResponseModel(
+                messageEn: 'Server Error', messageAr: 'خطأ فى السيرفر'));
+      }
+    } on DioException catch (e) {
+      throw ServerException(
+          errorModel: ResponseModel.fromJson(e.response?.data));
+    }
   }
 }

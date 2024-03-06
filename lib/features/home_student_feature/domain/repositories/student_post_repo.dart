@@ -6,8 +6,6 @@ import 'package:oralsync/core/error/failure.dart';
 
 import '../../data/models/Student_post_model.dart';
 
-
-
 abstract class StudentPostRepo {
   Future<Either<Failure, ResponseModel>> createPost({
     required String content,
@@ -18,5 +16,10 @@ abstract class StudentPostRepo {
 
   Future<Either<Failure, StudentPostModel>> getPostByID({
     required int id,
+  });
+
+  Future<Either<Failure, ResponseModel>> doComment({
+    required int postId,
+    required Map<String, dynamic> data,
   });
 }
