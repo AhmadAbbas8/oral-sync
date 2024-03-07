@@ -11,15 +11,16 @@ import '../manager/home_student_cubit/home_student_cubit.dart';
 import '../widgets/comment_form_field.dart';
 
 class PostDetailsPage extends StatelessWidget {
-  const PostDetailsPage({super.key});
+  const PostDetailsPage({super.key, required this.cubit, required this.index});
 
   static const String routeName = '/PostDetailsPage';
-
+final HomeStudentCubit cubit;
+final int index;
   @override
   Widget build(BuildContext context) {
-    var args = ModalRoute.of(context)!.settings.arguments as List;
-    var cubit = args[0] as HomeStudentCubit;
-    var index = args[1] as int;
+    // var args = ModalRoute.of(context)!.settings.arguments as List;
+    // var cubit = args[0] as HomeStudentCubit;
+    // var index = args[1] as int;
     return BlocProvider.value(
       value: cubit,
       child: Scaffold(

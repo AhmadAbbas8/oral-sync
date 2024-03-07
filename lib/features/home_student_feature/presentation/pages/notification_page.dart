@@ -6,7 +6,7 @@ import 'package:oralsync/translations/locale_keys.g.dart';
 import '../widgets/notification_page_body.dart';
 
 class NotificationPage extends StatelessWidget {
-  static String routeName = '/notificationPage';
+  static const String routeName = '/notificationPage';
 
   const NotificationPage({super.key});
 

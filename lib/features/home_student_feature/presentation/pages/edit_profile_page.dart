@@ -22,13 +22,11 @@ import '../../../../core/helpers/reg_ex.dart';
 
 class EditProfilePage extends StatelessWidget {
   static const routeName = '/editProfilePage';
-
-  const EditProfilePage({super.key});
+  final StudentEditProfileCubit passedCubit;
+  const EditProfilePage({super.key, required this.passedCubit});
 
   @override
   Widget build(BuildContext context) {
-    final StudentEditProfileCubit passedCubit =
-        ModalRoute.of(context)!.settings.arguments as StudentEditProfileCubit;
     List<String> type = ['male', 'female'];
     var size = MediaQuery.sizeOf(context);
     return BlocProvider.value(

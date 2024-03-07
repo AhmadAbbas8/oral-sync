@@ -74,7 +74,6 @@ class _OralSyncAppState extends State<OralSyncApp> {
             showSelectedLabels: true,
             showUnselectedLabels: true,
           ),
-
           drawerTheme: DrawerThemeData(
             elevation: 0,
             shape: const RoundedRectangleBorder(
@@ -87,7 +86,9 @@ class _OralSyncAppState extends State<OralSyncApp> {
         ),
         initialRoute: initialRoute,
         navigatorKey: AppRouter.navigatorKey,
-        routes: AppRouter.routes,
+        // routes: AppRouter.routes,
+        onGenerateRoute: AppRouter.generateRoute,
+        title: 'Oral Sync',
       ),
     );
   }
