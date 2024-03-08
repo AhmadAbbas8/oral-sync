@@ -25,6 +25,7 @@ import 'package:oralsync/features/home_student_feature/data/repositories/actions
 import 'package:oralsync/features/home_student_feature/data/repositories/student_post_repo_impl.dart';
 import 'package:oralsync/features/home_student_feature/domain/repositories/actions_repo.dart';
 import 'package:oralsync/features/home_student_feature/domain/repositories/student_post_repo.dart';
+import 'package:oralsync/features/home_student_feature/domain/use_cases/archive_and_unarchive_post_use_case.dart';
 import 'package:oralsync/features/home_student_feature/domain/use_cases/create_post_use_case.dart';
 import 'package:oralsync/features/home_student_feature/domain/use_cases/do_comment_use_case.dart';
 import 'package:oralsync/features/home_student_feature/domain/use_cases/get_all_posts_use_case.dart';
@@ -98,5 +99,7 @@ class ServiceLocator {
         () => GetNotificationsUseCase(actionsRepo: instance()));
     instance.registerLazySingleton<DoCommentUseCase>(
         () => DoCommentUseCase(postRepo: instance()));
+    instance.registerLazySingleton<ArchiveAndUnArchivePostUseCase>(
+        () => ArchiveAndUnArchivePostUseCase(postRepo: instance()));
   }
 }

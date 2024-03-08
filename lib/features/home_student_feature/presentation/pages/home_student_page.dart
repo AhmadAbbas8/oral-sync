@@ -4,13 +4,14 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:intl/intl.dart';
 import 'package:oralsync/core/helpers/extensions/navigation_extensions.dart';
-import 'package:oralsync/core/helpers/snackbars.dart';
-import 'package:oralsync/core/service_locator/service_locator.dart';
-import 'package:oralsync/features/home_student_feature/presentation/manager/home_student_cubit/home_student_cubit.dart';
-import 'package:oralsync/features/home_student_feature/presentation/widgets/no_task_widget.dart';
+
 import '../../../../core/helpers/check_language.dart';
+import '../../../../core/helpers/snackbars.dart';
+import '../../../../core/service_locator/service_locator.dart';
 import '../../../../core/utils/colors_palette.dart';
 import '../../../../translations/locale_keys.g.dart';
+import '../manager/home_student_cubit/home_student_cubit.dart';
+import '../widgets/no_task_widget.dart';
 import '../widgets/post_item_widget.dart';
 import 'post_details_page.dart';
 
@@ -23,21 +24,14 @@ class HomeStudentPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => HomeStudentCubit(
-          getAllPostsStudentUseCase: ServiceLocator.instance(),
-          doCommentUseCase: ServiceLocator.instance())
-        ..getAllPosts(),
+        getAllPostsStudentUseCase: ServiceLocator.instance(),
+        doCommentUseCase: ServiceLocator.instance(),
+        archiveAndUnArchivePostUseCase: ServiceLocator.instance(),
+      )..getAllPosts(),
       child: Scaffold(
         body: BlocConsumer<HomeStudentCubit, HomeStudentState>(
           listener: (context, state) {
-            if (state is GetAllPostsError) {
-              showCustomSnackBar(
-                context,
-                msg: isArabic(context)
-                    ? state.responseModel?.messageAr ?? ''
-                    : state.responseModel?.messageEn ?? '',
-                backgroundColor: ColorsPalette.errorColor,
-              );
-            }
+            _stateHandler(state, context);
           },
           buildWhen: (previous, current) => current != previous,
           listenWhen: (previous, current) => current != previous,
@@ -58,7 +52,7 @@ class HomeStudentPage extends StatelessWidget {
                               indent: 20.w,
                             ),
                             itemCount: cubit.posts.length,
-                            itemBuilder: (context, index) => PostItemWidget(
+                            itemBuilder: (_, index) => PostItemWidget(
                               profileURL: cubit.studentModel.profileImage ?? '',
                               caption: cubit.posts[index].content ?? '',
                               commentsCount:
@@ -74,6 +68,9 @@ class HomeStudentPage extends StatelessWidget {
                                       cubit.posts[index].dateCreated ??
                                           '2001/08/01')),
                               images: cubit.posts[index].image ?? [],
+                              onPressedArchive: () =>
+                                  cubit.archiveAndUnArchivePost(
+                                      cubit.posts[index].postId ?? 0),
                               userName:
                                   '${cubit.studentModel.userDetails?.firstName} ${cubit.studentModel.userDetails?.lastName}',
                             ),
@@ -85,5 +82,35 @@ class HomeStudentPage extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  void _stateHandler(HomeStudentState state, BuildContext context) {
+    if (state is GetAllPostsError) {
+      showCustomSnackBar(
+        context,
+        msg: isArabic(context)
+            ? state.responseModel?.messageAr ?? ''
+            : state.responseModel?.messageEn ?? '',
+        backgroundColor: ColorsPalette.errorColor,
+      );
+    }
+    if (state is ArchiveUnArchivePostSuccess) {
+      showCustomSnackBar(
+        context,
+        msg: isArabic(context)
+            ? state.model.messageAr ?? ''
+            : state.model.messageEn ?? '',
+        backgroundColor: ColorsPalette.successColor,
+      );
+    }
+    if (state is ArchiveUnArchivePostError) {
+      showCustomSnackBar(
+        context,
+        msg: isArabic(context)
+            ? state.model.messageAr ?? ''
+            : state.model.messageEn ?? '',
+        backgroundColor: ColorsPalette.successColor,
+      );
+    }
   }
 }

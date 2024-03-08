@@ -18,4 +18,5 @@ abstract class EndPoints {
   static const updateProfileImageEndPoint = 'updateProfileImage';
   static const notificationsEndPoint = 'Notifications';
   static const addCommentEndPoint = 'AddComment';
+  static const changePostStatusEndPoint = 'ChangePostStatus';
 }

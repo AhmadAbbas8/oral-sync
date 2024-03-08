@@ -19,7 +19,7 @@ class PostItemWidget extends StatelessWidget {
     required this.commentsCount,
     this.onTaLike,
     this.onTaComment,
-    this.onPressedEdit,
+    this.onPressedArchive,
     required this.profileURL,
   });
 
@@ -32,7 +32,7 @@ class PostItemWidget extends StatelessWidget {
   final String profileURL;
   final Function()? onTaLike;
   final Function()? onTaComment;
-  final Function()? onPressedEdit;
+  final Function()? onPressedArchive;
 
   @override
   Widget build(BuildContext context) {
@@ -55,8 +55,8 @@ class PostItemWidget extends StatelessWidget {
             ),
             subtitle: Text(postDate),
             trailing: IconButton(
-              icon: const Icon(IconBroken.Edit),
-              onPressed: onPressedEdit,
+              icon: const Icon(IconBroken.Arrow___Down_Square),
+              onPressed: onPressedArchive,
             ),
           ),
           SelectableText(caption),
@@ -83,14 +83,6 @@ class PostItemWidget extends StatelessWidget {
                       useSafeArea: true,
                     );
                   },
-                  // child: CachedNetworkImage(
-                  //   imageUrl: images[index],
-                  //   fit: BoxFit.contain,
-                  //   placeholder: (context, url) =>
-                  //       const Center(child: CircularProgressIndicator()),
-                  //   errorWidget: (context, url, error) =>
-                  //       const Icon(Icons.error),
-                  // ),
                   child: FancyShimmerImage(
                     imageUrl: images[index],
                     boxFit: BoxFit.cover,

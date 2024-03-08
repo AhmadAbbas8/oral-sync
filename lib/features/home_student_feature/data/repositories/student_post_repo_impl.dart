@@ -83,4 +83,19 @@ class StudentPostRepoImpl implements StudentPostRepo {
       return Left(OfflineFailure());
     }
   }
+
+  @override
+  Future<Either<Failure, ResponseModel>> archiveAndUnarchivePost({required int postId})async {
+    if (await networkInfo.isConnected) {
+      try {
+        var model = await studentPostRemoteDataSource.archiveAndUnarchivePost(id: postId);
+
+        return Right(model);
+      } on ServerException catch (ex) {
+        return Left(ServerFailure(errorModel: ex.errorModel));
+      }
+    } else {
+      return Left(OfflineFailure());
+    }
+  }
 }

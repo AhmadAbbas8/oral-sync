@@ -8,6 +8,22 @@ abstract class HomeStudentState extends Equatable {
 }
 
 class HomeStudentInitial extends HomeStudentState {}
+class ArchiveUnArchivePostLoading extends HomeStudentState {}
+class ArchiveUnArchivePostError extends HomeStudentState {
+  final ResponseModel model ;
+
+  const ArchiveUnArchivePostError({required this.model});
+  @override
+  List<Object> get props => [model];
+}
+class ArchiveUnArchivePostSuccess extends HomeStudentState {
+  final ResponseModel model;
+
+  const ArchiveUnArchivePostSuccess({required this.model});
+  @override
+  // TODO: implement props
+  List<Object> get props => [model];
+}
 
 class DoCommentLoading extends HomeStudentState {}
 class DoCommentError extends HomeStudentState {

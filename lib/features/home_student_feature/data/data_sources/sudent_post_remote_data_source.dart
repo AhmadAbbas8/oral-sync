@@ -18,6 +18,10 @@ abstract class StudentPostRemoteDataSource {
     required int id,
   });
 
+  Future<ResponseModel> archiveAndUnarchivePost({
+    required int id,
+  });
+
   Future<ResponseModel> doComment(int postId, Map<String, dynamic> data);
 }
 
@@ -91,6 +95,26 @@ class StudentPostRemoteDataSourceImpl implements StudentPostRemoteDataSource {
       Response response =
           await apiConsumer.post(EndPoints.addCommentEndPoint, data: data);
       if (response.statusCode == 200) {
+        return ResponseModel.fromJson(response.data);
+      } else {
+        throw ServerException(
+            errorModel: ResponseModel(
+                messageEn: 'Server Error', messageAr: 'خطأ فى السيرفر'));
+      }
+    } on DioException catch (e) {
+      throw ServerException(
+          errorModel: ResponseModel.fromJson(e.response?.data));
+    }
+  }
+
+  @override
+  Future<ResponseModel> archiveAndUnarchivePost({required int id}) async {
+    try {
+      Response response = await apiConsumer.put(
+        EndPoints.changePostStatusEndPoint,
+        queryParameters: {'postId': id},
+      );
+      if (response.statusCode == 200 || response.statusCode == 404) {
         return ResponseModel.fromJson(response.data);
       } else {
         throw ServerException(
