@@ -7,6 +7,7 @@ import '../../features/Auth/presentation/pages/sign_up_options_page.dart';
 import '../../features/Auth/presentation/pages/sign_up_patient_page.dart';
 import '../../features/Auth/presentation/pages/sign_up_student_page.dart';
 import '../../features/home_feature/presentation/pages/home_page.dart';
+import '../../features/home_student_feature/data/models/Notification_model.dart';
 import '../../features/home_student_feature/presentation/manager/student_edit_profile_cubit/student_edit_profile_cubit.dart';
 import '../../features/home_student_feature/presentation/pages/create_post_page.dart';
 import '../../features/home_student_feature/presentation/pages/edit_profile_page.dart';
@@ -104,7 +105,9 @@ class AppRouter {
         );
       case NotificationPage.routeName:
         return PageTransition(
-          child: const NotificationPage(),
+          child:  NotificationPage(
+            notifications: arguments as List<NotificationModel>,
+          ),
           type: _generalType,
           curve: _generalCurve,
         );
@@ -145,7 +148,7 @@ class AppRouter {
     // EditProfilePage.routeName: (context) => const EditProfilePage(),
     SettingsOfStudentScreen.routeName: (context) =>
         const SettingsOfStudentScreen(),
-    NotificationPage.routeName: (context) => const NotificationPage(),
+    // NotificationPage.routeName: (context) => const NotificationPage(),
     // PostDetailsPage.routeName: (context) => const PostDetailsPage(),
   };
 }

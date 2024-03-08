@@ -12,6 +12,7 @@ class StudentPostModel {
     this.userId,
     this.comments,
     this.likeCount,
+    this.userName,
     this.image,
   });
 
@@ -19,6 +20,7 @@ class StudentPostModel {
     postId = json['postId'];
     title = json['title'];
     content = json['content'];
+    userName = json['userName'];
     dateCreated = json['dateCreated'];
     dateUpdated = json['dateUpdated'];
     timeCreated = json['timeCreated'];
@@ -47,6 +49,7 @@ class StudentPostModel {
   String? timeCreated;
   String? timeUpdated;
   String? userId;
+  String? userName;
   List<CommentModel>? comments;
   num? likeCount;
   List<String>? image;
@@ -61,6 +64,7 @@ class StudentPostModel {
     map['timeCreated'] = timeCreated;
     map['timeUpdated'] = timeUpdated;
     map['userId'] = userId;
+    map['userName'] = userName;
 
     map['likeCount'] = likeCount;
     if (image != null) {
