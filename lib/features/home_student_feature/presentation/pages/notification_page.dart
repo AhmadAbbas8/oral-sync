@@ -7,13 +7,13 @@ import '../widgets/notification_page_body.dart';
 
 class NotificationPage extends StatelessWidget {
   static const String routeName = '/notificationPage';
-
-  const NotificationPage({super.key});
+final  List<NotificationModel> notifications ;
+  const NotificationPage({super.key, required this.notifications});
 
   @override
   Widget build(BuildContext context) {
-    List<NotificationModel> notifications =
-        ModalRoute.of(context)?.settings.arguments as List<NotificationModel>;
+    // List<NotificationModel> notifications =
+    //     ModalRoute.of(context)?.settings.arguments as List<NotificationModel>;
     return Scaffold(
       appBar: AppBar(
         title: const Text(

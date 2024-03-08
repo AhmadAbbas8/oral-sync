@@ -34,7 +34,7 @@ class StudentCubit extends Cubit<StudentState> {
   List<IconData> bottomNavIcons = const [
     IconBroken.Home,
     IconBroken.Message,
-    Icons.archive_outlined,
+    IconBroken.Arrow___Down_Square,
     IconBroken.Profile,
   ];
   var studentModel = UserModel.fromJson(json.decode(
