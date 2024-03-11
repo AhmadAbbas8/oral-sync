@@ -72,5 +72,8 @@
   "there_is_no_any_notifications": "لا توجد اى اشعارات !",
   "details": "تفاصيل",
   "write_comment": "اكتب تعليقا . . .",
-  "no_comments": "لا توجد تعليقات "
+  "no_comments": "لا توجد تعليقات ",
+  "full_name": "الاسم بالكامل",
+  "message": "الرسالة",
+  "send": "ارسال"
 }

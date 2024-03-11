@@ -72,5 +72,8 @@
   "there_is_no_any_notifications": "There is no any Notifications !",
   "details": "Details",
   "write_comment": "Write comment  . . .",
-  "no_comments": "No Comments "
+  "no_comments": "No Comments ",
+  "full_name": "Full Name",
+  "message": "Message",
+  "send": "Send"
 }

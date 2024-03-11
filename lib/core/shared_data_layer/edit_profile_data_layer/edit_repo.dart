@@ -1,12 +1,13 @@
 import 'package:dartz/dartz.dart';
-import 'package:oralsync/core/error/failure.dart';
-import 'package:oralsync/core/network/network_info.dart';
-import 'package:oralsync/core/shared_data_layer/edit_profile_data_layer/edit_profile_remote_data_source.dart';
-import 'package:oralsync/core/utils/end_points.dart';
-import 'package:oralsync/features/Auth/data/data_sources/auth_local_data_source.dart';
-import 'package:oralsync/features/Auth/data/models/user_model.dart';
 
+
+import '../../../features/Auth/data/data_sources/auth_local_data_source.dart';
+import '../../../features/Auth/data/models/user_model.dart';
 import '../../error/exception.dart';
+import '../../error/failure.dart';
+import '../../network/network_info.dart';
+import '../../utils/end_points.dart';
+import 'edit_profile_remote_data_source.dart';
 
 abstract class EditProfileRepo {
   Future<Either<Failure, Unit>> updateDoctorProfile({

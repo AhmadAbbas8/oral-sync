@@ -9,4 +9,5 @@ abstract class AssetsManager {
   static const test = '$_assetsBase$_student/images/test.png';
   static const likeIconNotification = '$_assetsBase$_student/like_icon_notifications.svg';
   static const commentIconNotification = '$_assetsBase$_student/comment_icon_notifications.svg';
+  static const contactUsImage = '$_assetsBase$_student/images/contact_us.png';
 }

@@ -87,7 +87,10 @@ class CodegenLoader extends AssetLoader{
   "notifications": "الاشعارات",
   "there_is_no_any_notifications": "لا توجد اى اشعارات !",
   "details": "تفاصيل",
-  "write_comment": "اكتب تعليقا . . ."
+  "write_comment": "اكتب تعليقا . . .",
+  "no_comments": "لا توجد تعليقات ",
+  "full_name": "الاسم بالكامل",
+  "message": "الرسالة"
 };
 static const Map<String,dynamic> en = {
   "hello": "Hello",
@@ -162,7 +165,10 @@ static const Map<String,dynamic> en = {
   "notifications": "Notifications",
   "there_is_no_any_notifications": "There is no any Notifications !",
   "details": "Details",
-  "write_comment": "Write comment  . . ."
+  "write_comment": "Write comment  . . .",
+  "no_comments": "No Comments ",
+  "full_name": "Full Name",
+  "message": "Message"
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"ar": ar, "en": en};
 }
