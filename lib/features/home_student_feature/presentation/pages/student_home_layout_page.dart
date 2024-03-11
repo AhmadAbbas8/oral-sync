@@ -37,8 +37,8 @@ class StudentHomeLayoutPage extends StatelessWidget {
             extendBody: true,
             appBar: AppBar(
               title: Text(
-                LocaleKeys.home.tr(),
-              ),
+               cubit.appBarTitles[cubit.currentNavIndex],
+              ).tr(),
               actions: [
                 IconButton(
                   onPressed: () =>

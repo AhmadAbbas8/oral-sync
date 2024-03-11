@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:dartz/dartz.dart';
 
+import '../../../../core/cache_helper/shared_prefs_keys.dart';
 import '../../../../core/error/error_model.dart';
 import '../../../../core/error/exception.dart';
 import '../../../../core/error/failure.dart';
@@ -52,7 +53,8 @@ class StudentPostRepoImpl implements StudentPostRepo {
       }
     } else {
       try {
-        var localPosts = await studentPostLocalDataSource.getCachedPosts();
+        var localPosts = await studentPostLocalDataSource
+            .getCachedPosts(SharedPrefsKeys.studentPostsCached);
         return Right(localPosts);
       } on EmptyCacheException {
         return Left(OfflineFailure());
@@ -85,10 +87,12 @@ class StudentPostRepoImpl implements StudentPostRepo {
   }
 
   @override
-  Future<Either<Failure, ResponseModel>> archiveAndUnarchivePost({required int postId})async {
+  Future<Either<Failure, ResponseModel>> archiveAndUnarchivePost(
+      {required int postId}) async {
     if (await networkInfo.isConnected) {
       try {
-        var model = await studentPostRemoteDataSource.archiveAndUnarchivePost(id: postId);
+        var model = await studentPostRemoteDataSource.archiveAndUnarchivePost(
+            id: postId);
 
         return Right(model);
       } on ServerException catch (ex) {
@@ -96,6 +100,27 @@ class StudentPostRepoImpl implements StudentPostRepo {
       }
     } else {
       return Left(OfflineFailure());
+    }
+  }
+
+  @override
+  Future<Either<Failure, List<StudentPostModel>>> getAllPostsArchived() async {
+    if (await networkInfo.isConnected) {
+      try {
+        var posts = await studentPostRemoteDataSource.getAllPostsArchived();
+        await studentPostLocalDataSource.cachedPostsArchived(posts);
+        return Right(posts.cast<StudentPostModel>());
+      } on ServerException catch (ex) {
+        return Left(ServerFailure(errorModel: ex.errorModel));
+      }
+    } else {
+      try {
+        var localPosts = await studentPostLocalDataSource
+            .getCachedPosts(SharedPrefsKeys.studentPostsArchivedCached);
+        return Right(localPosts);
+      } on EmptyCacheException {
+        return Left(OfflineFailure());
+      }
     }
   }
 }
