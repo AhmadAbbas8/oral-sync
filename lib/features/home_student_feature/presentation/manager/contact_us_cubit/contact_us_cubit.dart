@@ -2,6 +2,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:oralsync/core/error/error_model.dart';
 import 'package:oralsync/core/error/failure.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../../../../core/shared_data_layer/contact_us_data_layer/contact_us_repo.dart';
 
@@ -40,6 +41,23 @@ class ContactUsCubit extends Cubit<ContactUsState> {
         emit(SendFeedbackSuccess(model: model));
       },
     );
+  }
+
+  Future<void> launchEmail() async {
+    final Uri emailLaunchUri = Uri(
+      scheme: 'mailto',
+      path: 'AhmadAbbass822@gmail.com',
+      queryParameters: {'subject': 'Contact', 'body': 'Dear,'},
+    );
+    if (!await launchUrl(emailLaunchUri)) {
+      throw Exception();
+    }
+  }
+
+  Future<void> launchWhatsapp() async {
+    if (!await launchUrl(Uri.parse('https://wa.me/+201029410206'))) {
+      throw Exception('Could not launch ');
+    }
   }
 
   clearData() {
