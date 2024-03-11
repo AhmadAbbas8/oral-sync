@@ -6,6 +6,7 @@ import 'package:oralsync/core/utils/colors_palette.dart';
 import 'package:oralsync/core/utils/icon_broken.dart';
 import 'package:oralsync/core/utils/styles.dart';
 import 'package:oralsync/features/Auth/presentation/pages/login_page.dart';
+import 'package:oralsync/features/home_student_feature/presentation/pages/contact_us_page.dart';
 import 'package:oralsync/features/home_student_feature/presentation/pages/profile_student_page.dart';
 import 'package:oralsync/features/home_student_feature/presentation/pages/settings_of_student_screen.dart';
 import 'package:oralsync/translations/locale_keys.g.dart';
@@ -69,9 +70,10 @@ class CustomDrawerStudent extends StatelessWidget {
             title: LocaleKeys.privacy_policy,
             icon: IconBroken.Lock,
           ),
-          const CustomDrawerListTile(
+          CustomDrawerListTile(
             title: LocaleKeys.contact_us,
             icon: IconBroken.Calling,
+            onTap: () async => await context.pushNamed(ContactUsPage.routeName),
           ),
           const Spacer(),
           CustomDrawerListTile(
