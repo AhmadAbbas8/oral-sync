@@ -37,6 +37,12 @@ class StudentCubit extends Cubit<StudentState> {
     IconBroken.Arrow___Down_Square,
     IconBroken.Profile,
   ];
+  List<String> appBarTitles =const [
+    LocaleKeys.home,
+    LocaleKeys.messages,
+    LocaleKeys.archived,
+  ];
+
   var studentModel = UserModel.fromJson(json.decode(
       ServiceLocator.instance<CacheStorage>()
           .getData(key: SharedPrefsKeys.user)));
@@ -56,14 +62,14 @@ class StudentCubit extends Cubit<StudentState> {
     emit(FetchNotificationLoading());
     var res = await _getNotificationsUseCase();
     res.fold(
-      (failure) {
+          (failure) {
         if (failure is ServerFailure) {
           emit(FetchNotificationError(model: failure.errorModel!));
         } else if (failure is OfflineFailure) {
           emit(FetchNotificationError(model: failure.model!));
         }
       },
-      (notifications) {
+          (notifications) {
         this.notifications = notifications;
         emit(FetchNotificationSuccess());
       },

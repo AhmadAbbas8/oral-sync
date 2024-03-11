@@ -3,18 +3,17 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:oralsync/core/cache_helper/cache_storage.dart';
-import 'package:oralsync/core/cache_helper/shared_prefs_keys.dart';
-import 'package:oralsync/core/error/error_model.dart';
-import 'package:oralsync/core/service_locator/service_locator.dart';
-import 'package:oralsync/features/Auth/data/models/user_model.dart';
-import 'package:oralsync/features/home_student_feature/data/models/comment_model.dart';
-import 'package:oralsync/features/home_student_feature/domain/use_cases/archive_and_unarchive_post_use_case.dart';
-import 'package:oralsync/features/home_student_feature/domain/use_cases/do_comment_use_case.dart';
-import 'package:oralsync/features/home_student_feature/domain/use_cases/get_all_posts_use_case.dart';
-
+import '../../../../../core/cache_helper/cache_storage.dart';
+import '../../../../../core/cache_helper/shared_prefs_keys.dart';
+import '../../../../../core/error/error_model.dart';
 import '../../../../../core/error/failure.dart';
+import '../../../../../core/service_locator/service_locator.dart';
+import '../../../../Auth/data/models/user_model.dart';
 import '../../../data/models/Student_post_model.dart';
+import '../../../data/models/comment_model.dart';
+import '../../../domain/use_cases/archive_and_unarchive_post_use_case.dart';
+import '../../../domain/use_cases/do_comment_use_case.dart';
+import '../../../domain/use_cases/get_all_posts_use_case.dart';
 
 part 'home_student_state.dart';
 
