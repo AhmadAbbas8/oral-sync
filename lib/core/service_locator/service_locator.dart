@@ -7,6 +7,8 @@ import 'package:oralsync/core/cache_helper/shared_prefs_cache.dart';
 import 'package:oralsync/core/network/api/api_consumer.dart';
 import 'package:oralsync/core/network/api/dio_consumer.dart';
 import 'package:oralsync/core/network/network_info.dart';
+import 'package:oralsync/core/shared_data_layer/contact_us_data_layer/contact_us_data_source.dart';
+import 'package:oralsync/core/shared_data_layer/contact_us_data_layer/contact_us_repo.dart';
 import 'package:oralsync/core/shared_data_layer/edit_profile_data_layer/edit_profile_remote_data_source.dart';
 import 'package:oralsync/core/shared_data_layer/edit_profile_data_layer/edit_repo.dart';
 import 'package:oralsync/core/utils/end_points.dart';
@@ -68,6 +70,8 @@ class ServiceLocator {
         () => EditProfileRemoteDataSourceIml(apiConsumer: instance()));
     instance.registerLazySingleton<ActionsRemoteDataSource>(
         () => ActionsRemoteDataSourceImpl(apiConsumer: instance()));
+    instance.registerLazySingleton<ContactUsDataSource>(
+        () => ContactUsDataSourceImpl(apiConsumer: instance()));
 
     // * Repository
     instance.registerLazySingleton<AuthRepository>(() => AuthRepositoryImpl(
@@ -84,6 +88,8 @@ class ServiceLocator {
         editProfileRemoteDataSource: instance()));
     instance.registerLazySingleton<ActionsRepo>(() => ActionsRepoImpl(
         networkInfo: instance(), actionsRemoteDataSource: instance()));
+    instance.registerLazySingleton<ContactUsRepo>(() =>
+        ContactUsRepoImpl(networkInfo: instance(), dataSource: instance()));
 
     // * UseCases
 

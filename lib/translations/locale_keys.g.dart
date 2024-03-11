@@ -72,5 +72,8 @@ abstract class  LocaleKeys {
   static const details = 'details';
   static const write_comment = 'write_comment';
   static const no_comments = 'no_comments';
+  static const full_name = 'full_name';
+  static const message = 'message';
+  static const send = 'send';
 
 }
