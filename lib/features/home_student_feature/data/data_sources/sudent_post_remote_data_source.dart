@@ -13,6 +13,7 @@ abstract class StudentPostRemoteDataSource {
   });
 
   Future<List<StudentPostModel>> getAllPosts();
+  Future<List<StudentPostModel>> getAllPostsArchived();
 
   Future<StudentPostModel> getPostByID({
     required int id,
@@ -117,6 +118,30 @@ class StudentPostRemoteDataSourceImpl implements StudentPostRemoteDataSource {
       if (response.statusCode == 200 || response.statusCode == 404) {
         return ResponseModel.fromJson(response.data);
       } else {
+        throw ServerException(
+            errorModel: ResponseModel(
+                messageEn: 'Server Error', messageAr: 'خطأ فى السيرفر'));
+      }
+    } on DioException catch (e) {
+      throw ServerException(
+          errorModel: ResponseModel.fromJson(e.response?.data));
+    }
+  }
+
+  @override
+  Future<List<StudentPostModel>> getAllPostsArchived()async {
+    try {
+      Response response =
+          await apiConsumer.get(EndPoints.getAllHiddenPostsByUserEndPoint);
+      if (response.statusCode == 200) {
+        List<StudentPostModel> postsList = [];
+        for (var val in response.data) {
+          postsList.add(StudentPostModel.fromJson(val));
+        }
+        return postsList;
+      }
+
+      else {
         throw ServerException(
             errorModel: ResponseModel(
                 messageEn: 'Server Error', messageAr: 'خطأ فى السيرفر'));

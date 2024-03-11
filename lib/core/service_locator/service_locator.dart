@@ -30,6 +30,7 @@ import 'package:oralsync/features/home_student_feature/domain/repositories/stude
 import 'package:oralsync/features/home_student_feature/domain/use_cases/archive_and_unarchive_post_use_case.dart';
 import 'package:oralsync/features/home_student_feature/domain/use_cases/create_post_use_case.dart';
 import 'package:oralsync/features/home_student_feature/domain/use_cases/do_comment_use_case.dart';
+import 'package:oralsync/features/home_student_feature/domain/use_cases/get_all_posts_archived_use_case.dart';
 import 'package:oralsync/features/home_student_feature/domain/use_cases/get_all_posts_use_case.dart';
 import 'package:oralsync/features/home_student_feature/domain/use_cases/get_notifications_use_case.dart';
 
@@ -107,5 +108,7 @@ class ServiceLocator {
         () => DoCommentUseCase(postRepo: instance()));
     instance.registerLazySingleton<ArchiveAndUnArchivePostUseCase>(
         () => ArchiveAndUnArchivePostUseCase(postRepo: instance()));
+    instance.registerLazySingleton<GetAllPostsArchivedUseCase>(
+        () => GetAllPostsArchivedUseCase(postRepo: instance()));
   }
 }

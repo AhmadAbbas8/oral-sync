@@ -20,4 +20,5 @@ abstract class EndPoints {
   static const addCommentEndPoint = 'AddComment';
   static const changePostStatusEndPoint = 'ChangePostStatus';
   static const saveContactUsEndPoint = 'SaveContactUs';
+  static const getAllHiddenPostsByUserEndPoint = 'GetAllHiddenPostsByUser';
 }

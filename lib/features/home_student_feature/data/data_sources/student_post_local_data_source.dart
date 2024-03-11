@@ -7,9 +7,10 @@ import 'package:oralsync/core/error/exception.dart';
 import 'package:oralsync/features/home_student_feature/data/models/Student_post_model.dart';
 
 abstract class StudentPostLocalDataSource {
-  Future<List<StudentPostModel>> getCachedPosts();
+  Future<List<StudentPostModel>> getCachedPosts(String key);
 
   Future<Unit> cachedPosts(List<StudentPostModel> posts);
+  Future<Unit> cachedPostsArchived(List<StudentPostModel> posts);
 }
 
 class StudentPostLocalDataSourceImpl implements StudentPostLocalDataSource {
@@ -26,14 +27,22 @@ class StudentPostLocalDataSourceImpl implements StudentPostLocalDataSource {
   }
 
   @override
-  Future<List<StudentPostModel>> getCachedPosts() async {
+  Future<List<StudentPostModel>> getCachedPosts(String key) async {
     var postsJson =
-        cacheStorage.getData(key: SharedPrefsKeys.studentPostsCached);
+        cacheStorage.getData(key: key);
     if (postsJson != null) {
       List posts = json.decode(postsJson);
       return posts.map((e) => StudentPostModel.fromJson(e)).toList();
     } else {
       throw EmptyCacheException();
     }
+  }
+
+  @override
+  Future<Unit> cachedPostsArchived(List<StudentPostModel> posts) async{
+    List model = posts.map((e) => e.toJson()).toList();
+    await cacheStorage.setData(
+        key: SharedPrefsKeys.studentPostsArchivedCached, value: json.encode(model));
+    return Future.value(unit);
   }
 }

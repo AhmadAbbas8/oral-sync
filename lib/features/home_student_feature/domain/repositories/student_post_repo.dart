@@ -15,6 +15,7 @@ abstract class StudentPostRepo {
   Future<Either<Failure, ResponseModel>> archiveAndUnarchivePost({required int postId});
 
   Future<Either<Failure, List<StudentPostModel>>> getAllPosts();
+  Future<Either<Failure, List<StudentPostModel>>> getAllPostsArchived();
 
   Future<Either<Failure, StudentPostModel>> getPostByID({
     required int id,
