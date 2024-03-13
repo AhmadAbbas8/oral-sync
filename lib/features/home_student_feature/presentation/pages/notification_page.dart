@@ -12,8 +12,6 @@ final  List<NotificationModel> notifications ;
 
   @override
   Widget build(BuildContext context) {
-    // List<NotificationModel> notifications =
-    //     ModalRoute.of(context)?.settings.arguments as List<NotificationModel>;
     return Scaffold(
       appBar: AppBar(
         title: const Text(

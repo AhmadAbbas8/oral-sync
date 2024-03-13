@@ -16,8 +16,8 @@ class NotificationItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String arabicContent = 'قام (احمد عباس) بالتفاعل مع المنشور الخاص بك';
-    String englishContent = '(Ahmed Abbas ) interacted with your post';
+    String arabicContent = 'قام (${notification.sender?.replaceAll('_', ' ')}) بالتفاعل مع المنشور الخاص بك';
+    String englishContent = '(${notification.sender?.replaceAll('_', ' ')}) interacted with your post';
     return Container(
       width: double.infinity,
       decoration: BoxDecoration(
