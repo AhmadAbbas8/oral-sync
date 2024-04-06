@@ -10,7 +10,7 @@ import 'package:oralsync/core/helpers/snackbars.dart';
 import 'package:oralsync/core/service_locator/service_locator.dart';
 import 'package:oralsync/core/shared_data_layer/edit_profile_data_layer/edit_repo.dart';
 import 'package:oralsync/core/utils/icon_broken.dart';
-import 'package:oralsync/core/widgets/rating_wodget.dart';
+import 'package:oralsync/core/widgets/custom_rating_bar_widget.dart';
 import 'package:oralsync/features/Auth/data/models/user_model.dart';
 import 'package:oralsync/features/home_student_feature/presentation/widgets/custom_app_bar_action_button.dart';
 import 'package:oralsync/features/home_student_feature/presentation/widgets/info_widget.dart';
@@ -123,10 +123,10 @@ class _ProfileStudentPageState extends State<ProfileStudentPage> {
                       icon: FontAwesomeIcons.buildingColumns,
                     ),
                     InfoWidget(
-                      title: userData.gpa?.toStringAsFixed(2)??'',
+                      title: userData.gpa?.toStringAsFixed(2) ?? '',
                       icon: FontAwesomeIcons.pen,
                     ),
-                    const RatingWidget()
+                    const CustomRatingBarWidget(rating: 2.6)
                   ],
                 );
               },
