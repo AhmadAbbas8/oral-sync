@@ -49,7 +49,7 @@ class StudentHomeLayoutPage extends StatelessWidget {
                 ),
               ],
             ),
-            drawer: CustomDrawerStudent(
+            drawer: CustomAppDrawer(
               email: cubit.studentModel.userDetails?.email ?? '',
               name:
                   '${cubit.studentModel.userDetails?.firstName} ${cubit.studentModel.userDetails?.lastName}',
