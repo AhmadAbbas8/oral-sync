@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 
 Future<void> showCustomSnackBar(BuildContext context,
     {required String msg, Color? backgroundColor}) async {
+
+  ScaffoldMessenger.of(context).removeCurrentSnackBar();
   ScaffoldMessenger.of(context).showSnackBar(
     SnackBar(
       content: Text(

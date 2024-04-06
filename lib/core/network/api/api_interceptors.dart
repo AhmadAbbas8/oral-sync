@@ -22,7 +22,7 @@ class ApiInterceptor extends Interceptor {
   @override
   void onError(DioException err, ErrorInterceptorHandler handler) {
     log('--------------------onError--------------------------------');
-    if (err.response?.statusCode == 401) {
+    if (err.response?.statusCode == 401||err.type == DioExceptionType.connectionError) {
       log('UnAuth', name: 'Interceptor');
       AppRouter.navigatorKey.currentState
           ?.pushNamedAndRemoveUntil(LoginPage.routeName, (route) => false);
