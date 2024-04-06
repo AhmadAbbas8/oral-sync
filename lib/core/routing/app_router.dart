@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:oralsync/features/home_patient_feature/presentation/pages/home_patient_layout.dart';
 import 'package:oralsync/features/home_student_feature/presentation/pages/contact_us_page.dart';
 import 'package:page_transition/page_transition.dart';
 
@@ -126,6 +127,8 @@ class AppRouter {
         }
       case ContactUsPage.routeName:
         return PageTransition(child: const ContactUsPage(), type: _generalType);
+      case HomePatientLayoutPage.routeName:
+        return PageTransition(child: const HomePatientLayoutPage(), type: _generalType);
       default:
         return MaterialPageRoute(
           builder: (_) => Scaffold(
@@ -149,8 +152,7 @@ class AppRouter {
     ProfileStudentPage.routeName: (context) => const ProfileStudentPage(),
     CreatePostPage.routeName: (context) => const CreatePostPage(),
     // EditProfilePage.routeName: (context) => const EditProfilePage(),
-    SettingsOfStudentScreen.routeName: (context) =>
-        const SettingsOfStudentScreen(),
+    SettingsOfStudentScreen.routeName: (context) => const SettingsOfStudentScreen(),
     // NotificationPage.routeName: (context) =_> const NotificationPage(),
     // PostDetailsPage.routeName: (context) => const PostDetailsPage(),
   };

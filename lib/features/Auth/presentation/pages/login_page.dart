@@ -20,6 +20,7 @@ import 'package:oralsync/features/Auth/presentation/widgets/custom_text_form_fie
 import 'package:oralsync/features/Auth/presentation/widgets/forget_password_button_widget.dart';
 import 'package:oralsync/features/Auth/presentation/widgets/keep_me_logged_in_widget.dart';
 import 'package:oralsync/features/home_feature/presentation/pages/home_page.dart';
+import 'package:oralsync/features/home_patient_feature/presentation/pages/home_patient_layout.dart';
 import 'package:oralsync/features/home_student_feature/presentation/pages/student_home_layout_page.dart';
 
 import 'package:oralsync/translations/locale_keys.g.dart';
@@ -50,7 +51,7 @@ class LoginPage extends StatelessWidget {
                     } else if (state is LoginSuccess) {
                       context.pop();
                       context.pushNamedAndRemoveUntil(
-                        manageRouteName(state.user.userRole ?? ''),
+                        manageRouteName(state.user.userRole?.toUpperCase() ?? ''),
                         predicate: (route) => false,
                       );
                       showCustomSnackBar(context,
@@ -150,8 +151,10 @@ class LoginPage extends StatelessWidget {
   }
 
   String manageRouteName(String role) {
-    if (role == 'Student') {
+    if (role == 'Student'.toUpperCase()) {
       return StudentHomeLayoutPage.routeName;
+    } else if (role == "Patient".toUpperCase()) {
+      return HomePatientLayoutPage.routeName;
     }
     return HomePage.routeName;
   }

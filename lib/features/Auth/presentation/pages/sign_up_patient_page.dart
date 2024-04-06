@@ -21,6 +21,8 @@ import 'package:oralsync/features/Auth/presentation/widgets/custom_text_form_fie
 import 'package:oralsync/features/Auth/presentation/widgets/custom_tow_form_field_widget.dart';
 import 'package:oralsync/translations/locale_keys.g.dart';
 
+import '../../../home_patient_feature/presentation/pages/home_patient_layout.dart';
+
 class SignUpPatientPage extends StatelessWidget {
   const SignUpPatientPage({super.key});
 
@@ -56,7 +58,10 @@ class SignUpPatientPage extends StatelessWidget {
                           msg: LocaleKeys.user_created_successfully.tr(),
                           backgroundColor: Colors.green);
                       context.pop();
-                      context.pushNamed(HomePage.routeName);
+                      context.pushNamedAndRemoveUntil(
+                        HomePatientLayoutPage.routeName,
+                        predicate: (route) => false,
+                      );
                     }
                   },
                   builder: (context, state) {

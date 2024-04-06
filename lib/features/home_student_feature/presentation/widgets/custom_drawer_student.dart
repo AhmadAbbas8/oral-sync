@@ -14,8 +14,8 @@ import 'package:oralsync/translations/locale_keys.g.dart';
 import '../../../Auth/data/data_sources/auth_local_data_source.dart';
 import 'custom_drawer_list_tile.dart';
 
-class CustomDrawerStudent extends StatelessWidget {
-  const CustomDrawerStudent({
+class CustomAppDrawer extends StatelessWidget {
+  const CustomAppDrawer({
     super.key,
     required this.name,
     required this.email,
