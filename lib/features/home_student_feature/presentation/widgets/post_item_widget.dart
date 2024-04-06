@@ -67,13 +67,16 @@ class PostItemWidget extends StatelessWidget {
               height: size.height * .5,
               child: GridView.builder(
                 itemCount: images.length,
+                shrinkWrap: false,
+
+                physics: const NeverScrollableScrollPhysics(),
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
                   childAspectRatio: 5 / 4,
                   // crossAxisSpacing: 0,
                   mainAxisSpacing: 0,
                 ),
-                itemBuilder: (context, index) => InkWell(
+                itemBuilder: (_, index) => InkWell(
                   onTap: () async {
                     await showImageViewer(
                       context,

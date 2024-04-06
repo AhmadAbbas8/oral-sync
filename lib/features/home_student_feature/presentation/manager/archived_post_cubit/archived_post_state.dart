@@ -28,3 +28,20 @@ class GetAllArchivedPostsSuccess extends ArchivedPostState {
   @override
   List<Object> get props => [posts];
 }
+
+class ArchiveUnArchivePostSuccess extends ArchivedPostState {
+  final ResponseModel model;
+
+  const ArchiveUnArchivePostSuccess({required this.model});
+  @override
+  // TODO: implement props
+  List<Object> get props => [model];
+}
+class ArchiveUnArchivePostLoading extends ArchivedPostState {}
+class ArchiveUnArchivePostError extends ArchivedPostState {
+  final ResponseModel model ;
+
+  const ArchiveUnArchivePostError({required this.model});
+  @override
+  List<Object> get props => [model];
+}

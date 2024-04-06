@@ -6,9 +6,9 @@ class ResponseModel {
   });
 
   ResponseModel.fromJson(dynamic json) {
-    statusCode = json['statusCode'];
-    messageEn = json['messageEn'];
-    messageAr = json['messageAr'];
+    statusCode = json['statusCode']??0;
+    messageEn = json['messageEn']??'';
+    messageAr = json['messageAr']??'';
   }
 
   num? statusCode;

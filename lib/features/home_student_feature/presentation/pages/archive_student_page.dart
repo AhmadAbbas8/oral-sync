@@ -23,6 +23,7 @@ class ArchiveStudentPage extends StatelessWidget {
     return BlocProvider(
       create: (context) => ArchivedPostCubit(
         postsArchivedUseCase: ServiceLocator.instance(),
+       archiveAndUnArchivePostUseCase: ServiceLocator.instance(), 
       )..getAllPostsArchived(),
       child: Scaffold(
         body: BlocConsumer<ArchivedPostCubit, ArchivedPostState>(
@@ -64,7 +65,7 @@ class ArchiveStudentPage extends StatelessWidget {
                                       cubit.posts[index].dateCreated ??
                                           '2001/08/01')),
                               images: cubit.posts[index].image ?? [],
-                              onPressedArchive: null,
+                              onPressedArchive:() =>  cubit.archiveAndUnArchivePost(cubit.posts[index].postId??0),
                               userName:
                                   '${cubit.studentModel.userDetails?.firstName} ${cubit.studentModel.userDetails?.lastName}',
                             ),
@@ -79,6 +80,25 @@ class ArchiveStudentPage extends StatelessWidget {
   }
 
   void _stateHandler(ArchivedPostState state, BuildContext context) {
+
+    if (state is ArchiveUnArchivePostSuccess) {
+      showCustomSnackBar(
+        context,
+        msg: isArabic(context)
+            ? state.model.messageAr ?? ''
+            : state.model.messageEn ?? '',
+        backgroundColor: ColorsPalette.successColor,
+      );
+    }
+    if (state is ArchiveUnArchivePostError) {
+      showCustomSnackBar(
+        context,
+        msg: isArabic(context)
+            ? state.model.messageAr ?? ''
+            : state.model.messageEn ?? '',
+        backgroundColor: ColorsPalette.successColor,
+      );
+    }
     if (state is GetAllArchivedPostsError) {
       showCustomSnackBar(
         context,
@@ -89,4 +109,5 @@ class ArchiveStudentPage extends StatelessWidget {
       );
     }
   }
+
 }
