@@ -13,6 +13,7 @@ import 'package:oralsync/core/service_locator/service_locator.dart';
 import 'package:oralsync/core/utils/colors_palette.dart';
 import 'package:oralsync/features/Auth/data/models/user_model.dart';
 import 'package:oralsync/features/home_patient_feature/presentation/manager/patient_profile_cubit/patient_profile_cubit.dart';
+import 'package:oralsync/features/home_patient_feature/presentation/pages/edit_profile_patient_page.dart';
 
 import '../../../../core/utils/icon_broken.dart';
 import '../../../../core/widgets/circle_avatar.dart';
@@ -29,7 +30,7 @@ class ProfilePatientPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: _buildAppBar(),
+      appBar: _buildAppBar(context),
       body: SingleChildScrollView(
         child: BlocProvider(
           create: (context) => PatientProfileCubit(
@@ -91,13 +92,13 @@ class ProfilePatientPage extends StatelessWidget {
     );
   }
 
-  AppBar _buildAppBar() {
+  AppBar _buildAppBar(BuildContext context) {
     return AppBar(
       title: const Text(LocaleKeys.profile).tr(),
       actions: [
         CustomAppBarActionButton(
           title: LocaleKeys.edit,
-          onTap: () => log('messagemessage'),
+          onTap: () => context.pushNamed(EditProfilePatientPage.routeName),
         ),
         SizedBox(width: 5.w)
       ],
