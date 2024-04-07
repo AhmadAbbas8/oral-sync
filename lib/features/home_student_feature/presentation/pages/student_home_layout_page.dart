@@ -8,7 +8,7 @@ import 'package:oralsync/core/utils/icon_broken.dart';
 import 'package:oralsync/features/home_student_feature/domain/use_cases/get_notifications_use_case.dart';
 import 'package:oralsync/features/home_student_feature/presentation/pages/create_post_page.dart';
 import 'package:oralsync/features/home_student_feature/presentation/pages/profile_student_page.dart';
-import 'package:oralsync/features/home_student_feature/presentation/widgets/custom_drawer_student.dart';
+import 'package:oralsync/core/widgets/custom_app_drawer.dart';
 import 'package:oralsync/features/home_student_feature/presentation/widgets/notch_bottm_nav_bar.dart';
 import 'package:oralsync/translations/locale_keys.g.dart';
 

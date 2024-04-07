@@ -11,7 +11,7 @@ import 'package:oralsync/features/home_student_feature/presentation/pages/profil
 import 'package:oralsync/features/home_student_feature/presentation/pages/settings_of_student_screen.dart';
 import 'package:oralsync/translations/locale_keys.g.dart';
 
-import '../../../Auth/data/data_sources/auth_local_data_source.dart';
+import '../../features/Auth/data/data_sources/auth_local_data_source.dart';
 import 'custom_drawer_list_tile.dart';
 
 class CustomAppDrawer extends StatelessWidget {
