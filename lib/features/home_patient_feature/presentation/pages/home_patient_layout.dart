@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:oralsync/features/home_patient_feature/presentation/manager/home_patient_cubit/home_patient_cubit.dart';
-import 'package:oralsync/features/home_student_feature/presentation/widgets/custom_drawer_student.dart';
+import 'package:oralsync/core/widgets/custom_app_drawer.dart';
 
 class HomePatientLayoutPage extends StatelessWidget {
   const HomePatientLayoutPage({super.key});
@@ -19,7 +19,7 @@ class HomePatientLayoutPage extends StatelessWidget {
             return CustomAppDrawer(
               email: cubit.patientModel.userDetails?.email??'',
               name: '${cubit.patientModel.userDetails?.firstName??''} ${cubit.patientModel.userDetails?.lastName??''}',
-              profileImage: 'profileImage',
+              profileImage: cubit.patientModel.profileImage??'',
             );
           },
         ),
