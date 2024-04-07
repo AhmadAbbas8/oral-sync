@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -8,7 +10,9 @@ import 'package:oralsync/core/service_locator/service_locator.dart';
 import 'package:oralsync/core/utils/colors_palette.dart';
 import 'package:oralsync/core/utils/styles.dart';
 import 'package:oralsync/features/Auth/presentation/pages/login_page.dart';
+import 'package:oralsync/features/home_patient_feature/presentation/pages/home_patient_layout.dart';
 
+import 'features/Auth/data/models/user_model.dart';
 import 'features/home_student_feature/presentation/pages/student_home_layout_page.dart';
 
 class OralSyncApp extends StatefulWidget {
@@ -97,7 +101,18 @@ class _OralSyncAppState extends State<OralSyncApp> {
     var cached = ServiceLocator.instance<CacheStorage>();
     bool? keepMeLoggedIn = cached.getData(key: SharedPrefsKeys.keepMeLoggedIn);
     if (keepMeLoggedIn ?? false) {
-      initialRoute = StudentHomeLayoutPage.routeName;
+      initialRoute = validateInitialRouteForUserRole();
+    }
+  }
+
+  validateInitialRouteForUserRole() {
+    var cache = ServiceLocator.instance<CacheStorage>();
+    var user = json.decode(cache.getData(key: SharedPrefsKeys.user));
+    var role = UserModel.fromJson(user).userRole?.toUpperCase() ?? '';
+    if (role == 'Student'.toUpperCase()) {
+      return StudentHomeLayoutPage.routeName;
+    } else if (role == 'Patient'.toUpperCase()) {
+      return HomePatientLayoutPage.routeName;
     }
   }
 }
