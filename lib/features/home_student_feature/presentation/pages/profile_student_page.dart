@@ -13,7 +13,7 @@ import 'package:oralsync/core/utils/icon_broken.dart';
 import 'package:oralsync/core/widgets/custom_rating_bar_widget.dart';
 import 'package:oralsync/features/Auth/data/models/user_model.dart';
 import 'package:oralsync/features/home_student_feature/presentation/widgets/custom_app_bar_action_button.dart';
-import 'package:oralsync/features/home_student_feature/presentation/widgets/info_widget.dart';
+import 'package:oralsync/core/widgets/info_widget.dart';
 import 'package:oralsync/translations/locale_keys.g.dart';
 
 import '../../../../core/helpers/check_language.dart';
