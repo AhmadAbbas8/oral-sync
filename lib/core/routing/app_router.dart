@@ -9,6 +9,7 @@ import '../../features/Auth/presentation/pages/sign_up_options_page.dart';
 import '../../features/Auth/presentation/pages/sign_up_patient_page.dart';
 import '../../features/Auth/presentation/pages/sign_up_student_page.dart';
 import '../../features/home_feature/presentation/pages/home_page.dart';
+import '../../features/home_patient_feature/presentation/pages/edit_profile_patient_page.dart';
 import '../../features/home_patient_feature/presentation/pages/profile_patient_page.dart';
 import '../../features/home_student_feature/data/models/Notification_model.dart';
 import '../../features/home_student_feature/presentation/manager/student_edit_profile_cubit/student_edit_profile_cubit.dart';
@@ -134,6 +135,9 @@ class AppRouter {
       case ProfilePatientPage.routeName:
         return PageTransition(
             child: const ProfilePatientPage(), type: _generalType);
+      case EditProfilePatientPage.routeName:
+        return PageTransition(
+            child: const EditProfilePatientPage(), type: _generalType);
       default:
         return MaterialPageRoute(
           builder: (_) => Scaffold(
