@@ -123,4 +123,20 @@ class StudentPostRepoImpl implements StudentPostRepo {
       }
     }
   }
+
+  @override
+  Future<Either<Failure, List<StudentPostModel>>> getPostsPublic(
+      int? page) async {
+    if (await networkInfo.isConnected) {
+      try {
+        var posts = await studentPostRemoteDataSource.getPostsPublic(page);
+        await studentPostLocalDataSource.cachedPostsArchived(posts);
+        return Right(posts.cast<StudentPostModel>());
+      } on ServerException catch (ex) {
+        return Left(ServerFailure(errorModel: ex.errorModel));
+      }
+    } else {
+      return Left(OfflineFailure());
+    }
+  }
 }

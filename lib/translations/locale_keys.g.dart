@@ -75,5 +75,8 @@ abstract class  LocaleKeys {
   static const full_name = 'full_name';
   static const message = 'message';
   static const send = 'send';
+  static const free_reservation = 'free_reservation';
+  static const paid_reservation = 'paid_reservation';
+  static const reservations = 'reservations';
 
 }
