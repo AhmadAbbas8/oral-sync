@@ -18,9 +18,6 @@ final HomeStudentCubit cubit;
 final int index;
   @override
   Widget build(BuildContext context) {
-    // var args = ModalRoute.of(context)!.settings.arguments as List;
-    // var cubit = args[0] as HomeStudentCubit;
-    // var index = args[1] as int;
     return BlocProvider.value(
       value: cubit,
       child: Scaffold(
@@ -63,7 +60,7 @@ final int index;
                         ),
                         itemCount: cubit.posts[index].comments?.length ?? 0,
                       )
-                    : SliverToBoxAdapter(
+                    : const SliverToBoxAdapter(
                         child: NoTaskWidget(title: LocaleKeys.no_comments),
                       ),
                 SliverToBoxAdapter(
