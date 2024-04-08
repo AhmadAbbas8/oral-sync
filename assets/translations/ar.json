@@ -75,5 +75,8 @@
   "no_comments": "لا توجد تعليقات ",
   "full_name": "الاسم بالكامل",
   "message": "الرسالة",
-  "send": "ارسال"
+  "send": "ارسال",
+  "free_reservation": "حجز مجاني",
+  "paid_reservation": "حجز مدفوع",
+  "reservations": "الحجوزات"
 }

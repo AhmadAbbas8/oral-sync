@@ -9,6 +9,7 @@ import '../../../../core/helpers/check_language.dart';
 import '../../../../core/helpers/snackbars.dart';
 import '../../../../core/service_locator/service_locator.dart';
 import '../../../../core/utils/colors_palette.dart';
+import '../../../../core/widgets/loading_widget.dart';
 import '../../../../translations/locale_keys.g.dart';
 import '../manager/home_student_cubit/home_student_cubit.dart';
 import '../widgets/no_task_widget.dart';
@@ -41,10 +42,7 @@ class HomeStudentPage extends StatelessWidget {
               onRefresh: () async => cubit.getAllPosts(),
               child: Center(
                 child: state is GetAllPostsLoading
-                    ? const SpinKitDoubleBounce(
-                        color: Colors.green,
-                        size: 200,
-                      )
+                    ? LoadingWidget()
                     : cubit.posts.isNotEmpty
                         ? ListView.separated(
                             separatorBuilder: (context, index) => Divider(
@@ -115,3 +113,5 @@ class HomeStudentPage extends StatelessWidget {
     }
   }
 }
+
+

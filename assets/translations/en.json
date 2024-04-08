@@ -75,5 +75,8 @@
   "no_comments": "No Comments ",
   "full_name": "Full Name",
   "message": "Message",
-  "send": "Send"
+  "send": "Send",
+  "free_reservation": "Free reservation",
+  "paid_reservation": "Paid reservation",
+  "reservations": "Reservations"
 }

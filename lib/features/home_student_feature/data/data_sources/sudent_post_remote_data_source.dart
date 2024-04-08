@@ -7,12 +7,15 @@ import 'package:oralsync/core/utils/end_points.dart';
 import 'package:oralsync/features/home_student_feature/data/models/Student_post_model.dart';
 
 abstract class StudentPostRemoteDataSource {
+  Future<List<StudentPostModel>> getPostsPublic(int? page);
+
   Future<ResponseModel> createPost({
     required String content,
     required List<File> images,
   });
 
   Future<List<StudentPostModel>> getAllPosts();
+
   Future<List<StudentPostModel>> getAllPostsArchived();
 
   Future<StudentPostModel> getPostByID({
@@ -129,7 +132,7 @@ class StudentPostRemoteDataSourceImpl implements StudentPostRemoteDataSource {
   }
 
   @override
-  Future<List<StudentPostModel>> getAllPostsArchived()async {
+  Future<List<StudentPostModel>> getAllPostsArchived() async {
     try {
       Response response =
           await apiConsumer.get(EndPoints.getAllHiddenPostsByUserEndPoint);
@@ -139,9 +142,33 @@ class StudentPostRemoteDataSourceImpl implements StudentPostRemoteDataSource {
           postsList.add(StudentPostModel.fromJson(val));
         }
         return postsList;
+      } else {
+        throw ServerException(
+            errorModel: ResponseModel(
+                messageEn: 'Server Error', messageAr: 'خطأ فى السيرفر'));
       }
+    } on DioException catch (e) {
+      throw ServerException(
+          errorModel: ResponseModel.fromJson(e.response?.data));
+    }
+  }
 
-      else {
+  @override
+  Future<List<StudentPostModel>> getPostsPublic(int? page) async {
+    try {
+      Response response = await apiConsumer.get(
+        EndPoints.getAllPostEndPoint,
+        queryParameters: {
+          'page': page ?? 1,
+        },
+      );
+      if (response.statusCode == 200) {
+        List<StudentPostModel> postsList = [];
+        for (var val in response.data['posts']) {
+          postsList.add(StudentPostModel.fromJson(val));
+        }
+        return postsList;
+      } else {
         throw ServerException(
             errorModel: ResponseModel(
                 messageEn: 'Server Error', messageAr: 'خطأ فى السيرفر'));
