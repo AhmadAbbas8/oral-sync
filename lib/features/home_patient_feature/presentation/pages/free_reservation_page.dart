@@ -38,7 +38,7 @@ class FreeReservationPage extends StatelessWidget {
                 } else if (cubit.freePosts.isNotEmpty) {
                   return CustomFreePostsWidget(cubit: cubit);
                 }
-                return Center(child: const NoTaskWidget(title: LocaleKeys.no_tasks));
+                return const Center(child: NoTaskWidget(title: LocaleKeys.no_tasks));
               },
             ),
           );
