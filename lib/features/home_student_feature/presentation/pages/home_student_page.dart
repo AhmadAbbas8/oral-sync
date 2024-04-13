@@ -52,7 +52,7 @@ class HomeStudentPage extends StatelessWidget {
                             itemCount: cubit.posts.length,
                             // shrinkWrap: true,
                             itemBuilder: (_, index) => PostItemWidget(
-                              profileURL: cubit.studentModel.profileImage ?? '',
+                              profileURL:cubit.posts[index].profileImage??'',
                               caption: cubit.posts[index].content ?? '',
                               commentsCount:
                                   cubit.posts[index].comments?.length ?? 0,

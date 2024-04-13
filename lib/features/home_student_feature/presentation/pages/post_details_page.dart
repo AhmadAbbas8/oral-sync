@@ -51,9 +51,9 @@ final int index;
                           title: Text(
                               cubit.posts[index].comments![index1].content ??
                                   ''),
-                          leading: const CircleAvatar(
+                          leading:  CircleAvatar(
                             backgroundImage: CachedNetworkImageProvider(
-                              'https://graduationpt-001-site1.htempurl.com/Profile/default/male.png',
+                              cubit.posts[index].comments![index1].profileImage??'',
                             ),
                           ),
                           trailing: const Icon(IconBroken.Delete),

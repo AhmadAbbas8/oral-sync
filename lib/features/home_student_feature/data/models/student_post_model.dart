@@ -14,6 +14,7 @@ class StudentPostModel {
     this.likeCount,
     this.userName,
     this.image,
+    this.profileImage,
   });
 
   StudentPostModel.fromJson(dynamic json) {
@@ -25,6 +26,7 @@ class StudentPostModel {
     dateUpdated = json['dateUpdated'];
     timeCreated = json['timeCreated'];
     timeUpdated = json['timeUpdated'];
+    profileImage = json['profileImage'];
     userId = json['userId'];
     likeCount = json['likeCount'];
     if (json['image'] != null) {
@@ -47,6 +49,7 @@ class StudentPostModel {
   String? dateCreated;
   String? dateUpdated;
   String? timeCreated;
+  String? profileImage;
   String? timeUpdated;
   String? userId;
   String? userName;
