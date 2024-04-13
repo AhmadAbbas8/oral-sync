@@ -9,6 +9,7 @@ class CommentModel {
     this.timeUpdated,
     this.userId,
     this.postId,
+    this.profileImage,
     this.user,
     this.post,
   });
@@ -25,6 +26,7 @@ class CommentModel {
     postId = json['postId'];
     user = json['user'];
     post = json['post'];
+    profileImage = json['profileImage'];
   }
 
   num? commentId;
@@ -32,6 +34,7 @@ class CommentModel {
   String? title;
   String? dateCreated;
   String? timeCreated;
+  String? profileImage;
   String? dateUpdated;
   String? timeUpdated;
   String? userId;

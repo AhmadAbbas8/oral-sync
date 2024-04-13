@@ -126,7 +126,10 @@ class _ProfileStudentPageState extends State<ProfileStudentPage> {
                       title: userData.gpa?.toStringAsFixed(2) ?? '',
                       icon: FontAwesomeIcons.pen,
                     ),
-                    const CustomRatingBarWidget(rating: 2.6)
+                    CustomRatingBarWidget(
+                      rating: cubit.getStudentModel().averageRate?.toDouble() ??
+                          0.0,
+                    )
                   ],
                 );
               },

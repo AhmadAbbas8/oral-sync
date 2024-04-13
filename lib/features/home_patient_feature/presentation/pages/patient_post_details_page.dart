@@ -49,14 +49,14 @@ class PatientPostDetailsPage extends StatelessWidget {
                 ),
                 cubit.freePosts[index].comments!.isNotEmpty
                     ? SliverList.builder(
-                  itemBuilder: (context, index1) =>
+                  itemBuilder: (context, innerIndex) =>
                       ListTile(
                         title: Text(
-                            cubit.freePosts[index].comments![index1].content ??
+                            cubit.freePosts[index].comments![innerIndex].content ??
                                 ''),
-                        leading: const CircleAvatar(
+                        leading:  CircleAvatar(
                           backgroundImage: CachedNetworkImageProvider(
-                            'https://graduationpt-001-site1.htempurl.com/Profile/default/male.png',
+                          cubit.freePosts[index].comments![innerIndex].profileImage??'',
                           ),
                         ),
                         trailing: const Icon(IconBroken.Delete),
