@@ -21,6 +21,7 @@ import 'package:oralsync/features/Auth/domain/repositories/auth_repository.dart'
 import 'package:oralsync/features/Auth/domain/use_cases/login_use_case.dart';
 import 'package:oralsync/features/Auth/domain/use_cases/new_register_use_case.dart';
 import 'package:oralsync/core/shared_data_layer/actions_data_layer/actions_reomte_data_source.dart';
+import 'package:oralsync/features/home_patient_feature/presentation/manager/free_paid_reservation_cubit/free_paid_reservation_cubit.dart';
 import 'package:oralsync/features/home_student_feature/data/data_sources/student_post_local_data_source.dart';
 import 'package:oralsync/features/home_student_feature/data/data_sources/sudent_post_remote_data_source.dart';
 import 'package:oralsync/features/home_student_feature/data/repositories/student_post_repo_impl.dart';
@@ -58,7 +59,13 @@ class ServiceLocator {
             'Content-Type': 'application/json',
           },
         ))));
-
+    // * BloC/Cubit
+    instance.registerLazySingleton<FreePaidReservationCubit>(
+        () => FreePaidReservationCubit(
+              actionsRepo: instance(),
+              doCommentUseCase: instance(),
+              studentPostRepo: instance(),
+            ));
     // * Datasources
     instance.registerLazySingleton<AuthRemoteDataSource>(
         () => AuthRemoteDataSourceImp(apiConsumer: instance()));

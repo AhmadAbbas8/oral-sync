@@ -53,13 +53,13 @@ class _CustomFreePostsWidgetState extends State<CustomFreePostsWidget> {
               likesCount: widget.cubit.freePosts[index].likeCount?.toInt() ?? 0,
               commentsCount:
                   widget.cubit.freePosts[index].comments?.length ?? 0,
-              profileURL:
-                  'http://graduationprt22-001-site1.gtempurl.com/Profile/default/male.png',
+              profileURL: widget.cubit.freePosts[index].profileImage ?? '',
               onTaComment: () => context.pushNamed(
                 PatientPostDetailsPage.routeName,
-                arguments: [widget.cubit, index],
+                arguments: [index],
               ),
-        onTaLike: () => widget.cubit.likeUnLike(),
+              onTaLike: () => widget.cubit.likeUnLike(
+                  widget.cubit.freePosts[index].postId?.toInt() ?? 0, index),
             ),
     );
   }

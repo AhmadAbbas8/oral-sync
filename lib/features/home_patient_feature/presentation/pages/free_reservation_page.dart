@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:oralsync/core/helpers/check_language.dart';
@@ -24,11 +26,23 @@ class FreeReservationPage extends StatelessWidget {
             child: BlocConsumer<FreePaidReservationCubit,
                 FreePaidReservationState>(
               listener: (context, state) {
+                if (state is LikeUnLikePostSuccess) {
+                  showCustomSnackBar(
+                    context,
+                    msg: isArabic(context)
+                        ? state.responseModel.messageAr ?? ''
+                        : state.responseModel.messageEn ?? '',
+                    backgroundColor: state.responseModel.statusCode == 200
+                        ? ColorsPalette.successColor
+                        : ColorsPalette.errorColor,
+                  );
+                }
                 if (state is FetchFreePostsError) {
                   showCustomSnackBar(context,
                       msg: isArabic(context)
                           ? state.model?.messageAr ?? ''
-                          : state.model?.messageEn ?? '',backgroundColor: ColorsPalette.errorColor);
+                          : state.model?.messageEn ?? '',
+                      backgroundColor: ColorsPalette.errorColor);
                 }
               },
               builder: (_, state) {
@@ -38,7 +52,8 @@ class FreeReservationPage extends StatelessWidget {
                 } else if (cubit.freePosts.isNotEmpty) {
                   return CustomFreePostsWidget(cubit: cubit);
                 }
-                return const Center(child: NoTaskWidget(title: LocaleKeys.no_tasks));
+                return const Center(
+                    child: NoTaskWidget(title: LocaleKeys.no_tasks));
               },
             ),
           );

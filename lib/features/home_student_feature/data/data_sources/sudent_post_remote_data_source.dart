@@ -1,3 +1,5 @@
+import 'dart:convert';
+import 'dart:developer';
 import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:oralsync/core/error/error_model.dart';
@@ -5,6 +7,8 @@ import 'package:oralsync/core/error/exception.dart';
 import 'package:oralsync/core/network/api/api_consumer.dart';
 import 'package:oralsync/core/utils/end_points.dart';
 import 'package:oralsync/features/home_student_feature/data/models/Student_post_model.dart';
+
+import '../models/comment_model.dart';
 
 abstract class StudentPostRemoteDataSource {
   Future<List<StudentPostModel>> getPostsPublic(int? page);
@@ -26,7 +30,7 @@ abstract class StudentPostRemoteDataSource {
     required int id,
   });
 
-  Future<ResponseModel> doComment(int postId, Map<String, dynamic> data);
+  Future<CommentModel> doComment(int postId, Map<String, dynamic> data);
 }
 
 class StudentPostRemoteDataSourceImpl implements StudentPostRemoteDataSource {
@@ -94,12 +98,13 @@ class StudentPostRemoteDataSourceImpl implements StudentPostRemoteDataSource {
   }
 
   @override
-  Future<ResponseModel> doComment(int postId, Map<String, dynamic> data) async {
+  Future<CommentModel> doComment(int postId, Map<String, dynamic> data) async {
     try {
       Response response =
           await apiConsumer.post(EndPoints.addCommentEndPoint, data: data);
       if (response.statusCode == 200) {
-        return ResponseModel.fromJson(response.data);
+
+        return CommentModel.fromJson(json.decode(response.data));
       } else {
         throw ServerException(
             errorModel: ResponseModel(
