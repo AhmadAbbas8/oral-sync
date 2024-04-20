@@ -3,6 +3,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:oralsync/core/utils/icon_broken.dart';
+import 'package:oralsync/core/widgets/comment_widget.dart';
 import 'package:oralsync/features/home_student_feature/presentation/widgets/no_task_widget.dart';
 import 'package:oralsync/features/home_student_feature/presentation/widgets/post_item_widget.dart';
 import 'package:oralsync/translations/locale_keys.g.dart';
@@ -11,11 +12,16 @@ import '../manager/home_student_cubit/home_student_cubit.dart';
 import '../widgets/comment_form_field.dart';
 
 class PostDetailsPage extends StatelessWidget {
-  const PostDetailsPage({super.key, required this.cubit, required this.index});
+  const PostDetailsPage({
+    super.key,
+    required this.cubit,
+    required this.index,
+  });
 
   static const String routeName = '/PostDetailsPage';
-final HomeStudentCubit cubit;
-final int index;
+  final HomeStudentCubit cubit;
+  final int index;
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider.value(
@@ -47,16 +53,8 @@ final int index;
                 ),
                 cubit.posts[index].comments!.isNotEmpty
                     ? SliverList.builder(
-                        itemBuilder: (context, index1) => ListTile(
-                          title: Text(
-                              cubit.posts[index].comments![index1].content ??
-                                  ''),
-                          leading:  CircleAvatar(
-                            backgroundImage: CachedNetworkImageProvider(
-                              cubit.posts[index].comments![index1].profileImage??'',
-                            ),
-                          ),
-                          trailing: const Icon(IconBroken.Delete),
+                        itemBuilder: (context, index1) => CommentWidget(
+                          comment: cubit.posts[index].comments![index1],
                         ),
                         itemCount: cubit.posts[index].comments?.length ?? 0,
                       )
