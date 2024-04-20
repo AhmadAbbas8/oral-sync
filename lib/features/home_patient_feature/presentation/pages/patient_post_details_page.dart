@@ -34,12 +34,12 @@ class PatientPostDetailsPage extends StatelessWidget {
               slivers: [
                 SliverToBoxAdapter(
                   child: PostItemWidget(
-                    profileURL: 'http://graduationprt22-001-site1.gtempurl.com/Profile/default/male.png',
+                    profileURL: cubit.freePosts[index].profileImage??'' ,
                     caption: cubit.freePosts[index].content ?? '',
                     commentsCount: cubit.freePosts[index].comments?.length ?? 0,
                     likesCount: cubit.freePosts[index].likeCount?.toInt() ?? 0,
                     postDate: cubit.freePosts[index].dateCreated ?? '',
-                    images: cubit.freePosts[index].image ?? [],
+                    images: cubit.freePosts[index].postImages ?? [],
                     userName:
                     cubit.freePosts[index].userName ?? '',
                   ),

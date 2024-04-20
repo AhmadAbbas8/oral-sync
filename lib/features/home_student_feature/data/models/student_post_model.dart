@@ -13,7 +13,7 @@ class StudentPostModel {
     this.comments,
     this.likeCount,
     this.userName,
-    this.image,
+    this.postImages,
     this.profileImage,
   });
 
@@ -29,10 +29,10 @@ class StudentPostModel {
     profileImage = json['profileImage'];
     userId = json['userId'];
     likeCount = json['likeCount'];
-    if (json['image'] != null) {
-      image = [];
-      json['image'].forEach((v) {
-        image?.add(v);
+    if (json['postImages'] != null) {
+      postImages = [];
+      json['postImages'].forEach((v) {
+        postImages?.add(v);
       });
     }
     if (json['comments'] != null) {
@@ -55,7 +55,7 @@ class StudentPostModel {
   String? userName;
   List<CommentModel>? comments;
   num? likeCount;
-  List<String>? image;
+  List<String>? postImages;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
@@ -70,8 +70,8 @@ class StudentPostModel {
     map['userName'] = userName;
 
     map['likeCount'] = likeCount;
-    if (image != null) {
-      map['image'] = image;
+    if (postImages != null) {
+      map['postImages'] = postImages;
     }
     if (comments != null) {
       map['comments'] = comments;

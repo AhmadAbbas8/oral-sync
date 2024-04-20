@@ -37,7 +37,7 @@ final int index;
                     postDate: DateFormat("MMM dd, yyyy").format(
                         DateFormat("yyyy/MM/dd").parse(
                             cubit.posts[index].dateCreated ?? '2001/08/01')),
-                    images: cubit.posts[index].image ?? [],
+                    images: cubit.posts[index].postImages ?? [],
                     userName:
                         '${cubit.studentModel.userDetails?.firstName} ${cubit.studentModel.userDetails?.lastName}',
                   ),
