@@ -8,7 +8,9 @@ import 'package:oralsync/core/service_locator/service_locator.dart';
 import 'package:oralsync/features/home_patient_feature/presentation/manager/free_paid_reservation_cubit/free_paid_reservation_cubit.dart';
 
 import '../../../../core/utils/icon_broken.dart';
+import '../../../../core/widgets/comment_widget.dart';
 import '../../../../translations/locale_keys.g.dart';
+import '../../../home_student_feature/data/models/comment_model.dart';
 import '../../../home_student_feature/presentation/widgets/no_task_widget.dart';
 import '../../../home_student_feature/presentation/widgets/post_item_widget.dart';
 import '../widgets/comment_form_field_patient.dart';
@@ -54,19 +56,8 @@ class PatientPostDetailsPage extends StatelessWidget {
                 ),
                 cubit.freePosts[index].comments!.isNotEmpty
                     ? SliverList.builder(
-                        itemBuilder: (context, innerIndex) => ListTile(
-
-                          title: SelectableText(cubit.freePosts[index]
-                                  .comments![innerIndex].content ??
-                              'null'),
-                          leading: CircleAvatar(
-                            backgroundImage: CachedNetworkImageProvider(
-                              cubit.freePosts[index].comments![innerIndex]
-                                      .profileImage ??
-                                  '',
-                            ),
-                          ),
-                          trailing: const Icon(IconBroken.Delete),
+                        itemBuilder: (context, innerIndex) => CommentWidget(
+                          comment: cubit.freePosts[index].comments![innerIndex],
                         ),
                         itemCount: cubit.freePosts[index].comments?.length ?? 0,
                       )
@@ -85,3 +76,5 @@ class PatientPostDetailsPage extends StatelessWidget {
     );
   }
 }
+
+
