@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:oralsync/features/home_student_feature/data/models/comment_model.dart';
 
 import '../../../../core/error/error_model.dart';
 import '../../../../core/error/failure.dart';
@@ -11,7 +12,7 @@ class DoCommentUseCase {
     required StudentPostRepo postRepo,
   }) : _postRepo = postRepo;
 
-  Future<Either<Failure, ResponseModel>> call({
+  Future<Either<Failure, CommentModel>> call({
     required int postId,
     required String title,
     required String content,

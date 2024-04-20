@@ -50,6 +50,7 @@ flutter:
     - assets/translations/
     - assets/student/images/
     - assets/student/
+    - assets/test/
 
   fonts:
     - family: IconBroken

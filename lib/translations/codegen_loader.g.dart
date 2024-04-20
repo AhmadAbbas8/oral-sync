@@ -90,7 +90,11 @@ class CodegenLoader extends AssetLoader{
   "write_comment": "اكتب تعليقا . . .",
   "no_comments": "لا توجد تعليقات ",
   "full_name": "الاسم بالكامل",
-  "message": "الرسالة"
+  "message": "الرسالة",
+  "send": "ارسال",
+  "free_reservation": "حجز مجاني",
+  "paid_reservation": "حجز مدفوع",
+  "reservations": "الحجوزات"
 };
 static const Map<String,dynamic> en = {
   "hello": "Hello",
@@ -168,7 +172,11 @@ static const Map<String,dynamic> en = {
   "write_comment": "Write comment  . . .",
   "no_comments": "No Comments ",
   "full_name": "Full Name",
-  "message": "Message"
+  "message": "Message",
+  "send": "Send",
+  "free_reservation": "Free reservation",
+  "paid_reservation": "Paid reservation",
+  "reservations": "Reservations"
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"ar": ar, "en": en};
 }

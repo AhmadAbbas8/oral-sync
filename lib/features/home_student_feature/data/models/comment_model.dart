@@ -1,6 +1,7 @@
 class CommentModel {
   CommentModel({
     this.commentId,
+    this.name,
     this.content,
     this.title,
     this.dateCreated,
@@ -9,12 +10,12 @@ class CommentModel {
     this.timeUpdated,
     this.userId,
     this.postId,
-    this.user,
-    this.post,
+    this.profileImage,
   });
 
   CommentModel.fromJson(dynamic json) {
     commentId = json['commentId'];
+    name = json['name'];
     content = json['content'];
     title = json['title'];
     dateCreated = json['dateCreated'];
@@ -23,11 +24,11 @@ class CommentModel {
     timeUpdated = json['timeUpdated'];
     userId = json['userId'];
     postId = json['postId'];
-    user = json['user'];
-    post = json['post'];
+    profileImage = json['profileImage']??'http://graduationprt22-001-site1.gtempurl.com/Profile/default/male.png';
   }
 
   num? commentId;
+  String? name;
   String? content;
   String? title;
   String? dateCreated;
@@ -36,12 +37,12 @@ class CommentModel {
   String? timeUpdated;
   String? userId;
   num? postId;
-  dynamic user;
-  dynamic post;
+  String? profileImage;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
     map['commentId'] = commentId;
+    map['name'] = name;
     map['content'] = content;
     map['title'] = title;
     map['dateCreated'] = dateCreated;
@@ -50,8 +51,7 @@ class CommentModel {
     map['timeUpdated'] = timeUpdated;
     map['userId'] = userId;
     map['postId'] = postId;
-    map['user'] = user;
-    map['post'] = post;
+    map['profileImage'] = profileImage;
     return map;
   }
 }

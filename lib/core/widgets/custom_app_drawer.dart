@@ -1,10 +1,15 @@
+import 'dart:convert';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:oralsync/core/cache_helper/cache_storage.dart';
+import 'package:oralsync/core/cache_helper/shared_prefs_keys.dart';
 import 'package:oralsync/core/helpers/extensions/navigation_extensions.dart';
 import 'package:oralsync/core/service_locator/service_locator.dart';
 import 'package:oralsync/core/utils/colors_palette.dart';
 import 'package:oralsync/core/utils/icon_broken.dart';
 import 'package:oralsync/core/utils/styles.dart';
+import 'package:oralsync/features/Auth/data/models/user_model.dart';
 import 'package:oralsync/features/Auth/presentation/pages/login_page.dart';
 import 'package:oralsync/features/home_student_feature/presentation/pages/contact_us_page.dart';
 import 'package:oralsync/features/home_student_feature/presentation/pages/profile_student_page.dart';
@@ -12,6 +17,7 @@ import 'package:oralsync/features/home_student_feature/presentation/pages/settin
 import 'package:oralsync/translations/locale_keys.g.dart';
 
 import '../../features/Auth/data/data_sources/auth_local_data_source.dart';
+import '../../features/home_patient_feature/presentation/pages/profile_patient_page.dart';
 import 'custom_drawer_list_tile.dart';
 
 class CustomAppDrawer extends StatelessWidget {
@@ -56,7 +62,7 @@ class CustomAppDrawer extends StatelessWidget {
             title: LocaleKeys.profile,
             icon: IconBroken.Profile,
             onTap: () {
-              context.pushNamed(ProfileStudentPage.routeName);
+              context.pushNamed(getRouteForProfilePage());
             },
           ),
           CustomDrawerListTile(
@@ -93,5 +99,16 @@ class CustomAppDrawer extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  String getRouteForProfilePage() {
+    var cache = ServiceLocator.instance<CacheStorage>();
+    var user = json.decode(cache.getData(key: SharedPrefsKeys.user));
+    var role = UserModel.fromJson(user).userRole?.toUpperCase() ?? '';
+    if (role == 'Student'.toUpperCase()) {
+      return ProfileStudentPage.routeName;
+    } else {
+      return ProfilePatientPage.routeName;
+    }
   }
 }

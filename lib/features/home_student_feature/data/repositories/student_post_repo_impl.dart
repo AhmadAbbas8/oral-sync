@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:dartz/dartz.dart';
+import 'package:oralsync/features/home_student_feature/data/models/comment_model.dart';
 
 import '../../../../core/cache_helper/shared_prefs_keys.dart';
 import '../../../../core/error/error_model.dart';
@@ -69,7 +70,7 @@ class StudentPostRepoImpl implements StudentPostRepo {
   }
 
   @override
-  Future<Either<Failure, ResponseModel>> doComment({
+  Future<Either<Failure,CommentModel>> doComment({
     required int postId,
     required Map<String, dynamic> data,
   }) async {
@@ -121,6 +122,22 @@ class StudentPostRepoImpl implements StudentPostRepo {
       } on EmptyCacheException {
         return Left(OfflineFailure());
       }
+    }
+  }
+
+  @override
+  Future<Either<Failure, List<StudentPostModel>>> getPostsPublic(
+      int? page) async {
+    if (await networkInfo.isConnected) {
+      try {
+        var posts = await studentPostRemoteDataSource.getPostsPublic(page);
+        await studentPostLocalDataSource.cachedPostsArchived(posts);
+        return Right(posts.cast<StudentPostModel>());
+      } on ServerException catch (ex) {
+        return Left(ServerFailure(errorModel: ex.errorModel));
+      }
+    } else {
+      return Left(OfflineFailure());
     }
   }
 }

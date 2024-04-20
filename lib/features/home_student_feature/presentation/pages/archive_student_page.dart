@@ -64,7 +64,7 @@ class ArchiveStudentPage extends StatelessWidget {
                                   DateFormat("yyyy/MM/dd").parse(
                                       cubit.posts[index].dateCreated ??
                                           '2001/08/01')),
-                              images: cubit.posts[index].image ?? [],
+                              images: cubit.posts[index].postImages ?? [],
                               onPressedArchive:() =>  cubit.archiveAndUnArchivePost(cubit.posts[index].postId??0),
                               userName:
                                   '${cubit.studentModel.userDetails?.firstName} ${cubit.studentModel.userDetails?.lastName}',

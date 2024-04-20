@@ -9,7 +9,10 @@ import '../../features/Auth/presentation/pages/sign_up_options_page.dart';
 import '../../features/Auth/presentation/pages/sign_up_patient_page.dart';
 import '../../features/Auth/presentation/pages/sign_up_student_page.dart';
 import '../../features/home_feature/presentation/pages/home_page.dart';
-import '../../features/home_student_feature/data/models/Notification_model.dart';
+import '../../features/home_patient_feature/presentation/pages/edit_profile_patient_page.dart';
+import '../../features/home_patient_feature/presentation/pages/patient_post_details_page.dart';
+import '../../features/home_patient_feature/presentation/pages/profile_patient_page.dart';
+import '../shared_data_layer/actions_data_layer/model/Notification_model.dart';
 import '../../features/home_student_feature/presentation/manager/student_edit_profile_cubit/student_edit_profile_cubit.dart';
 import '../../features/home_student_feature/presentation/pages/create_post_page.dart';
 import '../../features/home_student_feature/presentation/pages/edit_profile_page.dart';
@@ -128,7 +131,21 @@ class AppRouter {
       case ContactUsPage.routeName:
         return PageTransition(child: const ContactUsPage(), type: _generalType);
       case HomePatientLayoutPage.routeName:
-        return PageTransition(child: const HomePatientLayoutPage(), type: _generalType);
+        return PageTransition(
+            child: const HomePatientLayoutPage(), type: _generalType);
+      case ProfilePatientPage.routeName:
+        return PageTransition(
+            child: const ProfilePatientPage(), type: _generalType);
+      case EditProfilePatientPage.routeName:
+        return PageTransition(
+            child: const EditProfilePatientPage(), type: _generalType);
+      case PatientPostDetailsPage.routeName:
+        {
+          var args = settings.arguments as List;
+          return PageTransition(
+              child: PatientPostDetailsPage( index: args[0]),
+              type: _generalType);
+        }
       default:
         return MaterialPageRoute(
           builder: (_) => Scaffold(
@@ -152,7 +169,8 @@ class AppRouter {
     ProfileStudentPage.routeName: (context) => const ProfileStudentPage(),
     CreatePostPage.routeName: (context) => const CreatePostPage(),
     // EditProfilePage.routeName: (context) => const EditProfilePage(),
-    SettingsOfStudentScreen.routeName: (context) => const SettingsOfStudentScreen(),
+    SettingsOfStudentScreen.routeName: (context) =>
+        const SettingsOfStudentScreen(),
     // NotificationPage.routeName: (context) =_> const NotificationPage(),
     // PostDetailsPage.routeName: (context) => const PostDetailsPage(),
   };

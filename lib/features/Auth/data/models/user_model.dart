@@ -3,9 +3,16 @@ class UserModel {
   final String? profileImage;
   final String? userRole;
   final UserDetails? userDetails;
+  final num? averageRate;
 
-  UserModel(
-      {required this.token,required this.profileImage, required this.userRole, required this.userDetails});
+  UserModel({
+    required this.token,
+    required this.profileImage,
+    required this.userRole,
+    required this.userDetails,
+    this.averageRate,
+
+  });
 
   factory UserModel.fromJson(Map<String, dynamic> json) {
     String userRole = json['userRole'];
@@ -28,6 +35,7 @@ class UserModel {
     return UserModel(
       token: json['token'],
       profileImage: json['profileImage'],
+      averageRate: json['averageRate'],
       userRole: userRole,
       userDetails: userDetails,
     );
@@ -37,6 +45,7 @@ class UserModel {
         'token': token,
         'profileImage': profileImage,
         'userRole': userRole,
+        'averageRate': averageRate,
         'userDetails': userDetails?.toJson(),
       };
 }

@@ -23,6 +23,7 @@ import '../../../../core/helpers/reg_ex.dart';
 class EditProfilePage extends StatelessWidget {
   static const routeName = '/editProfilePage';
   final StudentEditProfileCubit passedCubit;
+
   const EditProfilePage({super.key, required this.passedCubit});
 
   @override
@@ -63,7 +64,6 @@ class EditProfilePage extends StatelessWidget {
         builder: (context, state) {
           var cubit = context.read<StudentEditProfileCubit>();
           return Scaffold(
-            /// TODO : remove this appbar after finishing this screen
             appBar: AppBar(
               title: const Text(LocaleKeys.edit_data).tr(),
             ),

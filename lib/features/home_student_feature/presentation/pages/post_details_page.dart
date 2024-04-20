@@ -3,6 +3,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:oralsync/core/utils/icon_broken.dart';
+import 'package:oralsync/core/widgets/comment_widget.dart';
 import 'package:oralsync/features/home_student_feature/presentation/widgets/no_task_widget.dart';
 import 'package:oralsync/features/home_student_feature/presentation/widgets/post_item_widget.dart';
 import 'package:oralsync/translations/locale_keys.g.dart';
@@ -11,16 +12,18 @@ import '../manager/home_student_cubit/home_student_cubit.dart';
 import '../widgets/comment_form_field.dart';
 
 class PostDetailsPage extends StatelessWidget {
-  const PostDetailsPage({super.key, required this.cubit, required this.index});
+  const PostDetailsPage({
+    super.key,
+    required this.cubit,
+    required this.index,
+  });
 
   static const String routeName = '/PostDetailsPage';
-final HomeStudentCubit cubit;
-final int index;
+  final HomeStudentCubit cubit;
+  final int index;
+
   @override
   Widget build(BuildContext context) {
-    // var args = ModalRoute.of(context)!.settings.arguments as List;
-    // var cubit = args[0] as HomeStudentCubit;
-    // var index = args[1] as int;
     return BlocProvider.value(
       value: cubit,
       child: Scaffold(
@@ -40,7 +43,7 @@ final int index;
                     postDate: DateFormat("MMM dd, yyyy").format(
                         DateFormat("yyyy/MM/dd").parse(
                             cubit.posts[index].dateCreated ?? '2001/08/01')),
-                    images: cubit.posts[index].image ?? [],
+                    images: cubit.posts[index].postImages ?? [],
                     userName:
                         '${cubit.studentModel.userDetails?.firstName} ${cubit.studentModel.userDetails?.lastName}',
                   ),
@@ -50,20 +53,12 @@ final int index;
                 ),
                 cubit.posts[index].comments!.isNotEmpty
                     ? SliverList.builder(
-                        itemBuilder: (context, index1) => ListTile(
-                          title: Text(
-                              cubit.posts[index].comments![index1].content ??
-                                  ''),
-                          leading: const CircleAvatar(
-                            backgroundImage: CachedNetworkImageProvider(
-                              'https://graduationpt-001-site1.htempurl.com/Profile/default/male.png',
-                            ),
-                          ),
-                          trailing: const Icon(IconBroken.Delete),
+                        itemBuilder: (context, index1) => CommentWidget(
+                          comment: cubit.posts[index].comments![index1],
                         ),
                         itemCount: cubit.posts[index].comments?.length ?? 0,
                       )
-                    : SliverToBoxAdapter(
+                    : const SliverToBoxAdapter(
                         child: NoTaskWidget(title: LocaleKeys.no_comments),
                       ),
                 SliverToBoxAdapter(
