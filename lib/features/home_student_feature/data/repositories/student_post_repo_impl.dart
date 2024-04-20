@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:dartz/dartz.dart';
+import 'package:oralsync/features/home_student_feature/data/models/comment_model.dart';
 
 import '../../../../core/cache_helper/shared_prefs_keys.dart';
 import '../../../../core/error/error_model.dart';
@@ -69,7 +70,7 @@ class StudentPostRepoImpl implements StudentPostRepo {
   }
 
   @override
-  Future<Either<Failure, ResponseModel>> doComment({
+  Future<Either<Failure,CommentModel>> doComment({
     required int postId,
     required Map<String, dynamic> data,
   }) async {

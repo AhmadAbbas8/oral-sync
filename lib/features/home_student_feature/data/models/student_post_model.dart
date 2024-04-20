@@ -54,7 +54,7 @@ class StudentPostModel {
   String? userId;
   String? userName;
   List<CommentModel>? comments;
-  num? likeCount;
+  int? likeCount;
   List<String>? postImages;
 
   Map<String, dynamic> toJson() {

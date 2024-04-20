@@ -28,9 +28,7 @@ class HomePatientLayoutPage extends StatelessWidget {
           )..getNotifications(),
         ),
         BlocProvider(
-          create: (_) => FreePaidReservationCubit(
-            studentPostRepo: ServiceLocator.instance(), doCommentUseCase: ServiceLocator.instance(),
-          )..getFreePosts(),
+          create: (_) => ServiceLocator.instance<FreePaidReservationCubit>()..getFreePosts(),
         )
       ],
       child: BlocBuilder<HomePatientCubit, HomePatientState>(

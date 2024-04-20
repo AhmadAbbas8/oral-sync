@@ -24,3 +24,17 @@ class FetchFreePostsError extends FreePaidReservationState {
 }
 
 class FetchFreePostsSuccess extends FreePaidReservationState {}
+
+class LikeUnLikePostSuccess extends FreePaidReservationState {
+  final ResponseModel responseModel;
+
+  LikeUnLikePostSuccess({required this.responseModel});
+}
+
+class LikeUnLikePostError extends FreePaidReservationState {
+  final ResponseModel? responseModel;
+
+  LikeUnLikePostError({required this.responseModel});
+}
+
+class LikeUnLikePostLoading extends FreePaidReservationState {}

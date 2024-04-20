@@ -143,7 +143,7 @@ class AppRouter {
         {
           var args = settings.arguments as List;
           return PageTransition(
-              child: PatientPostDetailsPage(cubit: args[0], index: args[1]),
+              child: PatientPostDetailsPage( index: args[0]),
               type: _generalType);
         }
       default:
