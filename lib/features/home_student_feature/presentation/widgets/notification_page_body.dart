@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 
 import '../../../../translations/locale_keys.g.dart';
-import '../../data/models/Notification_model.dart';
+import '../../../../core/shared_data_layer/actions_data_layer/model/Notification_model.dart';
 import 'no_task_widget.dart';
 import 'notification_item.dart';
 

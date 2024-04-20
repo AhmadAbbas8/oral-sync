@@ -1,8 +1,9 @@
 import 'package:dartz/dartz.dart';
+import 'package:oralsync/core/error/error_model.dart';
 import 'package:oralsync/core/network/network_info.dart';
-import 'package:oralsync/features/home_student_feature/data/data_sources/actions_reomte_data_source.dart';
-import 'package:oralsync/features/home_student_feature/data/models/Notification_model.dart';
-import 'package:oralsync/features/home_student_feature/domain/repositories/actions_repo.dart';
+import 'package:oralsync/core/shared_data_layer/actions_data_layer/actions_reomte_data_source.dart';
+import 'package:oralsync/core/shared_data_layer/actions_data_layer/model/Notification_model.dart';
+import 'package:oralsync/core/shared_data_layer/actions_data_layer/actions_repo.dart';
 
 import '../../../../core/error/exception.dart';
 import '../../../../core/error/failure.dart';
@@ -24,6 +25,20 @@ class ActionsRepoImpl extends ActionsRepo {
         List<NotificationModel> notifications =
             await _actionsRemoteDataSource.getNotifications();
         return Right(notifications);
+      } on ServerException catch (ex) {
+        return Left(ServerFailure(errorModel: ex.errorModel));
+      }
+    } else {
+      return Left(OfflineFailure());
+    }
+  }
+
+  @override
+  Future<Either<Failure, ResponseModel>> addLikeRemoveLike(int postId) async {
+    if (await _networkInfo.isConnected) {
+      try {
+        var res = await _actionsRemoteDataSource.addLikeRemoveLike(postId);
+        return Right(res);
       } on ServerException catch (ex) {
         return Left(ServerFailure(errorModel: ex.errorModel));
       }

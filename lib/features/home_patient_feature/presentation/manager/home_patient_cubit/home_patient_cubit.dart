@@ -14,7 +14,7 @@ import '../../../../../core/service_locator/service_locator.dart';
 import '../../../../../core/utils/icon_broken.dart';
 import '../../../../../translations/locale_keys.g.dart';
 import '../../../../Auth/data/models/user_model.dart';
-import '../../../../home_student_feature/data/models/Notification_model.dart';
+import '../../../../../core/shared_data_layer/actions_data_layer/model/Notification_model.dart';
 
 part 'home_patient_state.dart';
 

@@ -55,7 +55,9 @@ class FreePaidReservationCubit extends Cubit<FreePaidReservationState> {
     page = 1;
     await getFreePosts();
   }
+likeUnLike(){
 
+}
   doComment(int postId, int index) async {
     if (commentController.text.isEmpty) return;
 
