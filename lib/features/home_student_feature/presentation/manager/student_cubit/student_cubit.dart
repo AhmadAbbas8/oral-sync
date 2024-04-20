@@ -7,7 +7,7 @@ import 'package:oralsync/core/error/error_model.dart';
 import 'package:oralsync/core/error/failure.dart';
 import 'package:oralsync/core/helpers/extensions/navigation_extensions.dart';
 import 'package:oralsync/core/utils/icon_broken.dart';
-import 'package:oralsync/features/home_student_feature/data/models/Notification_model.dart';
+import 'package:oralsync/core/shared_data_layer/actions_data_layer/model/Notification_model.dart';
 import 'package:oralsync/features/home_student_feature/domain/use_cases/get_notifications_use_case.dart';
 import 'package:oralsync/features/home_student_feature/presentation/pages/profile_student_page.dart';
 import 'package:oralsync/translations/locale_keys.g.dart';

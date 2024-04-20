@@ -7,7 +7,7 @@ import 'package:intl/intl.dart';
 import '../../../../core/helpers/check_language.dart';
 import '../../../../core/utils/assets_manager.dart';
 import '../../../../core/utils/colors_palette.dart';
-import '../../data/models/Notification_model.dart';
+import '../../../../core/shared_data_layer/actions_data_layer/model/Notification_model.dart';
 
 class NotificationItem extends StatelessWidget {
   const NotificationItem({super.key, required this.notification});

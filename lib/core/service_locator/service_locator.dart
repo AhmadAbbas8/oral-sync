@@ -20,12 +20,11 @@ import 'package:oralsync/features/Auth/data/repositories/auth_repository_impl.da
 import 'package:oralsync/features/Auth/domain/repositories/auth_repository.dart';
 import 'package:oralsync/features/Auth/domain/use_cases/login_use_case.dart';
 import 'package:oralsync/features/Auth/domain/use_cases/new_register_use_case.dart';
-import 'package:oralsync/features/home_student_feature/data/data_sources/actions_reomte_data_source.dart';
+import 'package:oralsync/core/shared_data_layer/actions_data_layer/actions_reomte_data_source.dart';
 import 'package:oralsync/features/home_student_feature/data/data_sources/student_post_local_data_source.dart';
 import 'package:oralsync/features/home_student_feature/data/data_sources/sudent_post_remote_data_source.dart';
-import 'package:oralsync/features/home_student_feature/data/repositories/actions_repo_impl.dart';
 import 'package:oralsync/features/home_student_feature/data/repositories/student_post_repo_impl.dart';
-import 'package:oralsync/features/home_student_feature/domain/repositories/actions_repo.dart';
+import 'package:oralsync/core/shared_data_layer/actions_data_layer/actions_repo.dart';
 import 'package:oralsync/features/home_student_feature/domain/repositories/student_post_repo.dart';
 import 'package:oralsync/features/home_student_feature/domain/use_cases/archive_and_unarchive_post_use_case.dart';
 import 'package:oralsync/features/home_student_feature/domain/use_cases/create_post_use_case.dart';
@@ -35,6 +34,8 @@ import 'package:oralsync/features/home_student_feature/domain/use_cases/get_all_
 import 'package:oralsync/features/home_student_feature/domain/use_cases/get_notifications_use_case.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
+
+import '../shared_data_layer/actions_data_layer/actions_repo_impl.dart';
 
 class ServiceLocator {
   ServiceLocator._();

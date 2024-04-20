@@ -59,6 +59,7 @@ class _CustomFreePostsWidgetState extends State<CustomFreePostsWidget> {
                 PatientPostDetailsPage.routeName,
                 arguments: [widget.cubit, index],
               ),
+        onTaLike: () => widget.cubit.likeUnLike(),
             ),
     );
   }
