@@ -49,7 +49,7 @@ class _CustomFreePostsWidgetState extends State<CustomFreePostsWidget> {
               userName: widget.cubit.freePosts[index].userName ?? '',
               postDate: widget.cubit.freePosts[index].dateCreated ?? '',
               caption: widget.cubit.freePosts[index].content ?? '',
-              images: widget.cubit.freePosts[index].image ?? [],
+              images: widget.cubit.freePosts[index].postImages ?? [],
               likesCount: widget.cubit.freePosts[index].likeCount?.toInt() ?? 0,
               commentsCount:
                   widget.cubit.freePosts[index].comments?.length ?? 0,
