@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:oralsync/core/helpers/extensions/navigation_extensions.dart';
 import 'package:oralsync/features/home_patient_feature/presentation/pages/profile_patient_page.dart';
 import 'package:oralsync/features/home_student_feature/domain/use_cases/get_notifications_use_case.dart';
@@ -40,7 +39,7 @@ class HomePatientCubit extends Cubit<HomePatientState> {
     IconBroken.Wallet,
     IconBroken.Profile,
   ];
-  int currentNavIndex = 2;
+  int currentNavIndex = 0;
   List<String> appBarTitles = const [
     LocaleKeys.free_reservation,
     LocaleKeys.paid_reservation,
@@ -57,6 +56,7 @@ class HomePatientCubit extends Cubit<HomePatientState> {
     currentNavIndex = index;
     emit(ChangeNavBarIndexPatient(index: index));
   }
+
   List<NotificationModel> notifications = [];
 
   getNotifications() async {
