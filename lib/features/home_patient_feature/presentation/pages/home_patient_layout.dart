@@ -9,6 +9,9 @@ import 'package:oralsync/features/home_patient_feature/presentation/manager/home
 import 'package:oralsync/core/widgets/custom_app_drawer.dart';
 import 'package:oralsync/features/home_patient_feature/presentation/pages/free_reservation_page.dart';
 import 'package:oralsync/core/shared_data_layer/actions_data_layer/model/Notification_model.dart';
+import 'package:oralsync/features/home_patient_feature/presentation/pages/messages_patient_page.dart';
+import 'package:oralsync/features/home_patient_feature/presentation/pages/paid_reservation_page.dart';
+import 'package:oralsync/features/home_patient_feature/presentation/pages/reservations_page.dart';
 
 import '../../../../core/utils/icon_broken.dart';
 import '../../../home_student_feature/presentation/pages/notification_page.dart';
@@ -37,10 +40,13 @@ class HomePatientLayoutPage extends StatelessWidget {
           return Scaffold(
             drawer: _buildCustomAppDrawer(cubit),
             appBar: _buildAppBar(cubit, context),
-            body: const LazyIndexedStack(
-              index: 0,
+            body:  LazyIndexedStack(
+              index: cubit.currentNavIndex,
               children: [
                 FreeReservationPage(),
+                PaidReservationPage(),
+                MessagesPatientPage(),
+                ReservationsPage(),
               ],
             ),
             bottomNavigationBar: BottomNavigationBar(
