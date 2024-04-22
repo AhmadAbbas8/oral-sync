@@ -104,7 +104,7 @@ class StudentPostRemoteDataSourceImpl implements StudentPostRemoteDataSource {
           await apiConsumer.post(EndPoints.addCommentEndPoint, data: data);
       if (response.statusCode == 200) {
 
-        return CommentModel.fromJson(json.decode(response.data));
+        return CommentModel.fromJson(response.data);
       } else {
         throw ServerException(
             errorModel: ResponseModel(
