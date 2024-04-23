@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:oralsync/features/home_patient_feature/presentation/pages/home_patient_layout.dart';
-import 'package:oralsync/features/home_student_feature/presentation/pages/contact_us_page.dart';
+import 'package:oralsync/features/contact_us_feature/presentation/pages/contact_us_page.dart';
 import 'package:page_transition/page_transition.dart';
 
 import '../../features/Auth/presentation/pages/login_page.dart';
