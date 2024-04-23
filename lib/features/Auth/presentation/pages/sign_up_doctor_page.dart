@@ -12,6 +12,7 @@ import 'package:oralsync/core/utils/styles.dart';
 import 'package:oralsync/features/Auth/domain/use_cases/login_use_case.dart';
 
 import 'package:oralsync/features/Auth/presentation/manager/doctor_sign_up_cubit/doctor_sign_up_cubit.dart';
+import 'package:oralsync/features/home_doctor_feature/presentation/pages/doctor_home_layout.dart';
 
 import 'package:oralsync/features/home_feature/presentation/pages/home_page.dart';
 import 'package:oralsync/features/Auth/presentation/widgets/custom_login_button_widget.dart';
@@ -63,7 +64,7 @@ class _SignUpDoctorStudentPageState extends State<SignUpDoctorPage> {
                           msg: LocaleKeys.user_created_successfully.tr(),
                           backgroundColor: Colors.green);
                       context.pop();
-                      context.pushNamed(HomePage.routeName);
+                      context.pushNamed(HomeDoctorLayoutPage.routeName);
                     }
                   },
                   builder: (context, state) {

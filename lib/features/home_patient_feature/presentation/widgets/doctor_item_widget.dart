@@ -10,11 +10,7 @@ class DoctorItemWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(20),
-      ),
-      elevation: 10,
-      margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+
       child: InkWell(
         onTap: () {},
         child: Padding(

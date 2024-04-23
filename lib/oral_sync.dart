@@ -10,6 +10,7 @@ import 'package:oralsync/core/service_locator/service_locator.dart';
 import 'package:oralsync/core/utils/colors_palette.dart';
 import 'package:oralsync/core/utils/styles.dart';
 import 'package:oralsync/features/Auth/presentation/pages/login_page.dart';
+import 'package:oralsync/features/home_doctor_feature/presentation/pages/doctor_home_layout.dart';
 import 'package:oralsync/features/home_patient_feature/presentation/pages/home_patient_layout.dart';
 
 import 'features/Auth/data/models/user_model.dart';
@@ -44,6 +45,14 @@ class _OralSyncAppState extends State<OralSyncApp> {
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           useMaterial3: true,
+          cardTheme: CardTheme(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(20),
+            ),
+            elevation: 10,
+            margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+            shadowColor: Colors.greenAccent[100],
+          ),
           scaffoldBackgroundColor: ColorsPalette.scaffoldColor,
           appBarTheme: AppBarTheme(
             centerTitle: true,
@@ -110,9 +119,11 @@ class _OralSyncAppState extends State<OralSyncApp> {
     var user = json.decode(cache.getData(key: SharedPrefsKeys.user));
     var role = UserModel.fromJson(user).userRole?.toUpperCase() ?? '';
     if (role == 'Student'.toUpperCase()) {
-      return StudentHomeLayoutPage.routeName;
+      return HomeStudentLayoutPage.routeName;
     } else if (role == 'Patient'.toUpperCase()) {
       return HomePatientLayoutPage.routeName;
+    } else if (role == 'Doctor'.toUpperCase()) {
+      return HomeDoctorLayoutPage.routeName;
     }
   }
 }

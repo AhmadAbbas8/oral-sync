@@ -61,7 +61,7 @@ class SignUpStudentPage extends StatelessWidget {
                           backgroundColor: Colors.green);
                       context.pop();
                       context.pushNamedAndRemoveUntil(
-                          StudentHomeLayoutPage.routeName,
+                          HomeStudentLayoutPage.routeName,
                           predicate: (route) => false);
                     }
                   },
