@@ -95,9 +95,9 @@ class AppRouter {
           type: _generalType,
           curve: _generalCurve,
         );
-      case EditProfilePage.routeName:
+      case EditProfileStudentPage.routeName:
         return PageTransition(
-          child: EditProfilePage(
+          child: EditProfileStudentPage(
             passedCubit: settings.arguments as StudentEditProfileCubit,
           ),
           type: _generalType,
