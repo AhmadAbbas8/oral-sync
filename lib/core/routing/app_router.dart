@@ -9,6 +9,7 @@ import '../../features/Auth/presentation/pages/sign_up_options_page.dart';
 import '../../features/Auth/presentation/pages/sign_up_patient_page.dart';
 import '../../features/Auth/presentation/pages/sign_up_student_page.dart';
 import '../../features/home_feature/presentation/pages/home_page.dart';
+import '../../features/home_patient_feature/presentation/pages/chat_page.dart';
 import '../../features/home_patient_feature/presentation/pages/edit_profile_patient_page.dart';
 import '../../features/home_patient_feature/presentation/pages/patient_post_details_page.dart';
 import '../../features/home_patient_feature/presentation/pages/profile_patient_page.dart';
@@ -143,9 +144,15 @@ class AppRouter {
         {
           var args = settings.arguments as List;
           return PageTransition(
-              child: PatientPostDetailsPage( index: args[0]),
+              child: PatientPostDetailsPage(index: args[0]),
               type: _generalType);
         }
+      case ChatPage.routeName:
+        {
+          var args  = settings.arguments as int;
+          return PageTransition(child: ChatPage(index: args), type: _generalType);
+        }
+
       default:
         return MaterialPageRoute(
           builder: (_) => Scaffold(
