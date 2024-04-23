@@ -3,7 +3,6 @@ import 'dart:developer';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:oralsync/core/helpers/check_language.dart';
 import 'package:oralsync/core/helpers/custom_progress_indicator.dart';
@@ -12,13 +11,13 @@ import 'package:oralsync/core/helpers/general_validators.dart';
 import 'package:oralsync/core/helpers/snackbars.dart';
 import 'package:oralsync/core/service_locator/service_locator.dart';
 import 'package:oralsync/core/utils/assets_manager.dart';
-import 'package:oralsync/core/utils/colors_palette.dart';
+
 import 'package:oralsync/core/utils/size_helper.dart';
 import 'package:oralsync/features/Auth/presentation/widgets/custom_login_button_widget.dart';
-import 'package:oralsync/features/home_student_feature/presentation/manager/contact_us_cubit/contact_us_cubit.dart';
-import 'package:url_launcher/url_launcher.dart';
+
 
 import '../../../../translations/locale_keys.g.dart';
+import '../manager/contact_us_cubit/contact_us_cubit.dart';
 import '../widgets/contact_us_form_field_widget.dart';
 
 class ContactUsPage extends StatelessWidget {

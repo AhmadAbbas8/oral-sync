@@ -7,8 +7,6 @@ import 'package:oralsync/core/cache_helper/shared_prefs_cache.dart';
 import 'package:oralsync/core/network/api/api_consumer.dart';
 import 'package:oralsync/core/network/api/dio_consumer.dart';
 import 'package:oralsync/core/network/network_info.dart';
-import 'package:oralsync/core/shared_data_layer/contact_us_data_layer/contact_us_data_source.dart';
-import 'package:oralsync/core/shared_data_layer/contact_us_data_layer/contact_us_repo.dart';
 import 'package:oralsync/core/shared_data_layer/edit_profile_data_layer/edit_profile_remote_data_source.dart';
 import 'package:oralsync/core/shared_data_layer/edit_profile_data_layer/edit_repo.dart';
 import 'package:oralsync/core/utils/end_points.dart';
@@ -36,6 +34,8 @@ import 'package:oralsync/features/home_student_feature/domain/use_cases/get_noti
 
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../features/contact_us_feature/contact_us_data_layer/contact_us_data_source.dart';
+import '../../features/contact_us_feature/contact_us_data_layer/contact_us_repo.dart';
 import '../shared_data_layer/actions_data_layer/actions_repo_impl.dart';
 
 class ServiceLocator {
