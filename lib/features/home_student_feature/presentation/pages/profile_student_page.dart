@@ -112,7 +112,7 @@ class _ProfileStudentPageState extends State<ProfileStudentPage> {
                           : FontAwesomeIcons.female,
                     ),
                     InfoWidget(
-                      title: userData.universitAddress
+                      title: userData.universityAddress
                           .toString()
                           .replaceAll(']', '')
                           .replaceAll('[', ''),

@@ -180,3 +180,8 @@ class DoctorSignUpCubit extends Cubit<DoctorSignUpState> {
     return super.close();
   }
 }
+
+
+// patient -> governorate
+// student -> governorate
+// doctor  -> governorate

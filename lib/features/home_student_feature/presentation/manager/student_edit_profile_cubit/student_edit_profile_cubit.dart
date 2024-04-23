@@ -94,8 +94,8 @@ class StudentEditProfileCubit extends Cubit<StudentEditProfileState> {
     gpaController.text = studentDetails.gpa?.toString() ?? '';
     try {
       universityGovernorateController.text =
-          studentDetails.universitAddress![0] ?? '';
-      universityCityController.text = studentDetails.universitAddress![1] ?? '';
+          studentDetails.universityAddress![0] ?? '';
+      universityCityController.text = studentDetails.universityAddress![1] ?? '';
     } catch (e) {
       universityGovernorateController.text = '';
       universityCityController.text = '';
