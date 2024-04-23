@@ -11,7 +11,7 @@ import 'package:oralsync/core/service_locator/service_locator.dart';
 import 'package:oralsync/core/utils/size_helper.dart';
 import 'package:oralsync/core/utils/styles.dart';
 import 'package:oralsync/features/Auth/domain/use_cases/login_use_case.dart';
-import 'package:oralsync/features/Auth/domain/use_cases/new_register_use_case.dart';
+import 'package:oralsync/features/Auth/domain/use_cases/register_use_case.dart';
 
 import 'package:oralsync/features/Auth/presentation/manager/student_sign_up_cubit/student_sign_up_cubit.dart';
 import 'package:oralsync/features/Auth/presentation/widgets/custom_login_button_widget.dart';
@@ -36,7 +36,7 @@ class SignUpStudentPage extends StatelessWidget {
     return BlocProvider(
       create: (context) => StudentSignUpCubit(
         loginUseCase: ServiceLocator.instance<LoginUseCase>(),
-        newRegisterUseCase: ServiceLocator.instance<NewRegisterUseCase>(),
+        registerUseCase: ServiceLocator.instance<RegisterUseCase>(),
       ),
       child: Scaffold(
         body: SafeArea(

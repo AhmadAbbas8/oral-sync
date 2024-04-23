@@ -9,7 +9,7 @@ abstract class AuthRemoteDataSource {
     required String password,
   });
 
-  Future<RegisterBodyModel> newRegister({
+  Future<RegisterBodyModel> register({
     required String email,
     required String password,
     required String confirmPassword,
@@ -30,7 +30,8 @@ abstract class AuthRemoteDataSource {
     String? graduationDate,
     List<String>? address,
     String? insuranceCompany,
-    List<String>? universitAddress,
+    String? governorate,
+    List<String>? universityAddress,
     int? academicYear,
   });
 

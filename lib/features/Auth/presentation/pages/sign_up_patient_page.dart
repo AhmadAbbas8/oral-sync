@@ -12,7 +12,7 @@ import 'package:oralsync/core/utils/assets_manager.dart';
 import 'package:oralsync/core/utils/size_helper.dart';
 import 'package:oralsync/core/utils/styles.dart';
 import 'package:oralsync/features/Auth/domain/use_cases/login_use_case.dart';
-import 'package:oralsync/features/Auth/domain/use_cases/new_register_use_case.dart';
+import 'package:oralsync/features/Auth/domain/use_cases/register_use_case.dart';
 
 import 'package:oralsync/features/Auth/presentation/manager/patient_sign_up_cubit/patient_sign_up_cubit.dart';
 import 'package:oralsync/features/home_feature/presentation/pages/home_page.dart';
@@ -35,7 +35,7 @@ class SignUpPatientPage extends StatelessWidget {
     return BlocProvider(
       create: (context) => PatientSignUpCubit(
           loginUseCase: ServiceLocator.instance<LoginUseCase>(),
-          newRegisterUseCase: ServiceLocator.instance<NewRegisterUseCase>()),
+          newRegisterUseCase: ServiceLocator.instance<RegisterUseCase>()),
       child: Scaffold(
         body: SafeArea(
           child: SingleChildScrollView(

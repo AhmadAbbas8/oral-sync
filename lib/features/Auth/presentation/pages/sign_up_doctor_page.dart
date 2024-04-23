@@ -20,7 +20,7 @@ import 'package:oralsync/features/Auth/presentation/widgets/custom_tow_form_fiel
 import 'package:oralsync/translations/locale_keys.g.dart';
 
 import '../../../../core/helpers/general_validators.dart';
-import '../../domain/use_cases/new_register_use_case.dart';
+import '../../domain/use_cases/register_use_case.dart';
 
 class SignUpDoctorPage extends StatefulWidget {
   const SignUpDoctorPage({super.key});
@@ -39,7 +39,7 @@ class _SignUpDoctorStudentPageState extends State<SignUpDoctorPage> {
     return BlocProvider(
       create: (context) => DoctorSignUpCubit(
         loginUseCase: ServiceLocator.instance<LoginUseCase>(),
-        newRegisterUseCase: ServiceLocator.instance<NewRegisterUseCase>(),
+        newRegisterUseCase: ServiceLocator.instance<RegisterUseCase>(),
       ),
       child: Scaffold(
         body: SafeArea(
