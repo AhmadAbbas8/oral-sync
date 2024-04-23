@@ -3,10 +3,10 @@ import 'package:oralsync/core/error/failure.dart';
 import 'package:oralsync/features/Auth/data/models/register_body_model.dart';
 import 'package:oralsync/features/Auth/domain/repositories/auth_repository.dart';
 
-class NewRegisterUseCase {
+class RegisterUseCase {
   final AuthRepository authRepository;
 
-  NewRegisterUseCase({required this.authRepository});
+  RegisterUseCase({required this.authRepository});
 
   Future<Either<Failure, RegisterBodyModel>> call({
     required String email,
@@ -29,10 +29,11 @@ class NewRegisterUseCase {
     String? graduationDate,
     List<String>? address,
     String? insuranceCompany,
-    List<String>? universitAddress,
+    String? governorate,
+    List<String>? universityAddress,
     int? academicYear,
   }) async {
-    return await authRepository.newRegister(
+    return await authRepository.register(
       email: email,
       password: password,
       confirmPassword: confirmPassword,
@@ -54,7 +55,8 @@ class NewRegisterUseCase {
       graduationDate: graduationDate,
       insuranceCompanies: insuranceCompanies,
       insuranceCompany: insuranceCompany,
-      universitAddress: universitAddress,
+      universityAddress: universityAddress,
+      governorate: governorate,
     );
   }
 }

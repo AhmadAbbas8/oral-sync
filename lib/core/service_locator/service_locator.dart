@@ -19,7 +19,7 @@ import 'package:oralsync/features/Auth/data/data_sources/auth_remote_data_source
 import 'package:oralsync/features/Auth/data/repositories/auth_repository_impl.dart';
 import 'package:oralsync/features/Auth/domain/repositories/auth_repository.dart';
 import 'package:oralsync/features/Auth/domain/use_cases/login_use_case.dart';
-import 'package:oralsync/features/Auth/domain/use_cases/new_register_use_case.dart';
+import 'package:oralsync/features/Auth/domain/use_cases/register_use_case.dart';
 import 'package:oralsync/core/shared_data_layer/actions_data_layer/actions_reomte_data_source.dart';
 import 'package:oralsync/features/home_patient_feature/presentation/manager/free_paid_reservation_cubit/free_paid_reservation_cubit.dart';
 import 'package:oralsync/features/home_student_feature/data/data_sources/student_post_local_data_source.dart';
@@ -104,8 +104,8 @@ class ServiceLocator {
 
     instance.registerLazySingleton<LoginUseCase>(
         () => LoginUseCase(authRepository: instance()));
-    instance.registerLazySingleton<NewRegisterUseCase>(
-        () => NewRegisterUseCase(authRepository: instance()));
+    instance.registerLazySingleton<RegisterUseCase>(
+        () => RegisterUseCase(authRepository: instance()));
     instance.registerLazySingleton<CreatePostUseCase>(
         () => CreatePostUseCase(studentPostRepo: instance()));
     instance.registerLazySingleton<GetAllPostsStudentUseCase>(

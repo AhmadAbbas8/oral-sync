@@ -7,7 +7,7 @@ import 'package:oralsync/core/error/error_model.dart';
 import 'package:oralsync/core/helpers/custom_date_pickers.dart';
 import 'package:oralsync/features/Auth/data/models/user_model.dart';
 import 'package:oralsync/features/Auth/domain/use_cases/login_use_case.dart';
-import 'package:oralsync/features/Auth/domain/use_cases/new_register_use_case.dart';
+import 'package:oralsync/features/Auth/domain/use_cases/register_use_case.dart';
 
 import 'package:intl/intl.dart';
 
@@ -20,7 +20,7 @@ class PatientSignUpCubit extends Cubit<PatientSignUpState> {
     required this.newRegisterUseCase,
     required this.loginUseCase,
   }) : super(PatientSignUpInitial());
-  final NewRegisterUseCase newRegisterUseCase;
+  final RegisterUseCase newRegisterUseCase;
 
   final LoginUseCase loginUseCase;
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
@@ -73,6 +73,7 @@ class PatientSignUpCubit extends Cubit<PatientSignUpState> {
       ],
       insuranceCompany: null,
       birthDate: dateOfBirthController.text,
+      governorate: governorateController.text,
     );
 
     res.fold((failure) {

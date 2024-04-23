@@ -7,7 +7,7 @@ import 'package:oralsync/core/error/error_model.dart';
 import 'package:oralsync/core/helpers/custom_date_pickers.dart';
 import 'package:oralsync/features/Auth/data/models/user_model.dart';
 import 'package:oralsync/features/Auth/domain/use_cases/login_use_case.dart';
-import 'package:oralsync/features/Auth/domain/use_cases/new_register_use_case.dart';
+import 'package:oralsync/features/Auth/domain/use_cases/register_use_case.dart';
 
 import 'package:intl/intl.dart';
 
@@ -17,10 +17,10 @@ part 'student_sign_up_state.dart';
 
 class StudentSignUpCubit extends Cubit<StudentSignUpState> {
   StudentSignUpCubit({
-    required this.newRegisterUseCase,
+    required this.registerUseCase,
     required this.loginUseCase,
   }) : super(StudentSignUpInitial());
-  final NewRegisterUseCase newRegisterUseCase;
+  final RegisterUseCase registerUseCase;
 
   final LoginUseCase loginUseCase;
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
@@ -36,9 +36,10 @@ class StudentSignUpCubit extends Cubit<StudentSignUpState> {
     isMale = value;
     emit(GenderChangedState(isMale: isMale!));
   }
+
   void register() async {
     emit(RegisterStudentLoading());
-    var res = await newRegisterUseCase.call(
+    var res = await registerUseCase.call(
       email: emailController.text,
       password: passwordController.text,
       confirmPassword: passwordController.text,
@@ -49,12 +50,12 @@ class StudentSignUpCubit extends Cubit<StudentSignUpState> {
       isPatient: false,
       fName: fNameController.text,
       lName: sNameController.text,
-universityName: universityNameController.text,
-      gpa:double.tryParse( GPAController.text),
-      academicYear:int.tryParse( academicYearController.text),
+      universityName: universityNameController.text,
+      gpa: double.tryParse(GPAController.text),
+      academicYear: int.tryParse(academicYearController.text),
       graduationDate: gradDateController.text,
-
       birthDate: dateOfBirthController.text,
+      governorate: governorateController.text,
     );
 
     res.fold((failure) {
@@ -104,6 +105,7 @@ universityName: universityNameController.text,
   final TextEditingController dateOfBirthController = TextEditingController();
   final TextEditingController gradDateController = TextEditingController();
   final TextEditingController academicYearController = TextEditingController();
+
   // ignore: non_constant_identifier_names
   final TextEditingController GPAController = TextEditingController();
   final TextEditingController governorateController = TextEditingController();
@@ -113,7 +115,7 @@ universityName: universityNameController.text,
   final TextEditingController otherController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController universityNameController =
-  TextEditingController();
+      TextEditingController();
   var dateFormat = DateFormat('yyyy/MM/dd');
 
   onTapBirthDate(BuildContext context) async {

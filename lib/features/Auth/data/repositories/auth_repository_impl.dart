@@ -43,7 +43,7 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<Either<Failure, RegisterBodyModel>> newRegister({
+  Future<Either<Failure, RegisterBodyModel>> register({
     required String email,
     required String password,
     required String confirmPassword,
@@ -64,12 +64,13 @@ class AuthRepositoryImpl implements AuthRepository {
     String? graduationDate,
     List<String>? address,
     String? insuranceCompany,
-    List<String>? universitAddress,
+    String? governorate,
+    List<String>? universityAddress,
     int? academicYear,
   }) async {
     if (await networkInfo.isConnected) {
       try {
-        var model = await authRemoteDataSource.newRegister(
+        var model = await authRemoteDataSource.register(
           email: email,
           password: password,
           confirmPassword: confirmPassword,
@@ -91,7 +92,8 @@ class AuthRepositoryImpl implements AuthRepository {
           graduationDate: graduationDate,
           insuranceCompanies: insuranceCompanies,
           insuranceCompany: insuranceCompany,
-          universitAddress: universitAddress,
+          universityAddress: universityAddress,
+          governorate: governorate,
         );
 
         return Right(model);

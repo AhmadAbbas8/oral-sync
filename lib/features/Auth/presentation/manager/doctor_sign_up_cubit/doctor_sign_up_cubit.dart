@@ -10,7 +10,7 @@ import 'package:oralsync/core/helpers/custom_date_pickers.dart';
 import 'package:oralsync/features/Auth/data/models/user_model.dart';
 
 import 'package:oralsync/features/Auth/domain/use_cases/login_use_case.dart';
-import 'package:oralsync/features/Auth/domain/use_cases/new_register_use_case.dart';
+import 'package:oralsync/features/Auth/domain/use_cases/register_use_case.dart';
 
 part 'doctor_sign_up_state.dart';
 
@@ -20,7 +20,7 @@ class DoctorSignUpCubit extends Cubit<DoctorSignUpState> {
       : super(DoctorSignUpInitial());
 
   final LoginUseCase loginUseCase;
-  final NewRegisterUseCase newRegisterUseCase;
+  final RegisterUseCase newRegisterUseCase;
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
   bool? isMale;
   bool obscurePassword = true;
@@ -54,6 +54,7 @@ class DoctorSignUpCubit extends Cubit<DoctorSignUpState> {
       universityName: universityNameController.text,
       graduationDate: gradDateController.text,
       clinicAddress: address,
+
       /// TODO : SOON
       insuranceCompanies: null,
       certificates: null,
@@ -61,6 +62,7 @@ class DoctorSignUpCubit extends Cubit<DoctorSignUpState> {
       gpa: double.tryParse(GPAController.text) ?? 0,
       birthDate: dateOfBirthController.text,
       academicYear: int.tryParse(academicYearController.text),
+      governorate: governorateClinicController.text,
     );
     res.fold((failure) {
       if (failure is OfflineFailure) {
@@ -114,6 +116,7 @@ class DoctorSignUpCubit extends Cubit<DoctorSignUpState> {
   final TextEditingController dateOfBirthController = TextEditingController();
   final TextEditingController gradDateController = TextEditingController();
   final TextEditingController academicYearController = TextEditingController();
+
   // ignore: non_constant_identifier_names
   final TextEditingController GPAController = TextEditingController();
   final TextEditingController governorateClinicController =
