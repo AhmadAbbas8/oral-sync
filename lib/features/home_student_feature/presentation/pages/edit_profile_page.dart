@@ -20,11 +20,11 @@ import 'package:oralsync/translations/locale_keys.g.dart';
 
 import '../../../../core/helpers/reg_ex.dart';
 
-class EditProfilePage extends StatelessWidget {
-  static const routeName = '/editProfilePage';
+class EditProfileStudentPage extends StatelessWidget {
+  static const routeName = '/editProfileStudentPage';
   final StudentEditProfileCubit passedCubit;
 
-  const EditProfilePage({super.key, required this.passedCubit});
+  const EditProfileStudentPage({super.key, required this.passedCubit});
 
   @override
   Widget build(BuildContext context) {

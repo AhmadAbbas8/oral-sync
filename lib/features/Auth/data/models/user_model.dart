@@ -221,7 +221,7 @@ class StudentDetails extends UserDetails {
   Map<String, dynamic> toJson() {
     var json = super.toJson();
     json['universityName'] = universityName;
-    json['universityAddress'] = universityAddress;
+    json['universitAddress'] = universityAddress;
     json['gpa'] = gpa;
     json['academicYear'] = academicYear;
     return json;
@@ -237,7 +237,7 @@ class StudentDetails extends UserDetails {
       email: json['email'],
       birthDate: json['birthDate'],
       universityName: json['universityName'],
-      universityAddress: List<String>.from(json['universityAddress'] ?? []),
+      universityAddress: List<String>.from(json['universitAddress'] ?? []),
       gpa: json['gpa'],
       academicYear: json['academicYear'],
     );

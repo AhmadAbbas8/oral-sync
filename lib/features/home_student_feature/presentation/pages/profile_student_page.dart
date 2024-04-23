@@ -47,7 +47,7 @@ class _ProfileStudentPageState extends State<ProfileStudentPage> {
             CustomAppBarActionButton(
               title: LocaleKeys.edit,
               onTap: () => context.pushNamed(
-                EditProfilePage.routeName,
+                EditProfileStudentPage.routeName,
                 arguments: cubitPassed,
               ),
             ),
