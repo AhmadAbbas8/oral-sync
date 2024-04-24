@@ -141,41 +141,43 @@ class _SignUpDoctorStudentPageState extends State<SignUpDoctorPage> {
                                         style: AppStyles.styleSize14.copyWith(
                                             fontWeight: FontWeight.w500))
                                     .tr(),
-                                Row(
-                                  children: [
-                                    SizedBox(
-                                      width: 150,
-                                      child: RadioListTile<bool>.adaptive(
-                                        value: true,
-                                        shape: RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(20)),
-                                        groupValue: cubit.isMale,
-                                        title: Text(
-                                          type[0],
-                                          style: const TextStyle(fontSize: 14),
-                                        ).tr(),
-                                        onChanged: (value) =>
-                                            cubit.onChangedGender(value),
+                                FittedBox(
+                                  child: Row(
+                                    children: [
+                                      SizedBox(
+                                        width: 150,
+                                        child: RadioListTile<bool>.adaptive(
+                                          value: true,
+                                          shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(20)),
+                                          groupValue: cubit.isMale,
+                                          title: Text(
+                                            type[0],
+                                            style: const TextStyle(fontSize: 14),
+                                          ).tr(),
+                                          onChanged: (value) =>
+                                              cubit.onChangedGender(value),
+                                        ),
                                       ),
-                                    ),
-                                    SizedBox(
-                                      width: 150,
-                                      child: RadioListTile<bool>.adaptive(
-                                        value: false,
-                                        shape: RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(20)),
-                                        groupValue: cubit.isMale,
-                                        title: Text(
-                                          type[1],
-                                          style: const TextStyle(fontSize: 14),
-                                        ).tr(),
-                                        onChanged: (value) =>
-                                            cubit.onChangedGender(value),
+                                      SizedBox(
+                                        width: 150,
+                                        child: RadioListTile<bool>.adaptive(
+                                          value: false,
+                                          shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(20)),
+                                          groupValue: cubit.isMale,
+                                          title: Text(
+                                            type[1],
+                                            style: const TextStyle(fontSize: 14),
+                                          ).tr(),
+                                          onChanged: (value) =>
+                                              cubit.onChangedGender(value),
+                                        ),
                                       ),
-                                    ),
-                                  ],
+                                    ],
+                                  ),
                                 )
                               ],
                             ),
