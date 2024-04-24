@@ -95,7 +95,9 @@ class CodegenLoader extends AssetLoader{
   "free_reservation": "حجز مجاني",
   "paid_reservation": "حجز مدفوع",
   "reservations": "الحجوزات",
-  "insurance_companies": "شركات التأمين"
+  "insurance_companies": "شركات التأمين",
+  "this_company_has_been_added_before": "تم اضافة هذه الشركة من قبل",
+  "insurance_company": "شركة التأمين"
 };
 static const Map<String,dynamic> en = {
   "hello": "Hello",
@@ -178,7 +180,9 @@ static const Map<String,dynamic> en = {
   "free_reservation": "Free reservation",
   "paid_reservation": "Paid reservation",
   "reservations": "Reservations",
-  "insurance_companies": "Insurance companies"
+  "insurance_companies": "Insurance companies",
+  "this_company_has_been_added_before": "This company has been added before",
+  "insurance_company": "Insurance company"
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"ar": ar, "en": en};
 }

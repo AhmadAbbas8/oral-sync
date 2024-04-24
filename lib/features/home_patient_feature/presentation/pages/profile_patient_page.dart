@@ -1,4 +1,4 @@
-import 'dart:developer';
+// ignore_for_file: deprecated_member_use
 
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -18,7 +18,6 @@ import 'package:oralsync/features/home_patient_feature/presentation/pages/edit_p
 import '../../../../core/utils/icon_broken.dart';
 import '../../../../core/widgets/circle_avatar.dart';
 import '../../../../translations/locale_keys.g.dart';
-import '../../../home_student_feature/presentation/pages/edit_profile_page.dart';
 import '../../../home_student_feature/presentation/widgets/custom_app_bar_action_button.dart';
 import '../../../../core/widgets/info_widget.dart';
 

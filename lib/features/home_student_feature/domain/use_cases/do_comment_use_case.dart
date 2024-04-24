@@ -1,7 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:oralsync/features/home_student_feature/data/models/comment_model.dart';
 
-import '../../../../core/error/error_model.dart';
 import '../../../../core/error/failure.dart';
 import '../repositories/student_post_repo.dart';
 

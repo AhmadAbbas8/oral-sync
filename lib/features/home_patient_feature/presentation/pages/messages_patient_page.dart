@@ -1,6 +1,5 @@
 import 'dart:developer';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:oralsync/core/helpers/extensions/navigation_extensions.dart';
 import 'package:oralsync/core/utils/styles.dart';
@@ -40,14 +39,14 @@ class MessagesPatientPage extends StatelessWidget {
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
               ),
-              leading:  Hero(
+              leading: Hero(
                 tag: index,
                 child: const CircleAvatar(
                   backgroundImage: AssetImage('assets/test/message_iamage.png'),
                 ),
               ),
               onTap: () {
-                context.pushNamed(ChatPage.routeName,arguments: index);
+                context.pushNamed(ChatPage.routeName, arguments: index);
               },
             ),
             itemCount: 100,

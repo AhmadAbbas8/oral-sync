@@ -1,8 +1,6 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:oralsync/core/utils/icon_broken.dart';
 import 'package:oralsync/core/widgets/comment_widget.dart';
 import 'package:oralsync/features/home_student_feature/presentation/widgets/no_task_widget.dart';
 import 'package:oralsync/features/home_student_feature/presentation/widgets/post_item_widget.dart';

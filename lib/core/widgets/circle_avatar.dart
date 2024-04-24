@@ -26,7 +26,7 @@ class ImageProfileWidget extends StatelessWidget {
           left: 60,
           child: IconButton(
             onPressed: onPressed,
-            icon: Icon(
+            icon: const Icon(
               IconBroken.Camera,
               color: ColorsPalette.buttonLoginColor,
             ),
