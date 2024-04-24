@@ -3,7 +3,6 @@ import 'package:oralsync/core/helpers/extensions/navigation_extensions.dart';
 import 'package:oralsync/features/home_patient_feature/presentation/pages/patient_post_details_page.dart';
 
 import '../../../../core/widgets/loading_widget.dart';
-import '../../../home_student_feature/presentation/pages/post_details_page.dart';
 import '../../../home_student_feature/presentation/widgets/post_item_widget.dart';
 import '../manager/free_paid_reservation_cubit/free_paid_reservation_cubit.dart';
 
