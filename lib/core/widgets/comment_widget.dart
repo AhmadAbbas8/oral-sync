@@ -21,7 +21,7 @@ class CommentWidget extends StatelessWidget {
             Text(comment.name ?? ''),
             Text(
               '${comment.timeCreated} ${comment.dateCreated}',
-              style: TextStyle(fontSize: 10),
+              style: const TextStyle(fontSize: 10),
             )
           ],
         ),

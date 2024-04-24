@@ -1,5 +1,3 @@
-import 'dart:convert';
-import 'dart:developer';
 import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:oralsync/core/error/error_model.dart';
@@ -103,7 +101,6 @@ class StudentPostRemoteDataSourceImpl implements StudentPostRemoteDataSource {
       Response response =
           await apiConsumer.post(EndPoints.addCommentEndPoint, data: data);
       if (response.statusCode == 200) {
-
         return CommentModel.fromJson(response.data);
       } else {
         throw ServerException(

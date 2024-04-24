@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:intl/intl.dart';
 import 'package:oralsync/core/helpers/extensions/navigation_extensions.dart';
 
@@ -42,7 +41,7 @@ class HomeStudentPage extends StatelessWidget {
               onRefresh: () async => cubit.getAllPosts(),
               child: Center(
                 child: state is GetAllPostsLoading
-                    ? LoadingWidget()
+                    ? const LoadingWidget()
                     : cubit.posts.isNotEmpty
                         ? ListView.separated(
                             separatorBuilder: (context, index) => Divider(
@@ -52,7 +51,7 @@ class HomeStudentPage extends StatelessWidget {
                             itemCount: cubit.posts.length,
                             // shrinkWrap: true,
                             itemBuilder: (_, index) => PostItemWidget(
-                              profileURL:cubit.posts[index].profileImage??'',
+                              profileURL: cubit.posts[index].profileImage ?? '',
                               caption: cubit.posts[index].content ?? '',
                               commentsCount:
                                   cubit.posts[index].comments?.length ?? 0,
@@ -113,5 +112,3 @@ class HomeStudentPage extends StatelessWidget {
     }
   }
 }
-
-
