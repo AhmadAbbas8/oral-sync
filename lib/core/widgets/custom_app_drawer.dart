@@ -11,7 +11,7 @@ import 'package:oralsync/core/utils/icon_broken.dart';
 import 'package:oralsync/core/utils/styles.dart';
 import 'package:oralsync/features/Auth/data/models/user_model.dart';
 import 'package:oralsync/features/Auth/presentation/pages/login_page.dart';
-import 'package:oralsync/features/home_student_feature/presentation/pages/contact_us_page.dart';
+import 'package:oralsync/features/contact_us_feature/presentation/pages/contact_us_page.dart';
 import 'package:oralsync/features/home_student_feature/presentation/pages/profile_student_page.dart';
 import 'package:oralsync/features/home_student_feature/presentation/pages/settings_of_student_screen.dart';
 import 'package:oralsync/translations/locale_keys.g.dart';

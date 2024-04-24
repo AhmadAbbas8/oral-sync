@@ -72,10 +72,10 @@ class HomeStudentCubit extends Cubit<HomeStudentState> {
           emit(DoCommentError(model: failure.model!));
         }
       },
-      (r) {
+      (comment) {
         posts[index]
             .comments!
-            .add(CommentModel(title: 'title', content: commentController.text));
+            .add(comment);
         commentController.clear();
         emit(DoCommentSuccess());
       },

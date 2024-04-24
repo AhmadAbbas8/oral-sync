@@ -78,5 +78,8 @@ abstract class  LocaleKeys {
   static const free_reservation = 'free_reservation';
   static const paid_reservation = 'paid_reservation';
   static const reservations = 'reservations';
+  static const insurance_companies = 'insurance_companies';
+  static const this_company_has_been_added_before = 'this_company_has_been_added_before';
+  static const insurance_company = 'insurance_company';
 
 }

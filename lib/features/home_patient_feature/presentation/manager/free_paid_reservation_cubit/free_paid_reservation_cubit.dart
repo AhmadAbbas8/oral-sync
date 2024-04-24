@@ -9,7 +9,6 @@ import 'package:oralsync/features/home_student_feature/domain/repositories/stude
 import 'package:oralsync/features/home_student_feature/domain/use_cases/do_comment_use_case.dart';
 
 import '../../../../../core/error/error_model.dart';
-import '../../../../home_student_feature/data/models/comment_model.dart';
 
 part 'free_paid_reservation_state.dart';
 

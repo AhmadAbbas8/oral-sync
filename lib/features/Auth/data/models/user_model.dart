@@ -11,7 +11,6 @@ class UserModel {
     required this.userRole,
     required this.userDetails,
     this.averageRate,
-
   });
 
   factory UserModel.fromJson(Map<String, dynamic> json) {
@@ -57,6 +56,7 @@ class UserDetails {
   final String? phoneNumber;
   final String? email;
   final String? birthDate;
+  final String? governorate;
 
   UserDetails({
     required this.firstName,
@@ -65,6 +65,7 @@ class UserDetails {
     required this.phoneNumber,
     required this.email,
     required this.birthDate,
+    required this.governorate,
   });
 
   Map<String, dynamic> toJson() => {
@@ -74,6 +75,7 @@ class UserDetails {
         'phoneNumber': phoneNumber,
         'email': email,
         'birthDate': birthDate,
+        'governorate': governorate,
       };
 }
 
@@ -88,6 +90,7 @@ class PatientDetails extends UserDetails {
     required String phoneNumber,
     required String email,
     required String birthDate,
+    required String governorate,
     required this.address,
     required this.insuranceCompany,
   }) : super(
@@ -97,6 +100,7 @@ class PatientDetails extends UserDetails {
           phoneNumber: phoneNumber,
           email: email,
           birthDate: birthDate,
+          governorate: governorate,
         );
 
   @override
@@ -110,6 +114,7 @@ class PatientDetails extends UserDetails {
   factory PatientDetails.fromJson(Map<String, dynamic> json) {
     return PatientDetails(
       firstName: json['firstName'],
+      governorate: json['governorate'],
       lastName: json['lastName'],
       isMale: json['isMale'],
       phoneNumber: json['phoneNumber'],
@@ -136,6 +141,7 @@ class DoctorDetails extends UserDetails {
     required String phoneNumber,
     required String email,
     required String birthDate,
+    required String governorate,
     required this.universityName,
     required this.clinicNumber,
     required this.clinicAddress,
@@ -149,6 +155,7 @@ class DoctorDetails extends UserDetails {
           phoneNumber: phoneNumber,
           email: email,
           birthDate: birthDate,
+          governorate: governorate,
         );
 
   @override
@@ -170,6 +177,7 @@ class DoctorDetails extends UserDetails {
       isMale: json['isMale'],
       phoneNumber: json['phoneNumber'],
       email: json['email'],
+      governorate: json['governorate'],
       birthDate: json['birthDate'],
       universityName: json['universityName'],
       clinicNumber: json['clinicNumber'],
@@ -183,7 +191,7 @@ class DoctorDetails extends UserDetails {
 
 class StudentDetails extends UserDetails {
   final String? universityName;
-  final List<String?>? universitAddress;
+  final List<String?>? universityAddress;
   final num? gpa;
   final num? academicYear;
 
@@ -194,13 +202,15 @@ class StudentDetails extends UserDetails {
     required String phoneNumber,
     required String email,
     required String birthDate,
+    required String governorate,
     required this.universityName,
-    required this.universitAddress,
+    required this.universityAddress,
     required this.gpa,
     required this.academicYear,
   }) : super(
           firstName: firstName,
           lastName: lastName,
+          governorate: governorate,
           isMale: isMale,
           phoneNumber: phoneNumber,
           email: email,
@@ -211,7 +221,7 @@ class StudentDetails extends UserDetails {
   Map<String, dynamic> toJson() {
     var json = super.toJson();
     json['universityName'] = universityName;
-    json['universitAddress'] = universitAddress;
+    json['universitAddress'] = universityAddress;
     json['gpa'] = gpa;
     json['academicYear'] = academicYear;
     return json;
@@ -222,11 +232,12 @@ class StudentDetails extends UserDetails {
       firstName: json['firstName'],
       lastName: json['lastName'],
       isMale: json['isMale'],
+      governorate: json['governorate'],
       phoneNumber: json['phoneNumber'],
       email: json['email'],
       birthDate: json['birthDate'],
       universityName: json['universityName'],
-      universitAddress: List<String>.from(json['universitAddress'] ?? []),
+      universityAddress: List<String>.from(json['universitAddress'] ?? []),
       gpa: json['gpa'],
       academicYear: json['academicYear'],
     );

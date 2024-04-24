@@ -50,7 +50,7 @@ class CreatePostPage extends StatelessWidget {
               backgroundColor: ColorsPalette.successColor,
             );
             context.pushNamedAndRemoveUntil(
-              StudentHomeLayoutPage.routeName,
+              HomeStudentLayoutPage.routeName,
               predicate: (route) => false,
             );
           }

@@ -4,7 +4,8 @@ import 'package:oralsync/core/error/error_model.dart';
 import 'package:oralsync/core/error/failure.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import '../../../../../core/shared_data_layer/contact_us_data_layer/contact_us_repo.dart';
+import '../../../contact_us_data_layer/contact_us_repo.dart';
+
 
 part 'contact_us_state.dart';
 

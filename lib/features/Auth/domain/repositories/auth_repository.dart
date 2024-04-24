@@ -10,7 +10,7 @@ abstract class AuthRepository {
     required String password,
   });
 
-  Future<Either<Failure, RegisterBodyModel>> newRegister({
+  Future<Either<Failure, RegisterBodyModel>> register({
     required String email,
     required String password,
     required String confirmPassword,
@@ -31,7 +31,8 @@ abstract class AuthRepository {
     String? graduationDate,
     List<String>? address,
     String? insuranceCompany,
-    List<String>? universitAddress,
+    String? governorate,
+    List<String>? universityAddress,
     int? academicYear,
   });
 

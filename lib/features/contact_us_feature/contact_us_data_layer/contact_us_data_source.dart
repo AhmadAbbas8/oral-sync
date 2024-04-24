@@ -2,8 +2,8 @@ import 'package:dio/dio.dart';
 import 'package:oralsync/core/error/error_model.dart';
 import 'package:oralsync/core/utils/end_points.dart';
 
-import '../../error/exception.dart';
-import '../../network/api/api_consumer.dart';
+import '../../../core/error/exception.dart';
+import '../../../core/network/api/api_consumer.dart';
 
 abstract class ContactUsDataSource {
   Future<ResponseModel> sendFeedback({

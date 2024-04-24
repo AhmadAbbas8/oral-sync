@@ -39,7 +39,7 @@ class AuthRemoteDataSourceImp implements AuthRemoteDataSource {
   }
 
   @override
-  Future<RegisterBodyModel> newRegister({
+  Future<RegisterBodyModel> register({
     required String email,
     required String password,
     required String confirmPassword,
@@ -60,12 +60,13 @@ class AuthRemoteDataSourceImp implements AuthRemoteDataSource {
     String? graduationDate,
     List<String?>? address,
     String? insuranceCompany,
-    List<String?>? universitAddress,
+    String? governorate,
+    List<String?>? universityAddress,
     int? academicYear,
   }) async {
     try {
       Response response = await apiConsumer.post(
-        EndPoints.newRegisterEndPoint,
+        EndPoints.registerEndPoint,
         data: {
           "email": email,
           "password": password,
@@ -87,8 +88,9 @@ class AuthRemoteDataSourceImp implements AuthRemoteDataSource {
           "graduationDate": graduationDate,
           "address": address,
           "insuranceCompany": insuranceCompany,
-          "universitAddress": universitAddress,
-          "academicYear": academicYear
+          "universityAddress": universityAddress,
+          "academicYear": academicYear,
+          "governorate": governorate
         },
       );
       if (response.statusCode == 200) {

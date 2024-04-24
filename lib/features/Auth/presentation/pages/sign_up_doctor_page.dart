@@ -12,15 +12,16 @@ import 'package:oralsync/core/utils/styles.dart';
 import 'package:oralsync/features/Auth/domain/use_cases/login_use_case.dart';
 
 import 'package:oralsync/features/Auth/presentation/manager/doctor_sign_up_cubit/doctor_sign_up_cubit.dart';
+import 'package:oralsync/features/Auth/presentation/widgets/multi_input_form_field.dart';
+import 'package:oralsync/features/home_doctor_feature/presentation/pages/doctor_home_layout.dart';
 
-import 'package:oralsync/features/home_feature/presentation/pages/home_page.dart';
 import 'package:oralsync/features/Auth/presentation/widgets/custom_login_button_widget.dart';
 import 'package:oralsync/features/Auth/presentation/widgets/custom_text_form_field_login.dart';
 import 'package:oralsync/features/Auth/presentation/widgets/custom_tow_form_field_widget.dart';
 import 'package:oralsync/translations/locale_keys.g.dart';
 
 import '../../../../core/helpers/general_validators.dart';
-import '../../domain/use_cases/new_register_use_case.dart';
+import '../../domain/use_cases/register_use_case.dart';
 
 class SignUpDoctorPage extends StatefulWidget {
   const SignUpDoctorPage({super.key});
@@ -39,7 +40,7 @@ class _SignUpDoctorStudentPageState extends State<SignUpDoctorPage> {
     return BlocProvider(
       create: (context) => DoctorSignUpCubit(
         loginUseCase: ServiceLocator.instance<LoginUseCase>(),
-        newRegisterUseCase: ServiceLocator.instance<NewRegisterUseCase>(),
+        newRegisterUseCase: ServiceLocator.instance<RegisterUseCase>(),
       ),
       child: Scaffold(
         body: SafeArea(
@@ -48,24 +49,7 @@ class _SignUpDoctorStudentPageState extends State<SignUpDoctorPage> {
               constraints: BoxConstraints(minHeight: size.height),
               child: IntrinsicHeight(
                 child: BlocConsumer<DoctorSignUpCubit, DoctorSignUpState>(
-                  listener: (context, state) {
-                    if (state is RegisterDoctorLoading) {
-                      showCustomProgressIndicator(context);
-                    } else if (state is RegisterDoctorError) {
-                      context.pop();
-                      showCustomSnackBar(context,
-                          msg: isArabic(context)
-                              ? state.errorModel?.messageAr ?? ''
-                              : state.errorModel?.messageEn ?? '',
-                          backgroundColor: Colors.red);
-                    } else if (state is RegisterDoctorSuccess) {
-                      showCustomSnackBar(context,
-                          msg: LocaleKeys.user_created_successfully.tr(),
-                          backgroundColor: Colors.green);
-                      context.pop();
-                      context.pushNamed(HomePage.routeName);
-                    }
-                  },
+                  listener: (context, state) => stateHandler(state, context),
                   builder: (context, state) {
                     var cubit = context.read<DoctorSignUpCubit>();
                     return Form(
@@ -255,22 +239,28 @@ class _SignUpDoctorStudentPageState extends State<SignUpDoctorPage> {
                             validator: generalValidator,
                           ),
                           SizeHelper.defSizedBoxField,
-                          CustomTextFormFieldLogin(
-                            width: size.width * .8,
-                            obscureText: cubit.obscurePassword,
-                            validator: validatePassword,
-                            suffixIcon: IconButton(
-                              icon: Icon(cubit.obscurePassword
-                                  ? Icons.visibility
-                                  : Icons.visibility_off),
-                              onPressed: () => cubit.toggleVisibilityPassword(),
-                            ),
-                            textInputType: TextInputType.text,
-                            hintText: LocaleKeys.password,
-                            textEditingController: cubit.passwordController,
+                          MultiInputFormField(
+                            onSave: cubit.onAddInsuranceCompany,
                           ),
                           SizeHelper.defSizedBoxField,
                           Expanded(
+                            child: CustomTextFormFieldLogin(
+                              width: size.width * .8,
+                              obscureText: cubit.obscurePassword,
+                              validator: validatePassword,
+                              suffixIcon: IconButton(
+                                icon: Icon(cubit.obscurePassword
+                                    ? Icons.visibility
+                                    : Icons.visibility_off),
+                                onPressed: () => cubit.toggleVisibilityPassword(),
+                              ),
+                              textInputType: TextInputType.text,
+                              hintText: LocaleKeys.password,
+                              textEditingController: cubit.passwordController,
+                            ),
+                          ),
+                          SizeHelper.defSizedBoxField,
+                          FittedBox(
                             child: CustomLoginButtonWidget(
                               title: LocaleKeys.create_account,
                               minWidth: size.width * .8,
@@ -299,5 +289,24 @@ class _SignUpDoctorStudentPageState extends State<SignUpDoctorPage> {
         ),
       ),
     );
+  }
+
+  void stateHandler(DoctorSignUpState state, BuildContext context) {
+    if (state is RegisterDoctorLoading) {
+      showCustomProgressIndicator(context);
+    } else if (state is RegisterDoctorError) {
+      context.pop();
+      showCustomSnackBar(context,
+          msg: isArabic(context)
+              ? state.errorModel?.messageAr ?? ''
+              : state.errorModel?.messageEn ?? '',
+          backgroundColor: Colors.red);
+    } else if (state is RegisterDoctorSuccess) {
+      showCustomSnackBar(context,
+          msg: LocaleKeys.user_created_successfully.tr(),
+          backgroundColor: Colors.green);
+      context.pop();
+      context.pushNamed(HomeDoctorLayoutPage.routeName);
+    }
   }
 }

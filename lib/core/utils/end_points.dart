@@ -3,8 +3,7 @@ abstract class EndPoints {
   static const BASE_URL = 'http://graduationprt22-001-site1.gtempurl.com/api/';
   static const loginUpdatedEndPoint = 'Account/login';
   static const loginEndPoint = 'Login';
-  static const registerEndPoint = 'Account/register';
-  static const newRegisterEndPoint = 'Register';
+  static const registerEndPoint = 'Register';
   static const addDoctorEndPoint = 'AddDoctor';
   static const addStudentEndPoint = 'AddStudent';
   static const addPatientEndPoint = 'AddPatient';

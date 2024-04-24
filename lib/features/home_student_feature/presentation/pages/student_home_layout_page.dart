@@ -18,10 +18,10 @@ import 'home_student_page.dart';
 import 'message_student_page.dart';
 import 'notification_page.dart';
 
-class StudentHomeLayoutPage extends StatelessWidget {
+class HomeStudentLayoutPage extends StatelessWidget {
   static const String routeName = '/studentHomeLayoutPage';
 
-  const StudentHomeLayoutPage({super.key});
+  const HomeStudentLayoutPage({super.key});
 
   @override
   Widget build(BuildContext context) {

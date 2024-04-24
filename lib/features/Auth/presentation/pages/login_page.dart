@@ -152,7 +152,7 @@ class LoginPage extends StatelessWidget {
 
   String manageRouteName(String role) {
     if (role == 'Student'.toUpperCase()) {
-      return StudentHomeLayoutPage.routeName;
+      return HomeStudentLayoutPage.routeName;
     } else if (role == "Patient".toUpperCase()) {
       return HomePatientLayoutPage.routeName;
     }

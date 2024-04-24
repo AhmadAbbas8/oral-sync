@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:oralsync/features/home_patient_feature/presentation/pages/home_patient_layout.dart';
-import 'package:oralsync/features/home_student_feature/presentation/pages/contact_us_page.dart';
 import 'package:page_transition/page_transition.dart';
 
 import '../../features/Auth/presentation/pages/login_page.dart';
@@ -8,9 +6,12 @@ import '../../features/Auth/presentation/pages/sign_up_doctor_page.dart';
 import '../../features/Auth/presentation/pages/sign_up_options_page.dart';
 import '../../features/Auth/presentation/pages/sign_up_patient_page.dart';
 import '../../features/Auth/presentation/pages/sign_up_student_page.dart';
+import '../../features/contact_us_feature/presentation/pages/contact_us_page.dart';
+import '../../features/home_doctor_feature/presentation/pages/doctor_home_layout.dart';
 import '../../features/home_feature/presentation/pages/home_page.dart';
 import '../../features/home_patient_feature/presentation/pages/chat_page.dart';
 import '../../features/home_patient_feature/presentation/pages/edit_profile_patient_page.dart';
+import '../../features/home_patient_feature/presentation/pages/home_patient_layout.dart';
 import '../../features/home_patient_feature/presentation/pages/patient_post_details_page.dart';
 import '../../features/home_patient_feature/presentation/pages/profile_patient_page.dart';
 import '../shared_data_layer/actions_data_layer/model/Notification_model.dart';
@@ -71,9 +72,9 @@ class AppRouter {
           type: _generalType,
           curve: _generalCurve,
         );
-      case StudentHomeLayoutPage.routeName:
+      case HomeStudentLayoutPage.routeName:
         return PageTransition(
-          child: const StudentHomeLayoutPage(),
+          child: const HomeStudentLayoutPage(),
           type: _generalType,
           curve: _generalCurve,
         );
@@ -95,9 +96,9 @@ class AppRouter {
           type: _generalType,
           curve: _generalCurve,
         );
-      case EditProfilePage.routeName:
+      case EditProfileStudentPage.routeName:
         return PageTransition(
-          child: EditProfilePage(
+          child: EditProfileStudentPage(
             passedCubit: settings.arguments as StudentEditProfileCubit,
           ),
           type: _generalType,
@@ -149,9 +150,12 @@ class AppRouter {
         }
       case ChatPage.routeName:
         {
-          var args  = settings.arguments as int;
-          return PageTransition(child: ChatPage(index: args), type: _generalType);
+          var args = settings.arguments as int;
+          return PageTransition(
+              child: ChatPage(index: args), type: _generalType);
         }
+      case HomeDoctorLayoutPage.routeName:
+        return PageTransition(child: HomeDoctorLayoutPage(), type: _generalType);
 
       default:
         return MaterialPageRoute(
@@ -171,7 +175,7 @@ class AppRouter {
     SignUpDoctorPage.routeName: (context) => const SignUpDoctorPage(),
     SignUpStudentPage.routeName: (context) => const SignUpStudentPage(),
     HomePage.routeName: (context) => const HomePage(),
-    StudentHomeLayoutPage.routeName: (context) => const StudentHomeLayoutPage(),
+    HomeStudentLayoutPage.routeName: (context) => const HomeStudentLayoutPage(),
     HomeStudentPage.routeName: (context) => const HomeStudentPage(),
     ProfileStudentPage.routeName: (context) => const ProfileStudentPage(),
     CreatePostPage.routeName: (context) => const CreatePostPage(),

@@ -7,7 +7,7 @@ import 'package:oralsync/core/error/error_model.dart';
 import 'package:oralsync/core/helpers/custom_date_pickers.dart';
 import 'package:oralsync/features/Auth/data/models/user_model.dart';
 import 'package:oralsync/features/Auth/domain/use_cases/login_use_case.dart';
-import 'package:oralsync/features/Auth/domain/use_cases/new_register_use_case.dart';
+import 'package:oralsync/features/Auth/domain/use_cases/register_use_case.dart';
 
 import 'package:intl/intl.dart';
 
@@ -20,7 +20,7 @@ class PatientSignUpCubit extends Cubit<PatientSignUpState> {
     required this.newRegisterUseCase,
     required this.loginUseCase,
   }) : super(PatientSignUpInitial());
-  final NewRegisterUseCase newRegisterUseCase;
+  final RegisterUseCase newRegisterUseCase;
 
   final LoginUseCase loginUseCase;
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
@@ -71,8 +71,11 @@ class PatientSignUpCubit extends Cubit<PatientSignUpState> {
         governorateController.text,
         cityController.text,
       ],
-      insuranceCompany: null,
+      insuranceCompany: insuranceCompanyController.text.isNotEmpty
+          ? insuranceCompanyController.text
+          : null,
       birthDate: dateOfBirthController.text,
+      governorate: governorateController.text,
     );
 
     res.fold((failure) {
@@ -123,6 +126,7 @@ class PatientSignUpCubit extends Cubit<PatientSignUpState> {
   TextEditingController governorateController = TextEditingController();
   TextEditingController cityController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+  TextEditingController insuranceCompanyController = TextEditingController();
 
   @override
   Future<void> close() {
@@ -134,6 +138,7 @@ class PatientSignUpCubit extends Cubit<PatientSignUpState> {
     governorateController.dispose();
     cityController.dispose();
     passwordController.dispose();
+    insuranceCompanyController.dispose();
     return super.close();
   }
 }

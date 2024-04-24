@@ -1,9 +1,9 @@
 import 'package:dartz/dartz.dart';
 
-import '../../error/error_model.dart';
-import '../../error/exception.dart';
-import '../../error/failure.dart';
-import '../../network/network_info.dart';
+import '../../../core/error/error_model.dart';
+import '../../../core/error/exception.dart';
+import '../../../core/error/failure.dart';
+import '../../../core/network/network_info.dart';
 import 'contact_us_data_source.dart';
 
 abstract class ContactUsRepo {
