@@ -243,19 +243,21 @@ class _SignUpDoctorStudentPageState extends State<SignUpDoctorPage> {
                             onSave: cubit.onAddInsuranceCompany,
                           ),
                           SizeHelper.defSizedBoxField,
-                          CustomTextFormFieldLogin(
-                            width: size.width * .8,
-                            obscureText: cubit.obscurePassword,
-                            validator: validatePassword,
-                            suffixIcon: IconButton(
-                              icon: Icon(cubit.obscurePassword
-                                  ? Icons.visibility
-                                  : Icons.visibility_off),
-                              onPressed: () => cubit.toggleVisibilityPassword(),
+                          Expanded(
+                            child: CustomTextFormFieldLogin(
+                              width: size.width * .8,
+                              obscureText: cubit.obscurePassword,
+                              validator: validatePassword,
+                              suffixIcon: IconButton(
+                                icon: Icon(cubit.obscurePassword
+                                    ? Icons.visibility
+                                    : Icons.visibility_off),
+                                onPressed: () => cubit.toggleVisibilityPassword(),
+                              ),
+                              textInputType: TextInputType.text,
+                              hintText: LocaleKeys.password,
+                              textEditingController: cubit.passwordController,
                             ),
-                            textInputType: TextInputType.text,
-                            hintText: LocaleKeys.password,
-                            textEditingController: cubit.passwordController,
                           ),
                           SizeHelper.defSizedBoxField,
                           FittedBox(

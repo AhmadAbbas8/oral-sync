@@ -1,16 +1,12 @@
-import 'dart:developer';
 
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:oralsync/core/service_locator/service_locator.dart';
 import 'package:oralsync/features/home_patient_feature/presentation/manager/free_paid_reservation_cubit/free_paid_reservation_cubit.dart';
 
-import '../../../../core/utils/icon_broken.dart';
 import '../../../../core/widgets/comment_widget.dart';
 import '../../../../translations/locale_keys.g.dart';
-import '../../../home_student_feature/data/models/comment_model.dart';
 import '../../../home_student_feature/presentation/widgets/no_task_widget.dart';
 import '../../../home_student_feature/presentation/widgets/post_item_widget.dart';
 import '../widgets/comment_form_field_patient.dart';

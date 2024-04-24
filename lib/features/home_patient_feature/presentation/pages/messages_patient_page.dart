@@ -3,7 +3,6 @@ import 'dart:developer';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:oralsync/core/helpers/extensions/navigation_extensions.dart';
-import 'package:oralsync/core/utils/icon_broken.dart';
 import 'package:oralsync/core/utils/styles.dart';
 import 'package:oralsync/features/home_patient_feature/presentation/pages/chat_page.dart';
 

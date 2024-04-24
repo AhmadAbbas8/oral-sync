@@ -15,7 +15,6 @@ import 'package:oralsync/features/Auth/domain/use_cases/login_use_case.dart';
 import 'package:oralsync/features/Auth/domain/use_cases/register_use_case.dart';
 
 import 'package:oralsync/features/Auth/presentation/manager/patient_sign_up_cubit/patient_sign_up_cubit.dart';
-import 'package:oralsync/features/home_feature/presentation/pages/home_page.dart';
 import 'package:oralsync/features/Auth/presentation/widgets/custom_login_button_widget.dart';
 import 'package:oralsync/features/Auth/presentation/widgets/custom_text_form_field_login.dart';
 import 'package:oralsync/features/Auth/presentation/widgets/custom_tow_form_field_widget.dart';
@@ -182,6 +181,12 @@ class SignUpPatientPage extends StatelessWidget {
                             sTitle: LocaleKeys.city,
                             textEditingController2: cubit.cityController,
                             textEditingController1: cubit.governorateController,
+                          ),
+                          SizeHelper.defSizedBoxField,
+                          CustomTextFormFieldLogin(
+                            width: size.width * .8,
+                            hintText: LocaleKeys.insurance_company,
+                            textEditingController: cubit.insuranceCompanyController,
                           ),
                           SizeHelper.defSizedBoxField,
                           CustomTextFormFieldLogin(
