@@ -63,7 +63,7 @@ class DoctorSignUpCubit extends Cubit<DoctorSignUpState> {
 
       /// TODO : SOON
       insuranceCompanies: insuranceCompanies,
-      certificates: null,
+      certificates: [],
       clinicNumber: clinicPhoneController.text,
       gpa: double.tryParse(GPAController.text) ?? 0,
       birthDate: dateOfBirthController.text,
