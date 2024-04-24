@@ -71,7 +71,9 @@ class PatientSignUpCubit extends Cubit<PatientSignUpState> {
         governorateController.text,
         cityController.text,
       ],
-      insuranceCompany: null,
+      insuranceCompany: insuranceCompanyController.text.isNotEmpty
+          ? insuranceCompanyController.text
+          : null,
       birthDate: dateOfBirthController.text,
       governorate: governorateController.text,
     );
@@ -124,6 +126,7 @@ class PatientSignUpCubit extends Cubit<PatientSignUpState> {
   TextEditingController governorateController = TextEditingController();
   TextEditingController cityController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+  TextEditingController insuranceCompanyController = TextEditingController();
 
   @override
   Future<void> close() {
@@ -135,6 +138,7 @@ class PatientSignUpCubit extends Cubit<PatientSignUpState> {
     governorateController.dispose();
     cityController.dispose();
     passwordController.dispose();
+    insuranceCompanyController.dispose();
     return super.close();
   }
 }
