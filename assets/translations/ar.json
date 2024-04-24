@@ -79,5 +79,6 @@
   "free_reservation": "حجز مجاني",
   "paid_reservation": "حجز مدفوع",
   "reservations": "الحجوزات",
-  "insurance_companies": "شركات التأمين"
+  "insurance_companies": "شركات التأمين",
+  "this_company_has_been_added_before": "تم اضافة هذه الشركة من قبل"
 }

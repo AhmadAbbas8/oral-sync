@@ -24,6 +24,12 @@ class DoctorSignUpCubit extends Cubit<DoctorSignUpState> {
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
   bool? isMale;
   bool obscurePassword = true;
+  List<String> insuranceCompanies = [];
+
+  onAddInsuranceCompany(List<String> companies) {
+    insuranceCompanies = companies;
+    log(insuranceCompanies.toString());
+  }
 
   toggleVisibilityPassword() {
     obscurePassword = !obscurePassword;
@@ -56,7 +62,7 @@ class DoctorSignUpCubit extends Cubit<DoctorSignUpState> {
       clinicAddress: address,
 
       /// TODO : SOON
-      insuranceCompanies: null,
+      insuranceCompanies: insuranceCompanies,
       certificates: null,
       clinicNumber: clinicPhoneController.text,
       gpa: double.tryParse(GPAController.text) ?? 0,
@@ -180,7 +186,6 @@ class DoctorSignUpCubit extends Cubit<DoctorSignUpState> {
     return super.close();
   }
 }
-
 
 // patient -> governorate
 // student -> governorate

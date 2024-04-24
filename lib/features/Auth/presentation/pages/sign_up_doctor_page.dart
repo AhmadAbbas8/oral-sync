@@ -240,9 +240,7 @@ class _SignUpDoctorStudentPageState extends State<SignUpDoctorPage> {
                           ),
                           SizeHelper.defSizedBoxField,
                           MultiInputFormField(
-                            onSave: (p0) {
-                              print(p0);
-                            },
+                            onSave: cubit.onAddInsuranceCompany,
                           ),
                           SizeHelper.defSizedBoxField,
                           CustomTextFormFieldLogin(

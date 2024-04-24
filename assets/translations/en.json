@@ -79,5 +79,6 @@
   "free_reservation": "Free reservation",
   "paid_reservation": "Paid reservation",
   "reservations": "Reservations",
-  "insurance_companies": "Insurance companies"
+  "insurance_companies": "Insurance companies",
+  "this_company_has_been_added_before": "This company has been added before"
 }
