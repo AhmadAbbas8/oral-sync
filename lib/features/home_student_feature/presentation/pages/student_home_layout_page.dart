@@ -10,7 +10,6 @@ import 'package:oralsync/features/home_student_feature/presentation/pages/create
 import 'package:oralsync/features/home_student_feature/presentation/pages/profile_student_page.dart';
 import 'package:oralsync/core/widgets/custom_app_drawer.dart';
 import 'package:oralsync/features/home_student_feature/presentation/widgets/notch_bottm_nav_bar.dart';
-import 'package:oralsync/translations/locale_keys.g.dart';
 
 import '../manager/student_cubit/student_cubit.dart';
 import 'archive_student_page.dart';
@@ -37,12 +36,12 @@ class HomeStudentLayoutPage extends StatelessWidget {
             extendBody: true,
             appBar: AppBar(
               title: Text(
-               cubit.appBarTitles[cubit.currentNavIndex],
+                cubit.appBarTitles[cubit.currentNavIndex],
               ).tr(),
               actions: [
                 IconButton(
-                  onPressed: () =>
-                      context.pushNamed(NotificationPage.routeName,arguments: cubit.notifications),
+                  onPressed: () => context.pushNamed(NotificationPage.routeName,
+                      arguments: cubit.notifications),
                   icon: const Icon(
                     IconBroken.Notification,
                   ),

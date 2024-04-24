@@ -8,6 +8,7 @@ class CustomSearchWidget extends StatefulWidget {
   const CustomSearchWidget({super.key, required this.onSearch});
 
   @override
+  // ignore: library_private_types_in_public_api
   _CustomSearchWidgetState createState() => _CustomSearchWidgetState();
 }
 

@@ -11,6 +11,7 @@ Widget loadSvgIcon(
       'assets/icons/svg/$iconName.svg',
       height: height,
       width: width,
+      // ignore: deprecated_member_use
       color: color,
     );
 
@@ -25,5 +26,6 @@ Widget loadSvgImage(
       'assets/images/svg/$iconName.svg',
       height: height,
       width: width,
+      // ignore: deprecated_member_use
       color: color,
     );

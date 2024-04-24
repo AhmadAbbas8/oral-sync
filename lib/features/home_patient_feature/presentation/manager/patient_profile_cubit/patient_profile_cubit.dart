@@ -1,12 +1,11 @@
 import 'dart:convert';
 import 'dart:developer';
 
-import 'package:bloc/bloc.dart';
 import 'package:dio/dio.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:meta/meta.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:oralsync/core/cache_helper/cache_storage.dart';
 import 'package:oralsync/core/error/error_model.dart';
 import 'package:oralsync/core/shared_data_layer/edit_profile_data_layer/edit_repo.dart';

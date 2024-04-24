@@ -155,7 +155,7 @@ class AppRouter {
               child: ChatPage(index: args), type: _generalType);
         }
       case HomeDoctorLayoutPage.routeName:
-        return PageTransition(child: HomeDoctorLayoutPage(), type: _generalType);
+        return PageTransition(child: const HomeDoctorLayoutPage(), type: _generalType);
 
       default:
         return MaterialPageRoute(

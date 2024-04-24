@@ -41,7 +41,7 @@ class HomePatientLayoutPage extends StatelessWidget {
             appBar: _buildAppBar(cubit, context),
             body:  LazyIndexedStack(
               index: cubit.currentNavIndex,
-              children: [
+              children: const [
                 FreeReservationPage(),
                 PaidReservationPage(),
                 MessagesPatientPage(),
