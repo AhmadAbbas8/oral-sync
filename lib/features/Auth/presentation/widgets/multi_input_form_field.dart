@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:oralsync/core/helpers/snackbars.dart';
 import 'package:oralsync/core/utils/icon_broken.dart';
 import 'package:oralsync/translations/locale_keys.g.dart';
 import '../../../../core/utils/colors_palette.dart';
@@ -20,11 +21,20 @@ class _MultiInputFormFieldState extends State<MultiInputFormField> {
 
   void _saveText() {
     if (_textController.text.isNotEmpty) {
-      setState(() {
-        _savedTexts.add(_textController.text);
-        widget.onSave(_savedTexts);
-        _textController.text = "";
-      });
+      var isTextEnterBefore = _savedTexts.contains(_textController.text);
+      if (!isTextEnterBefore) {
+        setState(() {
+          _savedTexts.add(_textController.text);
+          widget.onSave(_savedTexts);
+          _textController.text = "";
+        });
+      } else {
+        showCustomSnackBar(
+          context,
+          msg: LocaleKeys.this_company_has_been_added_before.tr(),
+          backgroundColor: ColorsPalette.errorColor,
+        );
+      }
     }
   }
 
@@ -92,9 +102,11 @@ class _MultiInputFormFieldState extends State<MultiInputFormField> {
                           Text(text),
                           IconButton(
                             onPressed: () {
-                              _savedTexts
-                                  .removeWhere((element) => element == text);
-                              setState(() {});
+                              setState(() {
+                                _savedTexts
+                                    .removeWhere((element) => element == text);
+                                widget.onSave(_savedTexts);
+                              });
                             },
                             icon: const Icon(
                               IconBroken.Close_Square,
@@ -113,7 +125,6 @@ class _MultiInputFormFieldState extends State<MultiInputFormField> {
 
   @override
   void dispose() {
-    // TODO: implement dispose
     _textController.dispose();
     super.dispose();
   }
