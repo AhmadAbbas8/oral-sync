@@ -5,4 +5,5 @@ abstract class SharedPrefsKeys{
   static const String keepMeLoggedIn = 'keep_me_logged_in';
   static const String studentPostsCached = 'student_posts_cached';
   static const String studentPostsArchivedCached = 'student_posts_archived_cached';
+  static const String paidDoctorsCached = 'paid_doctors_cached';
 }
