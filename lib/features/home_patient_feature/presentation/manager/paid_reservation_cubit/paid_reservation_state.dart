@@ -11,6 +11,20 @@ final class PaidReservationInitial extends PaidReservationState {}
 
 final class FetchDoctorsLoading extends PaidReservationState {}
 
-final class FetchDoctorsError extends PaidReservationState {}
+final class FetchDoctorsError extends PaidReservationState {
+  final ResponseModel failure;
 
-final class FetchDoctorsSuccess extends PaidReservationState {}
+  const FetchDoctorsError({required this.failure});
+
+  @override
+  List<Object> get props => [failure];
+}
+
+final class FetchDoctorsSuccess extends PaidReservationState {
+  final List<DoctorModel> doctors;
+
+  const FetchDoctorsSuccess({required this.doctors});
+
+  @override
+  List<Object> get props => [doctors];
+}

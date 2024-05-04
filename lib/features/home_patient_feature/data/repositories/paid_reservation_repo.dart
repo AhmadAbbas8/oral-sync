@@ -36,7 +36,11 @@ class PaidReservationRepoImpl extends PaidReservationRepo {
   }) async {
     if (await _networkInfo.isConnected) {
       try {
-        var doctors = await _remoteDataSource.getAllDoctors();
+        var doctors = await _remoteDataSource.getAllDoctors(
+          governorate: governorate,
+          insuranceCompany: insuranceCompany,
+          minRate: minRate,
+        );
         await _localDataSource.cacheAllDoctors(doctors);
         return Right(doctors.cast<DoctorModel>());
       } on ServerException catch (ex) {
