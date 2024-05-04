@@ -19,7 +19,11 @@ import 'package:oralsync/features/Auth/domain/repositories/auth_repository.dart'
 import 'package:oralsync/features/Auth/domain/use_cases/login_use_case.dart';
 import 'package:oralsync/features/Auth/domain/use_cases/register_use_case.dart';
 import 'package:oralsync/core/shared_data_layer/actions_data_layer/actions_reomte_data_source.dart';
+import 'package:oralsync/features/home_patient_feature/data/data_sources/paid_reservaion_local_data_source.dart';
+import 'package:oralsync/features/home_patient_feature/data/data_sources/paid_reservaion_remote_data_source.dart';
+import 'package:oralsync/features/home_patient_feature/data/repositories/paid_reservation_repo.dart';
 import 'package:oralsync/features/home_patient_feature/presentation/manager/free_paid_reservation_cubit/free_paid_reservation_cubit.dart';
+import 'package:oralsync/features/home_patient_feature/presentation/manager/paid_reservation_cubit/paid_reservation_cubit.dart';
 import 'package:oralsync/features/home_student_feature/data/data_sources/student_post_local_data_source.dart';
 import 'package:oralsync/features/home_student_feature/data/data_sources/sudent_post_remote_data_source.dart';
 import 'package:oralsync/features/home_student_feature/data/repositories/student_post_repo_impl.dart';
@@ -66,6 +70,12 @@ class ServiceLocator {
               doCommentUseCase: instance(),
               studentPostRepo: instance(),
             ));
+    instance.registerLazySingleton<PaidReservationCubit>(
+      () => PaidReservationCubit(
+        reservationRepo: instance(),
+      ),
+      dispose: (param) async => await param.close(),
+    );
     // * Datasources
     instance.registerLazySingleton<AuthRemoteDataSource>(
         () => AuthRemoteDataSourceImp(apiConsumer: instance()));
@@ -81,6 +91,10 @@ class ServiceLocator {
         () => ActionsRemoteDataSourceImpl(apiConsumer: instance()));
     instance.registerLazySingleton<ContactUsDataSource>(
         () => ContactUsDataSourceImpl(apiConsumer: instance()));
+    instance.registerLazySingleton<PaidReservationRemoteDataSource>(
+        () => PaidReservationRemoteDataSourceImpl(apiConsumer: instance()));
+    instance.registerLazySingleton<PaidReservationLocalDataSource>(
+        () => PaidReservationLocalDataSourceImpl(cacheStorage: instance()));
 
     // * Repository
     instance.registerLazySingleton<AuthRepository>(() => AuthRepositoryImpl(
@@ -99,6 +113,12 @@ class ServiceLocator {
         networkInfo: instance(), actionsRemoteDataSource: instance()));
     instance.registerLazySingleton<ContactUsRepo>(() =>
         ContactUsRepoImpl(networkInfo: instance(), dataSource: instance()));
+    instance.registerLazySingleton<PaidReservationRepo>(
+      () => PaidReservationRepoImpl(
+          networkInfo: instance(),
+          localDataSource: instance(),
+          remoteDataSource: instance()),
+    );
 
     // * UseCases
 

@@ -30,9 +30,9 @@ class PaidReservationRemoteDataSourceImpl
   }) async {
     List<DoctorModel> doctors = [];
     try {
-      Response response = await _apiConsumer.get(
+      Response response = await _apiConsumer.post(
         EndPoints.filterDoctorsByGovernorateAndRateEndPoint,
-        queryParameters: {'minRate': minRate, 'governorate': governorate},
+        queryParameters: {'minRate': minRate??0, 'governorate': governorate},
       );
       if (response.statusCode == 200) {
         for (var doctor in response.data) {

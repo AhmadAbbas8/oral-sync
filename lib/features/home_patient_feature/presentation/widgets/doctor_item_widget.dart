@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:oralsync/features/home_patient_feature/data/models/DoctorModel.dart';
 import 'custom_doctor_rating_widget.dart';
 
 class DoctorItemWidget extends StatelessWidget {
   const DoctorItemWidget({
     super.key,
+    required this.doctor,
   });
+
+  final DoctorModel doctor;
 
   @override
   Widget build(BuildContext context) {
     return Card(
-
       child: InkWell(
         onTap: () {},
         child: Padding(
@@ -32,7 +35,7 @@ class DoctorItemWidget extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Ahmad Abbas',
+                      '${doctor.firstName} ${doctor.lastName}',
                       overflow: TextOverflow.ellipsis,
                       maxLines: 1,
                       style: TextStyle(
@@ -41,7 +44,7 @@ class DoctorItemWidget extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      '9 Abbas Al-akad flag no 40 , nasr city , cairo , Egypt',
+                      handleClinicAddress(doctor.clinicAddresses ?? []),
                       overflow: TextOverflow.ellipsis,
                       maxLines: 2,
                       style: TextStyle(
@@ -57,5 +60,13 @@ class DoctorItemWidget extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  String handleClinicAddress(List<String> address) {
+    return address
+        .map((e) => e)
+        .toString()
+        .replaceAll(')', '')
+        .replaceAll('(', '');
   }
 }
