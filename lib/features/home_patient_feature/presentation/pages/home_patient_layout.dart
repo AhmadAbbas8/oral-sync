@@ -7,6 +7,7 @@ import 'package:oralsync/core/service_locator/service_locator.dart';
 import 'package:oralsync/features/home_patient_feature/presentation/manager/free_paid_reservation_cubit/free_paid_reservation_cubit.dart';
 import 'package:oralsync/features/home_patient_feature/presentation/manager/home_patient_cubit/home_patient_cubit.dart';
 import 'package:oralsync/core/widgets/custom_app_drawer.dart';
+import 'package:oralsync/features/home_patient_feature/presentation/manager/paid_reservation_cubit/paid_reservation_cubit.dart';
 import 'package:oralsync/features/home_patient_feature/presentation/pages/free_reservation_page.dart';
 import 'package:oralsync/features/home_patient_feature/presentation/pages/messages_patient_page.dart';
 import 'package:oralsync/features/home_patient_feature/presentation/pages/paid_reservation_page.dart';
@@ -30,7 +31,13 @@ class HomePatientLayoutPage extends StatelessWidget {
           )..getNotifications(),
         ),
         BlocProvider(
-          create: (_) => ServiceLocator.instance<FreePaidReservationCubit>()..getFreePosts(),
+          create: (_) => ServiceLocator.instance<FreePaidReservationCubit>()
+            ..getFreePosts(),
+        ),
+        BlocProvider(
+          create: (context) =>
+              ServiceLocator.instance<PaidReservationCubit>()..getAllDoctors(),
+          lazy: true,
         )
       ],
       child: BlocBuilder<HomePatientCubit, HomePatientState>(
@@ -39,7 +46,7 @@ class HomePatientLayoutPage extends StatelessWidget {
           return Scaffold(
             drawer: _buildCustomAppDrawer(cubit),
             appBar: _buildAppBar(cubit, context),
-            body:  LazyIndexedStack(
+            body: LazyIndexedStack(
               index: cubit.currentNavIndex,
               children: const [
                 FreeReservationPage(),
