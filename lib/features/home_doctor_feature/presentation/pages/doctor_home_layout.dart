@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:oralsync/core/utils/icon_broken.dart';
 import 'package:oralsync/core/widgets/custom_app_drawer.dart';
 import 'package:oralsync/features/home_doctor_feature/presentation/manager/doctor_cubit/doctor_cubit.dart';
 
@@ -23,11 +24,31 @@ class HomeDoctorLayoutPage extends StatelessWidget {
           builder: (context, state) {
             var cubit = context.read<DoctorCubit>();
             return CustomAppDrawer(
-              name: '${cubit.doctorModel.userDetails?.firstName} ${cubit.doctorModel.userDetails?.lastName}',
+              name:
+                  '${cubit.doctorModel.userDetails?.firstName} ${cubit.doctorModel.userDetails?.lastName}',
               email: cubit.doctorModel.userDetails?.email ?? '',
               profileImage: cubit.doctorModel.profileImage ?? '',
             );
           },
+        ),
+        bottomNavigationBar: BottomNavigationBar(
+          items: [
+            BottomNavigationBarItem(
+              icon: Icon(IconBroken.Home),
+              tooltip: LocaleKeys.home.tr(),
+              label: LocaleKeys.home.tr(),
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(IconBroken.Message),
+              tooltip: LocaleKeys.messages.tr(),
+              label: LocaleKeys.messages.tr(),
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(IconBroken.Profile),
+              tooltip: LocaleKeys.profile.tr(),
+              label: LocaleKeys.profile.tr(),
+            ),
+          ],
         ),
       ),
     );
