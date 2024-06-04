@@ -17,6 +17,7 @@ import 'package:oralsync/features/home_student_feature/presentation/pages/settin
 import 'package:oralsync/translations/locale_keys.g.dart';
 
 import '../../features/Auth/data/data_sources/auth_local_data_source.dart';
+import '../../features/doctor_profile_feature/presentation/pages/doctor_profile_page.dart';
 import '../../features/home_patient_feature/presentation/pages/profile_patient_page.dart';
 import 'custom_drawer_list_tile.dart';
 
@@ -107,6 +108,8 @@ class CustomAppDrawer extends StatelessWidget {
     var role = UserModel.fromJson(user).userRole?.toUpperCase() ?? '';
     if (role == 'Student'.toUpperCase()) {
       return ProfileStudentPage.routeName;
+    } else if (role == 'doctor'.toUpperCase()) {
+      return DoctorProfilePage.routeName;
     } else {
       return ProfilePatientPage.routeName;
     }
