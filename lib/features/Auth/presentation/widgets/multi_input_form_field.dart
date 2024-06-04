@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:oralsync/core/helpers/snackbars.dart';
@@ -85,35 +87,21 @@ class _MultiInputFormFieldState extends State<MultiInputFormField> {
               alignment: WrapAlignment.start,
               children: _savedTexts
                   .map(
-                    (text) => Container(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 10,
-                        vertical: 2,
-                      ),
-                      margin: const EdgeInsets.all(2),
-                      decoration: BoxDecoration(
-                        color: Colors.blueAccent[100],
+                    (text) => Chip(
+                      label: Text(text),
+                      backgroundColor: Colors.blue[300],
+                      shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20),
-                        border: Border.all(color: Colors.black),
                       ),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Text(text),
-                          IconButton(
-                            onPressed: () {
-                              setState(() {
-                                _savedTexts
-                                    .removeWhere((element) => element == text);
-                                widget.onSave(_savedTexts);
-                              });
-                            },
-                            icon: const Icon(
-                              IconBroken.Close_Square,
-                            ),
-                          )
-                        ],
+                      deleteIcon: const Icon(
+                        IconBroken.Close_Square,
                       ),
+                      onDeleted: () {
+                        setState(() {
+                          _savedTexts.removeWhere((element) => element == text);
+                          widget.onSave(_savedTexts);
+                        });
+                      },
                     ),
                   )
                   .toList(),
