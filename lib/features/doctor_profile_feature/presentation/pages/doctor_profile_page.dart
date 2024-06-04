@@ -1,18 +1,16 @@
-import 'dart:convert';
-import 'dart:developer';
-
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:oralsync/core/cache_helper/cache_storage.dart';
 import 'package:oralsync/core/helpers/extensions/navigation_extensions.dart';
 import 'package:oralsync/features/Auth/data/models/user_model.dart';
 import 'package:oralsync/features/doctor_profile_feature/presentation/manager/doctor_profile_cubit/doctor_profile_cubit.dart';
-
-import '../../../../core/cache_helper/shared_prefs_keys.dart';
+import '../../../../core/helpers/check_language.dart';
+import '../../../../core/helpers/custom_progress_indicator.dart';
+import '../../../../core/helpers/snackbars.dart';
 import '../../../../core/service_locator/service_locator.dart';
+import '../../../../core/utils/colors_palette.dart';
 import '../../../../core/utils/icon_broken.dart';
 import '../../../../core/widgets/circle_avatar.dart';
 import '../../../../core/widgets/info_widget.dart';
@@ -27,11 +25,6 @@ class DoctorProfilePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    log(
-        name: 'looooooooooggs',
-        jsonDecode(ServiceLocator.instance<CacheStorage>()
-                .getData(key: SharedPrefsKeys.user))
-            .toString());
     return Scaffold(
       appBar: _buildAppBar(context),
       body: SingleChildScrollView(
@@ -39,7 +32,7 @@ class DoctorProfilePage extends StatelessWidget {
           create: (context) => ServiceLocator.instance<DoctorProfileCubit>(),
           child: BlocConsumer<DoctorProfileCubit, DoctorProfileState>(
             listener: (context, state) {
-              // stateHandler(state, context);
+              stateHandler(state, context);
             },
             builder: (context, state) {
               var cubit = context.read<DoctorProfileCubit>();
@@ -48,8 +41,7 @@ class DoctorProfilePage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   ImageProfileWidget(
-                    onPressed: () async =>
-                        log('await cubit.changeProfileImage()'),
+                    onPressed: () async => await cubit.changeProfileImage(),
                     imageProfile: cubit.getUserModel().profileImage ?? '',
                   ),
                   InfoWidget(
@@ -121,4 +113,26 @@ class DoctorProfilePage extends StatelessWidget {
           SizedBox(width: 5.w)
         ],
       );
+
+  void stateHandler(DoctorProfileState state, BuildContext context) {
+    if (state is ChangeDoctorProfileLoading) {
+      showCustomProgressIndicator(context);
+    }
+    if (state is ChangeDoctorProfileError) {
+      context.pop();
+      showCustomSnackBar(
+        context,
+        msg: isArabic(context)
+            ? state.model?.messageAr ?? ''
+            : state.model?.messageEn ?? '',
+        backgroundColor: ColorsPalette.errorColor,
+      );
+    }
+    if (state is ChangeDoctorProfileSuccess) {
+      context.pop();
+      showCustomSnackBar(context,
+          msg: LocaleKeys.image_profile_changed_successfully.tr(),
+          backgroundColor: ColorsPalette.successColor);
+    }
+  }
 }

@@ -72,7 +72,7 @@ class ServiceLocator {
               studentPostRepo: instance(),
             ));
     instance
-        .registerLazySingleton<DoctorProfileCubit>(() => DoctorProfileCubit(instance()));
+        .registerLazySingleton<DoctorProfileCubit>(() => DoctorProfileCubit(instance(),instance()));
     instance.registerLazySingleton<PaidReservationCubit>(
       () => PaidReservationCubit(
         reservationRepo: instance(),
