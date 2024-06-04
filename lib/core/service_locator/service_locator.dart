@@ -19,7 +19,6 @@ import 'package:oralsync/features/Auth/domain/repositories/auth_repository.dart'
 import 'package:oralsync/features/Auth/domain/use_cases/login_use_case.dart';
 import 'package:oralsync/features/Auth/domain/use_cases/register_use_case.dart';
 import 'package:oralsync/core/shared_data_layer/actions_data_layer/actions_reomte_data_source.dart';
-import 'package:oralsync/features/doctor_profile_feature/presentation/manager/doctor_profile_cubit/doctor_profile_cubit.dart';
 import 'package:oralsync/features/home_patient_feature/data/data_sources/paid_reservaion_local_data_source.dart';
 import 'package:oralsync/features/home_patient_feature/data/data_sources/paid_reservaion_remote_data_source.dart';
 import 'package:oralsync/features/home_patient_feature/data/repositories/paid_reservation_repo.dart';
@@ -71,8 +70,7 @@ class ServiceLocator {
               doCommentUseCase: instance(),
               studentPostRepo: instance(),
             ));
-    instance
-        .registerFactory<DoctorProfileCubit>(() => DoctorProfileCubit(instance(),instance()));
+
     instance.registerLazySingleton<PaidReservationCubit>(
       () => PaidReservationCubit(
         reservationRepo: instance(),
