@@ -133,6 +133,7 @@ class DoctorDetails extends UserDetails {
   final List<String?>? insuranceCompanies;
   final List<String?>? certificates;
   final String? graduationDate;
+  final num? gpa;
 
   DoctorDetails({
     required String firstName,
@@ -142,6 +143,7 @@ class DoctorDetails extends UserDetails {
     required String email,
     required String birthDate,
     required String governorate,
+    required this.gpa,
     required this.universityName,
     required this.clinicNumber,
     required this.clinicAddress,
@@ -163,16 +165,18 @@ class DoctorDetails extends UserDetails {
     var json = super.toJson();
     json['universityName'] = universityName;
     json['clinicNumber'] = clinicNumber;
-    json['clinicAddress'] = clinicAddress;
+    json['clinicAddresses'] = clinicAddress;
     json['insuranceCompanies'] = insuranceCompanies;
     json['certificates'] = certificates;
     json['graduationDate'] = graduationDate;
+    json['gpa'] = gpa;
     return json;
   }
 
   factory DoctorDetails.fromJson(Map<String, dynamic> json) {
     return DoctorDetails(
       firstName: json['firstName'],
+      gpa: json['gpa'],
       lastName: json['lastName'],
       isMale: json['isMale'],
       phoneNumber: json['phoneNumber'],
@@ -181,7 +185,7 @@ class DoctorDetails extends UserDetails {
       birthDate: json['birthDate'],
       universityName: json['universityName'],
       clinicNumber: json['clinicNumber'],
-      clinicAddress: List<String>.from(json['clinicAddress'] ?? []),
+      clinicAddress: List<String>.from(json['clinicAddresses'] ?? []),
       insuranceCompanies: List<String>.from(json['insuranceCompanies'] ?? []),
       certificates: List<String>.from(json['certificates'] ?? []),
       graduationDate: json['graduationDate'],

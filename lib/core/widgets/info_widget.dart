@@ -6,6 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class InfoWidget extends StatelessWidget {
   final String title;
   final IconData icon;
+
   const InfoWidget({super.key, required this.title, required this.icon});
 
   @override
@@ -16,7 +17,9 @@ class InfoWidget extends StatelessWidget {
       decoration: const BoxDecoration(
         color: Color(0xFF33cccccc),
         borderRadius: BorderRadius.only(
-            topRight: Radius.circular(12), topLeft: Radius.circular(15)),
+          topRight: Radius.circular(12),
+          topLeft: Radius.circular(15),
+        ),
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -28,7 +31,15 @@ class InfoWidget extends StatelessWidget {
           SizedBox(
             width: 32.w,
           ),
-          Text(title)
+          Expanded(
+            child: Text(
+              title,
+              style: TextStyle(
+                overflow: TextOverflow.fade
+              ),
+              // maxLines: 3,
+            ),
+          )
         ],
       ),
     );

@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:oralsync/core/helpers/check_language.dart';
 import 'package:oralsync/core/helpers/custom_progress_indicator.dart';
@@ -154,7 +155,8 @@ class _SignUpDoctorStudentPageState extends State<SignUpDoctorPage> {
                                           groupValue: cubit.isMale,
                                           title: Text(
                                             type[0],
-                                            style: const TextStyle(fontSize: 14),
+                                            style:
+                                                const TextStyle(fontSize: 14),
                                           ).tr(),
                                           onChanged: (value) =>
                                               cubit.onChangedGender(value),
@@ -170,7 +172,8 @@ class _SignUpDoctorStudentPageState extends State<SignUpDoctorPage> {
                                           groupValue: cubit.isMale,
                                           title: Text(
                                             type[1],
-                                            style: const TextStyle(fontSize: 14),
+                                            style:
+                                                const TextStyle(fontSize: 14),
                                           ).tr(),
                                           onChanged: (value) =>
                                               cubit.onChangedGender(value),
@@ -186,6 +189,11 @@ class _SignUpDoctorStudentPageState extends State<SignUpDoctorPage> {
                           CustomTwoFormFieldWidget(
                             fTitle: LocaleKeys.academic_year,
                             sTitle: LocaleKeys.gpa,
+                            // textInputType2: TextInputType.numberWithOptions(decimal: true),
+                            inputFormatters2: [
+                              FilteringTextInputFormatter.allow(RegExp(r'^\d*\.?\d*$')),
+                              CustomDoubleNumberInputFormatter(),
+                            ],
                             textEditingController1:
                                 cubit.academicYearController,
                             textEditingController2: cubit.GPAController,
@@ -254,7 +262,8 @@ class _SignUpDoctorStudentPageState extends State<SignUpDoctorPage> {
                                 icon: Icon(cubit.obscurePassword
                                     ? Icons.visibility
                                     : Icons.visibility_off),
-                                onPressed: () => cubit.toggleVisibilityPassword(),
+                                onPressed: () =>
+                                    cubit.toggleVisibilityPassword(),
                               ),
                               textInputType: TextInputType.text,
                               hintText: LocaleKeys.password,
@@ -310,5 +319,16 @@ class _SignUpDoctorStudentPageState extends State<SignUpDoctorPage> {
       context.pop();
       context.pushNamed(HomeDoctorLayoutPage.routeName);
     }
+  }
+}
+class CustomDoubleNumberInputFormatter extends TextInputFormatter {
+  @override
+  TextEditingValue formatEditUpdate(TextEditingValue oldValue, TextEditingValue newValue) {
+    const pattern = r'^(?:[2-4](?:\.\d{0,})?|5(?:\.0{0,})?)$';
+    final regex = RegExp(pattern);
+    if (newValue.text.isEmpty || regex.hasMatch(newValue.text)) {
+      return newValue;
+    }
+    return oldValue;
   }
 }

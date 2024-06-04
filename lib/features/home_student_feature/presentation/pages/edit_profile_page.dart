@@ -40,7 +40,8 @@ class EditProfileStudentPage extends StatelessWidget {
         listener: (context, state) {
           if (state is UpdateStudentDataLoading) {
             showCustomProgressIndicator(context);
-          } else if (state is UpdateStudentDataError) {
+          }
+          else if (state is UpdateStudentDataError) {
             context.pop();
             showCustomSnackBar(
               context,
@@ -49,7 +50,8 @@ class EditProfileStudentPage extends StatelessWidget {
                   : state.responseModel.messageEn ?? '',
               backgroundColor: ColorsPalette.errorColor,
             );
-          } else if (state is UpdateStudentDataSuccess) {
+          }
+          else if (state is UpdateStudentDataSuccess) {
             context.pop();
             context.pop();
             showCustomSnackBar(

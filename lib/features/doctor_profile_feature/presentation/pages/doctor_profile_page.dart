@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -25,6 +27,7 @@ class DoctorProfilePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       appBar: _buildAppBar(context),
       body: SingleChildScrollView(
@@ -35,8 +38,10 @@ class DoctorProfilePage extends StatelessWidget {
               stateHandler(state, context);
             },
             builder: (context, state) {
+
               var cubit = context.read<DoctorProfileCubit>();
               var userData = cubit.getUserModel().userDetails as DoctorDetails;
+
               return Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [

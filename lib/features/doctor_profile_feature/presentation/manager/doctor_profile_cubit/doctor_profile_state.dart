@@ -4,6 +4,19 @@ part of 'doctor_profile_cubit.dart';
 sealed class DoctorProfileState {}
 
 final class DoctorProfileInitial extends DoctorProfileState {}
+final class DateChangedStateDoctor extends DoctorProfileState {}
+final class UpdateDoctorDataLoading extends DoctorProfileState {}
+final class UpdateDoctorDataSuccess extends DoctorProfileState {}
+final class UpdateDoctorDataError extends DoctorProfileState {
+  final ResponseModel? responseModel;
+
+  UpdateDoctorDataError({required this.responseModel});
+}
+final class GenderChangedStateDoctor extends DoctorProfileState {
+  final bool isMale;
+
+  GenderChangedStateDoctor({required this.isMale});
+}
 
 final class ChangeDoctorProfileLoading extends DoctorProfileState {}
 
