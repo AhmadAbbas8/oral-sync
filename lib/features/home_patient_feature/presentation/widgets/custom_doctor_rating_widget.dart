@@ -4,23 +4,24 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomDoctorRatingWidget extends StatelessWidget {
   const CustomDoctorRatingWidget({
-    super.key,
+    super.key, required this.rateValue,
   });
+  final double rateValue;
 
   @override
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
-        const Text(
-          '3.5',
-          style: TextStyle(
+         Text(
+          '$rateValue',
+          style: const TextStyle(
             fontWeight: FontWeight.bold,
           ),
         ),
         SizedBox(width: 5.w),
         RatingBarIndicator(
-          rating: 3.5,
+          rating: rateValue,
           itemBuilder: (_, __) => const Icon(
             Icons.star,
             color: Colors.amber,
