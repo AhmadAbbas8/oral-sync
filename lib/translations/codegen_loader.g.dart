@@ -98,7 +98,9 @@ class CodegenLoader extends AssetLoader{
   "insurance_companies": "شركات التأمين",
   "this_company_has_been_added_before": "تم اضافة هذه الشركة من قبل",
   "insurance_company": "شركة التأمين",
-  "there_is_no_any_doctors": "لا يوجد اي دكتور"
+  "there_is_no_any_doctors": "لا يوجد اي دكتور",
+  "reserve": "حجز",
+  "ratings_details": "تفاصيل التقييمات"
 };
 static const Map<String,dynamic> en = {
   "hello": "Hello",
@@ -184,7 +186,9 @@ static const Map<String,dynamic> en = {
   "insurance_companies": "Insurance companies",
   "this_company_has_been_added_before": "This company has been added before",
   "insurance_company": "Insurance company",
-  "there_is_no_any_doctors": "There is no any Doctor"
+  "there_is_no_any_doctors": "There is no any Doctor",
+  "reserve": "Reserve",
+  "ratings_details": "Rating Details"
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"ar": ar, "en": en};
 }

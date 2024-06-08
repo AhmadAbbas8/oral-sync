@@ -83,5 +83,7 @@
   "this_company_has_been_added_before": "This company has been added before",
   "insurance_company": "Insurance company",
   "there_is_no_any_doctors": "There is no any Doctor",
-  "reserve": "Reserve"
+  "reserve": "Reserve",
+  "ratings_details": "Rating Details",
+  "unknown": "Unknown"
 }

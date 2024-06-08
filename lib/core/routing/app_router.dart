@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:oralsync/core/shared_data_layer/actions_data_layer/model/ratings_model.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:oralsync/features/home_patient_feature/data/models/DoctorModel.dart';
 
@@ -19,6 +20,7 @@ import '../../features/home_patient_feature/presentation/pages/home_patient_layo
 import '../../features/home_patient_feature/presentation/pages/patient_post_details_page.dart';
 import '../../features/home_patient_feature/presentation/pages/profile_patient_page.dart';
 import '../../features/profiles_view_from_patient/presentation/pages/student_profile_patient_view_page.dart';
+import '../../features/rating_feature/presentation/pages/rating_page.dart';
 import '../shared_data_layer/actions_data_layer/model/Notification_model.dart';
 import '../../features/home_student_feature/presentation/manager/student_edit_profile_cubit/student_edit_profile_cubit.dart';
 import '../../features/home_student_feature/presentation/pages/create_post_page.dart';
@@ -178,8 +180,16 @@ class AppRouter {
 
       case StudentProfilePatientViewPage.routeName:
         return PageTransition(
-          child: StudentProfilePatientViewPage(
-            // doctorModel: settings.arguments as DoctorModel,
+          child: const StudentProfilePatientViewPage(
+              // doctorModel: settings.arguments as DoctorModel,
+              ),
+          type: _generalType,
+        );
+
+      case RatingPage.routeName:
+        return PageTransition(
+          child: RatingPage(
+            rates: arguments as List<RatingModel>,
           ),
           type: _generalType,
         );
