@@ -23,4 +23,6 @@ abstract class EndPoints {
   static const getAllPostEndPoint = 'GetAllPost';
   static const addLikeEndPoint = 'AddLike';
   static const filterDoctorsByGovernorateAndRateEndPoint = 'FilterDoctorsByGovernorateAndRate';
+  static const createAppointmentEndPoint = 'CreateAppointment';
+  static const getRatingsEndPoint = 'GetRatings';
 }

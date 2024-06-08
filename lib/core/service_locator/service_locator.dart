@@ -36,6 +36,7 @@ import 'package:oralsync/features/home_student_feature/domain/use_cases/do_comme
 import 'package:oralsync/features/home_student_feature/domain/use_cases/get_all_posts_archived_use_case.dart';
 import 'package:oralsync/features/home_student_feature/domain/use_cases/get_all_posts_use_case.dart';
 import 'package:oralsync/features/home_student_feature/domain/use_cases/get_notifications_use_case.dart';
+import 'package:oralsync/features/profiles_view_from_patient/presentation/manager/profile_view_from_patient_cubit.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -69,6 +70,10 @@ class ServiceLocator {
           instance(),
           instance(),
         ));
+    instance.registerFactory<ProfileViewFromPatientCubit>(
+        () => ProfileViewFromPatientCubit(
+              actionsRepo: instance(),
+            ));
     instance.registerLazySingleton<FreePaidReservationCubit>(
         () => FreePaidReservationCubit(
               actionsRepo: instance(),

@@ -1,4 +1,3 @@
-import 'dart:developer';
 
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -15,7 +14,6 @@ import '../../../../core/service_locator/service_locator.dart';
 import '../../../../core/utils/colors_palette.dart';
 import '../../../../core/utils/icon_broken.dart';
 import '../../../../core/widgets/circle_avatar.dart';
-import '../../../../core/widgets/custom_rating_bar_widget.dart';
 import '../../../../core/widgets/info_widget.dart';
 import '../../../../translations/locale_keys.g.dart';
 import '../../../home_student_feature/presentation/widgets/custom_app_bar_action_button.dart';

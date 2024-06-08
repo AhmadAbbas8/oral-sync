@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:oralsync/core/helpers/extensions/navigation_extensions.dart';
 import 'package:oralsync/features/home_patient_feature/data/models/DoctorModel.dart';
-import '../../../doctor_profile_feature/presentation/pages/doctor_profile_patient_view_page.dart';
+import '../../../profiles_view_from_patient/presentation/pages/doctor_profile_patient_view_page.dart';
 import 'custom_doctor_rating_widget.dart';
 
 class DoctorItemWidget extends StatelessWidget {
@@ -28,9 +28,13 @@ class DoctorItemWidget extends StatelessWidget {
             children: [
               Hero(
                 tag: doctor.doctor?.doctorId??0,
-                child: CircleAvatar(
-                  radius: 32.w,
+                child: ClipOval(
+                  // radius: 32.w,
+
                   child: FancyShimmerImage(
+                    width: 100.w,
+                    height: 100.h,
+                    boxFit: BoxFit.contain,
                     imageUrl: doctor.profileImage ?? '',
                     errorWidget: Image.asset('assets/test/message_iamage.png'),
                   ),

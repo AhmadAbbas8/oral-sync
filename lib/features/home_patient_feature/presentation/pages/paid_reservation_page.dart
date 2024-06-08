@@ -1,11 +1,8 @@
-import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
-import 'package:oralsync/core/helpers/extensions/navigation_extensions.dart';
 import 'package:oralsync/core/widgets/loading_widget.dart';
-import 'package:oralsync/features/doctor_profile_feature/presentation/pages/doctor_profile_patient_view_page.dart';
 import 'package:oralsync/features/home_patient_feature/presentation/manager/paid_reservation_cubit/paid_reservation_cubit.dart';
 import 'package:oralsync/features/home_student_feature/presentation/widgets/no_task_widget.dart';
 import 'package:oralsync/translations/locale_keys.g.dart';
