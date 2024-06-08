@@ -1,4 +1,6 @@
 
+import 'dart:developer';
+
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -97,11 +99,15 @@ class DoctorProfilePage extends StatelessWidget {
                             )
                             .toList() ??
                         [],
+
                   ),
                   // CustomRatingBarWidget(
                   //   rating:userData.?.toDouble() ??
                   //       0.0,
                   // )
+
+                  )
+
                 ],
               );
             },

@@ -43,6 +43,37 @@ class InfoWidget extends StatelessWidget {
             )
           ],
         ),
+    return Container(
+      height: 50.h,
+      margin: const EdgeInsets.all(12),
+      decoration: const BoxDecoration(
+        color: Color(0xFF33cccccc),
+        borderRadius: BorderRadius.only(
+          topRight: Radius.circular(12),
+          topLeft: Radius.circular(15),
+        ),
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          SizedBox(
+            width: 16.w,
+          ),
+          Icon(icon),
+          SizedBox(
+            width: 32.w,
+          ),
+          Expanded(
+            child: Text(
+              title,
+              style: TextStyle(
+                overflow: TextOverflow.fade
+              ),
+              // maxLines: 3,
+            ),
+          )
+        ],
+
       ),
     );
   }

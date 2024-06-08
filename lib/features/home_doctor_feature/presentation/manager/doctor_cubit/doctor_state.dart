@@ -2,7 +2,6 @@ part of 'doctor_cubit.dart';
 
 sealed class DoctorState extends Equatable {
   const DoctorState();
-
   @override
   List<Object> get props => [];
 }
@@ -15,4 +14,10 @@ final class BottomNavBarChanged extends DoctorState {
   @override
   // TODO: implement props
   List<Object> get props => [index];
+}
+
+final class DoctorInitial extends DoctorState {
+  @override
+  List<Object> get props => [];
+
 }

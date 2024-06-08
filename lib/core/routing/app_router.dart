@@ -9,7 +9,6 @@ import '../../features/Auth/presentation/pages/sign_up_patient_page.dart';
 import '../../features/Auth/presentation/pages/sign_up_student_page.dart';
 import '../../features/contact_us_feature/presentation/pages/contact_us_page.dart';
 import '../../features/doctor_profile_feature/presentation/pages/doctor_profile_page.dart';
-import '../../features/profiles_view_from_patient/presentation/pages/doctor_profile_patient_view_page.dart';
 import '../../features/doctor_profile_feature/presentation/pages/edit_profile_doctor_page.dart';
 import '../../features/home_doctor_feature/presentation/pages/doctor_home_layout.dart';
 import '../../features/home_feature/presentation/pages/home_page.dart';
@@ -183,6 +182,11 @@ class AppRouter {
           ),
           type: _generalType,
         );
+        return PageTransition(child: const HomeDoctorLayoutPage(), type: _generalType);
+      case DoctorProfilePage.routeName:
+        return PageTransition(child: const DoctorProfilePage(), type: _generalType);
+      case EditProfileDoctorPage.routeName:
+        return PageTransition(child: const EditProfileDoctorPage(), type: _generalType);
 
       default:
         return MaterialPageRoute(

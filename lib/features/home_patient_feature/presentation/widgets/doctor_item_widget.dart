@@ -4,6 +4,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:oralsync/core/helpers/extensions/navigation_extensions.dart';
 import 'package:oralsync/features/home_patient_feature/data/models/DoctorModel.dart';
 import '../../../profiles_view_from_patient/presentation/pages/doctor_profile_patient_view_page.dart';
+
+import 'package:oralsync/features/home_patient_feature/data/models/DoctorModel.dart';
 import 'custom_doctor_rating_widget.dart';
 
 class DoctorItemWidget extends StatelessWidget {
@@ -50,6 +52,8 @@ class DoctorItemWidget extends StatelessWidget {
                   children: [
                     Text(
                       '${doctor.doctor?.firstName} ${doctor.doctor?.lastName}',
+
+                      '${doctor.firstName} ${doctor.lastName}',
                       overflow: TextOverflow.ellipsis,
                       maxLines: 1,
                       style: TextStyle(
@@ -59,6 +63,8 @@ class DoctorItemWidget extends StatelessWidget {
                     ),
                     Text(
                       handleClinicAddress(doctor.doctor?.clinicAddresses ?? []),
+
+                      handleClinicAddress(doctor.clinicAddresses ?? []),
                       overflow: TextOverflow.ellipsis,
                       maxLines: 2,
                       style: TextStyle(
