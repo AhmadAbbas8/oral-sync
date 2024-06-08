@@ -81,5 +81,7 @@
   "reservations": "الحجوزات",
   "insurance_companies": "شركات التأمين",
   "this_company_has_been_added_before": "تم اضافة هذه الشركة من قبل",
-  "insurance_company": "شركة التأمين"
+  "insurance_company": "شركة التأمين",
+  "there_is_no_any_doctors": "لا يوجد اي دكتور",
+  "reserve": "حجز"
 }

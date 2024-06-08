@@ -1,6 +1,9 @@
+import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:oralsync/core/helpers/extensions/navigation_extensions.dart';
 import 'package:oralsync/features/home_patient_feature/data/models/DoctorModel.dart';
+import '../../../profiles_view_from_patient/presentation/pages/doctor_profile_patient_view_page.dart';
 import 'custom_doctor_rating_widget.dart';
 
 class DoctorItemWidget extends StatelessWidget {
@@ -15,15 +18,26 @@ class DoctorItemWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       child: InkWell(
-        onTap: () {},
+        onTap: () =>context.pushNamed(
+          DoctorProfilePatientViewPage.routeName,
+          arguments: doctor,
+        ),
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 8.0),
           child: Row(
             children: [
-              CircleAvatar(
-                radius: 32.w,
-                child: Image.asset(
-                  'assets/test/message_iamage.png',
+              Hero(
+                tag: doctor.doctor?.doctorId??0,
+                child: ClipOval(
+                  // radius: 32.w,
+
+                  child: FancyShimmerImage(
+                    width: 100.w,
+                    height: 100.h,
+                    boxFit: BoxFit.contain,
+                    imageUrl: doctor.profileImage ?? '',
+                    errorWidget: Image.asset('assets/test/message_iamage.png'),
+                  ),
                 ),
               ),
               SizedBox(
@@ -35,7 +49,7 @@ class DoctorItemWidget extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      '${doctor.firstName} ${doctor.lastName}',
+                      '${doctor.doctor?.firstName} ${doctor.doctor?.lastName}',
                       overflow: TextOverflow.ellipsis,
                       maxLines: 1,
                       style: TextStyle(
@@ -44,14 +58,16 @@ class DoctorItemWidget extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      handleClinicAddress(doctor.clinicAddresses ?? []),
+                      handleClinicAddress(doctor.doctor?.clinicAddresses ?? []),
                       overflow: TextOverflow.ellipsis,
                       maxLines: 2,
                       style: TextStyle(
                         fontSize: 15.sp,
                       ),
                     ),
-                    const CustomDoctorRatingWidget(),
+                    CustomDoctorRatingWidget(
+                      rateValue: doctor.averageRate?.toDouble() ?? 0,
+                    ),
                   ],
                 ),
               )

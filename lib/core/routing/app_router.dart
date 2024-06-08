@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:oralsync/features/home_patient_feature/data/models/DoctorModel.dart';
 import 'package:page_transition/page_transition.dart';
 
 import '../../features/Auth/presentation/pages/login_page.dart';
@@ -8,6 +9,7 @@ import '../../features/Auth/presentation/pages/sign_up_patient_page.dart';
 import '../../features/Auth/presentation/pages/sign_up_student_page.dart';
 import '../../features/contact_us_feature/presentation/pages/contact_us_page.dart';
 import '../../features/doctor_profile_feature/presentation/pages/doctor_profile_page.dart';
+import '../../features/profiles_view_from_patient/presentation/pages/doctor_profile_patient_view_page.dart';
 import '../../features/doctor_profile_feature/presentation/pages/edit_profile_doctor_page.dart';
 import '../../features/home_doctor_feature/presentation/pages/doctor_home_layout.dart';
 import '../../features/home_feature/presentation/pages/home_page.dart';
@@ -16,6 +18,7 @@ import '../../features/home_patient_feature/presentation/pages/edit_profile_pati
 import '../../features/home_patient_feature/presentation/pages/home_patient_layout.dart';
 import '../../features/home_patient_feature/presentation/pages/patient_post_details_page.dart';
 import '../../features/home_patient_feature/presentation/pages/profile_patient_page.dart';
+import '../../features/profiles_view_from_patient/presentation/pages/student_profile_patient_view_page.dart';
 import '../shared_data_layer/actions_data_layer/model/Notification_model.dart';
 import '../../features/home_student_feature/presentation/manager/student_edit_profile_cubit/student_edit_profile_cubit.dart';
 import '../../features/home_student_feature/presentation/pages/create_post_page.dart';
@@ -157,11 +160,29 @@ class AppRouter {
               child: ChatPage(index: args), type: _generalType);
         }
       case HomeDoctorLayoutPage.routeName:
-        return PageTransition(child: const HomeDoctorLayoutPage(), type: _generalType);
+        return PageTransition(
+            child: const HomeDoctorLayoutPage(), type: _generalType);
       case DoctorProfilePage.routeName:
-        return PageTransition(child: const DoctorProfilePage(), type: _generalType);
+        return PageTransition(
+            child: const DoctorProfilePage(), type: _generalType);
       case EditProfileDoctorPage.routeName:
-        return PageTransition(child: const EditProfileDoctorPage(), type: _generalType);
+        return PageTransition(
+            child: const EditProfileDoctorPage(), type: _generalType);
+      case DoctorProfilePatientViewPage.routeName:
+        return PageTransition(
+          child: DoctorProfilePatientViewPage(
+            doctorModel: settings.arguments as DoctorModel,
+          ),
+          type: _generalType,
+        );
+
+      case StudentProfilePatientViewPage.routeName:
+        return PageTransition(
+          child: StudentProfilePatientViewPage(
+            // doctorModel: settings.arguments as DoctorModel,
+          ),
+          type: _generalType,
+        );
 
       default:
         return MaterialPageRoute(

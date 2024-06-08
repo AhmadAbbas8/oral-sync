@@ -2,6 +2,9 @@ import 'dart:convert';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:oralsync/core/helpers/extensions/navigation_extensions.dart';
+import 'package:oralsync/features/doctor_profile_feature/presentation/pages/doctor_profile_page.dart';
 
 import '../../../../../core/cache_helper/cache_storage.dart';
 import '../../../../../core/cache_helper/shared_prefs_keys.dart';
@@ -15,4 +18,14 @@ class DoctorCubit extends Cubit<DoctorState> {
   var doctorModel = UserModel.fromJson(json.decode(
       ServiceLocator.instance<CacheStorage>()
           .getData(key: SharedPrefsKeys.user)));
+  int currentIndex = 0;
+
+  onChangeBottomNav(BuildContext context,int value) {
+    if(value ==2) {
+      context.pushNamed(DoctorProfilePage.routeName);
+      return;
+    }
+    currentIndex = value;
+    emit(BottomNavBarChanged(index: currentIndex));
+  }
 }

@@ -1,6 +1,6 @@
 abstract class EndPoints {
   // ignore: constant_identifier_names
-  static const BASE_URL = 'http://graduationprt22-001-site1.gtempurl.com/api/';
+  static const BASE_URL = 'http://graduationprt24-001-site1.jtempurl.com/api/';
   static const loginUpdatedEndPoint = 'Account/login';
   static const loginEndPoint = 'Login';
   static const registerEndPoint = 'Register';
@@ -23,4 +23,6 @@ abstract class EndPoints {
   static const getAllPostEndPoint = 'GetAllPost';
   static const addLikeEndPoint = 'AddLike';
   static const filterDoctorsByGovernorateAndRateEndPoint = 'FilterDoctorsByGovernorateAndRate';
+  static const createAppointmentEndPoint = 'CreateAppointment';
+  static const getRatingsEndPoint = 'GetRatings';
 }
