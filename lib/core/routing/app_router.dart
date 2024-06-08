@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:oralsync/features/home_patient_feature/data/models/DoctorModel.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:oralsync/features/home_patient_feature/data/models/DoctorModel.dart';
 
 import '../../features/Auth/presentation/pages/login_page.dart';
 import '../../features/Auth/presentation/pages/sign_up_doctor_page.dart';
@@ -213,3 +213,4 @@ class AppRouter {
     // PostDetailsPage.routeName: (context) => const PostDetailsPage(),
   };
 }
+//comment
