@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:oralsync/core/shared_data_layer/actions_data_layer/model/ratings_model.dart';
+import 'package:oralsync/features/Auth/data/models/user_model.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:oralsync/features/home_patient_feature/data/models/DoctorModel.dart';
 
@@ -179,12 +180,16 @@ class AppRouter {
         );
 
       case StudentProfilePatientViewPage.routeName:
-        return PageTransition(
-          child: const StudentProfilePatientViewPage(
-              // doctorModel: settings.arguments as DoctorModel,
-              ),
-          type: _generalType,
-        );
+        {
+          List args = arguments as List ;
+          return PageTransition(
+            child: StudentProfilePatientViewPage(
+              user: args[0] as UserModel,
+              userId: args[1] as String,
+            ),
+            type: _generalType,
+          );
+        }
 
       case RatingPage.routeName:
         return PageTransition(

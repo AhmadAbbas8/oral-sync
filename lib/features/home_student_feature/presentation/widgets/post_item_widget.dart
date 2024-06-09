@@ -4,16 +4,16 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:easy_image_viewer/easy_image_viewer.dart';
 import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:oralsync/core/cache_helper/cache_storage.dart';
 import 'package:oralsync/core/cache_helper/shared_prefs_keys.dart';
-import 'package:oralsync/core/helpers/extensions/navigation_extensions.dart';
 import 'package:oralsync/core/service_locator/service_locator.dart';
 import 'package:oralsync/core/utils/icon_broken.dart';
 import 'package:oralsync/core/utils/size_helper.dart';
 import 'package:oralsync/features/Auth/data/models/user_model.dart';
+import 'package:oralsync/features/home_patient_feature/presentation/manager/free_paid_reservation_cubit/free_paid_reservation_cubit.dart';
 import 'package:oralsync/features/home_student_feature/presentation/widgets/like_comment_widget.dart';
-import 'package:oralsync/features/profiles_view_from_patient/presentation/pages/student_profile_patient_view_page.dart';
 
 class PostItemWidget extends StatelessWidget {
   const PostItemWidget({
@@ -28,6 +28,7 @@ class PostItemWidget extends StatelessWidget {
     this.onTaComment,
     this.onPressedArchive,
     required this.profileURL,
+    this.userId,
   });
 
   final String userName;
@@ -40,10 +41,15 @@ class PostItemWidget extends StatelessWidget {
   final Function()? onTaLike;
   final Function()? onTaComment;
   final Function()? onPressedArchive;
+  final String? userId;
 
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.sizeOf(context);
+    String user = ServiceLocator.instance<CacheStorage>()
+        .getData(key: SharedPrefsKeys.user);
+    var userModel = UserModel.fromJson(json.decode(user));
+    var role = userModel.userRole?.toUpperCase() ?? '';
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20.0),
       child: Column(
@@ -56,21 +62,25 @@ class PostItemWidget extends StatelessWidget {
                 profileURL,
               ),
             ),
-            title: GestureDetector(
-              onTap: () {
-                String user = ServiceLocator.instance<CacheStorage>()
-                    .getData(key: SharedPrefsKeys.user);
-                var userModel = UserModel.fromJson(json.decode(user));
-                var role = userModel.userRole?.toUpperCase() ?? '';
-                if (role == 'Patient'.toUpperCase()) {
-                  context.pushNamed(StudentProfilePatientViewPage.routeName);
-                }
-              },
-              child: Text(
-                userName,
-                style: const TextStyle(fontWeight: FontWeight.w500),
-              ),
-            ),
+            title: role == 'Patient'.toUpperCase()
+                ? BlocBuilder<FreePaidReservationCubit,
+                    FreePaidReservationState>(
+                    builder: (context, state) {
+                      return GestureDetector(
+                        onTap: () => context
+                            .read<FreePaidReservationCubit>()
+                            .getUserData(userId!),
+                        child: Text(
+                          userName,
+                          style: const TextStyle(fontWeight: FontWeight.w500),
+                        ),
+                      );
+                    },
+                  )
+                : Text(
+                    userName,
+                    style: const TextStyle(fontWeight: FontWeight.w500),
+                  ),
             subtitle: Text(postDate),
             trailing: IconButton(
               icon: const Icon(IconBroken.Arrow___Down_Square),

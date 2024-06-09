@@ -36,6 +36,7 @@ class PatientPostDetailsPage extends StatelessWidget {
               slivers: [
                 SliverToBoxAdapter(
                   child: PostItemWidget(
+                    userId: cubit.freePosts[index].userId,
                     profileURL: cubit.freePosts[index].profileImage ?? '',
                     caption: cubit.freePosts[index].content ?? '',
                     commentsCount: cubit.freePosts[index].comments?.length ?? 0,

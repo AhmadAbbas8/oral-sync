@@ -14,7 +14,7 @@ class UserModel {
   });
 
   factory UserModel.fromJson(Map<String, dynamic> json) {
-    String userRole = json['userRole'];
+    String userRole = json['userRole']??'Student';
     UserDetails userDetails;
 
     switch (userRole) {
@@ -236,7 +236,7 @@ class StudentDetails extends UserDetails {
       firstName: json['firstName'],
       lastName: json['lastName'],
       isMale: json['isMale'],
-      governorate: json['governorate'],
+      governorate: json['governorate']??'',
       phoneNumber: json['phoneNumber'],
       email: json['email'],
       birthDate: json['birthDate'],

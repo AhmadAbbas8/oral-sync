@@ -100,7 +100,8 @@ class CodegenLoader extends AssetLoader{
   "insurance_company": "شركة التأمين",
   "there_is_no_any_doctors": "لا يوجد اي دكتور",
   "reserve": "حجز",
-  "ratings_details": "تفاصيل التقييمات"
+  "ratings_details": "تفاصيل التقييمات",
+  "unknown": "مجهول"
 };
 static const Map<String,dynamic> en = {
   "hello": "Hello",
@@ -188,7 +189,8 @@ static const Map<String,dynamic> en = {
   "insurance_company": "Insurance company",
   "there_is_no_any_doctors": "There is no any Doctor",
   "reserve": "Reserve",
-  "ratings_details": "Rating Details"
+  "ratings_details": "Rating Details",
+  "unknown": "Unknown"
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"ar": ar, "en": en};
 }

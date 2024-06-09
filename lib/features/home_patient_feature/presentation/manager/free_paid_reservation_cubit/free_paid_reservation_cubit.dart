@@ -9,15 +9,16 @@ import 'package:oralsync/features/home_student_feature/domain/repositories/stude
 import 'package:oralsync/features/home_student_feature/domain/use_cases/do_comment_use_case.dart';
 
 import '../../../../../core/error/error_model.dart';
+import '../../../../Auth/data/models/user_model.dart';
 
 part 'free_paid_reservation_state.dart';
 
 class FreePaidReservationCubit extends Cubit<FreePaidReservationState> {
-  FreePaidReservationCubit(
-      {required StudentPostRepo studentPostRepo,
-      required DoCommentUseCase doCommentUseCase,
-      required ActionsRepo actionsRepo})
-      : _studentPostRepo = studentPostRepo,
+  FreePaidReservationCubit({
+    required StudentPostRepo studentPostRepo,
+    required DoCommentUseCase doCommentUseCase,
+    required ActionsRepo actionsRepo,
+  })  : _studentPostRepo = studentPostRepo,
         _doCommentUseCase = doCommentUseCase,
         _actionsRepo = actionsRepo,
         super(FreePaidReservationInitial());
@@ -75,10 +76,11 @@ class FreePaidReservationCubit extends Cubit<FreePaidReservationState> {
       (model) {
         if (model.messageEn?.contains('dislike') ?? false) {
           freePosts[index].likeCount = freePosts[index].likeCount! - 1;
-        }else{
-          freePosts[index].likeCount = freePosts[index].likeCount ! + 1;
+        } else {
+          freePosts[index].likeCount = freePosts[index].likeCount! + 1;
         }
-        log(freePosts[index].likeCount.toString(),name: 'LLLLLLLLLLLLLIIIIIIIIIIKKKKKKKKKKKS');
+        log(freePosts[index].likeCount.toString(),
+            name: 'LLLLLLLLLLLLLIIIIIIIIIIKKKKKKKKKKKS');
         emit(LikeUnLikePostSuccess(responseModel: model));
       },
     );
@@ -102,12 +104,25 @@ class FreePaidReservationCubit extends Cubit<FreePaidReservationState> {
         }
       },
       (comment) {
-        freePosts[index]
-            .comments!
-            .add(comment);
+        freePosts[index].comments!.add(comment);
         commentController.clear();
         emit(DoCommentPatientSuccess());
       },
+    );
+  }
+
+  getUserData(String userId) async {
+    emit(GetUserDataLoading());
+    var res = await _actionsRepo.getUserData(userId);
+    res.fold(
+      (failure) {
+        if (failure is ServerFailure) {
+          emit(GetUserDataError(model: failure.errorModel!));
+        } else if (failure is OfflineFailure) {
+          emit(GetUserDataError(model: failure.model!));
+        }
+      },
+      (user) => emit(GetUserDataSuccess(user: user, userId: userId)),
     );
   }
 

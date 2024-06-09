@@ -45,6 +45,7 @@ class _CustomFreePostsWidgetState extends State<CustomFreePostsWidget> {
       itemBuilder: (_, index) => index >= widget.cubit.freePosts.length
           ? const LoadingWidget()
           : PostItemWidget(
+              userId: widget.cubit.freePosts[index].userId,
               userName: widget.cubit.freePosts[index].userName ?? '',
               postDate: widget.cubit.freePosts[index].dateCreated ?? '',
               caption: widget.cubit.freePosts[index].content ?? '',

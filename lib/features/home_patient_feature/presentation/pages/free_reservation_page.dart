@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:oralsync/core/helpers/check_language.dart';
+import 'package:oralsync/core/helpers/extensions/navigation_extensions.dart';
 import 'package:oralsync/core/helpers/snackbars.dart';
 import 'package:oralsync/core/utils/colors_palette.dart';
 import 'package:oralsync/core/widgets/loading_widget.dart';
@@ -9,6 +10,8 @@ import 'package:oralsync/features/home_patient_feature/presentation/manager/free
 import 'package:oralsync/features/home_student_feature/presentation/widgets/no_task_widget.dart';
 import 'package:oralsync/translations/locale_keys.g.dart';
 
+import '../../../../core/helpers/custom_progress_indicator.dart';
+import '../../../profiles_view_from_patient/presentation/pages/student_profile_patient_view_page.dart';
 import '../widgets/custom_free_post_widget.dart';
 
 class FreeReservationPage extends StatelessWidget {
@@ -42,6 +45,24 @@ class FreeReservationPage extends StatelessWidget {
                           ? state.model?.messageAr ?? ''
                           : state.model?.messageEn ?? '',
                       backgroundColor: ColorsPalette.errorColor);
+                }
+
+
+                if (state is GetUserDataLoading) {
+                  showCustomProgressIndicator(context);
+                }
+                if (state is GetUserDataError) {
+                  context.pop();
+                  showCustomSnackBar(context,
+                      msg: isArabic(context)
+                          ? state.model.messageAr ?? ''
+                          : state.model.messageEn ?? '',
+                      backgroundColor: ColorsPalette.errorColor);
+                }
+                if (state is GetUserDataSuccess) {
+                  context.pop();
+                  context.pushNamed(StudentProfilePatientViewPage.routeName,
+                      arguments: [state.user,state.userId]);
                 }
               },
               builder: (_, state) {

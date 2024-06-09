@@ -93,7 +93,10 @@ class DoctorProfilePatientViewPage extends StatelessWidget {
                         icon: IconBroken.Star,
                         onPressed: () => context
                             .read<ProfileViewFromPatientCubit>()
-                            .createReserve(doctorModel),
+                            .createReserve(
+                              doctorId: doctorModel.doctor?.userId ?? '',
+                              location: doctorModel.doctor?.governorate ?? '',
+                            ),
                       ),
                     ],
                   );
