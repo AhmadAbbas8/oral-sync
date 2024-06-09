@@ -45,6 +45,7 @@ class _CustomFreePostsWidgetState extends State<CustomFreePostsWidget> {
       itemBuilder: (_, index) => index >= widget.cubit.freePosts.length
           ? const LoadingWidget()
           : PostItemWidget(
+              userId: widget.cubit.freePosts[index].userId,
               userName: widget.cubit.freePosts[index].userName ?? '',
               postDate: widget.cubit.freePosts[index].dateCreated ?? '',
               caption: widget.cubit.freePosts[index].content ?? '',
@@ -55,7 +56,8 @@ class _CustomFreePostsWidgetState extends State<CustomFreePostsWidget> {
               profileURL: widget.cubit.freePosts[index].profileImage ?? '',
               onTaComment: () => context.pushNamed(
                 PatientPostDetailsPage.routeName,
-                arguments: [index],
+                arguments: [index,widget.cubit.freePosts[index]],
+
               ),
               onTaLike: () => widget.cubit.likeUnLike(
                   widget.cubit.freePosts[index].postId?.toInt() ?? 0, index),

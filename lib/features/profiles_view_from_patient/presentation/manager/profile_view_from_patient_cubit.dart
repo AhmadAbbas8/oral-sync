@@ -16,12 +16,15 @@ class ProfileViewFromPatientCubit extends Cubit<ProfileViewFromPatientState> {
 
   final ActionsRepo actionsRepo;
 
-  createReserve(DoctorModel doctor) async {
+  createReserve({
+    required String doctorId,
+    required String location,
+  }) async {
     emit(CreateReserveLoading());
     var res = await actionsRepo.createReserve(
-      doctorId: doctor.doctor?.doctorId?.toString() ?? '',
+      doctorId: doctorId,
       status: "Scheduled",
-      location: doctor.doctor?.governorate ?? '',
+      location: location,
       dateAppointment: DateFormat('yyyy/MM/dd', 'EN').format(DateTime.now()),
       timeAppointment: DateFormat('HH:mm:ss').format(DateTime.now()),
       patientNotes: 'patientNotes',

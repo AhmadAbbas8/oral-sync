@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:oralsync/core/error/error_model.dart';
 
+import '../../../features/Auth/data/models/user_model.dart';
 import '../../error/failure.dart';
 import 'model/Notification_model.dart';
 import 'model/ratings_model.dart';
@@ -23,4 +24,5 @@ abstract class ActionsRepo {
   });
 
   Future<Either<Failure, List<RatingModel>>> getAllRates(String userId);
+  Future<Either<Failure,UserModel>> getUserData(String userId);
 }

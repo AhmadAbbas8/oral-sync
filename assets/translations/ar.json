@@ -83,5 +83,9 @@
   "this_company_has_been_added_before": "تم اضافة هذه الشركة من قبل",
   "insurance_company": "شركة التأمين",
   "there_is_no_any_doctors": "لا يوجد اي دكتور",
-  "reserve": "حجز"
+  "reserve": "حجز",
+  "ratings_details": "تفاصيل التقييمات",
+  "unknown": "مجهول",
+  "error": "خطأ ⚠",
+  "select_governorate": "اختر المحافظة"
 }

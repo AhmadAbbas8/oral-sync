@@ -5,6 +5,7 @@ import 'package:oralsync/core/shared_data_layer/actions_data_layer/actions_reomt
 import 'package:oralsync/core/shared_data_layer/actions_data_layer/model/Notification_model.dart';
 import 'package:oralsync/core/shared_data_layer/actions_data_layer/actions_repo.dart';
 import 'package:oralsync/core/shared_data_layer/actions_data_layer/model/ratings_model.dart';
+import 'package:oralsync/features/Auth/data/models/user_model.dart';
 
 import '../../../../core/error/exception.dart';
 import '../../../../core/error/failure.dart';
@@ -84,10 +85,24 @@ class ActionsRepoImpl extends ActionsRepo {
   }
 
   @override
-  Future<Either<Failure,    List<RatingModel> >> getAllRates(String userId) async {
+  Future<Either<Failure, List<RatingModel>>> getAllRates(String userId) async {
     if (await _networkInfo.isConnected) {
       try {
         var res = await _actionsRemoteDataSource.getAllRates(userId);
+        return Right(res);
+      } on ServerException catch (ex) {
+        return Left(ServerFailure(errorModel: ex.errorModel));
+      }
+    } else {
+      return Left(OfflineFailure());
+    }
+  }
+
+  @override
+  Future<Either<Failure, UserModel>> getUserData(String userId) async {
+    if (await _networkInfo.isConnected) {
+      try {
+        var res = await _actionsRemoteDataSource.getUserData(userId);
         return Right(res);
       } on ServerException catch (ex) {
         return Left(ServerFailure(errorModel: ex.errorModel));

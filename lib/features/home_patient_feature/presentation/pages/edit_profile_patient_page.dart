@@ -13,6 +13,7 @@ import '../../../../core/helpers/snackbars.dart';
 import '../../../../core/utils/colors_palette.dart';
 import '../../../../core/utils/size_helper.dart';
 import '../../../../core/utils/styles.dart';
+import '../../../../core/widgets/custom_alert_dialog_governorate.dart';
 import '../../../../translations/locale_keys.g.dart';
 import '../../../Auth/presentation/widgets/custom_login_button_widget.dart';
 import '../../../Auth/presentation/widgets/custom_text_form_field_login.dart';
@@ -162,6 +163,13 @@ class EditProfilePatientPage extends StatelessWidget {
                             sTitle: LocaleKeys.city,
                             textEditingController2: cubit.cityController,
                             textEditingController1: cubit.governorateController,
+                            readOnly1: true,
+                            onTap1: () async {
+                              var selectedGover =
+                                  await showGovernorateDialog(context);
+                              cubit.governorateController.text =
+                                  selectedGover ?? '';
+                            },
                           ),
                           SizeHelper.defSizedBoxField,
                           FittedBox(

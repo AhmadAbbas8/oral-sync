@@ -29,54 +29,58 @@ class HomeStudentPage extends StatelessWidget {
         archiveAndUnArchivePostUseCase: ServiceLocator.instance(),
       )..getAllPosts(),
       child: Scaffold(
-        body: BlocConsumer<HomeStudentCubit, HomeStudentState>(
-          listener: (context, state) {
-            _stateHandler(state, context);
-          },
-          buildWhen: (previous, current) => current != previous,
-          listenWhen: (previous, current) => current != previous,
-          builder: (context, state) {
-            var cubit = context.read<HomeStudentCubit>();
-            return RefreshIndicator(
-              onRefresh: () async => cubit.getAllPosts(),
-              child: Center(
-                child: state is GetAllPostsLoading
-                    ? const LoadingWidget()
-                    : cubit.posts.isNotEmpty
-                        ? ListView.separated(
-                            separatorBuilder: (context, index) => Divider(
-                              endIndent: 20.w,
-                              indent: 20.w,
-                            ),
-                            itemCount: cubit.posts.length,
-                            // shrinkWrap: true,
-                            itemBuilder: (_, index) => PostItemWidget(
-                              profileURL: cubit.posts[index].profileImage ?? '',
-                              caption: cubit.posts[index].content ?? '',
-                              commentsCount:
-                                  cubit.posts[index].comments?.length ?? 0,
-                              likesCount:
-                                  cubit.posts[index].likeCount?.toInt() ?? 0,
-                              onTaComment: () => context.pushNamed(
-                                PostDetailsPage.routeName,
-                                arguments: [cubit, index],
-                              ),
-                              postDate: DateFormat("MMM dd, yyyy").format(
-                                  DateFormat("yyyy/MM/dd").parse(
-                                      cubit.posts[index].dateCreated ??
-                                          '2001/08/01')),
-                              images: cubit.posts[index].postImages ?? [],
-                              onPressedArchive: () =>
-                                  cubit.archiveAndUnArchivePost(
-                                      cubit.posts[index].postId ?? 0),
-                              userName:
-                                  '${cubit.studentModel.userDetails?.firstName} ${cubit.studentModel.userDetails?.lastName}',
-                            ),
-                          )
-                        : const NoTaskWidget(title: LocaleKeys.no_tasks),
-              ),
+        body: Builder(
+          builder: (context) {
+            return BlocConsumer<HomeStudentCubit, HomeStudentState>(
+              listener: (context, state) {
+                _stateHandler(state, context);
+              },
+              buildWhen: (previous, current) => current != previous,
+              listenWhen: (previous, current) => current != previous,
+              builder: (context, state) {
+                var cubit = context.read<HomeStudentCubit>();
+                return RefreshIndicator(
+                  onRefresh: () async => cubit.getAllPosts(),
+                  child: Center(
+                    child: state is GetAllPostsLoading
+                        ? const LoadingWidget()
+                        : cubit.posts.isNotEmpty
+                            ? ListView.separated(
+                                separatorBuilder: (context, index) => Divider(
+                                  endIndent: 20.w,
+                                  indent: 20.w,
+                                ),
+                                itemCount: cubit.posts.length,
+                                // shrinkWrap: true,
+                                itemBuilder: (_, index) => PostItemWidget(
+                                  profileURL: cubit.posts[index].profileImage ?? '',
+                                  caption: cubit.posts[index].content ?? '',
+                                  commentsCount:
+                                      cubit.posts[index].comments?.length ?? 0,
+                                  likesCount:
+                                      cubit.posts[index].likeCount?.toInt() ?? 0,
+                                  onTaComment: () => context.pushNamed(
+                                    PostDetailsPage.routeName,
+                                    arguments: [cubit, index],
+                                  ),
+                                  postDate: DateFormat("MMM dd, yyyy").format(
+                                      DateFormat("yyyy/MM/dd").parse(
+                                          cubit.posts[index].dateCreated ??
+                                              '2001/08/01')),
+                                  images: cubit.posts[index].postImages ?? [],
+                                  onPressedArchive: () =>
+                                      cubit.archiveAndUnArchivePost(
+                                          cubit.posts[index].postId ?? 0),
+                                  userName:
+                                      '${cubit.studentModel.userDetails?.firstName} ${cubit.studentModel.userDetails?.lastName}',
+                                ),
+                              )
+                            : const NoTaskWidget(title: LocaleKeys.no_tasks),
+                  ),
+                );
+              },
             );
-          },
+          }
         ),
       ),
     );

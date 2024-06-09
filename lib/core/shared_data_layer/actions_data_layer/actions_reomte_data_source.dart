@@ -3,6 +3,7 @@ import 'package:oralsync/core/network/api/api_consumer.dart';
 import 'package:oralsync/core/shared_data_layer/actions_data_layer/model/Notification_model.dart';
 import 'package:oralsync/core/shared_data_layer/actions_data_layer/model/ratings_model.dart';
 
+import '../../../features/Auth/data/models/user_model.dart';
 import '../../error/error_model.dart';
 import '../../error/exception.dart';
 import '../../utils/end_points.dart';
@@ -15,6 +16,8 @@ abstract class ActionsRemoteDataSource {
   Future<ResponseModel> createReserve(Map<String, dynamic> data);
 
   Future<List<RatingModel>> getAllRates(String userId);
+
+  Future<UserModel> getUserData(String userId);
 }
 
 class ActionsRemoteDataSourceImpl extends ActionsRemoteDataSource {
@@ -113,6 +116,30 @@ class ActionsRemoteDataSourceImpl extends ActionsRemoteDataSource {
       } else if (response.statusCode == 404) {
         throw ServerException(
             errorModel: ResponseModel.fromJson(response.data));
+      } else {
+        throw ServerException(
+          errorModel: ResponseModel(
+            messageEn: 'Server Error',
+            messageAr: 'مشكلة فى السيرفر',
+          ),
+        );
+      }
+    } on DioException catch (e) {
+      throw ServerException(
+          errorModel: ResponseModel.fromJson(e.response?.data));
+    }
+  }
+
+  @override
+  Future<UserModel> getUserData(String userId) async {
+    try {
+      Response response = await _apiConsumer.get(
+        EndPoints.userProfileEndPoint,
+        queryParameters: {'userId': userId},
+      );
+
+      if (response.statusCode == 200) {
+        return UserModel.fromJson(response.data);
       } else {
         throw ServerException(
           errorModel: ResponseModel(

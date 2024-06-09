@@ -83,5 +83,9 @@ abstract class  LocaleKeys {
   static const insurance_company = 'insurance_company';
   static const there_is_no_any_doctors = 'there_is_no_any_doctors';
   static const reserve = 'reserve';
+  static const ratings_details = 'ratings_details';
+  static const unknown = 'unknown';
+  static const error = 'error';
+  static const select_governorate = 'select_governorate';
 
 }

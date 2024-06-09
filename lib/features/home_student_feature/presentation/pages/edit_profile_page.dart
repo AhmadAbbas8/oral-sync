@@ -19,6 +19,7 @@ import 'package:oralsync/features/home_student_feature/presentation/manager/stud
 import 'package:oralsync/translations/locale_keys.g.dart';
 
 import '../../../../core/helpers/reg_ex.dart';
+import '../../../../core/widgets/custom_alert_dialog_governorate.dart';
 
 class EditProfileStudentPage extends StatelessWidget {
   static const routeName = '/editProfileStudentPage';
@@ -40,8 +41,7 @@ class EditProfileStudentPage extends StatelessWidget {
         listener: (context, state) {
           if (state is UpdateStudentDataLoading) {
             showCustomProgressIndicator(context);
-          }
-          else if (state is UpdateStudentDataError) {
+          } else if (state is UpdateStudentDataError) {
             context.pop();
             showCustomSnackBar(
               context,
@@ -50,8 +50,7 @@ class EditProfileStudentPage extends StatelessWidget {
                   : state.responseModel.messageEn ?? '',
               backgroundColor: ColorsPalette.errorColor,
             );
-          }
-          else if (state is UpdateStudentDataSuccess) {
+          } else if (state is UpdateStudentDataSuccess) {
             context.pop();
             context.pop();
             showCustomSnackBar(
@@ -224,6 +223,13 @@ class EditProfileStudentPage extends StatelessWidget {
                         textEditingController1:
                             cubit.universityGovernorateController,
                         textEditingController2: cubit.universityCityController,
+                        readOnly1: true,
+                        onTap1: () async {
+                          var selectedGover =
+                              await showGovernorateDialog(context);
+                          cubit.universityGovernorateController.text =
+                              selectedGover ?? '';
+                        },
                       ),
                       // SizeHelper.defSizedBoxField,
                       // CustomTextFormFieldLogin(

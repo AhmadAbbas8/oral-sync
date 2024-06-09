@@ -13,6 +13,21 @@ class DoCommentPatientError extends FreePaidReservationState {
   DoCommentPatientError({required this.model});
 }
 
+class GetUserDataLoading extends FreePaidReservationState {}
+
+class GetUserDataSuccess extends FreePaidReservationState {
+  final UserModel user;
+  final String userId;
+
+  GetUserDataSuccess({required this.user, required this.userId});
+}
+
+class GetUserDataError extends FreePaidReservationState {
+  final ResponseModel model;
+
+  GetUserDataError({required this.model});
+}
+
 class DoCommentPatientSuccess extends FreePaidReservationState {}
 
 class FetchFreePostsLoading extends FreePaidReservationState {}

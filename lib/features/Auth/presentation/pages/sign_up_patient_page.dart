@@ -20,6 +20,7 @@ import 'package:oralsync/features/Auth/presentation/widgets/custom_text_form_fie
 import 'package:oralsync/features/Auth/presentation/widgets/custom_tow_form_field_widget.dart';
 import 'package:oralsync/translations/locale_keys.g.dart';
 
+import '../../../../core/widgets/custom_alert_dialog_governorate.dart';
 import '../../../home_patient_feature/presentation/pages/home_patient_layout.dart';
 
 class SignUpPatientPage extends StatelessWidget {
@@ -183,6 +184,13 @@ class SignUpPatientPage extends StatelessWidget {
                             sTitle: LocaleKeys.city,
                             textEditingController2: cubit.cityController,
                             textEditingController1: cubit.governorateController,
+                            readOnly1: true,
+                            onTap1: () async {
+                              var selectedGover =
+                              await showGovernorateDialog(context);
+                              cubit.governorateController.text =
+                                  selectedGover ?? '';
+                            },
                           ),
                           SizeHelper.defSizedBoxField,
                           CustomTextFormFieldLogin(
