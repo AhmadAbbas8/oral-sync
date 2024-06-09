@@ -22,6 +22,7 @@ import 'package:oralsync/features/home_student_feature/presentation/pages/studen
 import '../../../../core/helpers/general_validators.dart';
 import '../../../../core/helpers/reg_ex.dart';
 import '../../../../core/utils/assets_manager.dart';
+import '../../../../core/widgets/custom_alert_dialog_governorate.dart';
 import '../../../../translations/locale_keys.g.dart';
 
 class SignUpStudentPage extends StatelessWidget {
@@ -239,6 +240,13 @@ class SignUpStudentPage extends StatelessWidget {
                             validator2: generalValidator,
                             textEditingController2: cubit.cityController,
                             textEditingController1: cubit.governorateController,
+                            readOnly1: true,
+                            onTap1: () async {
+                              var selectedGover =
+                              await showGovernorateDialog(context);
+                              cubit.governorateController.text =
+                                  selectedGover ?? '';
+                            },
                           ),
                           SizeHelper.defSizedBoxField,
                           CustomTwoFormFieldWidget(

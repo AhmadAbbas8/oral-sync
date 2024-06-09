@@ -101,7 +101,9 @@ class CodegenLoader extends AssetLoader{
   "there_is_no_any_doctors": "لا يوجد اي دكتور",
   "reserve": "حجز",
   "ratings_details": "تفاصيل التقييمات",
-  "unknown": "مجهول"
+  "unknown": "مجهول",
+  "error": "خطأ ⚠",
+  "select_governorate": "اختر المحافظة"
 };
 static const Map<String,dynamic> en = {
   "hello": "Hello",
@@ -190,7 +192,9 @@ static const Map<String,dynamic> en = {
   "there_is_no_any_doctors": "There is no any Doctor",
   "reserve": "Reserve",
   "ratings_details": "Rating Details",
-  "unknown": "Unknown"
+  "unknown": "Unknown",
+  "error": "Error ⚠",
+  "select_governorate": "Select Governorate"
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"ar": ar, "en": en};
 }

@@ -85,5 +85,7 @@
   "there_is_no_any_doctors": "There is no any Doctor",
   "reserve": "Reserve",
   "ratings_details": "Rating Details",
-  "unknown": "Unknown"
+  "unknown": "Unknown",
+  "error": "Error ⚠",
+  "select_governorate": "Select Governorate"
 }

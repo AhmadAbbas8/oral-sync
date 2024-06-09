@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class ReservationsPage extends StatelessWidget {
@@ -9,16 +8,18 @@ class ReservationsPage extends StatelessWidget {
     return Column(
       children: [
         Expanded(
+          flex: 1,
           child: Center(
             child: Text('Un implemented tracking'),
           ),
         ),
-        Divider(
+        const Divider(
           thickness: 2,
           indent: 20,
           endIndent: 20,
         ),
         Expanded(
+          flex: 3,
           child: ListView.builder(
             itemBuilder: (context, index) => Text('data'),
             itemCount: 20,

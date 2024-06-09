@@ -15,6 +15,7 @@ import '../../../../core/helpers/snackbars.dart';
 import '../../../../core/utils/colors_palette.dart';
 import '../../../../core/utils/size_helper.dart';
 import '../../../../core/utils/styles.dart';
+import '../../../../core/widgets/custom_alert_dialog_governorate.dart';
 import '../../../../translations/locale_keys.g.dart';
 import '../../../Auth/presentation/widgets/custom_login_button_widget.dart';
 import '../../../Auth/presentation/widgets/custom_text_form_field_login.dart';
@@ -207,6 +208,13 @@ class EditProfileDoctorPage extends StatelessWidget {
                           textEditingController2: cubit.cityController,
                           validator1: generalValidator,
                           validator2: generalValidator,
+                          readOnly1: true,
+                          onTap1: () async {
+                            var selectedGover =
+                            await showGovernorateDialog(context);
+                            cubit.governorateClinicController.text =
+                                selectedGover ?? '';
+                          },
                         ),
                         SizeHelper.defSizedBoxField,
                         CustomTwoFormFieldWidget(

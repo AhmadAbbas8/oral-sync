@@ -1,3 +1,4 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -8,6 +9,7 @@ import 'package:oralsync/core/helpers/extensions/navigation_extensions.dart';
 import 'package:oralsync/core/helpers/snackbars.dart';
 import 'package:oralsync/core/service_locator/service_locator.dart';
 import 'package:oralsync/core/utils/assets_manager.dart';
+import 'package:oralsync/core/utils/governorate.dart';
 import 'package:oralsync/core/utils/size_helper.dart';
 import 'package:oralsync/core/utils/styles.dart';
 import 'package:oralsync/features/Auth/domain/use_cases/login_use_case.dart';
@@ -22,8 +24,9 @@ import 'package:oralsync/features/Auth/presentation/widgets/custom_tow_form_fiel
 import 'package:oralsync/translations/locale_keys.g.dart';
 
 import '../../../../core/helpers/general_validators.dart';
+import '../../../../core/widgets/custom_alert_dialog_governorate.dart';
 import '../../domain/use_cases/register_use_case.dart';
-
+import 'dart:ui' as ui;
 class SignUpDoctorPage extends StatefulWidget {
   const SignUpDoctorPage({super.key});
 
@@ -191,7 +194,8 @@ class _SignUpDoctorStudentPageState extends State<SignUpDoctorPage> {
                             sTitle: LocaleKeys.gpa,
                             // textInputType2: TextInputType.numberWithOptions(decimal: true),
                             inputFormatters2: [
-                              FilteringTextInputFormatter.allow(RegExp(r'^\d*\.?\d*$')),
+                              FilteringTextInputFormatter.allow(
+                                  RegExp(r'^\d*\.?\d*$')),
                               CustomDoubleNumberInputFormatter(),
                             ],
                             textEditingController1:
@@ -221,6 +225,13 @@ class _SignUpDoctorStudentPageState extends State<SignUpDoctorPage> {
                             textEditingController2: cubit.cityController,
                             validator1: generalValidator,
                             validator2: generalValidator,
+                            readOnly1: true,
+                            onTap1: () async {
+                              var selectedGover =
+                                  await showGovernorateDialog(context);
+                              cubit.governorateClinicController.text =
+                                  selectedGover ?? '';
+                            },
                           ),
                           SizeHelper.defSizedBoxField,
                           CustomTwoFormFieldWidget(
@@ -321,9 +332,11 @@ class _SignUpDoctorStudentPageState extends State<SignUpDoctorPage> {
     }
   }
 }
+
 class CustomDoubleNumberInputFormatter extends TextInputFormatter {
   @override
-  TextEditingValue formatEditUpdate(TextEditingValue oldValue, TextEditingValue newValue) {
+  TextEditingValue formatEditUpdate(
+      TextEditingValue oldValue, TextEditingValue newValue) {
     const pattern = r'^(?:[2-4](?:\.\d{0,})?|5(?:\.0{0,})?)$';
     final regex = RegExp(pattern);
     if (newValue.text.isEmpty || regex.hasMatch(newValue.text)) {
@@ -332,3 +345,4 @@ class CustomDoubleNumberInputFormatter extends TextInputFormatter {
     return oldValue;
   }
 }
+

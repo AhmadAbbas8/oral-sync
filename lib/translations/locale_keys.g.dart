@@ -85,5 +85,7 @@ abstract class  LocaleKeys {
   static const reserve = 'reserve';
   static const ratings_details = 'ratings_details';
   static const unknown = 'unknown';
+  static const error = 'error';
+  static const select_governorate = 'select_governorate';
 
 }

@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:easy_image_viewer/easy_image_viewer.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -14,6 +15,7 @@ import 'package:oralsync/core/utils/size_helper.dart';
 import 'package:oralsync/features/Auth/data/models/user_model.dart';
 import 'package:oralsync/features/home_patient_feature/presentation/manager/free_paid_reservation_cubit/free_paid_reservation_cubit.dart';
 import 'package:oralsync/features/home_student_feature/presentation/widgets/like_comment_widget.dart';
+import 'package:oralsync/translations/locale_keys.g.dart';
 
 class PostItemWidget extends StatelessWidget {
   const PostItemWidget({
@@ -116,6 +118,15 @@ class PostItemWidget extends StatelessWidget {
                   child: FancyShimmerImage(
                     imageUrl: images[index],
                     boxFit: BoxFit.cover,
+                    errorWidget: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Icon(
+                          Icons.error_outline,
+                        ),
+                        const Text(LocaleKeys.error).tr(),
+                      ],
+                    ),
                     shimmerBaseColor: Colors.grey,
                     shimmerHighlightColor: Colors.greenAccent,
                     shimmerBackColor: Colors.lightGreen,
