@@ -37,6 +37,9 @@ import 'package:oralsync/features/home_student_feature/domain/use_cases/get_all_
 import 'package:oralsync/features/home_student_feature/domain/use_cases/get_all_posts_use_case.dart';
 import 'package:oralsync/features/home_student_feature/domain/use_cases/get_notifications_use_case.dart';
 import 'package:oralsync/features/profiles_view_from_patient/presentation/manager/profile_view_from_patient_cubit.dart';
+import 'package:oralsync/features/reservations_feature/data/remote_data_sources/reservations_remote_data_source.dart';
+import 'package:oralsync/features/reservations_feature/data/repo/reservations_repo.dart';
+import 'package:oralsync/features/reservations_feature/presentation/manager/reservations_cubit/reservations_cubit.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -69,6 +72,9 @@ class ServiceLocator {
     instance.registerFactory<DoctorProfileCubit>(() => DoctorProfileCubit(
           instance(),
           instance(),
+        ));
+    instance.registerFactory<ReservationsCubit>(() => ReservationsCubit(
+          reservationsRepo: instance(),
         ));
     instance.registerFactory<ProfileViewFromPatientCubit>(
         () => ProfileViewFromPatientCubit(
@@ -105,6 +111,8 @@ class ServiceLocator {
         () => PaidReservationRemoteDataSourceImpl(apiConsumer: instance()));
     instance.registerLazySingleton<PaidReservationLocalDataSource>(
         () => PaidReservationLocalDataSourceImpl(cacheStorage: instance()));
+    instance.registerLazySingleton<ReservationsRemoteDataSource>(
+        () => ReservationsRemoteDataSourceImpl(api: instance()));
 
     // * Repository
     instance.registerLazySingleton<AuthRepository>(() => AuthRepositoryImpl(
@@ -129,6 +137,10 @@ class ServiceLocator {
           localDataSource: instance(),
           remoteDataSource: instance()),
     );
+    instance.registerLazySingleton<ReservationsRepo>(() => ReservationsRepoImpl(
+          networkInfo: instance(),
+          reservationsRemoteDataSource: instance(),
+        ));
 
     // * UseCases
 
