@@ -16,10 +16,21 @@ import 'package:oralsync/features/home_patient_feature/presentation/pages/reserv
 import '../../../../core/utils/icon_broken.dart';
 import '../../../home_student_feature/presentation/pages/notification_page.dart';
 
-class HomePatientLayoutPage extends StatelessWidget {
+class HomePatientLayoutPage extends StatefulWidget {
   const HomePatientLayoutPage({super.key});
 
   static const routeName = '/homePatientLayoutPage';
+
+  @override
+  State<HomePatientLayoutPage> createState() => _HomePatientLayoutPageState();
+}
+
+class _HomePatientLayoutPageState extends State<HomePatientLayoutPage> {
+  @override
+  void initState() {
+    ServiceLocator.instance<FreePaidReservationCubit>().getFreePosts();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,10 +40,6 @@ class HomePatientLayoutPage extends StatelessWidget {
           create: (_) => HomePatientCubit(
             getNotificationsUseCase: ServiceLocator.instance(),
           )..getNotifications(),
-        ),
-        BlocProvider(
-          create: (_) => ServiceLocator.instance<FreePaidReservationCubit>()
-            ..getFreePosts(),
         ),
         BlocProvider(
           create: (context) =>

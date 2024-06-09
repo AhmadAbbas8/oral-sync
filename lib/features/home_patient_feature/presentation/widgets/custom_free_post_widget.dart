@@ -56,7 +56,8 @@ class _CustomFreePostsWidgetState extends State<CustomFreePostsWidget> {
               profileURL: widget.cubit.freePosts[index].profileImage ?? '',
               onTaComment: () => context.pushNamed(
                 PatientPostDetailsPage.routeName,
-                arguments: [index],
+                arguments: [index,widget.cubit.freePosts[index]],
+
               ),
               onTaLike: () => widget.cubit.likeUnLike(
                   widget.cubit.freePosts[index].postId?.toInt() ?? 0, index),

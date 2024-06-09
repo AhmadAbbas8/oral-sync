@@ -1,4 +1,3 @@
-
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -7,6 +6,7 @@ import 'package:oralsync/features/home_patient_feature/presentation/manager/free
 
 import '../../../../core/widgets/comment_widget.dart';
 import '../../../../translations/locale_keys.g.dart';
+import '../../../home_student_feature/data/models/Student_post_model.dart';
 import '../../../home_student_feature/presentation/widgets/no_task_widget.dart';
 import '../../../home_student_feature/presentation/widgets/post_item_widget.dart';
 import '../widgets/comment_form_field_patient.dart';
@@ -15,11 +15,13 @@ class PatientPostDetailsPage extends StatelessWidget {
   const PatientPostDetailsPage({
     super.key,
     required this.index,
+    required this.studentPostModel,
   });
 
   static const routeName = '/patientPostDetailsPage';
 
   final int index;
+  final StudentPostModel studentPostModel;
 
   @override
   Widget build(BuildContext context) {
@@ -36,27 +38,27 @@ class PatientPostDetailsPage extends StatelessWidget {
               slivers: [
                 SliverToBoxAdapter(
                   child: PostItemWidget(
-                    userId: cubit.freePosts[index].userId,
-                    profileURL: cubit.freePosts[index].profileImage ?? '',
-                    caption: cubit.freePosts[index].content ?? '',
-                    commentsCount: cubit.freePosts[index].comments?.length ?? 0,
-                    likesCount: cubit.freePosts[index].likeCount?.toInt() ?? 0,
-                    postDate: cubit.freePosts[index].dateCreated ?? '',
-                    images: cubit.freePosts[index].postImages ?? [],
-                    userName: cubit.freePosts[index].userName ?? '',
+                    userId: studentPostModel.userId,
+                    profileURL: studentPostModel.profileImage ?? '',
+                    caption: studentPostModel.content ?? '',
+                    commentsCount: studentPostModel.comments?.length ?? 0,
+                    likesCount: studentPostModel.likeCount?.toInt() ?? 0,
+                    postDate: studentPostModel.dateCreated ?? '',
+                    images: studentPostModel.postImages ?? [],
+                    userName: studentPostModel.userName ?? '',
                     onTaLike: () => cubit.likeUnLike(
-                        cubit.freePosts[index].postId?.toInt() ?? 0, index),
+                        studentPostModel.postId?.toInt() ?? 0, index),
                   ),
                 ),
                 const SliverToBoxAdapter(
                   child: Divider(),
                 ),
-                cubit.freePosts[index].comments!.isNotEmpty
+                studentPostModel.comments!.isNotEmpty
                     ? SliverList.builder(
                         itemBuilder: (context, innerIndex) => CommentWidget(
-                          comment: cubit.freePosts[index].comments![innerIndex],
+                          comment: studentPostModel.comments![innerIndex],
                         ),
-                        itemCount: cubit.freePosts[index].comments?.length ?? 0,
+                        itemCount: studentPostModel.comments?.length ?? 0,
                       )
                     : const SliverToBoxAdapter(
                         child: NoTaskWidget(title: LocaleKeys.no_comments),
@@ -73,5 +75,3 @@ class PatientPostDetailsPage extends StatelessWidget {
     );
   }
 }
-
-

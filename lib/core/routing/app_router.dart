@@ -153,7 +153,7 @@ class AppRouter {
         {
           var args = settings.arguments as List;
           return PageTransition(
-              child: PatientPostDetailsPage(index: args[0]),
+              child: PatientPostDetailsPage(index: args[0],studentPostModel: args[1]),
               type: _generalType);
         }
       case ChatPage.routeName:
