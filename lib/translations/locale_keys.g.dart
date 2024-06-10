@@ -87,6 +87,7 @@ abstract class  LocaleKeys {
   static const unknown = 'unknown';
   static const error = 'error';
   static const select_governorate = 'select_governorate';
+
   static const accept = 'accept';
   static const pending = 'pending';
   static const done = 'done';

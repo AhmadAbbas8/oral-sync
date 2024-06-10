@@ -100,4 +100,7 @@
   "payment_method": "Payment Method",
   "fee": "Fee",
   "there_is_no_any_reservations": "There is No Any Reservations"
+
+  "select_governorate": "Select Governorate"
+
 }

@@ -103,6 +103,7 @@ class CodegenLoader extends AssetLoader{
   "ratings_details": "تفاصيل التقييمات",
   "unknown": "مجهول",
   "error": "خطأ ⚠",
+
   "select_governorate": "اختر المحافظة",
   "accept": "موافق",
   "pending": "معلق",
@@ -116,6 +117,8 @@ class CodegenLoader extends AssetLoader{
   "payment_method": "طريقة الدفع",
   "fee": "السعر",
   "there_is_no_any_reservations": "لا يوجد اي حجوزات"
+
+  "select_governorate": "اختر المحافظة"
 };
 static const Map<String,dynamic> en = {
   "hello": "Hello",
@@ -219,6 +222,8 @@ static const Map<String,dynamic> en = {
   "payment_method": "Payment Method",
   "fee": "Fee",
   "there_is_no_any_reservations": "There is No Any Reservations"
+
+  "select_governorate": "Select Governorate"
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"ar": ar, "en": en};
 }

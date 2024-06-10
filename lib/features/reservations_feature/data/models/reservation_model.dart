@@ -1,4 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
+
 part 'reservation_model.g.dart';
 
 @JsonSerializable()
@@ -9,14 +10,18 @@ class ReservationModel {
   final String? dateCreated;
   final String? timeCreated;
   final String? timeAppointment;
+
   final String? dateAppointment;
+
   final String? status;
   final String? location;
   final String? patientNotes;
   final String? doctorNotes;
   final String? paymentMethod;
   final num? fee;
+
   final DoctorReservationModel? doctor;
+
 
   ReservationModel(
       {this.id,
@@ -25,13 +30,17 @@ class ReservationModel {
       this.dateCreated,
       this.timeCreated,
       this.timeAppointment,
+
       this.dateAppointment,
+
       this.status,
       this.location,
       this.patientNotes,
       this.doctorNotes,
       this.paymentMethod,
+
       this.doctor,
+
       this.fee});
 
   factory ReservationModel.fromJson(Map<String, dynamic> json) =>
@@ -39,6 +48,7 @@ class ReservationModel {
 
   Map<String, dynamic> toJson() => _$ReservationModelToJson(this);
 }
+
 
 @JsonSerializable()
 class DoctorReservationModel {
@@ -51,3 +61,4 @@ class DoctorReservationModel {
 
   Map<String, dynamic> toJson() => _$DoctorReservationModelToJson(this);
 }
+

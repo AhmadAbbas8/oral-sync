@@ -8,6 +8,9 @@ import '../models/reservation_model.dart';
 
 abstract class ReservationsRemoteDataSource {
   Future<List<ReservationModel>> getAllReservationsCompleted(String endPoint);
+
+  Future<List<ReservationModel>> getAllReservationsCompleted();
+
 }
 
 class ReservationsRemoteDataSourceImpl implements ReservationsRemoteDataSource {
@@ -20,6 +23,12 @@ class ReservationsRemoteDataSourceImpl implements ReservationsRemoteDataSource {
     try {
       Response response =
           await api.get(endPoint);
+
+  Future<List<ReservationModel>> getAllReservationsCompleted() async {
+    try {
+      Response response =
+          await api.get(EndPoints.getCompletedPatientAppointmentEndPoint);
+
       List<ReservationModel> reservations = [];
       if (response.statusCode == 200) {
         for (var val in response.data) {
@@ -30,6 +39,7 @@ class ReservationsRemoteDataSourceImpl implements ReservationsRemoteDataSource {
         throw ServerException(
           errorModel: ResponseModel.fromJson(response.data),
         );
+
       } else {
         throw ServerException(
           errorModel: ResponseModel(

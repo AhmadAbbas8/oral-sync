@@ -87,6 +87,7 @@
   "ratings_details": "تفاصيل التقييمات",
   "unknown": "مجهول",
   "error": "خطأ ⚠",
+
   "select_governorate": "اختر المحافظة",
   "accept": "موافق",
   "pending": "معلق",
@@ -100,4 +101,7 @@
   "payment_method": "طريقة الدفع",
   "fee": "السعر",
   "there_is_no_any_reservations": "لا يوجد اي حجوزات"
+
+  "select_governorate": "اختر المحافظة"
+
 }

@@ -14,7 +14,9 @@ ReservationModel _$ReservationModelFromJson(Map<String, dynamic> json) =>
       dateCreated: json['dateCreated'] as String?,
       timeCreated: json['timeCreated'] as String?,
       timeAppointment: json['timeAppointment'] as String?,
+
       dateAppointment: json['dateAppointment'] as String?,
+
       status: json['status'] as String?,
       location: json['location'] as String?,
       patientNotes: json['patientNotes'] as String?,
@@ -24,6 +26,7 @@ ReservationModel _$ReservationModelFromJson(Map<String, dynamic> json) =>
           ? null
           : DoctorReservationModel.fromJson(
               json['doctor'] as Map<String, dynamic>),
+
       fee: json['fee'] as num?,
     );
 
@@ -35,13 +38,16 @@ Map<String, dynamic> _$ReservationModelToJson(ReservationModel instance) =>
       'dateCreated': instance.dateCreated,
       'timeCreated': instance.timeCreated,
       'timeAppointment': instance.timeAppointment,
+
       'dateAppointment': instance.dateAppointment,
+
       'status': instance.status,
       'location': instance.location,
       'patientNotes': instance.patientNotes,
       'doctorNotes': instance.doctorNotes,
       'paymentMethod': instance.paymentMethod,
       'fee': instance.fee,
+
       'doctor': instance.doctor,
     };
 
@@ -57,4 +63,5 @@ Map<String, dynamic> _$DoctorReservationModelToJson(
     <String, dynamic>{
       'profileImage': instance.profileImage,
       'name': instance.name,
+
     };

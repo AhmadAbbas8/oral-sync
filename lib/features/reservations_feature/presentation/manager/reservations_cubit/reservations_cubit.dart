@@ -10,6 +10,7 @@ import '../../../../../core/cache_helper/cache_storage.dart';
 import '../../../../../core/cache_helper/shared_prefs_keys.dart';
 import '../../../../../core/utils/end_points.dart';
 import '../../../../Auth/data/models/user_model.dart';
+
 import '../../../data/models/reservation_model.dart';
 
 part 'reservations_state.dart';
@@ -38,6 +39,13 @@ class ReservationsCubit extends Cubit<ReservationsState> {
     reservations.clear();
     emit(GetReservationsPatientLoading());
     var res = await reservationsRepo.getAllReservationsCompleted(getEndpoint());
+
+  }) : super(ReservationsInitial());
+  final ReservationsRepo reservationsRepo;
+
+  getAllReservationsCompleted() async {
+    emit(GetReservationsPatientLoading());
+    var res = await reservationsRepo.getAllReservationsCompleted();
     res.fold(
       (failure) {
         if (failure is OfflineFailure) {
@@ -50,6 +58,9 @@ class ReservationsCubit extends Cubit<ReservationsState> {
         this.reservations = reservations;
         emit(GetReservationsPatientSuccess(reservations: reservations));
       },
+
+      (reservations) =>
+          emit(GetReservationsPatientSuccess(reservations: reservations)),
     );
   }
 }
