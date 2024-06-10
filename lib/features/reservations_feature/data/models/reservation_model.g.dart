@@ -15,15 +15,14 @@ ReservationModel _$ReservationModelFromJson(Map<String, dynamic> json) =>
       timeCreated: json['timeCreated'] as String?,
       timeAppointment: json['timeAppointment'] as String?,
       dateAppointment: json['dateAppointment'] as String?,
-      status: json['status'] as String?,
       location: json['location'] as String?,
       patientNotes: json['patientNotes'] as String?,
       doctorNotes: json['doctorNotes'] as String?,
       paymentMethod: json['paymentMethod'] as String?,
-      doctor: json['doctor'] == null
+      user: json['user'] == null
           ? null
           : DoctorReservationModel.fromJson(
-              json['doctor'] as Map<String, dynamic>),
+              json['user'] as Map<String, dynamic>),
       fee: json['fee'] as num?,
     );
 
@@ -36,13 +35,12 @@ Map<String, dynamic> _$ReservationModelToJson(ReservationModel instance) =>
       'timeCreated': instance.timeCreated,
       'timeAppointment': instance.timeAppointment,
       'dateAppointment': instance.dateAppointment,
-      'status': instance.status,
       'location': instance.location,
       'patientNotes': instance.patientNotes,
       'doctorNotes': instance.doctorNotes,
       'paymentMethod': instance.paymentMethod,
       'fee': instance.fee,
-      'doctor': instance.doctor,
+      'user': instance.user,
     };
 
 DoctorReservationModel _$DoctorReservationModelFromJson(

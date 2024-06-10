@@ -10,13 +10,12 @@ class ReservationModel {
   final String? timeCreated;
   final String? timeAppointment;
   final String? dateAppointment;
-  final String? status;
   final String? location;
   final String? patientNotes;
   final String? doctorNotes;
   final String? paymentMethod;
   final num? fee;
-  final DoctorReservationModel? doctor;
+  final DoctorReservationModel? user;
 
   ReservationModel(
       {this.id,
@@ -26,12 +25,11 @@ class ReservationModel {
       this.timeCreated,
       this.timeAppointment,
       this.dateAppointment,
-      this.status,
       this.location,
       this.patientNotes,
       this.doctorNotes,
       this.paymentMethod,
-      this.doctor,
+      this.user,
       this.fee});
 
   factory ReservationModel.fromJson(Map<String, dynamic> json) =>
