@@ -75,6 +75,7 @@ class ServiceLocator {
         ));
     instance.registerFactory<ReservationsCubit>(() => ReservationsCubit(
           reservationsRepo: instance(),
+          cacheStorage: instance(),
         ));
     instance.registerFactory<ProfileViewFromPatientCubit>(
         () => ProfileViewFromPatientCubit(

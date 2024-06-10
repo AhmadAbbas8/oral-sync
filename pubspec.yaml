@@ -42,6 +42,7 @@ dependencies:
   animate_do: ^3.3.4
   json_serializable: ^6.8.0
   easy_stepper: ^0.8.5
+  json_annotation: ^4.9.0
 
 dev_dependencies:
   flutter_test:

@@ -21,7 +21,7 @@ class DoctorCubit extends Cubit<DoctorState> {
   int currentIndex = 0;
 
   onChangeBottomNav(BuildContext context,int value) {
-    if(value ==2) {
+    if(value ==3) {
       context.pushNamed(DoctorProfilePage.routeName);
       return;
     }

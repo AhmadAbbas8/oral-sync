@@ -9,7 +9,7 @@ import 'package:oralsync/features/home_patient_feature/presentation/manager/home
 import 'package:oralsync/core/widgets/custom_app_drawer.dart';
 import 'package:oralsync/features/home_patient_feature/presentation/manager/paid_reservation_cubit/paid_reservation_cubit.dart';
 import 'package:oralsync/features/home_patient_feature/presentation/pages/free_reservation_page.dart';
-import 'package:oralsync/features/home_patient_feature/presentation/pages/messages_patient_page.dart';
+import 'package:oralsync/features/messages_feature/presentation/pages/messages_page.dart';
 import 'package:oralsync/features/home_patient_feature/presentation/pages/paid_reservation_page.dart';
 import 'package:oralsync/features/reservations_feature/presentation/pages/reservations_page.dart';
 
@@ -58,7 +58,7 @@ class _HomePatientLayoutPageState extends State<HomePatientLayoutPage> {
               children:  [
                 FreeReservationPage(),
                 PaidReservationPage(),
-                MessagesPatientPage(),
+                MessagesPage(),
                 ReservationsPage(),
               ],
             ),

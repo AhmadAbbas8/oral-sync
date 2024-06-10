@@ -7,8 +7,10 @@ import 'package:oralsync/core/widgets/custom_app_drawer.dart';
 import 'package:oralsync/features/home_doctor_feature/presentation/manager/doctor_cubit/doctor_cubit.dart';
 import 'package:oralsync/features/home_doctor_feature/presentation/pages/doctor_home_page.dart';
 import 'package:oralsync/features/home_doctor_feature/presentation/pages/doctor_messages_page.dart';
+import 'package:oralsync/features/reservations_feature/presentation/pages/reservations_page.dart';
 
 import '../../../../translations/locale_keys.g.dart';
+import '../../../messages_feature/presentation/pages/messages_page.dart';
 
 class HomeDoctorLayoutPage extends StatelessWidget {
   const HomeDoctorLayoutPage({super.key});
@@ -36,7 +38,9 @@ class HomeDoctorLayoutPage extends StatelessWidget {
               index: cubit.currentIndex,
               children: const [
                 HomeDoctorPage(),
-                DoctorMessagesPage(),
+                // DoctorMessagesPage(),
+                MessagesPage(),
+                ReservationsPage(),
               ],
             ),
             bottomNavigationBar: BottomNavigationBar(
@@ -52,6 +56,11 @@ class HomeDoctorLayoutPage extends StatelessWidget {
                   icon: const Icon(IconBroken.Message),
                   tooltip: LocaleKeys.messages.tr(),
                   label: LocaleKeys.messages.tr(),
+                ),
+                BottomNavigationBarItem(
+                  icon: const Icon(IconBroken.Wallet),
+                  tooltip: LocaleKeys.reservations.tr(),
+                  label: LocaleKeys.reservations.tr(),
                 ),
                 BottomNavigationBarItem(
                   icon: const Icon(IconBroken.Profile),

@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:oralsync/core/error/exception.dart';
 import 'package:oralsync/core/error/failure.dart';
 import 'package:oralsync/core/network/network_info.dart';
 import 'package:oralsync/features/reservations_feature/data/remote_data_sources/reservations_remote_data_source.dart';
@@ -6,7 +7,7 @@ import 'package:oralsync/features/reservations_feature/data/remote_data_sources/
 import '../models/reservation_model.dart';
 
 abstract class ReservationsRepo {
-  Future<Either<Failure, List<ReservationModel>>> getAllReservationsCompleted();
+  Future<Either<Failure, List<ReservationModel>>> getAllReservationsCompleted(String endPoint);
 }
 
 class ReservationsRepoImpl implements ReservationsRepo {
@@ -20,13 +21,13 @@ class ReservationsRepoImpl implements ReservationsRepo {
 
   @override
   Future<Either<Failure, List<ReservationModel>>>
-      getAllReservationsCompleted() async {
+      getAllReservationsCompleted(String endPoint) async {
     if (await networkInfo.isConnected) {
       try {
         var reservations =
-            await reservationsRemoteDataSource.getAllReservationsCompleted();
+            await reservationsRemoteDataSource.getAllReservationsCompleted( endPoint);
         return Right(reservations);
-      } on ServerFailure catch (ex) {
+      } on ServerException catch (ex) {
         return Left(ServerFailure(errorModel: ex.errorModel));
       }
     } else {

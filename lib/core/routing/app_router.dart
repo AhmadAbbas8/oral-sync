@@ -15,7 +15,7 @@ import '../../features/profiles_view_from_patient/presentation/pages/doctor_prof
 import '../../features/doctor_profile_feature/presentation/pages/edit_profile_doctor_page.dart';
 import '../../features/home_doctor_feature/presentation/pages/doctor_home_layout.dart';
 import '../../features/home_feature/presentation/pages/home_page.dart';
-import '../../features/home_patient_feature/presentation/pages/chat_page.dart';
+import '../../features/messages_feature/presentation/pages/chat_page.dart';
 import '../../features/home_patient_feature/presentation/pages/edit_profile_patient_page.dart';
 import '../../features/home_patient_feature/presentation/pages/home_patient_layout.dart';
 import '../../features/home_patient_feature/presentation/pages/patient_post_details_page.dart';

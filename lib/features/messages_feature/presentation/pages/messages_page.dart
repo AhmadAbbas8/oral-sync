@@ -3,12 +3,12 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:oralsync/core/helpers/extensions/navigation_extensions.dart';
 import 'package:oralsync/core/utils/styles.dart';
-import 'package:oralsync/features/home_patient_feature/presentation/pages/chat_page.dart';
+import 'package:oralsync/features/messages_feature/presentation/pages/chat_page.dart';
 
 import '../../../../core/widgets/custom_search_widget.dart';
 
-class MessagesPatientPage extends StatelessWidget {
-  const MessagesPatientPage({super.key});
+class MessagesPage extends StatelessWidget {
+  const MessagesPage({super.key});
 
   @override
   Widget build(BuildContext context) {
