@@ -13,20 +13,24 @@ class ReservationsCubit extends Cubit<ReservationsState> {
     required this.reservationsRepo,
   }) : super(ReservationsInitial());
   final ReservationsRepo reservationsRepo;
+  List<ReservationModel> reservations = [];
 
   getAllReservationsCompleted() async {
+    reservations.clear();
     emit(GetReservationsPatientLoading());
     var res = await reservationsRepo.getAllReservationsCompleted();
     res.fold(
-      (failure) {
+          (failure) {
         if (failure is OfflineFailure) {
           emit(GetReservationsPatientError(model: failure.model!));
         } else if (failure is ServerFailure) {
           emit(GetReservationsPatientError(model: failure.errorModel!));
         }
       },
-      (reservations) =>
-          emit(GetReservationsPatientSuccess(reservations: reservations)),
+          (reservations) {
+        this.reservations = reservations;
+        emit(GetReservationsPatientSuccess(reservations: reservations));
+      },
     );
   }
 }

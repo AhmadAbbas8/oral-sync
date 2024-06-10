@@ -87,5 +87,17 @@
   "ratings_details": "تفاصيل التقييمات",
   "unknown": "مجهول",
   "error": "خطأ ⚠",
-  "select_governorate": "اختر المحافظة"
+  "select_governorate": "اختر المحافظة",
+  "accept": "موافق",
+  "pending": "معلق",
+  "done": "تم",
+  "date_created": "تاريخ",
+  "reservations_date": "تاريخ الحجر",
+  "status": "الحاله",
+  "location": "المكان",
+  "patient_notes": "ملاحظات المريض",
+  "doctor_notes": "ملاحظات الدكتور",
+  "payment_method": "طريقة الدفع",
+  "fee": "السعر",
+  "there_is_no_any_reservations": "لا يوجد اي حجوزات"
 }

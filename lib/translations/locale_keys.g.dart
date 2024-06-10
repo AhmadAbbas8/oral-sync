@@ -87,5 +87,17 @@ abstract class  LocaleKeys {
   static const unknown = 'unknown';
   static const error = 'error';
   static const select_governorate = 'select_governorate';
+  static const accept = 'accept';
+  static const pending = 'pending';
+  static const done = 'done';
+  static const date_created = 'date_created';
+  static const reservations_date = 'reservations_date';
+  static const status = 'status';
+  static const location = 'location';
+  static const patient_notes = 'patient_notes';
+  static const doctor_notes = 'doctor_notes';
+  static const payment_method = 'payment_method';
+  static const fee = 'fee';
+  static const there_is_no_any_reservations = 'there_is_no_any_reservations';
 
 }

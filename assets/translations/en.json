@@ -87,5 +87,17 @@
   "ratings_details": "Rating Details",
   "unknown": "Unknown",
   "error": "Error ⚠",
-  "select_governorate": "Select Governorate"
+  "select_governorate": "Select Governorate",
+  "accept": "Accept",
+  "pending": "Pending",
+  "done": "Done",
+  "date_created": "Date Created",
+  "reservations_date": "Reservation Date",
+  "status": "Status",
+  "location": "Location",
+  "patient_notes": "Patient notes",
+  "doctor_notes": "Doctor notes",
+  "payment_method": "Payment Method",
+  "fee": "Fee",
+  "there_is_no_any_reservations": "There is No Any Reservations"
 }

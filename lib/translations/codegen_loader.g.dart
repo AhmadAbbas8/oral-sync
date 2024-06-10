@@ -103,7 +103,19 @@ class CodegenLoader extends AssetLoader{
   "ratings_details": "تفاصيل التقييمات",
   "unknown": "مجهول",
   "error": "خطأ ⚠",
-  "select_governorate": "اختر المحافظة"
+  "select_governorate": "اختر المحافظة",
+  "accept": "موافق",
+  "pending": "معلق",
+  "done": "تم",
+  "date_created": "تاريخ",
+  "reservations_date": "تاريخ الحجر",
+  "status": "الحاله",
+  "location": "المكان",
+  "patient_notes": "ملاحظات المريض",
+  "doctor_notes": "ملاحظات الدكتور",
+  "payment_method": "طريقة الدفع",
+  "fee": "السعر",
+  "there_is_no_any_reservations": "لا يوجد اي حجوزات"
 };
 static const Map<String,dynamic> en = {
   "hello": "Hello",
@@ -194,7 +206,19 @@ static const Map<String,dynamic> en = {
   "ratings_details": "Rating Details",
   "unknown": "Unknown",
   "error": "Error ⚠",
-  "select_governorate": "Select Governorate"
+  "select_governorate": "Select Governorate",
+  "accept": "Accept",
+  "pending": "Pending",
+  "done": "Done",
+  "date_created": "Date Created",
+  "reservations_date": "Reservation Date",
+  "status": "Status",
+  "location": "Location",
+  "patient_notes": "Patient notes",
+  "doctor_notes": "Doctor notes",
+  "payment_method": "Payment Method",
+  "fee": "Fee",
+  "there_is_no_any_reservations": "There is No Any Reservations"
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"ar": ar, "en": en};
 }

@@ -55,7 +55,7 @@ class _HomePatientLayoutPageState extends State<HomePatientLayoutPage> {
             appBar: _buildAppBar(cubit, context),
             body: LazyIndexedStack(
               index: cubit.currentNavIndex,
-              children: const [
+              children:  [
                 FreeReservationPage(),
                 PaidReservationPage(),
                 MessagesPatientPage(),
