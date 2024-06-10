@@ -175,7 +175,7 @@ class StudentProfilePatientViewPage extends StatelessWidget {
                     }
                   },
                   builder: (context, state) => CustomRatingBarWidget(
-                    rating: 2.6,
+                    rating:user.averageRate?.toDouble()??0.0 ,
 
                     ///TODO : rate here
                     onTap: () => context
