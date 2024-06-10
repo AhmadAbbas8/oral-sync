@@ -10,6 +10,8 @@ import 'package:oralsync/features/home_student_feature/presentation/pages/create
 import 'package:oralsync/features/home_student_feature/presentation/pages/profile_student_page.dart';
 import 'package:oralsync/core/widgets/custom_app_drawer.dart';
 import 'package:oralsync/features/home_student_feature/presentation/widgets/notch_bottm_nav_bar.dart';
+import 'package:oralsync/features/messages_feature/presentation/pages/messages_page.dart';
+import 'package:oralsync/features/reservations_feature/presentation/pages/reservations_page.dart';
 
 import '../manager/student_cubit/student_cubit.dart';
 import 'archive_student_page.dart';
@@ -58,8 +60,10 @@ class HomeStudentLayoutPage extends StatelessWidget {
               index: cubit.currentNavIndex,
               children: const [
                 HomeStudentPage(),
-                MessageStudentPage(),
+                MessagesPage(),
+                // MessageStudentPage(),
                 ArchiveStudentPage(),
+                ReservationsPage(),
                 ProfileStudentPage(),
               ],
             ),
@@ -68,8 +72,7 @@ class HomeStudentLayoutPage extends StatelessWidget {
                   await context.pushNamed(CreatePostPage.routeName),
               child: const Icon(Icons.add),
             ),
-            floatingActionButtonLocation:
-                FloatingActionButtonLocation.centerDocked,
+            floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
             bottomNavigationBar: NotchBottomNavBar(
               icons: cubit.bottomNavIcons,
               titles: cubit.bottomNavTitle,

@@ -29,18 +29,21 @@ class StudentCubit extends Cubit<StudentState> {
     LocaleKeys.home,
     LocaleKeys.messages,
     LocaleKeys.archived,
+    LocaleKeys.reservations,
     LocaleKeys.profile,
   ];
   List<IconData> bottomNavIcons = const [
     IconBroken.Home,
     IconBroken.Message,
     IconBroken.Arrow___Down_Square,
+    IconBroken.Wallet,
     IconBroken.Profile,
   ];
   List<String> appBarTitles =const [
     LocaleKeys.home,
     LocaleKeys.messages,
     LocaleKeys.archived,
+    LocaleKeys.reservations,
   ];
 
   var studentModel = UserModel.fromJson(json.decode(
@@ -48,7 +51,7 @@ class StudentCubit extends Cubit<StudentState> {
           .getData(key: SharedPrefsKeys.user)));
 
   navBarOnTap(int index, BuildContext context) {
-    if (index == 3) {
+    if (index == 4) {
       context.pushNamed(ProfileStudentPage.routeName);
       return;
     }
