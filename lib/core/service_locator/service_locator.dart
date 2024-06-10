@@ -20,6 +20,9 @@ import 'package:oralsync/features/Auth/domain/use_cases/login_use_case.dart';
 import 'package:oralsync/features/Auth/domain/use_cases/register_use_case.dart';
 import 'package:oralsync/core/shared_data_layer/actions_data_layer/actions_reomte_data_source.dart';
 import 'package:oralsync/features/doctor_profile_feature/presentation/manager/doctor_profile_cubit/doctor_profile_cubit.dart';
+import 'package:oralsync/features/home_doctor_feature/presentation/data/data_sources/home_doctor_remote_data_source.dart';
+import 'package:oralsync/features/home_doctor_feature/presentation/data/repo/home_doctor_repo.dart';
+import 'package:oralsync/features/home_doctor_feature/presentation/manager/home_doctor_cubit/home_doctor_cubit.dart';
 import 'package:oralsync/features/home_patient_feature/data/data_sources/paid_reservaion_local_data_source.dart';
 import 'package:oralsync/features/home_patient_feature/data/data_sources/paid_reservaion_remote_data_source.dart';
 import 'package:oralsync/features/home_patient_feature/data/repositories/paid_reservation_repo.dart';
@@ -73,6 +76,9 @@ class ServiceLocator {
           instance(),
           instance(),
         ));
+    instance.registerFactory<HomeDoctorCubit>(() => HomeDoctorCubit(
+         homeDoctorRepo:  instance(),
+        ));
     instance.registerFactory<ReservationsCubit>(() => ReservationsCubit(
           reservationsRepo: instance(),
           cacheStorage: instance(),
@@ -115,6 +121,9 @@ class ServiceLocator {
     instance.registerLazySingleton<ReservationsRemoteDataSource>(
         () => ReservationsRemoteDataSourceImpl(api: instance()));
 
+    instance.registerLazySingleton<HomeDoctorRemoteDataSource>(
+        () => HomeDoctorRemoteDataSourceImpl(api: instance()));
+
     // * Repository
     instance.registerLazySingleton<AuthRepository>(() => AuthRepositoryImpl(
         authRemoteDataSource: instance(),
@@ -141,6 +150,10 @@ class ServiceLocator {
     instance.registerLazySingleton<ReservationsRepo>(() => ReservationsRepoImpl(
           networkInfo: instance(),
           reservationsRemoteDataSource: instance(),
+        ));
+    instance.registerLazySingleton<HomeDoctorRepo>(() => HomeDoctorRepoImpl(
+          networkInfo: instance(),
+          dataSource: instance(),
         ));
 
     // * UseCases

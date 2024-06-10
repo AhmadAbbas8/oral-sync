@@ -99,5 +99,9 @@
   "doctor_notes": "ملاحظات الدكتور",
   "payment_method": "طريقة الدفع",
   "fee": "السعر",
-  "there_is_no_any_reservations": "لا يوجد اي حجوزات"
+  "there_is_no_any_reservations": "لا يوجد اي حجوزات",
+  "cancel": "رفض",
+  "at": "وقت",
+  "age": "السن",
+  "accepted": "موافقة"
 }

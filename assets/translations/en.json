@@ -99,5 +99,9 @@
   "doctor_notes": "Doctor notes",
   "payment_method": "Payment Method",
   "fee": "Fee",
-  "there_is_no_any_reservations": "There is No Any Reservations"
+  "there_is_no_any_reservations": "There is No Any Reservations",
+  "cancel": "Cancel",
+  "at": "at",
+  "age": "Age",
+  "accepted": "Accepted"
 }

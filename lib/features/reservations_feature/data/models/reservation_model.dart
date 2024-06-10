@@ -10,6 +10,7 @@ class ReservationModel {
   final String? timeCreated;
   final String? timeAppointment;
   final String? dateAppointment;
+  final String? status;
   final String? location;
   final String? patientNotes;
   final String? doctorNotes;
@@ -26,6 +27,7 @@ class ReservationModel {
       this.timeAppointment,
       this.dateAppointment,
       this.location,
+      this.status,
       this.patientNotes,
       this.doctorNotes,
       this.paymentMethod,

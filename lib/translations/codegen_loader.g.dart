@@ -115,7 +115,8 @@ class CodegenLoader extends AssetLoader{
   "doctor_notes": "ملاحظات الدكتور",
   "payment_method": "طريقة الدفع",
   "fee": "السعر",
-  "there_is_no_any_reservations": "لا يوجد اي حجوزات"
+  "there_is_no_any_reservations": "لا يوجد اي حجوزات",
+  "cancel": "رفض"
 };
 static const Map<String,dynamic> en = {
   "hello": "Hello",
@@ -218,7 +219,8 @@ static const Map<String,dynamic> en = {
   "doctor_notes": "Doctor notes",
   "payment_method": "Payment Method",
   "fee": "Fee",
-  "there_is_no_any_reservations": "There is No Any Reservations"
+  "there_is_no_any_reservations": "There is No Any Reservations",
+  "cancel": "Cancel"
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"ar": ar, "en": en};
 }
