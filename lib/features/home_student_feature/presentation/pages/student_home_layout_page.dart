@@ -74,6 +74,7 @@ class HomeStudentLayoutPage extends StatelessWidget {
               child: const Icon(Icons.add),
             ),
             floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+
             bottomNavigationBar: NotchBottomNavBar(
               icons: cubit.bottomNavIcons,
               titles: cubit.bottomNavTitle,
