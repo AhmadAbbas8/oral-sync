@@ -22,8 +22,7 @@ ReservationModel _$ReservationModelFromJson(Map<String, dynamic> json) =>
       paymentMethod: json['paymentMethod'] as String?,
       user: json['user'] == null
           ? null
-          : DoctorReservationModel.fromJson(
-              json['user'] as Map<String, dynamic>),
+          : UserReservationModel.fromJson(json['user'] as Map<String, dynamic>),
       fee: json['fee'] as num?,
     );
 
@@ -45,16 +44,18 @@ Map<String, dynamic> _$ReservationModelToJson(ReservationModel instance) =>
       'user': instance.user,
     };
 
-DoctorReservationModel _$DoctorReservationModelFromJson(
+UserReservationModel _$UserReservationModelFromJson(
         Map<String, dynamic> json) =>
-    DoctorReservationModel(
+    UserReservationModel(
       profileImage: json['profileImage'] as String?,
       name: json['name'] as String?,
+      age: json['age'] as num?,
     );
 
-Map<String, dynamic> _$DoctorReservationModelToJson(
-        DoctorReservationModel instance) =>
+Map<String, dynamic> _$UserReservationModelToJson(
+        UserReservationModel instance) =>
     <String, dynamic>{
       'profileImage': instance.profileImage,
       'name': instance.name,
+      'age': instance.age,
     };

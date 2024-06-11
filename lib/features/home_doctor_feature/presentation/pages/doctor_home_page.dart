@@ -29,6 +29,20 @@ class HomeDoctorPage extends StatelessWidget {
                       : state.model.messageEn ?? '',
                   backgroundColor: ColorsPalette.errorColor);
             }
+            if (state is UpdateReservationStatusDoctorError) {
+              showCustomSnackBar(context,
+                  msg: isArabic(context)
+                      ? state.model.messageAr ?? ''
+                      : state.model.messageEn ?? '',
+                  backgroundColor: ColorsPalette.errorColor);
+            }
+            if (state is UpdateReservationStatusDoctorSuccess) {
+              showCustomSnackBar(context,
+                  msg: isArabic(context)
+                      ? state.model.messageAr ?? ''
+                      : state.model.messageEn ?? '',
+                  backgroundColor: ColorsPalette.warningColor);
+            }
           },
           builder: (context, state) {
             var cubit = context.read<HomeDoctorCubit>();
@@ -50,14 +64,30 @@ class HomeDoctorPage extends StatelessWidget {
                     child: ListView.builder(
                       padding: const EdgeInsets.symmetric(horizontal: 20),
                       itemCount: cubit.reservations.length,
-                      itemBuilder: (_, index) => AnimationConfiguration.staggeredList(
+                      itemBuilder: (_, index) =>
+                          AnimationConfiguration.staggeredList(
                         position: index,
-                        duration:  const Duration(milliseconds: 1000),
+                        duration: const Duration(milliseconds: 1000),
                         child: SlideAnimation(
                           horizontalOffset: 50.0,
                           child: FadeInAnimation(
                             child: CustomHomeDoctorCardWidget(
                               reservation: cubit.reservations[index],
+                              onPressedAccept: () async =>
+                                  await cubit.updateReservationStatus(
+                                index: index,
+                                status: 'Scheduled',
+                              ),
+                              onPressedCancel: () async =>
+                                  await cubit.updateReservationStatus(
+                                index: index,
+                                status: 'Cancelled',
+                              ),
+                              onPressedDone: () async =>
+                                  await cubit.updateReservationStatus(
+                                index: index,
+                                status: 'Completed',
+                              ),
                             ),
                           ),
                         ),

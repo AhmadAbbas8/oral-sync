@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:oralsync/core/helpers/extensions/navigation_extensions.dart';
 import 'package:oralsync/core/service_locator/service_locator.dart';
 import 'package:oralsync/core/utils/icon_broken.dart';
+import 'package:oralsync/features/home_doctor_feature/presentation/pages/doctor_home_page.dart';
 import 'package:oralsync/features/home_student_feature/domain/use_cases/get_notifications_use_case.dart';
 import 'package:oralsync/features/home_student_feature/presentation/pages/create_post_page.dart';
 import 'package:oralsync/features/home_student_feature/presentation/pages/profile_student_page.dart';
@@ -60,8 +61,8 @@ class HomeStudentLayoutPage extends StatelessWidget {
               index: cubit.currentNavIndex,
               children: const [
                 HomeStudentPage(),
+                HomeDoctorPage(),
                 MessagesPage(),
-                // MessageStudentPage(),
                 ArchiveStudentPage(),
                 ReservationsPage(),
                 ProfileStudentPage(),
@@ -72,7 +73,7 @@ class HomeStudentLayoutPage extends StatelessWidget {
                   await context.pushNamed(CreatePostPage.routeName),
               child: const Icon(Icons.add),
             ),
-            floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+            floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
             bottomNavigationBar: NotchBottomNavBar(
               icons: cubit.bottomNavIcons,
               titles: cubit.bottomNavTitle,

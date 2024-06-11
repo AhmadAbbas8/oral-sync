@@ -11,9 +11,15 @@ class CustomHomeDoctorCardWidget extends StatelessWidget {
   const CustomHomeDoctorCardWidget({
     super.key,
     required this.reservation,
+    this.onPressedAccept,
+    this.onPressedCancel,
+    this.onPressedDone,
   });
 
   final ReservationModel reservation;
+  final void Function()? onPressedAccept;
+  final void Function()? onPressedCancel;
+  final void Function()? onPressedDone;
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +31,8 @@ class CustomHomeDoctorCardWidget extends StatelessWidget {
           children: <Widget>[
             CircleAvatar(
               radius: 30,
-              backgroundImage: CachedNetworkImageProvider(reservation.user?.profileImage ??
+              backgroundImage: CachedNetworkImageProvider(reservation
+                      .user?.profileImage ??
                   "http://graduationprt24-001-site1.jtempurl.com/Profile/default/male.png"),
             ),
             SizedBox(width: 16.w),
@@ -42,7 +49,7 @@ class CustomHomeDoctorCardWidget extends StatelessWidget {
                   ),
                   SizedBox(height: 4.h),
                   Text(
-                    '${LocaleKeys.age.tr()}: ${15} years',
+                    '${LocaleKeys.age.tr()}: ${reservation.user?.age} years',
                     style: TextStyle(
                       fontSize: 14.sp,
                       color: Colors.grey[600],
@@ -71,7 +78,7 @@ class CustomHomeDoctorCardWidget extends StatelessWidget {
               children: <Widget>[
                 ElevatedButton(
                   onPressed: reservation.status?.toUpperCase() == 'WAITING'
-                      ? () {}
+                      ? onPressedAccept
                       : null,
                   style: ElevatedButton.styleFrom(
                     primary: ColorsPalette.buttonLoginColor,
@@ -91,7 +98,7 @@ class CustomHomeDoctorCardWidget extends StatelessWidget {
                 ),
                 SizedBox(height: 8.h),
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: onPressedCancel,
                   style: ElevatedButton.styleFrom(
                     primary: Colors.white,
                     onPrimary: ColorsPalette.buttonLoginColor,
@@ -104,6 +111,24 @@ class CustomHomeDoctorCardWidget extends StatelessWidget {
                   ),
                   child: Text(
                     LocaleKeys.cancel.tr(),
+                    style: TextStyle(fontSize: 12.sp),
+                  ),
+                ),
+                SizedBox(height: 8.h),
+                ElevatedButton(
+                  onPressed: onPressedDone,
+                  style: ElevatedButton.styleFrom(
+                    primary: Colors.white,
+                    onPrimary: ColorsPalette.buttonLoginColor,
+                    side: const BorderSide(color: Colors.orange),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 20, vertical: 10),
+                  ),
+                  child: Text(
+                    LocaleKeys.done.tr(),
                     style: TextStyle(fontSize: 12.sp),
                   ),
                 ),

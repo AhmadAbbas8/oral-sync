@@ -26,9 +26,35 @@ class HomeDoctorCubit extends Cubit<HomeDoctorState> {
         }
       },
       (reservations) {
-     this.   reservations = reservations;
+        this.reservations = reservations;
         emit(GetReservationsWaitingDoctorSuccess(reservations: reservations));
       },
     );
+  }
+
+  updateReservationStatus({
+    required int index,
+    required String status,
+  }) async {
+    emit(UpdateReservationStatusDoctorLoading());
+    var res = await homeDoctorRepo.updateReservation(
+      status: status,
+      reservationId: reservations[index].id??0,
+      doctorNotes: 'Welcome to my clinic at any time, dear patient.',
+    );
+    res.fold((failure) {
+      if (failure is OfflineFailure) {
+        emit(UpdateReservationStatusDoctorError(model: failure.model!));
+      } else if (failure is ServerFailure) {
+        emit(UpdateReservationStatusDoctorError(model: failure.errorModel!));
+      }
+    }, (model) {
+      if(status ==  'Scheduled') {
+        reservations[index].status = 'Scheduled';
+      }else{
+        reservations.removeAt(index);
+      }
+      emit(UpdateReservationStatusDoctorSuccess(model: model));
+    });
   }
 }
