@@ -15,15 +15,14 @@ ReservationModel _$ReservationModelFromJson(Map<String, dynamic> json) =>
       timeCreated: json['timeCreated'] as String?,
       timeAppointment: json['timeAppointment'] as String?,
       dateAppointment: json['dateAppointment'] as String?,
-      status: json['status'] as String?,
       location: json['location'] as String?,
+      status: json['status'] as String?,
       patientNotes: json['patientNotes'] as String?,
       doctorNotes: json['doctorNotes'] as String?,
       paymentMethod: json['paymentMethod'] as String?,
-      doctor: json['doctor'] == null
+      user: json['user'] == null
           ? null
-          : DoctorReservationModel.fromJson(
-              json['doctor'] as Map<String, dynamic>),
+          : UserReservationModel.fromJson(json['user'] as Map<String, dynamic>),
       fee: json['fee'] as num?,
     );
 
@@ -42,19 +41,21 @@ Map<String, dynamic> _$ReservationModelToJson(ReservationModel instance) =>
       'doctorNotes': instance.doctorNotes,
       'paymentMethod': instance.paymentMethod,
       'fee': instance.fee,
-      'doctor': instance.doctor,
+      'user': instance.user,
     };
 
-DoctorReservationModel _$DoctorReservationModelFromJson(
+UserReservationModel _$UserReservationModelFromJson(
         Map<String, dynamic> json) =>
-    DoctorReservationModel(
+    UserReservationModel(
       profileImage: json['profileImage'] as String?,
       name: json['name'] as String?,
+      age: json['age'] as num?,
     );
 
-Map<String, dynamic> _$DoctorReservationModelToJson(
-        DoctorReservationModel instance) =>
+Map<String, dynamic> _$UserReservationModelToJson(
+        UserReservationModel instance) =>
     <String, dynamic>{
       'profileImage': instance.profileImage,
       'name': instance.name,
+      'age': instance.age,
     };

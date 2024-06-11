@@ -99,5 +99,9 @@ abstract class  LocaleKeys {
   static const payment_method = 'payment_method';
   static const fee = 'fee';
   static const there_is_no_any_reservations = 'there_is_no_any_reservations';
+  static const cancel = 'cancel';
+  static const at = 'at';
+  static const age = 'age';
+  static const accepted = 'accepted';
 
 }

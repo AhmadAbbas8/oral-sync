@@ -27,7 +27,7 @@ class NotchBottomNavBar extends StatelessWidget {
         type: BottomNavigationBarType.fixed,
         onTap:onTap ,
         items: List.generate(
-          5,
+          6,
           (index) => BottomNavigationBarItem(
             icon: Icon(icons[index]),
             label: titles[index].tr(),

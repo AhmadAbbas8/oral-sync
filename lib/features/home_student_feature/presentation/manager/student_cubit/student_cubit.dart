@@ -27,6 +27,7 @@ class StudentCubit extends Cubit<StudentState> {
   int currentNavIndex = 0;
   List<String> bottomNavTitle = const [
     LocaleKeys.home,
+    LocaleKeys.pending,
     LocaleKeys.messages,
     LocaleKeys.archived,
     LocaleKeys.reservations,
@@ -34,6 +35,7 @@ class StudentCubit extends Cubit<StudentState> {
   ];
   List<IconData> bottomNavIcons = const [
     IconBroken.Home,
+    Icons.pending,
     IconBroken.Message,
     IconBroken.Arrow___Down_Square,
     IconBroken.Wallet,
@@ -41,6 +43,7 @@ class StudentCubit extends Cubit<StudentState> {
   ];
   List<String> appBarTitles =const [
     LocaleKeys.home,
+    LocaleKeys.pending,
     LocaleKeys.messages,
     LocaleKeys.archived,
     LocaleKeys.reservations,
@@ -51,7 +54,9 @@ class StudentCubit extends Cubit<StudentState> {
           .getData(key: SharedPrefsKeys.user)));
 
   navBarOnTap(int index, BuildContext context) {
-    if (index == 4) {
+
+    if (index == 5) {
+
       context.pushNamed(ProfileStudentPage.routeName);
       return;
     }

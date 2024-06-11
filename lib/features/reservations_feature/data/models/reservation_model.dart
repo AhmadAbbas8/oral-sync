@@ -1,4 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
+
 part 'reservation_model.g.dart';
 
 @JsonSerializable()
@@ -10,13 +11,13 @@ class ReservationModel {
   final String? timeCreated;
   final String? timeAppointment;
   final String? dateAppointment;
-  final String? status;
+  String? status;
   final String? location;
   final String? patientNotes;
   final String? doctorNotes;
   final String? paymentMethod;
   final num? fee;
-  final DoctorReservationModel? doctor;
+  final UserReservationModel? user;
 
   ReservationModel(
       {this.id,
@@ -26,12 +27,12 @@ class ReservationModel {
       this.timeCreated,
       this.timeAppointment,
       this.dateAppointment,
-      this.status,
       this.location,
+      this.status,
       this.patientNotes,
       this.doctorNotes,
       this.paymentMethod,
-      this.doctor,
+      this.user,
       this.fee});
 
   factory ReservationModel.fromJson(Map<String, dynamic> json) =>
@@ -41,13 +42,19 @@ class ReservationModel {
 }
 
 @JsonSerializable()
-class DoctorReservationModel {
+class UserReservationModel {
   final String? profileImage;
   final String? name;
+  final num? age;
 
-  DoctorReservationModel({required this.profileImage, required this.name});
-  factory DoctorReservationModel.fromJson(Map<String, dynamic> json) =>
-      _$DoctorReservationModelFromJson(json);
+  UserReservationModel({
+    required this.profileImage,
+    required this.name,
+    required this.age,
+  });
 
-  Map<String, dynamic> toJson() => _$DoctorReservationModelToJson(this);
+  factory UserReservationModel.fromJson(Map<String, dynamic> json) =>
+      _$UserReservationModelFromJson(json);
+
+  Map<String, dynamic> toJson() => _$UserReservationModelToJson(this);
 }

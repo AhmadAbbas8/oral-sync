@@ -26,13 +26,13 @@ class AppointmentCard extends StatelessWidget {
                 CircleAvatar(
                   radius: 30,
                   backgroundImage: CachedNetworkImageProvider(reservation
-                          .doctor?.profileImage ??
+                          .user?.profileImage ??
                       "http://graduationprt24-001-site1.jtempurl.com/Profile/default/male.png"),
                 ),
                 SizedBox(width: 16.w),
                 Flexible(
                   child: Text(
-                    reservation.doctor?.name ?? '',
+                    reservation.user?.name ?? '',
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                     style:
@@ -52,14 +52,11 @@ class AppointmentCard extends StatelessWidget {
             ),
             SizedBox(height: 8.h),
             Text(
-              '${LocaleKeys.status.tr()}: ${reservation.status}',
+              '${LocaleKeys.status.tr()}: Completed',
               style: TextStyle(
-                fontSize: 16.sp,
-                fontWeight: FontWeight.bold,
-                color: reservation.status == 'Completed'
-                    ? Colors.green
-                    : Colors.red,
-              ),
+                  fontSize: 16.sp,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.green),
             ),
             SizedBox(height: 8.h),
             Text(
