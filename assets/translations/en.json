@@ -103,5 +103,10 @@
   "cancel": "Cancel",
   "at": "at",
   "age": "Age",
-  "accepted": "Accepted"
+  "accepted": "Accepted",
+  "add_rate": "Add Rate",
+  "rated": "Rated",
+  "add": "Add",
+  "rate_your_doctor_after_reservation": "Rate your doctor after reservation",
+  "write_something": "Write Something"
 }

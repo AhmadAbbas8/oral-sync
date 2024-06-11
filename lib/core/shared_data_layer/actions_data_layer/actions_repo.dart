@@ -24,5 +24,11 @@ abstract class ActionsRepo {
   });
 
   Future<Either<Failure, List<RatingModel>>> getAllRates(String userId);
+  Future<Either<Failure, ResponseModel>> addNewRate({
+    required String userId,
+    required int value,
+    required String comment,
+    required int appointmentId,
+});
   Future<Either<Failure,UserModel>> getUserData(String userId);
 }

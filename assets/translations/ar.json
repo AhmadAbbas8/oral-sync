@@ -103,5 +103,10 @@
   "cancel": "رفض",
   "at": "وقت",
   "age": "السن",
-  "accepted": "موافقة"
+  "accepted": "موافقة",
+  "add_rate": "اضافة تقييم",
+  "rated": "تم التقييم",
+  "add": "اضافة",
+  "rate_your_doctor_after_reservation": "قيم الدكتور بعد الحجز ",
+  "write_something": "اكتب شيئا"
 }

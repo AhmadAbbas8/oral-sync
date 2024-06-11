@@ -111,4 +111,27 @@ class ActionsRepoImpl extends ActionsRepo {
       return Left(OfflineFailure());
     }
   }
+
+  @override
+  Future<Either<Failure, ResponseModel>> addNewRate({
+    required String userId,
+    required int value,
+    required String comment,
+    required int appointmentId,
+  }) async {
+    if (await _networkInfo.isConnected) {
+      try {
+        var res = await _actionsRemoteDataSource.addNewRate(
+            userId: userId,
+            value: value,
+            comment: comment,
+            appointmentId: appointmentId);
+        return Right(res);
+      } on ServerException catch (ex) {
+        return Left(ServerFailure(errorModel: ex.errorModel));
+      }
+    } else {
+      return Left(OfflineFailure());
+    }
+  }
 }

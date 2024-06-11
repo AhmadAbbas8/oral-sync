@@ -18,6 +18,7 @@ class ReservationModel {
   final String? paymentMethod;
   final num? fee;
   final UserReservationModel? user;
+  final bool? isRating;
 
   ReservationModel(
       {this.id,
@@ -33,6 +34,7 @@ class ReservationModel {
       this.doctorNotes,
       this.paymentMethod,
       this.user,
+      this.isRating,
       this.fee});
 
   factory ReservationModel.fromJson(Map<String, dynamic> json) =>
