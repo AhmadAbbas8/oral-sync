@@ -54,7 +54,9 @@ class StudentCubit extends Cubit<StudentState> {
           .getData(key: SharedPrefsKeys.user)));
 
   navBarOnTap(int index, BuildContext context) {
+
     if (index == 5) {
+
       context.pushNamed(ProfileStudentPage.routeName);
       return;
     }
