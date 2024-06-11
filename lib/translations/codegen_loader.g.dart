@@ -119,7 +119,12 @@ class CodegenLoader extends AssetLoader{
   "cancel": "رفض",
   "at": "وقت",
   "age": "السن",
-  "accepted": "موافقة"
+  "accepted": "موافقة",
+  "add_rate": "اضافة تقييم",
+  "rated": "تم التقييم",
+  "add": "اضافة",
+  "rate_your_doctor_after_reservation": "قيم الدكتور بعد الحجز ",
+  "write_something": "اكتب شيئا"
 };
 static const Map<String,dynamic> en = {
   "hello": "Hello",
@@ -226,7 +231,12 @@ static const Map<String,dynamic> en = {
   "cancel": "Cancel",
   "at": "at",
   "age": "Age",
-  "accepted": "Accepted"
+  "accepted": "Accepted",
+  "add_rate": "Add Rate",
+  "rated": "Rated",
+  "add": "Add",
+  "rate_your_doctor_after_reservation": "Rate your doctor after reservation",
+  "write_something": "Write Something"
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"ar": ar, "en": en};
 }

@@ -86,6 +86,7 @@ class CreatePostPage extends StatelessWidget {
                 children: [
                   CustomTextFormFieldCreatePost(
                     textEditingController: cubit.captionController,
+                    caption: LocaleKeys.describe_your_request_in_details,
                   ),
                   Padding(
                     padding:

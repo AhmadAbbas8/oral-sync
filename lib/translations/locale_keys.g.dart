@@ -103,5 +103,10 @@ abstract class  LocaleKeys {
   static const at = 'at';
   static const age = 'age';
   static const accepted = 'accepted';
+  static const add_rate = 'add_rate';
+  static const rated = 'rated';
+  static const add = 'add';
+  static const rate_your_doctor_after_reservation = 'rate_your_doctor_after_reservation';
+  static const write_something = 'write_something';
 
 }

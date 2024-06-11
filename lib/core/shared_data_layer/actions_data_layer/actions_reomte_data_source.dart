@@ -18,6 +18,13 @@ abstract class ActionsRemoteDataSource {
   Future<List<RatingModel>> getAllRates(String userId);
 
   Future<UserModel> getUserData(String userId);
+
+  Future<ResponseModel> addNewRate({
+    required String userId,
+    required int value,
+    required String comment,
+    required int appointmentId,
+  });
 }
 
 class ActionsRemoteDataSourceImpl extends ActionsRemoteDataSource {
@@ -140,6 +147,44 @@ class ActionsRemoteDataSourceImpl extends ActionsRemoteDataSource {
 
       if (response.statusCode == 200) {
         return UserModel.fromJson(response.data);
+      } else {
+        throw ServerException(
+          errorModel: ResponseModel(
+            messageEn: 'Server Error',
+            messageAr: 'مشكلة فى السيرفر',
+          ),
+        );
+      }
+    } on DioException catch (e) {
+      throw ServerException(
+          errorModel: ResponseModel.fromJson(e.response?.data));
+    }
+  }
+
+  @override
+  Future<ResponseModel> addNewRate({
+    required String userId,
+    required int value,
+    required String comment,
+    required int appointmentId,
+  }) async {
+    try {
+      Response response = await _apiConsumer.put(
+        EndPoints.addRateEndPoint,
+        data: {
+          "ratedUserId": userId,
+          "value": value,
+          "comment": comment,
+          "appointmentId": appointmentId,
+        },
+      );
+
+      if (response.statusCode == 200) {
+        return ResponseModel.fromJson(response.data);
+      } else if (response.statusCode == 409 || response.statusCode == 404) {
+        throw ServerException(
+          errorModel: ResponseModel.fromJson(response.data),
+        );
       } else {
         throw ServerException(
           errorModel: ResponseModel(

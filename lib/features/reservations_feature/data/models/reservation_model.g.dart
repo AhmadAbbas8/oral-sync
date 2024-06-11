@@ -23,6 +23,7 @@ ReservationModel _$ReservationModelFromJson(Map<String, dynamic> json) =>
       user: json['user'] == null
           ? null
           : UserReservationModel.fromJson(json['user'] as Map<String, dynamic>),
+      isRating: json['isRating'] as bool?,
       fee: json['fee'] as num?,
     );
 
@@ -42,6 +43,7 @@ Map<String, dynamic> _$ReservationModelToJson(ReservationModel instance) =>
       'paymentMethod': instance.paymentMethod,
       'fee': instance.fee,
       'user': instance.user,
+      'isRating': instance.isRating,
     };
 
 UserReservationModel _$UserReservationModelFromJson(

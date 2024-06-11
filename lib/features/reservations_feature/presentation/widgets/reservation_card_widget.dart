@@ -1,9 +1,20 @@
+import 'dart:convert';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:oralsync/core/helpers/check_language.dart';
+import 'package:oralsync/core/helpers/extensions/navigation_extensions.dart';
 import 'package:oralsync/features/reservations_feature/data/models/reservation_model.dart';
+import 'package:oralsync/features/reservations_feature/presentation/pages/add_rate_page.dart';
 import 'package:oralsync/translations/locale_keys.g.dart';
+
+import '../../../../core/cache_helper/cache_storage.dart';
+import '../../../../core/cache_helper/shared_prefs_keys.dart';
+import '../../../../core/service_locator/service_locator.dart';
+import '../../../../core/utils/colors_palette.dart';
+import '../../../Auth/data/models/user_model.dart';
 
 class AppointmentCard extends StatelessWidget {
   final ReservationModel reservation;
@@ -15,6 +26,9 @@ class AppointmentCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var cache =  ServiceLocator.instance<CacheStorage>();
+    var userJson = cache.getData(key: SharedPrefsKeys.user);
+    var user  = UserModel.fromJson(json.decode(userJson));
     return Card(
       child: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -80,6 +94,31 @@ class AppointmentCard extends StatelessWidget {
             Text(
               '${LocaleKeys.fee.tr()}: \$${reservation.fee?.toStringAsFixed(2)}',
               style: TextStyle(fontSize: 16.sp),
+            ),
+            if(user.userRole?.toUpperCase() == 'Patient'.toUpperCase())    Align(
+              alignment: isArabic(context)
+                  ? Alignment.bottomLeft
+                  : Alignment.bottomRight,
+              child: ElevatedButton(
+                onPressed: reservation.isRating ?? true
+                    ? null
+                    : () => context.pushNamed(AddRatePage.routeName,arguments: reservation),
+                style: ElevatedButton.styleFrom(
+                  primary: Colors.white,
+                  onPrimary: ColorsPalette.buttonLoginColor,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                ),
+                child: Text(
+                  reservation.isRating ?? true
+                      ? LocaleKeys.rated
+                      : LocaleKeys.add_rate,
+                  style: TextStyle(fontSize: 12.sp),
+                ).tr(),
+              ),
             ),
           ],
         ),

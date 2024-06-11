@@ -30,4 +30,5 @@ abstract class EndPoints {
   static const getCompletedDoctorAppointmentEndPoint = 'GetCompletedDoctorAppointment';
   static const getWaitingScheduledDoctorAppointmentEndPoint = 'GetWaitingScheduledDoctorAppointment';
   static const updateAppointmentEndPoint = 'UpdateAppointment';
+  static const addRateEndPoint = 'AddRate';
 }

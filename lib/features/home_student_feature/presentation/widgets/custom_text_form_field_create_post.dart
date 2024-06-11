@@ -5,9 +5,14 @@ import 'package:oralsync/translations/locale_keys.g.dart';
 import '../../../../core/utils/styles.dart';
 
 class CustomTextFormFieldCreatePost extends StatelessWidget {
-  const CustomTextFormFieldCreatePost({super.key, this.textEditingController});
+  const CustomTextFormFieldCreatePost({
+    super.key,
+    this.textEditingController,
+    required this.caption,
+  });
 
   final TextEditingController? textEditingController;
+  final String caption;
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +26,7 @@ class CustomTextFormFieldCreatePost extends StatelessWidget {
         ),
         filled: true,
         fillColor: const Color(0xFFF9F9F9),
-        hintText: LocaleKeys.describe_your_request_in_details.tr(),
+        hintText: caption.tr(),
         hintStyle: AppStyles.styleSize28.copyWith(
           fontSize: 20,
           fontWeight: FontWeight.w600,
