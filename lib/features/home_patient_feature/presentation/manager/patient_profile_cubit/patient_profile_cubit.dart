@@ -111,6 +111,7 @@ class PatientProfileCubit extends Cubit<PatientProfileState> {
         "email": emailController.text,
         "isMale": isMale,
         "phoneNumber": phoneController.text,
+        "Governorate": governorateController.text,
         "address": [
           governorateController.text,
           cityController.text,
