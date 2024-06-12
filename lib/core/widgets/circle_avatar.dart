@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:oralsync/core/utils/colors_palette.dart';
@@ -15,10 +17,14 @@ class ImageProfileWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    log('----------------------------------------------------$imageProfile');
     return Stack(
       children: [
         CircleAvatar(
-          backgroundImage: CachedNetworkImageProvider(imageProfile),
+          backgroundImage: NetworkImage(
+            imageProfile,
+            headers: const {'Cache-Control': 'no-cache'},
+          ),
           maxRadius: 50,
         ),
         Positioned(

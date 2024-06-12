@@ -22,7 +22,8 @@ class ApiInterceptor extends Interceptor {
   @override
   void onError(DioException err, ErrorInterceptorHandler handler) {
     log('--------------------onError--------------------------------');
-    if (err.response?.statusCode == 401||err.type == DioExceptionType.connectionError) {
+    if (err.response?.statusCode == 401 ||
+        err.type == DioExceptionType.connectionError) {
       log('UnAuth', name: 'Interceptor');
       AppRouter.navigatorKey.currentState
           ?.pushNamedAndRemoveUntil(LoginPage.routeName, (route) => false);
@@ -34,6 +35,7 @@ class ApiInterceptor extends Interceptor {
   Future<void> onResponse(
       Response response, ResponseInterceptorHandler handler) async {
     log('---------------------onResponse-------------------------------');
+    log(response.data.toString());
     if (response.statusCode == 401) {
       log('UnAuth', name: 'Interceptor');
       await ServiceLocator.instance<AuthLocalDataSource>().logout();

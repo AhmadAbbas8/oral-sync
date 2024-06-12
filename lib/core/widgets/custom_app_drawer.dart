@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
@@ -35,6 +36,7 @@ class CustomAppDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    log('custom drawer ----$profileImage');
     return Drawer(
       child: Column(
         children: [
@@ -53,7 +55,7 @@ class CustomAppDrawer extends StatelessWidget {
             ),
             currentAccountPicture: CircleAvatar(
               backgroundColor: Colors.black,
-              backgroundImage: CachedNetworkImageProvider(profileImage),
+              backgroundImage:  NetworkImage(profileImage, headers: const {'Cache-Control': 'no-cache'},),
             ),
             decoration: const BoxDecoration(
               color: ColorsPalette.userDrawerHeaderBackground,
