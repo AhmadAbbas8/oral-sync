@@ -161,9 +161,18 @@ class AppRouter {
         }
       case ChatPage.routeName:
         {
-          var args = settings.arguments as int;
+          var args = settings.arguments as List;
           return PageTransition(
-              child: ChatPage(index: args), type: _generalType);
+            child: ChatPage(
+              index: args[0],
+              imageUrl: args[1],
+              userId: args[2],
+              receiverId: args[3],
+              isPatient: args[4],
+              userName: args[5],
+            ),
+            type: _generalType,
+          );
         }
       case HomeDoctorLayoutPage.routeName:
         return PageTransition(

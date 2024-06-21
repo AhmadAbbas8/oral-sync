@@ -108,5 +108,8 @@
   "rated": "تم التقييم",
   "add": "اضافة",
   "rate_your_doctor_after_reservation": "قيم الدكتور بعد الحجز ",
-  "write_something": "اكتب شيئا"
+  "write_something": "اكتب شيئا",
+  "type_message": "اكتب رسالتك . . .",
+  "chats": "الدردشات",
+  "search": "بحث . . ."
 }

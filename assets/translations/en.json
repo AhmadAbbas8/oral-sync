@@ -108,5 +108,8 @@
   "rated": "Rated",
   "add": "Add",
   "rate_your_doctor_after_reservation": "Rate your doctor after reservation",
-  "write_something": "Write Something"
+  "write_something": "Write Something",
+  "type_message": "Type Message . . .",
+  "chats": "Chats",
+  "search": "Search . . ."
 }

@@ -108,5 +108,8 @@ abstract class  LocaleKeys {
   static const add = 'add';
   static const rate_your_doctor_after_reservation = 'rate_your_doctor_after_reservation';
   static const write_something = 'write_something';
+  static const type_message = 'type_message';
+  static const chats = 'chats';
+  static const search = 'search';
 
 }

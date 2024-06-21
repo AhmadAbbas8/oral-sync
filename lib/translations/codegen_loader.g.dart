@@ -124,7 +124,10 @@ class CodegenLoader extends AssetLoader{
   "rated": "تم التقييم",
   "add": "اضافة",
   "rate_your_doctor_after_reservation": "قيم الدكتور بعد الحجز ",
-  "write_something": "اكتب شيئا"
+  "write_something": "اكتب شيئا",
+  "type_message": "اكتب رسالتك . . .",
+  "chats": "الدردشات",
+  "search": "بحث . . ."
 };
 static const Map<String,dynamic> en = {
   "hello": "Hello",
@@ -236,7 +239,10 @@ static const Map<String,dynamic> en = {
   "rated": "Rated",
   "add": "Add",
   "rate_your_doctor_after_reservation": "Rate your doctor after reservation",
-  "write_something": "Write Something"
+  "write_something": "Write Something",
+  "type_message": "Type Message . . .",
+  "chats": "Chats",
+  "search": "Search . . ."
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"ar": ar, "en": en};
 }

@@ -147,6 +147,8 @@ class ActionsRemoteDataSourceImpl extends ActionsRemoteDataSource {
 
       if (response.statusCode == 200) {
         return UserModel.fromJson(response.data);
+      }else if(response .statusCode == 402){
+        throw ServerException(errorModel: ResponseModel.fromJson(response.data));
       } else {
         throw ServerException(
           errorModel: ResponseModel(

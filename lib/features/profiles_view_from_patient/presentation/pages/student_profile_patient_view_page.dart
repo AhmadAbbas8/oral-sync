@@ -65,27 +65,8 @@ class StudentProfilePatientViewPage extends StatelessWidget {
               child: BlocConsumer<ProfileViewFromPatientCubit,
                   ProfileViewFromPatientState>(
                 listener: (context, state) {
-                  if (state is CreateReserveLoading) {
-                    showCustomProgressIndicator(context);
-                  } else if (state is CreateReserveError) {
-                    context.pop();
-                    showCustomSnackBar(
-                      context,
-                      msg: isArabic(context)
-                          ? state.responseModel.messageAr ?? ''
-                          : state.responseModel.messageEn ?? '',
-                      backgroundColor: ColorsPalette.errorColor,
-                    );
-                  } else if (state is CreateReserveSuccess) {
-                    context.pop();
-                    showCustomSnackBar(
-                      context,
-                      msg: isArabic(context)
-                          ? state.responseModel.messageAr ?? ''
-                          : state.responseModel.messageEn ?? '',
-                      backgroundColor: ColorsPalette.successColor,
-                    );
-                  }
+                  handleCreateReserveState(state, context);
+                  handleStartConversionsStates(state, context);
                 },
                 builder: (context, state) {
                   return Row(
@@ -94,7 +75,7 @@ class StudentProfilePatientViewPage extends StatelessWidget {
                       CustomProfileButtonWidget(
                         title: LocaleKeys.message,
                         icon: IconBroken.Message,
-                        onPressed: () {},
+                        onPressed: () =>context.read<ProfileViewFromPatientCubit>().startNewConversation(userId),
                       ),
                       CustomProfileButtonWidget(
                         title: LocaleKeys.reserve,
@@ -175,7 +156,7 @@ class StudentProfilePatientViewPage extends StatelessWidget {
                     }
                   },
                   builder: (context, state) => CustomRatingBarWidget(
-                    rating:user.averageRate?.toDouble()??0.0 ,
+                    rating: user.averageRate?.toDouble() ?? 0.0,
 
                     ///TODO : rate here
                     onTap: () => context
@@ -189,5 +170,55 @@ class StudentProfilePatientViewPage extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  void handleCreateReserveState(
+      ProfileViewFromPatientState state, BuildContext context) {
+    if (state is CreateReserveLoading) {
+      showCustomProgressIndicator(context);
+    } else if (state is CreateReserveError) {
+      context.pop();
+      showCustomSnackBar(
+        context,
+        msg: isArabic(context)
+            ? state.responseModel.messageAr ?? ''
+            : state.responseModel.messageEn ?? '',
+        backgroundColor: ColorsPalette.errorColor,
+      );
+    } else if (state is CreateReserveSuccess) {
+      context.pop();
+      showCustomSnackBar(
+        context,
+        msg: isArabic(context)
+            ? state.responseModel.messageAr ?? ''
+            : state.responseModel.messageEn ?? '',
+        backgroundColor: ColorsPalette.successColor,
+      );
+    }
+  }
+
+  void handleStartConversionsStates(
+      ProfileViewFromPatientState state, BuildContext context) {
+    if (state is StartNewConversationLoading) {
+      showCustomProgressIndicator(context);
+    } else if (state is StartNewConversationError) {
+      context.pop();
+      showCustomSnackBar(
+        context,
+        msg: isArabic(context)
+            ? state.model.messageAr ?? ''
+            : state.model.messageEn ?? '',
+        backgroundColor: ColorsPalette.errorColor,
+      );
+    } else if (state is StartNewConversationSuccess) {
+      context.pop();
+      showCustomSnackBar(
+        context,
+        msg: isArabic(context)
+            ? state.model.messageAr ?? ''
+            : state.model.messageEn ?? '',
+        backgroundColor: ColorsPalette.successColor,
+      );
+    }
   }
 }

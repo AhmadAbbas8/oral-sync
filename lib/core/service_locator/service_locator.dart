@@ -39,6 +39,9 @@ import 'package:oralsync/features/home_student_feature/domain/use_cases/do_comme
 import 'package:oralsync/features/home_student_feature/domain/use_cases/get_all_posts_archived_use_case.dart';
 import 'package:oralsync/features/home_student_feature/domain/use_cases/get_all_posts_use_case.dart';
 import 'package:oralsync/features/home_student_feature/domain/use_cases/get_notifications_use_case.dart';
+import 'package:oralsync/features/messages_feature/data/data_sources/messages_remote_data_source.dart';
+import 'package:oralsync/features/messages_feature/data/repo/messages_repo.dart';
+import 'package:oralsync/features/messages_feature/presentation/manager/messages_cubit/messages_cubit.dart';
 import 'package:oralsync/features/profiles_view_from_patient/presentation/manager/profile_view_from_patient_cubit.dart';
 import 'package:oralsync/features/reservations_feature/data/remote_data_sources/reservations_remote_data_source.dart';
 import 'package:oralsync/features/reservations_feature/data/repo/reservations_repo.dart';
@@ -77,16 +80,17 @@ class ServiceLocator {
           instance(),
         ));
     instance.registerFactory<HomeDoctorCubit>(() => HomeDoctorCubit(
-         homeDoctorRepo:  instance(),
+          homeDoctorRepo: instance(),
         ));
     instance.registerFactory<ReservationsCubit>(() => ReservationsCubit(
           reservationsRepo: instance(),
           cacheStorage: instance(),
-      actionsRepo: instance(),
+          actionsRepo: instance(),
         ));
     instance.registerFactory<ProfileViewFromPatientCubit>(
         () => ProfileViewFromPatientCubit(
               actionsRepo: instance(),
+              messagesRepo: instance(),
             ));
     instance.registerLazySingleton<FreePaidReservationCubit>(
         () => FreePaidReservationCubit(
@@ -99,6 +103,12 @@ class ServiceLocator {
         reservationRepo: instance(),
       ),
       dispose: (param) async => await param.close(),
+    );
+    instance.registerFactory<MessagesCubit>(
+      () => MessagesCubit(
+        messagesRepo: instance(),
+        cacheStorage: instance(),
+      ),
     );
     // * Datasources
     instance.registerLazySingleton<AuthRemoteDataSource>(
@@ -124,6 +134,9 @@ class ServiceLocator {
 
     instance.registerLazySingleton<HomeDoctorRemoteDataSource>(
         () => HomeDoctorRemoteDataSourceImpl(api: instance()));
+
+    instance.registerLazySingleton<MessagesRemoteDataSource>(
+        () => MessagesRemoteDataSourceImpl(apiConsumer: instance()));
 
     // * Repository
     instance.registerLazySingleton<AuthRepository>(() => AuthRepositoryImpl(
@@ -155,6 +168,10 @@ class ServiceLocator {
     instance.registerLazySingleton<HomeDoctorRepo>(() => HomeDoctorRepoImpl(
           networkInfo: instance(),
           dataSource: instance(),
+        ));
+    instance.registerLazySingleton<MessagesRepo>(() => MessagesRepoImpl(
+          networkInfo: instance(),
+          remoteDataSource: instance(),
         ));
 
     // * UseCases
