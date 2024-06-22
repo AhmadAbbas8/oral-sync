@@ -1,26 +1,27 @@
 class StartMessageModel {
-  int? id;
+  int? messageId;
   Sender? sender;
-  Sender? receiver;
+  Receiver? receiver;
 
-  StartMessageModel({this.id, this.sender, this.receiver});
+  StartMessageModel({this.messageId, this.sender, this.receiver});
 
   StartMessageModel.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
+    messageId = json['messageId'];
     sender =
-    json['sender'] != null ? new Sender.fromJson(json['sender']) : null;
-    receiver =
-    json['receiver'] != null ? new Sender.fromJson(json['receiver']) : null;
+    json['sender'] != null ? Sender.fromJson(json['sender']) : null;
+    receiver = json['receiver'] != null
+        ? Receiver.fromJson(json['receiver'])
+        : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    if (this.sender != null) {
-      data['sender'] = this.sender!.toJson();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['messageId'] = messageId;
+    if (sender != null) {
+      data['sender'] = sender!.toJson();
     }
-    if (this.receiver != null) {
-      data['receiver'] = this.receiver!.toJson();
+    if (receiver != null) {
+      data['receiver'] = receiver!.toJson();
     }
     return data;
   }
@@ -34,16 +35,38 @@ class Sender {
   Sender({this.id, this.name, this.profileImage});
 
   Sender.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    name = json['name'];
-    profileImage = json['profileImage'];
+    id = json['senderId'];
+    name = json['senderName'];
+    profileImage = json['senderProfileImage'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['name'] = this.name;
-    data['profileImage'] = this.profileImage;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['senderId'] = id;
+    data['senderName'] = name;
+    data['senderProfileImage'] = profileImage;
+    return data;
+  }
+}
+
+class Receiver {
+  String? id;
+  String? name;
+  String? profileImage;
+
+  Receiver({this.id, this.name, this.profileImage});
+
+  Receiver.fromJson(Map<String, dynamic> json) {
+    id = json['receiverId'];
+    name = json['receiverName'];
+    profileImage = json['receiverProfileImage'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['receiverId'] = id;
+    data['receiverName'] = name;
+    data['receiverProfileImage'] = profileImage;
     return data;
   }
 }
