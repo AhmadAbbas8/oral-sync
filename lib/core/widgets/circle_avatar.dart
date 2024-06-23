@@ -1,6 +1,5 @@
 import 'dart:developer';
 
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:oralsync/core/utils/colors_palette.dart';
 import 'package:oralsync/core/utils/icon_broken.dart';

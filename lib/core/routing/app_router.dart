@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:oralsync/core/shared_data_layer/actions_data_layer/model/ratings_model.dart';
 import 'package:oralsync/features/Auth/data/models/user_model.dart';
 import 'package:oralsync/features/reservations_feature/data/models/reservation_model.dart';
+import 'package:oralsync/features/splash_feature/pages/splash_page.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:oralsync/features/home_patient_feature/data/models/DoctorModel.dart';
 
@@ -47,6 +48,12 @@ class AppRouter {
     //this arguments to be passed in any screen like this ( arguments as ClassName )
     final arguments = settings.arguments;
     switch (settings.name) {
+      case SplashPage.routeName:
+        return PageTransition(
+          child: const SplashPage(),
+          type: _generalType,
+          curve: _generalCurve,
+        );
       case LoginPage.routeName:
         return PageTransition(
           child: const LoginPage(),
@@ -145,9 +152,9 @@ class AppRouter {
         return PageTransition(child: const ContactUsPage(), type: _generalType);
       case PostArchivedDetailsPage.routeName:
         {
-        var args =   arguments as List ;
+          var args = arguments as List;
           return PageTransition(
-              child:  PostArchivedDetailsPage(cubit: args[0], index:args[1]),
+              child: PostArchivedDetailsPage(cubit: args[0], index: args[1]),
               type: _generalType);
         }
       case HomePatientLayoutPage.routeName:
@@ -229,12 +236,11 @@ class AppRouter {
 
       default:
         return MaterialPageRoute(
-          builder: (_) =>
-              Scaffold(
-                body: Center(
-                  child: Text('Invalid Route Name ${settings.name}'),
-                ),
-              ),
+          builder: (_) => Scaffold(
+            body: Center(
+              child: Text('Invalid Route Name ${settings.name}'),
+            ),
+          ),
         );
     }
   }
@@ -252,7 +258,7 @@ class AppRouter {
     CreatePostPage.routeName: (context) => const CreatePostPage(),
     // EditProfilePage.routeName: (context) => const EditProfilePage(),
     SettingsOfStudentScreen.routeName: (context) =>
-    const SettingsOfStudentScreen(),
+        const SettingsOfStudentScreen(),
     // NotificationPage.routeName: (context) =_> const NotificationPage(),
     // PostDetailsPage.routeName: (context) => const PostDetailsPage(),
   };

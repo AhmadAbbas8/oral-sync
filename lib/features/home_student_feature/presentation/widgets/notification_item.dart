@@ -53,8 +53,8 @@ class NotificationItem extends StatelessWidget {
             ],
           ),
           Text(
-            '${notification.timeCreated} ,${DateFormat("MMM dd, yyyy").format(
-              DateFormat("yyyy/MM/dd")
+            '${notification.timeCreated} ,${DateFormat("MMM dd, yyyy",'en').format(
+              DateFormat("yyyy/MM/dd",'en')
                   .parse(notification.dateCreated ?? '2001/08/01'),
             )}',
           ),
