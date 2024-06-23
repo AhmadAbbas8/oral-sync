@@ -12,6 +12,7 @@ import '../../features/Auth/presentation/pages/sign_up_patient_page.dart';
 import '../../features/Auth/presentation/pages/sign_up_student_page.dart';
 import '../../features/contact_us_feature/presentation/pages/contact_us_page.dart';
 import '../../features/doctor_profile_feature/presentation/pages/doctor_profile_page.dart';
+import '../../features/home_student_feature/presentation/pages/post_archived_details_page.dart';
 import '../../features/profiles_view_from_patient/presentation/pages/doctor_profile_patient_view_page.dart';
 import '../../features/doctor_profile_feature/presentation/pages/edit_profile_doctor_page.dart';
 import '../../features/home_doctor_feature/presentation/pages/doctor_home_layout.dart';
@@ -142,6 +143,13 @@ class AppRouter {
         }
       case ContactUsPage.routeName:
         return PageTransition(child: const ContactUsPage(), type: _generalType);
+      case PostArchivedDetailsPage.routeName:
+        {
+        var args =   arguments as List ;
+          return PageTransition(
+              child:  PostArchivedDetailsPage(cubit: args[0], index:args[1]),
+              type: _generalType);
+        }
       case HomePatientLayoutPage.routeName:
         return PageTransition(
             child: const HomePatientLayoutPage(), type: _generalType);
@@ -221,11 +229,12 @@ class AppRouter {
 
       default:
         return MaterialPageRoute(
-          builder: (_) => Scaffold(
-            body: Center(
-              child: Text('Invalid Route Name ${settings.name}'),
-            ),
-          ),
+          builder: (_) =>
+              Scaffold(
+                body: Center(
+                  child: Text('Invalid Route Name ${settings.name}'),
+                ),
+              ),
         );
     }
   }
@@ -243,7 +252,7 @@ class AppRouter {
     CreatePostPage.routeName: (context) => const CreatePostPage(),
     // EditProfilePage.routeName: (context) => const EditProfilePage(),
     SettingsOfStudentScreen.routeName: (context) =>
-        const SettingsOfStudentScreen(),
+    const SettingsOfStudentScreen(),
     // NotificationPage.routeName: (context) =_> const NotificationPage(),
     // PostDetailsPage.routeName: (context) => const PostDetailsPage(),
   };

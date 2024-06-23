@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:oralsync/core/helpers/extensions/navigation_extensions.dart';
+import 'package:oralsync/features/home_student_feature/presentation/pages/post_archived_details_page.dart';
 
 import '../../../../core/helpers/check_language.dart';
 import '../../../../core/helpers/snackbars.dart';
@@ -57,11 +58,11 @@ class ArchiveStudentPage extends StatelessWidget {
                               likesCount:
                                   cubit.posts[index].likeCount?.toInt() ?? 0,
                               onTaComment: () => context.pushNamed(
-                                PostDetailsPage.routeName,
+                                PostArchivedDetailsPage.routeName,
                                 arguments: [cubit, index],
                               ),
-                              postDate: DateFormat("MMM dd, yyyy").format(
-                                  DateFormat("yyyy/MM/dd").parse(
+                              postDate: DateFormat("MMM dd, yyyy",'en').format(
+                                  DateFormat("yyyy/MM/dd",'en').parse(
                                       cubit.posts[index].dateCreated ??
                                           '2001/08/01')),
                               images: cubit.posts[index].postImages ?? [],
