@@ -1,19 +1,13 @@
-import 'dart:convert';
 
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:oralsync/core/cache_helper/shared_prefs_keys.dart';
-import 'package:oralsync/core/cache_helper/cache_storage.dart';
 import 'package:oralsync/core/routing/app_router.dart';
 import 'package:oralsync/core/service_locator/service_locator.dart';
 import 'package:oralsync/core/utils/colors_palette.dart';
 import 'package:oralsync/core/utils/styles.dart';
-import 'package:oralsync/features/Auth/presentation/pages/login_page.dart';
-import 'package:oralsync/features/home_doctor_feature/presentation/pages/doctor_home_layout.dart';
 import 'package:oralsync/features/home_patient_feature/presentation/manager/free_paid_reservation_cubit/free_paid_reservation_cubit.dart';
-import 'package:oralsync/features/home_patient_feature/presentation/pages/home_patient_layout.dart';
 import 'package:oralsync/features/splash_feature/pages/splash_page.dart';
 class OralSyncApp extends StatelessWidget {
   const OralSyncApp({super.key});

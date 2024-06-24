@@ -5,9 +5,7 @@ import 'package:oralsync/core/error/error_model.dart';
 import 'package:oralsync/core/error/failure.dart';
 import 'package:oralsync/core/shared_data_layer/actions_data_layer/actions_repo.dart';
 import 'package:oralsync/core/shared_data_layer/actions_data_layer/model/ratings_model.dart';
-import 'package:oralsync/features/home_patient_feature/data/models/DoctorModel.dart';
 import 'package:oralsync/features/messages_feature/data/repo/messages_repo.dart';
-import 'package:oralsync/features/messages_feature/presentation/manager/messages_cubit/messages_cubit.dart';
 
 part 'profile_view_from_patient_state.dart';
 

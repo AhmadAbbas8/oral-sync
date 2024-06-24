@@ -6,7 +6,6 @@ import 'package:oralsync/core/utils/icon_broken.dart';
 import 'package:oralsync/core/widgets/custom_app_drawer.dart';
 import 'package:oralsync/features/home_doctor_feature/presentation/manager/doctor_cubit/doctor_cubit.dart';
 import 'package:oralsync/features/home_doctor_feature/presentation/pages/doctor_home_page.dart';
-import 'package:oralsync/features/home_doctor_feature/presentation/pages/doctor_messages_page.dart';
 import 'package:oralsync/features/reservations_feature/presentation/pages/reservations_page.dart';
 
 import '../../../../translations/locale_keys.g.dart';

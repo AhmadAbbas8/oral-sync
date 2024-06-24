@@ -131,8 +131,8 @@ class DoctorProfilePage extends StatelessWidget {
       showCustomSnackBar(
         context,
         msg: isArabic(context)
-            ? state.model?.messageAr ?? ''
-            : state.model?.messageEn ?? '',
+            ? state.model.messageAr ?? ''
+            : state.model.messageEn ?? '',
         backgroundColor: ColorsPalette.errorColor,
       );
     }

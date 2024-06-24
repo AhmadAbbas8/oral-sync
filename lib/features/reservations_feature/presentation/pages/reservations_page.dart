@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:oralsync/core/cache_helper/cache_storage.dart';
@@ -63,8 +62,8 @@ class ReservationsPage extends StatelessWidget {
                   replacement: const LoadingWidget(),
                   child: Visibility(
                     visible: cubit.reservations.isNotEmpty,
-                    replacement: Center(
-                      child: const NoTaskWidget(
+                    replacement: const Center(
+                      child: NoTaskWidget(
                           title: LocaleKeys.there_is_no_any_reservations),
                     ),
                     child: ListView.builder(

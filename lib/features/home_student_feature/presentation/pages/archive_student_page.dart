@@ -14,7 +14,6 @@ import '../../../../translations/locale_keys.g.dart';
 import '../manager/archived_post_cubit/archived_post_cubit.dart';
 import '../widgets/no_task_widget.dart';
 import '../widgets/post_item_widget.dart';
-import 'post_details_page.dart';
 
 class ArchiveStudentPage extends StatelessWidget {
   const ArchiveStudentPage({super.key});

@@ -63,7 +63,7 @@ class _ChatPageState extends State<ChatPage> {
             SizedBox(width: 15.w),
             Text(
               widget.userName,
-              style: TextStyle(fontSize: 15, fontWeight: FontWeight.normal),
+              style: const TextStyle(fontSize: 15, fontWeight: FontWeight.normal),
             ),
           ],
         ),
@@ -145,13 +145,13 @@ class _ChatPageState extends State<ChatPage> {
                                   color: isMe ? Colors.blue : Colors.grey[300],
                                   borderRadius: BorderRadius.only(
                                     bottomLeft: isMe
-                                        ? Radius.circular(15)
+                                        ? const Radius.circular(15)
                                         : Radius.zero,
                                     bottomRight: isMe
                                         ? Radius.zero
-                                        : Radius.circular(15),
-                                    topRight: Radius.circular(15),
-                                    topLeft: Radius.circular(10),
+                                        : const Radius.circular(15),
+                                    topRight: const Radius.circular(15),
+                                    topLeft: const Radius.circular(10),
                                   ),
                                 ),
                                 child: Text(
@@ -161,13 +161,13 @@ class _ChatPageState extends State<ChatPage> {
                                   ),
                                 ),
                               ),
-                              SizedBox(height: 5),
+                              const SizedBox(height: 5),
                               Text(
                                 DateFormat('hh:mm:ss mm/dd/yyy').format(
                                     (message['timestamp'] ??
                                             Timestamp(5, 5) as Timestamp)
                                         .toDate()),
-                                style: TextStyle(
+                                style: const TextStyle(
                                   fontSize: 12,
                                 ),
                               ),

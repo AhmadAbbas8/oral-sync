@@ -63,7 +63,7 @@ class _SplashPageState extends State<SplashPage>
                 // repeatForever: true,
                 totalRepeatCount: 3,
                 animatedTexts: [
-                  TyperAnimatedText('Welcome to OralSync App' ,speed: Duration(milliseconds: 90)),
+                  TyperAnimatedText('Welcome to OralSync App' ,speed: const Duration(milliseconds: 90)),
                 ],
 
               ),

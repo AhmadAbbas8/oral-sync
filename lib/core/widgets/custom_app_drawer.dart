@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'dart:developer';
 
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:oralsync/core/cache_helper/cache_storage.dart';
 import 'package:oralsync/core/cache_helper/shared_prefs_keys.dart';

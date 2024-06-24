@@ -58,13 +58,13 @@ class MessagesPage extends StatelessWidget {
                 ),
                 Visibility(
                   visible: state is! FetchStartMessagesLoading,
-                  replacement: SliverToBoxAdapter(
+                  replacement: const SliverToBoxAdapter(
                     child: Center(
                       child: LoadingWidget(),
                     ),
                   ),
                   child: Visibility(
-                    replacement: SliverToBoxAdapter(
+                    replacement: const SliverToBoxAdapter(
                       child: Center(
                         child: NoTaskWidget(
                             title: LocaleKeys.there_is_no_any_notifications),

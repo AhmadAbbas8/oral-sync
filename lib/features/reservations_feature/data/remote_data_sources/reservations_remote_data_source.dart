@@ -3,7 +3,6 @@ import 'package:oralsync/core/network/api/api_consumer.dart';
 
 import '../../../../core/error/error_model.dart';
 import '../../../../core/error/exception.dart';
-import '../../../../core/utils/end_points.dart';
 import '../models/reservation_model.dart';
 
 abstract class ReservationsRemoteDataSource {
