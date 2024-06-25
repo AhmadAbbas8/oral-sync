@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "813886479686",
+    "project_id": "oral-sync",
+    "storage_bucket": "oral-sync.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:813886479686:android:26c7993187ce8cfa151947",
+        "android_client_info": {
+          "package_name": "com.oralsync.oralsync"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyChy03z4FGqQUmVmr-XnPytqO5a8hcVXMY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

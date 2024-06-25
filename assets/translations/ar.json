@@ -108,5 +108,12 @@
   "rated": "تم التقييم",
   "add": "اضافة",
   "rate_your_doctor_after_reservation": "قيم الدكتور بعد الحجز ",
-  "write_something": "اكتب شيئا"
+  "write_something": "اكتب شيئا",
+  "type_message": "اكتب رسالتك . . .",
+  "chats": "الدردشات",
+  "search": "بحث . . .",
+  "change_to_doctor": "تغيير الي طبيب",
+  "are_you_sure_to_convert_your_account_to_a_doctor_s_account": "هل أنت متأكد من تحويل الحساب الخاص بك الي حساب دكتور ؟",
+  "confirm": "تأكيد",
+  "update_password": "تحديث كلمة المرور"
 }

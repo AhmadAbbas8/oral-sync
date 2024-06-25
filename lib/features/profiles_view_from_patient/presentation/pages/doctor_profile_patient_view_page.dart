@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:easy_localization/easy_localization.dart';
 import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/material.dart';
@@ -29,8 +31,7 @@ class DoctorProfilePatientViewPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) =>
-          ServiceLocator.instance<ProfileViewFromPatientCubit>(),
+      create: (_) => ServiceLocator.instance<ProfileViewFromPatientCubit>(),
       child: Scaffold(
         appBar: AppBar(
           title: const Text(LocaleKeys.profile).tr(),
@@ -57,27 +58,8 @@ class DoctorProfilePatientViewPage extends StatelessWidget {
               child: BlocConsumer<ProfileViewFromPatientCubit,
                   ProfileViewFromPatientState>(
                 listener: (context, state) {
-                  if (state is CreateReserveLoading) {
-                    showCustomProgressIndicator(context);
-                  } else if (state is CreateReserveError) {
-                    context.pop();
-                    showCustomSnackBar(
-                      context,
-                      msg: isArabic(context)
-                          ? state.responseModel.messageAr ?? ''
-                          : state.responseModel.messageEn ?? '',
-                      backgroundColor: ColorsPalette.errorColor,
-                    );
-                  } else if (state is CreateReserveSuccess) {
-                    context.pop();
-                    showCustomSnackBar(
-                      context,
-                      msg: isArabic(context)
-                          ? state.responseModel.messageAr ?? ''
-                          : state.responseModel.messageEn ?? '',
-                      backgroundColor: ColorsPalette.successColor,
-                    );
-                  }
+                  handleCreateReserveStates(state, context);
+                  handleStartConversionsStates(state, context);
                 },
                 builder: (context, state) {
                   return Row(
@@ -86,7 +68,10 @@ class DoctorProfilePatientViewPage extends StatelessWidget {
                       CustomProfileButtonWidget(
                         title: LocaleKeys.message,
                         icon: IconBroken.Message,
-                        onPressed: () {},
+                        onPressed: () => context
+                            .read<ProfileViewFromPatientCubit>()
+                            .startNewConversation(
+                                doctorModel.doctor?.userId ?? ''),
                       ),
                       CustomProfileButtonWidget(
                         title: LocaleKeys.reserve,
@@ -197,5 +182,54 @@ class DoctorProfilePatientViewPage extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  void handleStartConversionsStates(ProfileViewFromPatientState state, BuildContext context) {
+       if (state is StartNewConversationLoading) {
+      showCustomProgressIndicator(context);
+    } else if (state is StartNewConversationError) {
+      context.pop();
+      showCustomSnackBar(
+        context,
+        msg: isArabic(context)
+            ? state.model.messageAr ?? ''
+            : state.model.messageEn ?? '',
+        backgroundColor: ColorsPalette.errorColor,
+      );
+    } else if (state is StartNewConversationSuccess) {
+      context.pop();
+      showCustomSnackBar(
+        context,
+        msg: isArabic(context)
+            ? state.model.messageAr ?? ''
+            : state.model.messageEn ?? '',
+        backgroundColor: ColorsPalette.successColor,
+      );
+    }
+  }
+
+  void handleCreateReserveStates(
+      ProfileViewFromPatientState state, BuildContext context) {
+    if (state is CreateReserveLoading) {
+      showCustomProgressIndicator(context);
+    } else if (state is CreateReserveError) {
+      context.pop();
+      showCustomSnackBar(
+        context,
+        msg: isArabic(context)
+            ? state.responseModel.messageAr ?? ''
+            : state.responseModel.messageEn ?? '',
+        backgroundColor: ColorsPalette.errorColor,
+      );
+    } else if (state is CreateReserveSuccess) {
+      context.pop();
+      showCustomSnackBar(
+        context,
+        msg: isArabic(context)
+            ? state.responseModel.messageAr ?? ''
+            : state.responseModel.messageEn ?? '',
+        backgroundColor: ColorsPalette.successColor,
+      );
+    }
   }
 }

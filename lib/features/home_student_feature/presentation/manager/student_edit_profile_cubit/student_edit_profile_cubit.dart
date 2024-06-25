@@ -117,6 +117,7 @@ class StudentEditProfileCubit extends Cubit<StudentEditProfileState> {
       ],
       "gpa": gpaController.text,
       "birthDate": dobController.text,
+      "Governorate": universityGovernorateController.text,
       "academicYear": int.tryParse(academicYearController.text)
     });
     res.fold((failure) {

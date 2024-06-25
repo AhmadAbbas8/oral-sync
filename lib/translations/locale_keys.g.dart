@@ -1,5 +1,7 @@
 // DO NOT EDIT. This is code generated via package:easy_localization/generate.dart
 
+// ignore_for_file: constant_identifier_names
+
 abstract class  LocaleKeys {
   static const hello = 'hello';
   static const home = 'home';
@@ -108,5 +110,12 @@ abstract class  LocaleKeys {
   static const add = 'add';
   static const rate_your_doctor_after_reservation = 'rate_your_doctor_after_reservation';
   static const write_something = 'write_something';
+  static const type_message = 'type_message';
+  static const chats = 'chats';
+  static const search = 'search';
+  static const change_to_doctor = 'change_to_doctor';
+  static const are_you_sure_to_convert_your_account_to_a_doctor_s_account = 'are_you_sure_to_convert_your_account_to_a_doctor_s_account';
+  static const confirm = 'confirm';
+  static const update_password = 'update_password';
 
 }

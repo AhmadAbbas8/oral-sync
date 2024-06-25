@@ -39,7 +39,7 @@ class CustomTextFormFieldLogin extends StatelessWidget {
       width: width,
       child: TextFormField(
         keyboardType: textInputType,
-        autovalidateMode: AutovalidateMode.onUserInteraction,
+        // autovalidateMode: AutovalidateMode.onUserInteraction,
         validator: validator,
         onTap: onTap,
         readOnly: readOnly ?? false,

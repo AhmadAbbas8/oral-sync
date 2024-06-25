@@ -1,38 +1,16 @@
-import 'dart:convert';
 
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:oralsync/core/cache_helper/shared_prefs_keys.dart';
-import 'package:oralsync/core/cache_helper/cache_storage.dart';
 import 'package:oralsync/core/routing/app_router.dart';
 import 'package:oralsync/core/service_locator/service_locator.dart';
 import 'package:oralsync/core/utils/colors_palette.dart';
 import 'package:oralsync/core/utils/styles.dart';
-import 'package:oralsync/features/Auth/presentation/pages/login_page.dart';
-import 'package:oralsync/features/home_doctor_feature/presentation/pages/doctor_home_layout.dart';
 import 'package:oralsync/features/home_patient_feature/presentation/manager/free_paid_reservation_cubit/free_paid_reservation_cubit.dart';
-import 'package:oralsync/features/home_patient_feature/presentation/pages/home_patient_layout.dart';
-
-import 'features/Auth/data/models/user_model.dart';
-import 'features/home_student_feature/presentation/pages/student_home_layout_page.dart';
-
-class OralSyncApp extends StatefulWidget {
+import 'package:oralsync/features/splash_feature/pages/splash_page.dart';
+class OralSyncApp extends StatelessWidget {
   const OralSyncApp({super.key});
-
-  @override
-  State<OralSyncApp> createState() => _OralSyncAppState();
-}
-
-class _OralSyncAppState extends State<OralSyncApp> {
-  String initialRoute = LoginPage.routeName;
-
-  @override
-  void initState() {
-    stateInitialRoute();
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +19,7 @@ class _OralSyncAppState extends State<OralSyncApp> {
       minTextAdapt: true,
       splitScreenMode: true,
       child: BlocProvider(
-        create: (context) =>
+        create: (_) =>
             ServiceLocator.instance<FreePaidReservationCubit>(),
         child: MaterialApp(
           localizationsDelegates: context.localizationDelegates,
@@ -102,7 +80,7 @@ class _OralSyncAppState extends State<OralSyncApp> {
               width: MediaQuery.sizeOf(context).width * .6,
             ),
           ),
-          initialRoute: initialRoute,
+          initialRoute: SplashPage.routeName,
           navigatorKey: AppRouter.navigatorKey,
           // routes: AppRouter.routes,
           onGenerateRoute: AppRouter.generateRoute,
@@ -111,25 +89,5 @@ class _OralSyncAppState extends State<OralSyncApp> {
       ),
     );
   }
-
-  void stateInitialRoute() {
-    var cached = ServiceLocator.instance<CacheStorage>();
-    bool? keepMeLoggedIn = cached.getData(key: SharedPrefsKeys.keepMeLoggedIn);
-    if (keepMeLoggedIn ?? false) {
-      initialRoute = validateInitialRouteForUserRole();
-    }
-  }
-
-  validateInitialRouteForUserRole() {
-    var cache = ServiceLocator.instance<CacheStorage>();
-    var user = json.decode(cache.getData(key: SharedPrefsKeys.user));
-    var role = UserModel.fromJson(user).userRole?.toUpperCase() ?? '';
-    if (role == 'Student'.toUpperCase()) {
-      return HomeStudentLayoutPage.routeName;
-    } else if (role == 'Patient'.toUpperCase()) {
-      return HomePatientLayoutPage.routeName;
-    } else if (role == 'Doctor'.toUpperCase()) {
-      return HomeDoctorLayoutPage.routeName;
-    }
-  }
 }
+

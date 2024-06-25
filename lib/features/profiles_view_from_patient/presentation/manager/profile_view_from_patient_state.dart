@@ -5,6 +5,21 @@ sealed class ProfileViewFromPatientState {}
 
 final class ProfileViewFromPatientInitial extends ProfileViewFromPatientState {}
 
+final class StartNewConversationLoading extends ProfileViewFromPatientState {}
+
+final class StartNewConversationError extends ProfileViewFromPatientState {
+  final ResponseModel model;
+
+  StartNewConversationError({required this.model});
+
+}
+
+final class StartNewConversationSuccess extends ProfileViewFromPatientState {
+  final ResponseModel model;
+
+  StartNewConversationSuccess({required this.model});
+}
+
 final class GetAllRatesLoading extends ProfileViewFromPatientState {}
 
 final class GetAllRatesError extends ProfileViewFromPatientState {

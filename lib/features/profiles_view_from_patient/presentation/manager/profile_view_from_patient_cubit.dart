@@ -5,16 +5,18 @@ import 'package:oralsync/core/error/error_model.dart';
 import 'package:oralsync/core/error/failure.dart';
 import 'package:oralsync/core/shared_data_layer/actions_data_layer/actions_repo.dart';
 import 'package:oralsync/core/shared_data_layer/actions_data_layer/model/ratings_model.dart';
-import 'package:oralsync/features/home_patient_feature/data/models/DoctorModel.dart';
+import 'package:oralsync/features/messages_feature/data/repo/messages_repo.dart';
 
 part 'profile_view_from_patient_state.dart';
 
 class ProfileViewFromPatientCubit extends Cubit<ProfileViewFromPatientState> {
   ProfileViewFromPatientCubit({
     required this.actionsRepo,
+    required this.messagesRepo,
   }) : super(ProfileViewFromPatientInitial());
 
   final ActionsRepo actionsRepo;
+  final MessagesRepo messagesRepo;
 
   createReserve({
     required String doctorId,
@@ -56,6 +58,21 @@ class ProfileViewFromPatientCubit extends Cubit<ProfileViewFromPatientState> {
         }
       },
       (rates) => emit(GetAllRatesSuccess(rates: rates)),
+    );
+  }
+
+  startNewConversation(String receiverId) async {
+    emit(StartNewConversationLoading());
+    var res = await messagesRepo.startNewConversation(receiverId: receiverId);
+    res.fold(
+      (l) {
+        if (l is OfflineFailure) {
+          emit(StartNewConversationError(model: l.model!));
+        } else if (l is ServerFailure) {
+          emit(StartNewConversationError(model: l.errorModel!));
+        }
+      },
+      (model) => emit(StartNewConversationSuccess(model: model)),
     );
   }
 }

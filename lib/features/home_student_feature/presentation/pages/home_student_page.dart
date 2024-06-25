@@ -63,8 +63,8 @@ class HomeStudentPage extends StatelessWidget {
                                     PostDetailsPage.routeName,
                                     arguments: [cubit, index],
                                   ),
-                                  postDate: DateFormat("MMM dd, yyyy").format(
-                                      DateFormat("yyyy/MM/dd").parse(
+                                  postDate: DateFormat("MMM dd, yyyy",'en').format(
+                                      DateFormat("yyyy/MM/dd",'en').parse(
                                           cubit.posts[index].dateCreated ??
                                               '2001/08/01')),
                                   images: cubit.posts[index].postImages ?? [],

@@ -1,21 +1,28 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:oralsync/translations/locale_keys.g.dart';
 
 import '../utils/icon_broken.dart';
 
 class CustomSearchWidget extends StatefulWidget {
-  final Function(String) onSearch; // Callback function for search logic
+  final Function(String) onSearch;
 
-  const CustomSearchWidget({super.key, required this.onSearch});
+  const CustomSearchWidget({
+    super.key,
+    required this.onSearch,
+    required this.searchTextController, required this.onPressClear,
+  });
+
+  final TextEditingController searchTextController;
+  final Function onPressClear;
 
   @override
-  // ignore: library_private_types_in_public_api
-  _CustomSearchWidgetState createState() => _CustomSearchWidgetState();
+  State<CustomSearchWidget> createState() => _CustomSearchWidgetState();
 }
 
 class _CustomSearchWidgetState extends State<CustomSearchWidget> {
-  final TextEditingController _searchTextController = TextEditingController();
   String _searchText = "";
-  bool _showClearButton = false; // Flag for clear button visibility
+  bool _showClearButton = false;
 
   @override
   Widget build(BuildContext context) {
@@ -29,9 +36,9 @@ class _CustomSearchWidgetState extends State<CustomSearchWidget> {
         children: [
           Expanded(
             child: TextField(
-              controller: _searchTextController,
+              controller:widget. searchTextController,
               decoration: InputDecoration(
-                hintText: "Search...",
+                hintText: LocaleKeys.search.tr(),
                 prefixIcon: Icon(IconBroken.Search, color: Colors.grey[600]),
                 border: InputBorder.none,
                 suffixIcon: _searchText.isNotEmpty
@@ -42,16 +49,18 @@ class _CustomSearchWidgetState extends State<CustomSearchWidget> {
                           icon: Icon(Icons.close, color: Colors.grey[400]),
                           onPressed: () {
                             setState(() {
-                              _searchTextController.text = "";
+                              widget.searchTextController.text = "";
                               _searchText = "";
                               _showClearButton = false;
+                              widget.onPressClear();
                             });
                           },
                         ),
                       )
-                    : null, // Show clear button only when text is entered
+                    : null,
               ),
               onChanged: (text) {
+                widget.onSearch(text);
                 setState(() {
                   _searchText = text;
                   _showClearButton = text.isNotEmpty;

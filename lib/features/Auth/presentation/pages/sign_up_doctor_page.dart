@@ -1,4 +1,3 @@
-import 'package:animate_do/animate_do.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -9,7 +8,6 @@ import 'package:oralsync/core/helpers/extensions/navigation_extensions.dart';
 import 'package:oralsync/core/helpers/snackbars.dart';
 import 'package:oralsync/core/service_locator/service_locator.dart';
 import 'package:oralsync/core/utils/assets_manager.dart';
-import 'package:oralsync/core/utils/governorate.dart';
 import 'package:oralsync/core/utils/size_helper.dart';
 import 'package:oralsync/core/utils/styles.dart';
 import 'package:oralsync/features/Auth/domain/use_cases/login_use_case.dart';
@@ -26,7 +24,6 @@ import 'package:oralsync/translations/locale_keys.g.dart';
 import '../../../../core/helpers/general_validators.dart';
 import '../../../../core/widgets/custom_alert_dialog_governorate.dart';
 import '../../domain/use_cases/register_use_case.dart';
-import 'dart:ui' as ui;
 class SignUpDoctorPage extends StatefulWidget {
   const SignUpDoctorPage({super.key});
 

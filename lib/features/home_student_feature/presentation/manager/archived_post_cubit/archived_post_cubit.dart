@@ -16,10 +16,10 @@ import '../../../domain/use_cases/get_all_posts_archived_use_case.dart';
 part 'archived_post_state.dart';
 
 class ArchivedPostCubit extends Cubit<ArchivedPostState> {
-  ArchivedPostCubit(
-      {required GetAllPostsArchivedUseCase postsArchivedUseCase,
-      required ArchiveAndUnArchivePostUseCase archiveAndUnArchivePostUseCase})
-      : _postsArchivedUseCase = postsArchivedUseCase,
+  ArchivedPostCubit({
+    required GetAllPostsArchivedUseCase postsArchivedUseCase,
+    required ArchiveAndUnArchivePostUseCase archiveAndUnArchivePostUseCase,
+  })  : _postsArchivedUseCase = postsArchivedUseCase,
         _archiveAndUnArchivePostUseCase = archiveAndUnArchivePostUseCase,
         super(ArchivedPostInitial());
 
