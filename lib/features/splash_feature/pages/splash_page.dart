@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
@@ -39,7 +40,7 @@ class _SplashPageState extends State<SplashPage>
     _controller.addStatusListener((status) {
       if (status == AnimationStatus.completed) {
         context.pushNamedAndRemoveUntil(initialRoute,predicate: (route) => false);
-        print('completed');
+        log('completed');
       }
     });
     super.initState();

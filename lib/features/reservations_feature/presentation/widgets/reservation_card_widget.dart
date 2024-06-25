@@ -104,8 +104,7 @@ class AppointmentCard extends StatelessWidget {
                     ? null
                     : () => context.pushNamed(AddRatePage.routeName,arguments: reservation),
                 style: ElevatedButton.styleFrom(
-                  primary: Colors.white,
-                  onPrimary: ColorsPalette.buttonLoginColor,
+                  foregroundColor: ColorsPalette.buttonLoginColor, backgroundColor: Colors.white,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20),
                   ),

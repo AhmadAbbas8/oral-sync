@@ -127,7 +127,11 @@ class CodegenLoader extends AssetLoader{
   "write_something": "اكتب شيئا",
   "type_message": "اكتب رسالتك . . .",
   "chats": "الدردشات",
-  "search": "بحث . . ."
+  "search": "بحث . . .",
+  "change_to_doctor": "تغيير الي طبيب",
+  "are_you_sure_to_convert_your_account_to_a_doctor_s_account": "هل أنت متأكد من تحويل الحساب الخاص بك الي حساب دكتور ؟",
+  "confirm": "تأكيد",
+  "update_password": "تحديث كلمة المرور"
 };
 static const Map<String,dynamic> en = {
   "hello": "Hello",
@@ -242,7 +246,11 @@ static const Map<String,dynamic> en = {
   "write_something": "Write Something",
   "type_message": "Type Message . . .",
   "chats": "Chats",
-  "search": "Search . . ."
+  "search": "Search . . .",
+  "change_to_doctor": "Change to Doctor",
+  "are_you_sure_to_convert_your_account_to_a_doctor_s_account": "Are you sure to convert your account to a doctor's account?",
+  "confirm": "Confirm",
+  "update_password": "Update Password"
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"ar": ar, "en": en};
 }

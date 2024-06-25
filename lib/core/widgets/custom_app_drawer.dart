@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:oralsync/core/cache_helper/cache_storage.dart';
@@ -13,12 +12,12 @@ import 'package:oralsync/features/Auth/data/models/user_model.dart';
 import 'package:oralsync/features/Auth/presentation/pages/login_page.dart';
 import 'package:oralsync/features/contact_us_feature/presentation/pages/contact_us_page.dart';
 import 'package:oralsync/features/home_student_feature/presentation/pages/profile_student_page.dart';
-import 'package:oralsync/features/home_student_feature/presentation/pages/settings_of_student_screen.dart';
 import 'package:oralsync/translations/locale_keys.g.dart';
 
 import '../../features/Auth/data/data_sources/auth_local_data_source.dart';
 import '../../features/doctor_profile_feature/presentation/pages/doctor_profile_page.dart';
 import '../../features/home_patient_feature/presentation/pages/profile_patient_page.dart';
+import '../../features/settings_feature/presentation/pages/settings_screen.dart';
 import 'custom_drawer_list_tile.dart';
 
 class CustomAppDrawer extends StatelessWidget {
@@ -27,15 +26,16 @@ class CustomAppDrawer extends StatelessWidget {
     required this.name,
     required this.email,
     required this.profileImage,
+    this.userId,
   });
 
   final String name;
   final String email;
   final String profileImage;
+  final String? userId;
 
   @override
   Widget build(BuildContext context) {
-    log('custom drawer ----$profileImage');
     return Drawer(
       child: Column(
         children: [
@@ -54,7 +54,10 @@ class CustomAppDrawer extends StatelessWidget {
             ),
             currentAccountPicture: CircleAvatar(
               backgroundColor: Colors.black,
-              backgroundImage:  NetworkImage(profileImage, headers: const {'Cache-Control': 'no-cache'},),
+              backgroundImage: NetworkImage(
+                profileImage,
+                headers: const {'Cache-Control': 'no-cache'},
+              ),
             ),
             decoration: const BoxDecoration(
               color: ColorsPalette.userDrawerHeaderBackground,
@@ -71,7 +74,10 @@ class CustomAppDrawer extends StatelessWidget {
             title: LocaleKeys.settings,
             icon: IconBroken.Setting,
             onTap: () {
-              context.pushNamed(SettingsOfStudentScreen.routeName);
+              context.pushNamed(
+                SettingsScreen.routeName,
+                arguments: userId ?? '',
+              );
             },
           ),
           const CustomDrawerListTile(

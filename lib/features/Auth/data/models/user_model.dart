@@ -14,7 +14,7 @@ class UserModel {
   });
 
   factory UserModel.fromJson(Map<String, dynamic> json) {
-    String userRole = json['userRole']??'Student';
+    String userRole = json['userRole'] ?? 'Student';
     UserDetails userDetails;
 
     switch (userRole) {
@@ -57,6 +57,7 @@ class UserDetails {
   final String? email;
   final String? birthDate;
   final String? governorate;
+  final String? userId;
 
   UserDetails({
     required this.firstName,
@@ -66,6 +67,7 @@ class UserDetails {
     required this.email,
     required this.birthDate,
     required this.governorate,
+    required this.userId,
   });
 
   Map<String, dynamic> toJson() => {
@@ -76,6 +78,7 @@ class UserDetails {
         'email': email,
         'birthDate': birthDate,
         'governorate': governorate,
+        'userId': userId,
       };
 }
 
@@ -91,6 +94,7 @@ class PatientDetails extends UserDetails {
     required String email,
     required String birthDate,
     required String governorate,
+    required String userId,
     required this.address,
     required this.insuranceCompany,
   }) : super(
@@ -101,6 +105,7 @@ class PatientDetails extends UserDetails {
           email: email,
           birthDate: birthDate,
           governorate: governorate,
+          userId: userId,
         );
 
   @override
@@ -122,6 +127,7 @@ class PatientDetails extends UserDetails {
       birthDate: json['birthDate'],
       address: List<String>.from(json['address'] ?? []),
       insuranceCompany: json['insuranceCompany'],
+      userId: json['userId']??'',
     );
   }
 }
@@ -143,6 +149,7 @@ class DoctorDetails extends UserDetails {
     required String email,
     required String birthDate,
     required String governorate,
+    required String userId,
     required this.gpa,
     required this.universityName,
     required this.clinicNumber,
@@ -158,6 +165,7 @@ class DoctorDetails extends UserDetails {
           email: email,
           birthDate: birthDate,
           governorate: governorate,
+          userId: userId,
         );
 
   @override
@@ -181,6 +189,7 @@ class DoctorDetails extends UserDetails {
       isMale: json['isMale'],
       phoneNumber: json['phoneNumber'],
       email: json['email'],
+      userId: json['userId']??'',
       governorate: json['governorate'],
       birthDate: json['birthDate'],
       universityName: json['universityName'],
@@ -207,6 +216,7 @@ class StudentDetails extends UserDetails {
     required String email,
     required String birthDate,
     required String governorate,
+    required String userId,
     required this.universityName,
     required this.universityAddress,
     required this.gpa,
@@ -219,6 +229,7 @@ class StudentDetails extends UserDetails {
           phoneNumber: phoneNumber,
           email: email,
           birthDate: birthDate,
+          userId: userId,
         );
 
   @override
@@ -236,7 +247,7 @@ class StudentDetails extends UserDetails {
       firstName: json['firstName'],
       lastName: json['lastName'],
       isMale: json['isMale'],
-      governorate: json['governorate']??'',
+      governorate: json['governorate'] ?? '',
       phoneNumber: json['phoneNumber'],
       email: json['email'],
       birthDate: json['birthDate'],
@@ -244,6 +255,7 @@ class StudentDetails extends UserDetails {
       universityAddress: List<String>.from(json['universitAddress'] ?? []),
       gpa: json['gpa'],
       academicYear: json['academicYear'],
+      userId: json['userId']??'',
     );
   }
 }

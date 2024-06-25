@@ -46,6 +46,9 @@ import 'package:oralsync/features/profiles_view_from_patient/presentation/manage
 import 'package:oralsync/features/reservations_feature/data/remote_data_sources/reservations_remote_data_source.dart';
 import 'package:oralsync/features/reservations_feature/data/repo/reservations_repo.dart';
 import 'package:oralsync/features/reservations_feature/presentation/manager/reservations_cubit/reservations_cubit.dart';
+import 'package:oralsync/features/settings_feature/data/data_sources/settings_remote_data_source.dart';
+import 'package:oralsync/features/settings_feature/data/repo/settings_repo.dart';
+import 'package:oralsync/features/settings_feature/presentation/logic/settings__cubit.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -110,6 +113,11 @@ class ServiceLocator {
         cacheStorage: instance(),
       ),
     );
+    instance.registerFactory<SettingsCubit>(
+      () => SettingsCubit(
+        settingsRepo: instance(),
+      ),
+    );
     // * Datasources
     instance.registerLazySingleton<AuthRemoteDataSource>(
         () => AuthRemoteDataSourceImp(apiConsumer: instance()));
@@ -137,6 +145,9 @@ class ServiceLocator {
 
     instance.registerLazySingleton<MessagesRemoteDataSource>(
         () => MessagesRemoteDataSourceImpl(apiConsumer: instance()));
+
+    instance.registerLazySingleton<SettingsRemoteDataSource>(
+        () => SettingsRemoteDataSourceImpl(api: instance()));
 
     // * Repository
     instance.registerLazySingleton<AuthRepository>(() => AuthRepositoryImpl(
@@ -170,6 +181,10 @@ class ServiceLocator {
           dataSource: instance(),
         ));
     instance.registerLazySingleton<MessagesRepo>(() => MessagesRepoImpl(
+          networkInfo: instance(),
+          remoteDataSource: instance(),
+        ));
+    instance.registerLazySingleton<SettingsRepo>(() => SettingsRepoImpl(
           networkInfo: instance(),
           remoteDataSource: instance(),
         ));

@@ -22,15 +22,21 @@ abstract class EndPoints {
   static const getAllHiddenPostsByUserEndPoint = 'GetAllHiddenPostsByUser';
   static const getAllPostEndPoint = 'GetAllPost';
   static const addLikeEndPoint = 'AddLike';
-  static const filterDoctorsByGovernorateAndRateEndPoint = 'FilterDoctorsByGovernorateAndRate';
+  static const filterDoctorsByGovernorateAndRateEndPoint =
+      'FilterDoctorsByGovernorateAndRate';
   static const createAppointmentEndPoint = 'CreateAppointment';
   static const getRatingsEndPoint = 'GetRatings';
   static const userProfileEndPoint = 'UserProfile';
-  static const getCompletedPatientAppointmentEndPoint = 'GetCompletedPatientAppointment';
-  static const getCompletedDoctorAppointmentEndPoint = 'GetCompletedDoctorAppointment';
-  static const getWaitingScheduledDoctorAppointmentEndPoint = 'GetWaitingScheduledDoctorAppointment';
+  static const getCompletedPatientAppointmentEndPoint =
+      'GetCompletedPatientAppointment';
+  static const getCompletedDoctorAppointmentEndPoint =
+      'GetCompletedDoctorAppointment';
+  static const getWaitingScheduledDoctorAppointmentEndPoint =
+      'GetWaitingScheduledDoctorAppointment';
   static const updateAppointmentEndPoint = 'UpdateAppointment';
   static const addRateEndPoint = 'AddRate';
   static const getAllMessageDetailsEndPoint = 'GetAllMessageDetails';
   static const addMessageEndPoint = 'AddMessage';
+  static const convertStudentToDoctorEndPoint = 'ConvertStudentToDoctor';
+  static const updatePasswordEndPoint = 'UpdatePassword';
 }

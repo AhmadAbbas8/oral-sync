@@ -113,5 +113,9 @@ abstract class  LocaleKeys {
   static const type_message = 'type_message';
   static const chats = 'chats';
   static const search = 'search';
+  static const change_to_doctor = 'change_to_doctor';
+  static const are_you_sure_to_convert_your_account_to_a_doctor_s_account = 'are_you_sure_to_convert_your_account_to_a_doctor_s_account';
+  static const confirm = 'confirm';
+  static const update_password = 'update_password';
 
 }

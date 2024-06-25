@@ -163,9 +163,9 @@ class _ChatPageState extends State<ChatPage> {
                               ),
                               const SizedBox(height: 5),
                               Text(
-                                DateFormat('hh:mm:ss mm/dd/yyy').format(
+                                DateFormat('hh:mm:ss MM/dd/yyy').format(
                                     (message['timestamp'] ??
-                                            Timestamp(5, 5) as Timestamp)
+                                            Timestamp(5, 5))
                                         .toDate()),
                                 style: const TextStyle(
                                   fontSize: 12,

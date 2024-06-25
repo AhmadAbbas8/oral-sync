@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:oralsync/core/shared_data_layer/actions_data_layer/model/ratings_model.dart';
 import 'package:oralsync/features/Auth/data/models/user_model.dart';
 import 'package:oralsync/features/reservations_feature/data/models/reservation_model.dart';
+import 'package:oralsync/features/settings_feature/presentation/pages/settings_screen.dart';
 import 'package:oralsync/features/splash_feature/pages/splash_page.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:oralsync/features/home_patient_feature/data/models/DoctorModel.dart';
@@ -34,7 +35,6 @@ import '../../features/home_student_feature/presentation/pages/home_student_page
 import '../../features/home_student_feature/presentation/pages/notification_page.dart';
 import '../../features/home_student_feature/presentation/pages/post_details_page.dart';
 import '../../features/home_student_feature/presentation/pages/profile_student_page.dart';
-import '../../features/home_student_feature/presentation/pages/settings_of_student_screen.dart';
 import '../../features/home_student_feature/presentation/pages/student_home_layout_page.dart';
 
 class AppRouter {
@@ -122,9 +122,9 @@ class AppRouter {
           type: _generalType,
           curve: _generalCurve,
         );
-      case SettingsOfStudentScreen.routeName:
+      case SettingsScreen.routeName:
         return PageTransition(
-          child: const SettingsOfStudentScreen(),
+          child:  SettingsScreen(userId: arguments as String),
           type: _generalType,
           curve: _generalCurve,
         );
@@ -257,8 +257,8 @@ class AppRouter {
     ProfileStudentPage.routeName: (context) => const ProfileStudentPage(),
     CreatePostPage.routeName: (context) => const CreatePostPage(),
     // EditProfilePage.routeName: (context) => const EditProfilePage(),
-    SettingsOfStudentScreen.routeName: (context) =>
-        const SettingsOfStudentScreen(),
+    // SettingsScreen.routeName: (context) =>
+    //     const SettingsScreen(),
     // NotificationPage.routeName: (context) =_> const NotificationPage(),
     // PostDetailsPage.routeName: (context) => const PostDetailsPage(),
   };

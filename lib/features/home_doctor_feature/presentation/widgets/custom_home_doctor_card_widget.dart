@@ -81,8 +81,7 @@ class CustomHomeDoctorCardWidget extends StatelessWidget {
                       ? onPressedAccept
                       : null,
                   style: ElevatedButton.styleFrom(
-                    primary: ColorsPalette.buttonLoginColor,
-                    onPrimary: Colors.white,
+                    foregroundColor: Colors.white, backgroundColor: ColorsPalette.buttonLoginColor,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20),
                     ),
@@ -100,8 +99,7 @@ class CustomHomeDoctorCardWidget extends StatelessWidget {
                 ElevatedButton(
                   onPressed: onPressedCancel,
                   style: ElevatedButton.styleFrom(
-                    primary: Colors.white,
-                    onPrimary: ColorsPalette.buttonLoginColor,
+                    foregroundColor: ColorsPalette.buttonLoginColor, backgroundColor: Colors.white,
                     side: const BorderSide(color: Colors.orange),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20),
@@ -118,8 +116,7 @@ class CustomHomeDoctorCardWidget extends StatelessWidget {
                 ElevatedButton(
                   onPressed: onPressedDone,
                   style: ElevatedButton.styleFrom(
-                    primary: Colors.white,
-                    onPrimary: ColorsPalette.buttonLoginColor,
+                    foregroundColor: ColorsPalette.buttonLoginColor, backgroundColor: Colors.white,
                     side: const BorderSide(color: Colors.orange),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20),
