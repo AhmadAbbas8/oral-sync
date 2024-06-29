@@ -12,6 +12,7 @@ class HomeDoctorCubit extends Cubit<HomeDoctorState> {
   HomeDoctorCubit({required this.homeDoctorRepo}) : super(HomeDoctorInitial());
   final HomeDoctorRepo homeDoctorRepo;
   List<ReservationModel> reservations = [];
+  List<ReservationModel> patientHistory = [];
 
   getWaitingReservationsForDoctor() async {
     reservations.clear();
@@ -39,7 +40,7 @@ class HomeDoctorCubit extends Cubit<HomeDoctorState> {
     emit(UpdateReservationStatusDoctorLoading());
     var res = await homeDoctorRepo.updateReservation(
       status: status,
-      reservationId: reservations[index].id??0,
+      reservationId: reservations[index].id ?? 0,
       doctorNotes: 'Welcome to my clinic at any time, dear patient.',
     );
     res.fold((failure) {
@@ -49,12 +50,31 @@ class HomeDoctorCubit extends Cubit<HomeDoctorState> {
         emit(UpdateReservationStatusDoctorError(model: failure.errorModel!));
       }
     }, (model) {
-      if(status ==  'Scheduled') {
+      if (status == 'Scheduled') {
         reservations[index].status = 'Scheduled';
-      }else{
+      } else {
         reservations.removeAt(index);
       }
       emit(UpdateReservationStatusDoctorSuccess(model: model));
     });
+  }
+
+  Future<void> getPatientHistory(String patientId) async {
+    patientHistory.clear();
+    emit(GetPatientHistoryLoading());
+    var res = await homeDoctorRepo.getPatientHistory(patientId: patientId);
+    res.fold(
+      (failure) {
+        if (failure is OfflineFailure) {
+          emit(GetPatientHistoryError(model: failure.model!));
+        } else if (failure is ServerFailure) {
+          emit(GetPatientHistoryError(model: failure.errorModel!));
+        }
+      },
+      (histories) {
+        patientHistory = histories;
+        emit(GetPatientHistorySuccess(histories: histories));
+      },
+    );
   }
 }

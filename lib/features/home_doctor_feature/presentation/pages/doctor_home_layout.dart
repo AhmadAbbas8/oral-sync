@@ -25,7 +25,7 @@ class HomeDoctorLayoutPage extends StatelessWidget {
           var cubit = context.read<DoctorCubit>();
           return Scaffold(
             appBar: AppBar(
-              title: const Text(LocaleKeys.home).tr(),
+              title:  Text(cubit.appBarTitles[cubit.currentIndex]).tr(),
             ),
             drawer: CustomAppDrawer(
               name:

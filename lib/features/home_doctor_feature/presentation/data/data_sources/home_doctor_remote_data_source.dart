@@ -15,6 +15,8 @@ abstract class HomeDoctorRemoteDataSource {
     required int reservationId,
     required String doctorNotes,
   });
+
+  Future<List<ReservationModel>> getPatientHistory({required String patientId});
 }
 
 class HomeDoctorRemoteDataSourceImpl implements HomeDoctorRemoteDataSource {
@@ -69,6 +71,36 @@ class HomeDoctorRemoteDataSourceImpl implements HomeDoctorRemoteDataSource {
       if (response.statusCode == 200) {
         return ResponseModel.fromJson(response.data);
       } else if (response.statusCode == 400 || response.statusCode == 404) {
+        throw ServerException(
+          errorModel: ResponseModel.fromJson(response.data),
+        );
+      } else {
+        throw ServerException(
+          errorModel: ResponseModel(
+              messageEn: 'Server Error', messageAr: 'مشكلة فى السيرفر'),
+        );
+      }
+    } on DioException catch (e) {
+      throw ServerException(
+        errorModel: ResponseModel.fromJson(e.response?.data),
+      );
+    }
+  }
+
+  @override
+  Future<List<ReservationModel>> getPatientHistory(
+      {required String patientId}) async {
+    try {
+      Response response = await api.get(
+          EndPoints.getCompletedPatientAppointmentByUserIdEndPoint,
+          queryParameters: {'userId': patientId});
+      List<ReservationModel> reservations = [];
+      if (response.statusCode == 200) {
+        for (var val in response.data) {
+          reservations.add(ReservationModel.fromJson(val));
+        }
+        return reservations;
+      } else if (response.statusCode == 404) {
         throw ServerException(
           errorModel: ResponseModel.fromJson(response.data),
         );

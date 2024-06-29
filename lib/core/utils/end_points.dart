@@ -39,4 +39,5 @@ abstract class EndPoints {
   static const addMessageEndPoint = 'AddMessage';
   static const convertStudentToDoctorEndPoint = 'ConvertStudentToDoctor';
   static const updatePasswordEndPoint = 'UpdatePassword';
+  static const getCompletedPatientAppointmentByUserIdEndPoint = 'GetCompletedPatientAppointmentByUserId';
 }
