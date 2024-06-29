@@ -19,6 +19,22 @@ final class UpdateReservationStatusDoctorSuccess extends HomeDoctorState {
   UpdateReservationStatusDoctorSuccess({required this.model});
 }
 
+final class GetPatientHistoryLoading extends HomeDoctorState {
+
+}
+
+final class GetPatientHistoryError extends HomeDoctorState {
+  final ResponseModel model;
+
+  GetPatientHistoryError({required this.model});
+}
+
+final class GetPatientHistorySuccess extends HomeDoctorState {
+  final List<ReservationModel> histories;
+
+  GetPatientHistorySuccess({required this.histories});
+}
+
 final class GetReservationsWaitingDoctorLoading extends HomeDoctorState {}
 
 final class GetReservationsWaitingDoctorError extends HomeDoctorState {

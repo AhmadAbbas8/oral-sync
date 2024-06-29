@@ -115,5 +115,6 @@
   "change_to_doctor": "تغيير الي طبيب",
   "are_you_sure_to_convert_your_account_to_a_doctor_s_account": "هل أنت متأكد من تحويل الحساب الخاص بك الي حساب دكتور ؟",
   "confirm": "تأكيد",
-  "update_password": "تحديث كلمة المرور"
+  "update_password": "تحديث كلمة المرور",
+  "history": "الكشوفات السابقة"
 }

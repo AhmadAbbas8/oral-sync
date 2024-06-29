@@ -15,6 +15,8 @@ abstract class HomeDoctorRepo {
     required int reservationId,
     required String doctorNotes,
   });
+
+  Future<Either<Failure,List<ReservationModel>>> getPatientHistory({required String patientId});
 }
 
 class HomeDoctorRepoImpl implements HomeDoctorRepo {
@@ -53,6 +55,20 @@ class HomeDoctorRepoImpl implements HomeDoctorRepo {
           doctorNotes: doctorNotes,
         );
         return Right(res);
+      } on ServerException catch (ex) {
+        return Left(ServerFailure(errorModel: ex.errorModel));
+      }
+    } else {
+      return Left(OfflineFailure());
+    }
+  }
+
+  @override
+  Future<Either<Failure, List<ReservationModel>>> getPatientHistory({required String patientId})async {
+    if (await networkInfo.isConnected) {
+      try {
+        var reservations = await dataSource.getPatientHistory(patientId: patientId);
+        return Right(reservations);
       } on ServerException catch (ex) {
         return Left(ServerFailure(errorModel: ex.errorModel));
       }

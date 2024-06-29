@@ -14,6 +14,7 @@ import '../../features/Auth/presentation/pages/sign_up_patient_page.dart';
 import '../../features/Auth/presentation/pages/sign_up_student_page.dart';
 import '../../features/contact_us_feature/presentation/pages/contact_us_page.dart';
 import '../../features/doctor_profile_feature/presentation/pages/doctor_profile_page.dart';
+import '../../features/home_doctor_feature/presentation/pages/patient_history_page.dart';
 import '../../features/home_student_feature/presentation/pages/post_archived_details_page.dart';
 import '../../features/profiles_view_from_patient/presentation/pages/doctor_profile_patient_view_page.dart';
 import '../../features/doctor_profile_feature/presentation/pages/edit_profile_doctor_page.dart';
@@ -124,7 +125,7 @@ class AppRouter {
         );
       case SettingsScreen.routeName:
         return PageTransition(
-          child:  SettingsScreen(userId: arguments as String),
+          child: SettingsScreen(userId: arguments as String),
           type: _generalType,
           curve: _generalCurve,
         );
@@ -230,6 +231,13 @@ class AppRouter {
         return PageTransition(
           child: AddRatePage(
             reservation: arguments as ReservationModel,
+          ),
+          type: _generalType,
+        );
+      case PatientHistoryPage.routeName:
+        return PageTransition(
+          child: PatientHistoryPage(
+            histories: arguments as List<ReservationModel>,
           ),
           type: _generalType,
         );

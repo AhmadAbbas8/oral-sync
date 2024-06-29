@@ -131,7 +131,8 @@ class CodegenLoader extends AssetLoader{
   "change_to_doctor": "تغيير الي طبيب",
   "are_you_sure_to_convert_your_account_to_a_doctor_s_account": "هل أنت متأكد من تحويل الحساب الخاص بك الي حساب دكتور ؟",
   "confirm": "تأكيد",
-  "update_password": "تحديث كلمة المرور"
+  "update_password": "تحديث كلمة المرور",
+  "history": "الكشوفات السابقة"
 };
 static const Map<String,dynamic> en = {
   "hello": "Hello",
@@ -250,7 +251,8 @@ static const Map<String,dynamic> en = {
   "change_to_doctor": "Change to Doctor",
   "are_you_sure_to_convert_your_account_to_a_doctor_s_account": "Are you sure to convert your account to a doctor's account?",
   "confirm": "Confirm",
-  "update_password": "Update Password"
+  "update_password": "Update Password",
+  "history": "History"
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"ar": ar, "en": en};
 }
